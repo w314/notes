@@ -1,0 +1,33 @@
+/* adds a red * after each
+required form element */
+.required::after {
+    content: "*";
+    color: red;
+}
+
+/* selects element with data tooltip attribute,
+the submit button itself */
+[data-tooltip] {
+    /* set position to relative, to be able to position tooltip
+    absoluto */
+    position: relative;
+    margin-top: 1.2em;
+}
+
+/* adds tooltip itself as an after pseudo element when hovering*/
+[data-tooltip]:hover::after {
+    /* attr() get the value of the data-tooltip attribute */
+    content: attr(data-tooltip);
+    
+    position: absolute;
+    /* puts tooltip below button */
+    top: 100%;    
+    /* lets tooltip stretch the whole width of button */
+    right: 0;
+    left:0;
+
+    font-size: 0.8em;
+    color: green;
+    padding: 0.3em;
+    
+}

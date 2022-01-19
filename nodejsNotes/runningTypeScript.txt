@@ -1,0 +1,53 @@
+typscript, nodeomon, npx, concurrently, tsc
+
+https://sbcode.net/tssock/tsc-w-nodemon-conc/
+
+Description
+After creating the tsconfig.json, we can now compile and watch for changes using
+
+```shell
+tsc -p src/server/ -w
+```
+
+
+We can host using
+
+```shell
+node dist/server/server.js
+```
+
+The nodejs doesn't restart when there are changes to the files, so we can install nodemon
+
+```shell
+npm install nodemon@2 --save-dev
+```
+
+Now host the server using
+
+```shell
+npx nodemon dist/server/server.js
+```
+
+**Note**
+
+*Note the use of the npx before the nodemon command above. Since nodemon was installed locally to your project, you cannot call it directly from the command line unless it is also installed globally. Prefixing the nodemon command with npx, as I do above, allows you to bypass the need to install it globally.*
+
+Rather than typing these compile and nodemon commands all the time, we can create a single command to start both processes at the same time.
+
+Install concurrently
+
+```shell
+npm install concurrently@6 --save-dev
+```
+Add this line to the package.json scripts section
+
+```shell
+"dev" : "concurrently -k \"tsc -p ./src/server -w\" \"nodemon ./dist/server/server.js\""
+```
+,
+
+And start using
+
+```shell
+npm run dev
+```
