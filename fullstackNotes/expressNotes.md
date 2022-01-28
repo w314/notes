@@ -1,10 +1,5 @@
-createdAt: "2021-05-06T15:32:58.477Z"
-updatedAt: "2021-07-12T17:54:54.582Z"
-type: "MARKDOWN_NOTE"
-folder: "7b7225fb954665754643"
-title: "Express"
-tags: []
-content: '''
+express nodemon nodejs middleware
+
   # Express
   [Express - Node.js web application framework](https://expressjs.com/)
   
@@ -35,12 +30,12 @@ content: '''
   const app = express();
   const port = 3000;  //can be any number > 1024
   
-  // define route handler for the default home page
+  // define routes
   app.get('/api', (req, res) => {
     res.send('server working');
   });
   
-  // start the Express server
+  // start the server
   app.listen(port, () => {
     console.log(`Server started at http://localhost:${port}`);
   });
