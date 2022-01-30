@@ -6,24 +6,31 @@ express nodemon nodejs middleware
   ## Installation & Setup with Node.js
   ```bash
   npm i express
-  npm i --save-dev @types/express nodemon
+  npm i --save-dev @types/express nodemon ts-node
   ```
   - **@types/express** types for TypeScript
-  - **nodemon** will restart the server after every save
-  
+  - **nodemon** will restart the server after every save (`tsc-watch` can also be used, it can watch typescript files) 
+  - **ts-node** is used by nodemon to run typescript files
+
   #### Add script to `package.json`
   ```javascript
   "scripts": {
-    "start": "nodemon src/index.ts"
+    "devStart": "nodemon src/index.ts"
   }
   ```
+
+  or with `tsc-watch`
+  ```javascript
+  "devStart": "tsc-watch src/server.ts",
+  ```
+
   
   ## To create a server with express
   - import express
   - create application object
   - listen on a port
   
-  In the `src/index.ts` file:
+  In the `src/server.ts` file:
   ```typescript
   import express from 'express'
   
