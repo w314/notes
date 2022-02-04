@@ -1,0 +1,35 @@
+createdAt: "2021-01-29T17:08:15.887Z"
+updatedAt: "2021-01-29T17:16:15.202Z"
+type: "SNIPPET_NOTE"
+folder: "096077ec96120ea00fda"
+title: "Loops"
+tags: [
+  "loops"
+]
+description: "Loops"
+snippets: [
+  {
+    linesHighlighted: []
+    name: "loopsPython.py"
+    mode: "Python"
+    content: '''
+      my_list = [1, 2, 3]
+      
+      # python's for loops are for-each in nature
+      for item in my_list:
+        print(my_list[i])
+        
+      # use enumerate when the index value is needed
+      for i, value in enumerate(my_list):
+        print('The value at index ' + str(i) + ' is: ' + str(value))
+        
+        
+      # iterating over dictionary
+      my_dict = {'a': 'jill', 'b': 'tom', 'c':'tim'}
+      for key in my_dict:
+        print(my_dict[key])
+    '''
+  }
+]
+isStarred: false
+isTrashed: false

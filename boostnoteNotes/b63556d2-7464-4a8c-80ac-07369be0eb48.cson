@@ -1,0 +1,209 @@
+createdAt: "2020-07-03T21:34:17.586Z"
+updatedAt: "2020-07-15T19:27:41.723Z"
+type: "MARKDOWN_NOTE"
+folder: "7b7225fb954665754643"
+title: "WEB DOM Events"
+tags: []
+content: '''
+  # WEB DOM Events
+  
+  [Event - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/Event)
+  
+  ### During Development
+  - `monitorEvents()`
+  - `unmonitorEvents()`
+  
+  ## `EventTarget`
+  - [EventTarget - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget)
+  - interface for objects that can recieve events and may have listeners for them
+  - top of the chain, doesn't inherit from anything
+  - `Node Interface` inherits from element interface
+  - has no properties
+  - has 3 methods only:
+    - `.addEventListener()`, takes 3 arguments:
+      - event type like click
+      - the listener, the function that shoudl run
+      - `useCapture` default is False to defualts to the **bubbling phase**
+      - receives a notification, an  *event object* when an event occurs
+      - [EventTarget.addEventListener() - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+    - `.removeEventListener()`
+    - `.dispatchEvent()`
+  
+  ```javascript
+  const myElement = document.querySelector('h1');
+  
+  myElement.addEventListener('click', function(event) {
+    console.log('myElement was clicked');
+  });
+  ```
+  ## Phases of an Event
+  
+  [UI Events](https://www.w3.org/TR/DOM-Level-3-Events/#event-flow)
+  
+  ### 1 Capturing
+  - Starting with the HTML element and works its way down to the element that was clicked.
+  - to use the phase has to set the `useCapture` argument to `True`
+  - in this phase only event listeners with `useCapture = True` are run
+  ```javascript
+  const myElement = document.querySelector('h1');
+  
+  myElement.addEventListener('click', function(event) {
+    console.log('myElement was clicked');
+  }, true);
+  ```
+  
+  ### 2 At Target
+  As soon as capturing reaches the element that was clicked we are at the At Target phase.
+  ### 3 Bubbling
+  - After being at target, the bubbling phase starts which works its way all the way back up again.
+  - All *regular* event listeners run in this phase, if useCapture is not set, it is the default phase to use
+  
+  ## Preventing Default Events
+  
+  The event object has a `.preventDefault()` method, by calling that method we can prevent the default action to happen
+  ```javascript
+  const links = document.querySelectorAll('a');
+  const thirdLink = links[2];
+  
+  thirdLink.addEventListener('click', function (event) {
+      event.preventDefault();
+      console.log("Look, ma! We didn't navigate to a new page!");
+  });
+  ```
+  
+  ## Better Performance with `.target` property
+  Assume we want to create 200 paragraphs, each to be able to respond to clicks.
+  ```javascript
+  const myCustomDiv = document.createElement('div');
+  
+  for (let i = 1; i <= 200; i++) {
+      const newElement = document.createElement('p');
+      newElement.textContent = 'This is paragraph number ' + i;
+  
+      newElement.addEventListener('click', function respondToTheClick(evt) {
+          console.log('A paragraph was clicked.');
+      });
+  
+      myCustomDiv.appendChild(newElement);
+  }
+  
+  document.body.appendChild(myCustomDiv);
+  ```
+  This way we have created 200 event listeres with 200 different click funstions that do the same.
+  
+  We can reducre the number of click functions to one by:
+  ```javascript
+  const myCustomDiv = document.createElement('div');
+  
+  function respondToTheClick() {
+      console.log('A paragraph was clicked.');
+  }
+  
+  for (let i = 1; i <= 200; i++) {
+      const newElement = document.createElement('p');
+      newElement.textContent = 'This is paragraph number ' + i;
+  
+      newElement.addEventListener('click', respondToTheClick);
+  
+      myCustomDiv.appendChild(newElement);
+  }
+  
+  document.body.appendChild(myCustomDiv);
+  ```
+  But we still have 200 event listeners.
+  
+  If we add the event listener to the `div` we lose access to the individul paragraphs and cannot print its content.
+  ```javascript
+  const myCustomDiv = document.createElement('div');
+  
+  function respondToTheClick() {
+      console.log('A paragraph was clicked.');
+  }
+  
+  for (let i = 1; i <= 200; i++) {
+      const newElement = document.createElement('p');
+      newElement.textContent = 'This is paragraph number ' + i;
+  
+      myCustomDiv.appendChild(newElement);
+  }
+  
+  myCustomDiv.addEventListener('click', respondToTheClick);
+  
+  document.body.appendChild(myCustomDiv);
+  ```
+  
+  However the event object's `.target` property still has the exact element that was clicked.
+  
+  Our finale version has it all:
+  ```javascript
+  const myCustomDiv = document.createElement('div');
+  
+  function respondToTheClick(evt) {
+      console.log('A paragraph was clicked: ' + evt.target.textContent);
+  }
+  
+  for (let i = 1; i <= 200; i++) {
+      const newElement = document.createElement('p');
+      newElement.textContent = 'This is paragraph number ' + i;
+  
+      myCustomDiv.appendChild(newElement);
+  }
+  
+  document.body.appendChild(myCustomDiv);
+  
+  myCustomDiv.addEventListener('click', respondToTheClick);
+  ```
+  
+  ### using `.nodeName` property to check for exact target
+  - To make sure, that the target that was clicked was really a paragraph and we can use the `.nodeName` property.
+  - Element inherits nodeName property from the Node Interface 
+  - [Node - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/Node)
+  - nodeName will return the name of the node in capital letters like *SPAN*
+  
+  ## `DOMContentLoaded` Event
+  [Window: DOMContentLoaded event - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event)
+  To make sure the DOM is ready for the JavaScript Code:
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <link rel="stylesheet" href="/css/styles.css" />
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('footer').style.backgroundColor = 'purple';
+        });
+      </script>
+  ```
+  Or move you script just before the closing `</body` tag.
+  
+  ## Event Loop
+  - JavaScript Event Loop powers all JavaScript engines
+  - [Concurrency model and the event loop - JavaScript \\| MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop)
+  - asynchronous calls are passed to the browser for future use
+  - when ready to run they are stored in the `queue`
+  - function calls are stored in the `stack`, whenever the stack is empty the queue is checked and the first waiting gets to run and use the stack
+  
+  ### `setTimeout`
+  - [WindowOrWorkerGlobalScope.setTimeout() - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout)
+  ```javascript
+  setTimeout(function sayHi() {
+      console.log('Howdy');
+  }, 0);  // ← 0 milliseconds!
+  
+  
+  // add function definition like:
+  // do NOT add () after function name you'd invoke it immediatelly
+  setTimout(myFunction, 2000);
+  
+  // if you need to send parameters to your function:
+  setTimeout(myFunction, 2000, functionParameter);
+  
+  
+  ```
+  It will still not run instantly as it's an asynchronous function and has to through the event loop
+  - `setTimout` can be used to break up long scripts, so that the browser has the opportunity to interact with the user
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,36 @@
+createdAt: "2019-09-05T20:25:13.811Z"
+updatedAt: "2020-03-25T21:08:12.889Z"
+type: "MARKDOWN_NOTE"
+folder: "0502aa55141f2315e808"
+title: "Jupyter Notebook"
+tags: [
+  "jupyter"
+  "shorcuts"
+]
+content: '''
+  # [Jupyter Notebook](https://jupyter.org/)
+  
+  A web application that allows you to combine explanatory text, math equations, code, and visualizations all in a single document.
+  
+  Installed using [Anaconda Python/R Distribution - Free Download](https://www.anaconda.com/distribution/)
+  
+  
+  
+  
+  # Jupyter Notebook Shortcuts
+  
+  `esc` to switch to command mode
+  `enter` to switch to edit mode
+  `shift + enter` to run code
+  
+  ### When in command mode
+  
+  `m` to turn cell to `markdown`
+  `a` to insert a cell above
+  `b` to insert a cell below
+  `ctrl + enter` run all selected cells
+  `shift + up` select cells above
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

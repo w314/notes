@@ -1,0 +1,33 @@
+createdAt: "2019-07-18T22:35:13.290Z"
+updatedAt: "2020-02-07T20:21:24.713Z"
+type: "MARKDOWN_NOTE"
+folder: "0502aa55141f2315e808"
+title: "Windows10 Shortcuts"
+tags: [
+  "windows"
+  "shortcuts"
+]
+content: '''
+  # Windows10 Shortcuts
+  
+  Win+D Display the desktop.
+  
+  Win+M Minimize all windows.
+  
+  Win+Shift+M Restore minimized windows to the desktop.
+  
+  Win+↑ Maximize the window.
+  
+  Win+← Maximize the window to the left side of the screen.
+  
+  Win+→ Maximize the window to the right side of the screen.
+  
+  Win+↓ Minimize the window.
+  
+  Win+Home Minimize all but the active window.
+  
+  Win+Shift+↑ Stretch the window to the top and bottom of the screen.
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

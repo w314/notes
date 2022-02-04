@@ -1,0 +1,24 @@
+createdAt: "2020-09-16T17:03:05.676Z"
+updatedAt: "2020-09-16T19:03:36.677Z"
+type: "MARKDOWN_NOTE"
+folder: "ae0700cca340ec1715f7"
+title: "Lifecycle Events"
+tags: [
+  "react"
+  "component"
+  "lifecycle"
+]
+content: '''
+  # Lifecycle Events
+  - are specially named methods in a component
+  - 
+  ## API requests
+  - should be made in `componentDidMount()` lifecycle method
+  - invoked immidiately component is inserted into the DOM
+  - if setState is used page will rerender
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

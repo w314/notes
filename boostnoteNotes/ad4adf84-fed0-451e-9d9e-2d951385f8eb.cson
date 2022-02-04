@@ -1,0 +1,33 @@
+createdAt: "2020-04-08T20:58:46.080Z"
+updatedAt: "2020-04-08T21:03:50.404Z"
+type: "MARKDOWN_NOTE"
+folder: "0502aa55141f2315e808"
+title: "Recoursion"
+tags: [
+  "recursion"
+]
+content: '''
+  # Recoursion
+  
+  A function that calls itself
+  
+  Main elements of a recursive functions
+  - has to call itself
+  - needs a `base case`, an exit condition when the function returns something without calling itself again
+  - alter the input parameter at some point (the input parameter the function calls itself is different for all the calls)
+  
+  ```python
+  def power_of_2(n):
+      # base case
+      if n == 0:
+          return 1
+      #function calls itself with a different input
+      return 2 * power_of_2(n - 1)
+  
+  print(power_of_2(5))
+  # 32
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

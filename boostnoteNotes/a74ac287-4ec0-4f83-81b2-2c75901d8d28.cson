@@ -1,0 +1,163 @@
+createdAt: "2019-08-19T16:56:04.257Z"
+updatedAt: "2021-03-27T02:27:48.918Z"
+type: "MARKDOWN_NOTE"
+folder: "68038d270558e5b040df"
+title: "Python Strings"
+tags: [
+  "python"
+  "string"
+]
+content: '''
+  # Python Strings
+  
+  String is an immutable ordered squence / series of characters. (`ordered` means the position of the elememnt can be used to access the element)
+  
+  ```python
+  str = 'name'
+  str[0]
+  # 'n'
+  str[-1]
+  # 'e'
+  ```
+  
+  ## Escape Sequences
+  
+  | Code |	Output |
+  |------| --------|
+  |\\\\\\	|backslash|
+  |\\\\n|	new line|
+  |\\\\t|	tab|
+  
+  Or `r`for raw string can be placed in front of string:
+  ```python
+  print(r'This is \\ a sample \\n of \\b using r in print')
+  
+  ```
+  
+  ### String Operators
+  
+  - `+` combines strings
+  - `*` repeats strings
+  ```python
+  print('Hi' + ' ' + 'there!')
+  print('bye ' * 2)
+  ```
+  - `len` built-in function that returns the length of an object
+  ```python
+  str_length = len('Strange String')
+  ```
+  
+  ## String Methods
+  String are sequences, therefore list and touple methods work with strings. There are specific string methods too.
+  
+  Strings are immutable. When we apply a method to string A we get a new string B that is different from A.
+  
+  
+  
+  ### Slicing
+  ```python
+  name = 'Michael Jackson'
+  name[0:4]
+  # 'Mich'
+  name[8:12]
+  # 'Jack'
+  
+  # get every second elementfrom index 0 to 4
+  name[:5:2]
+  # 'Mca'
+  ```
+  
+  ### Concatenating
+  ```python
+  greeting = 'Hello '
+  name = 'Michael'
+  print(greeting + name)
+  # 'Hello Michael'
+  
+  print(2 * 'bye')
+  # 'byebye'
+  ```
+  
+  ## String Methods
+  
+  `upper()`
+  ```python
+  my_str = 'lower case'
+  print(my_str.upper())
+  # 'LOWER CASE'
+  ```
+  
+  `replace()`
+  ```python
+  str1 = 'Michael Jackson is the best.'
+  str2 = str1.replace('Michael','Janet')
+  print(str2)
+  # 'Janet Jackson is the best.'
+  ```
+  
+  `find()`
+  ```python
+  my_str = 'Dog chases squirrel.'
+  my_str.find('squirrel')
+  # 11
+  my_str.find('cat')
+  # -1
+  ```
+  ### Converting strings to lists
+  
+  - use `split()` to separate string to list elements
+  - default separation character is space
+  - can use maxsplit parameter (returns the rest of the string ast the last element of array after splitting the first maxsplit number of words)
+  ```python
+  my_str = 'one,two three'
+  lst1 = my_str.split();
+  print(lst1)
+  # ['one, two', 'three']
+  lst2 = my_str.split(',')
+  print(lst2)
+  # ['one', 'two three']
+  
+  
+  myStr = 'bob'
+  strToList = list(myStr)   #['b', 'o', 'b']
+  strToSet = set(myStr)     #{'b', 'o', 'b'}
+  ```
+  
+  ### Converting lists to string
+  ```python
+  lst = ['h', 'e', 'l', 'l', 'o']
+  str = ''.join(lst)
+  # 'hello'
+  ```
+  
+  ## formatting strings
+  
+  To use `formatted string literals`, begin a string with `f` or `F` before the opening quotation mark or triple quotation mark. Inside this string, you can write a Python expression between { and } characters that can refer to variables or literal values.
+  
+  ```python
+  year = 2016
+  event = 'Referendum'
+  f'Results of the {year} {event}'
+  #'Results of the 2016 Referendum'
+  ```
+  With the `str.format()` method
+  ```python
+  yes_votes = 42_572_654
+  no_votes = 43_132_495
+  percentage = yes_votes / (yes_votes + no_votes)
+  '{:-9} YES votes  {:2.2%}'.format(yes_votes, percentage)
+  ' 42572654 YES votes  49.67%'
+  ```
+  
+  ## Membership Operators
+  
+  membership operators `in` `not in` work with strings
+  
+'''
+linesHighlighted: [
+  58
+  44
+  98
+]
+isStarred: false
+isTrashed: false

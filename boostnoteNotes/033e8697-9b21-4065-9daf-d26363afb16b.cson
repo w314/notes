@@ -1,0 +1,40 @@
+createdAt: "2019-09-03T18:35:04.207Z"
+updatedAt: "2020-02-07T20:15:20.846Z"
+type: "MARKDOWN_NOTE"
+folder: "e6d3330423734e2f4fd6"
+title: "Getting Information About Tables in IBM DB2"
+tags: [
+  "ibm"
+  "cloud"
+  "db2"
+]
+content: '''
+  # Getting Information About Tables in IBM DB2
+  
+  ### List all tables created
+  ```sql
+  SELECT tabschema, tabname, create_time
+  FROM syscat.tables
+  WHERE tabschema='QPV73871'
+  ;
+  ```
+  
+  ### Display structure of one table
+  ```sql
+  SELECT *
+  FROM syscat.columns
+  WHERE tabname='JOBS'
+  ;
+  ```
+  
+  ### Get information about columns in one table
+  ```sql
+  SELECT distinct(name), coltype, length
+  FROM sysibm.syscolumns
+  WHERE tbname = 'JOBS'
+  ;
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

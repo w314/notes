@@ -1,0 +1,111 @@
+createdAt: "2020-07-02T17:46:07.762Z"
+updatedAt: "2020-07-13T15:57:48.776Z"
+type: "MARKDOWN_NOTE"
+folder: "7b7225fb954665754643"
+title: "WEB DOM Page Content"
+tags: [
+  "dom"
+  "appendChild"
+  "firstElementChild"
+  "firstChild"
+  "page_content"
+]
+content: '''
+  # WEB DOM Page Content
+  
+  ## Add Page Content
+  
+  ### `.appendChild()`
+  - create element as last child of parent
+    - [Document.createElement() - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
+    - [Node.appendChild() - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild)
+    
+  - need an element to create a new one, cannot call `.appendChild()` on the `document`
+  - `.appendChild()` moves an element from current position to a new position, cannot use it to append the same new element to several parents, it will move it from the first to the second etc..
+  ```javascript
+  // create element
+  newContent = document.createElement('span');
+  newContent.textContent = 'new content';
+  
+  // identify parent, here: first div
+  parent = document.querySelector('div');
+  
+  // append child, it will be added as the last child
+  parent.appendChild(newContent);
+  ```
+  
+  ### `.insertAdjacentHTML()`
+  - [Element.insertAdjacentHTML() - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML)
+  - has two arguments:
+    - the location of the HTML
+      - `beforebegin` inserts as previous sibling
+      - `afterbegin` inserts as first child
+      - `beforeend` inserts as last child
+      - `afterend` inserts as next sibling
+    - HTML text to be inserted (has to be text, cannot pass an element)
+  ```javascript
+  // create element
+  newContent = '<h2>New Content</h2>';
+  
+  // identify an element, here: first div
+  element = document.querySelector('div');
+  
+  // insert HTML, it will be added as the next sibling
+  element.insertAdjacentHTML('afterend', newContent);
+  ```
+  
+  ## `.createDocumentFragment` - Add Content Faster
+  - after adding each  element to body, the browser will run through:
+    - `reflow`
+    The process of the browswer laying out the page. Happens at the beginning after the DOM and CSS are loaded, and every time something could change the layout. It's a slow process.
+    - `repaint`
+    Happens after each reflow as the browser draws a new layout. Much faster than reflow.
+    
+  - it can be avoided by using `.addDocumentFragment`
+  ```javascript
+  const fragment = document.createDocumentFragment();  // ← uses a DocumentFragment instead of a <div>
+  
+  for (let i = 0; i < 200; i++) {
+      const newElement = document.createElement('p');
+      newElement.innerText = 'This is paragraph number ' + i;
+  
+      fragment.appendChild(newElement);
+  }
+  
+  document.body.appendChild(fragment); // reflow and repaint here -- once!
+  ```
+  
+  ## Remove Page Content
+  
+  
+  ### `.remove()`
+  ```javascript
+  // find element to remove
+  elToRemove = document.querySelector('#foo');
+  
+  elToRemove.remove();
+  ```
+  
+  ### `.removeChild()`
+  
+  - [Node.removeChild() - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild)
+  - `<parent-element>.removeChild(<child-to-remove);`
+  - if you have the parent element can use `.firstElementChild` to get the first child element (.firstChild might return whitespace)
+  - if you have the child you can use `.parentElement` to get the parent
+  ```javascript
+  // find element to remove
+  elToRemove = document.querySelector('#foo');
+  
+  elToRemove.parentElement.removeChild(elToRemove);
+  ```
+  
+  
+  
+  
+'''
+linesHighlighted: [
+  88
+  81
+]
+isStarred: false
+isTrashed: false

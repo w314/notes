@@ -1,0 +1,46 @@
+createdAt: "2020-08-27T01:27:48.659Z"
+updatedAt: "2020-08-27T01:40:33.244Z"
+type: "MARKDOWN_NOTE"
+folder: "ae0700cca340ec1715f7"
+title: "HOST not recognised"
+tags: [
+  "react"
+  "package.json"
+  "host"
+  "npm_start"
+  "node.js"
+]
+content: '''
+  # HOST not recognised
+  
+  ## Problem
+  In `package.json`:
+  ```javascript
+  "scripts": {
+    "start": "HOST=0.0.0.0 PORT=8000 ./node_modules/.bin/react-scripts start",
+  ```
+  When running `npm start`:
+  `'HOST' is not recognized as an internal or external command,
+  operable program or batch file`.
+  
+  ### SOLUTION
+  
+  #### A)
+  Instead of npm start run in terminal:
+  `HOST=0.0.0.0 PORT=8000 ./node_modules/.bin/react-scripts start`
+  #### B)
+  Use `cross-env` package:
+  - install with `npm i cross-env`
+  - in package.json change start to:
+  `"start": "cross-env ./node_modules/.bin/react-scripts start"`
+  - use `npm start` as usual
+  
+  
+  
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

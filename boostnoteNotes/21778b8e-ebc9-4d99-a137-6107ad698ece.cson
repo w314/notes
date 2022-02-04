@@ -1,0 +1,62 @@
+createdAt: "2020-07-01T19:40:09.627Z"
+updatedAt: "2021-03-22T16:12:47.651Z"
+type: "MARKDOWN_NOTE"
+folder: "7b7225fb954665754643"
+title: "WEB DOM Element"
+tags: [
+  "web"
+  "dom"
+  "element"
+]
+content: '''
+  # WEB DOM Element
+  - [Element - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element)
+  - inherits from `Node Interface`
+  ##  HTML content
+  
+  - `.innerHTML` property of sets or gets the HTML content inside the selected element including all its descendants as a string
+  - `.outerHTML` property includes the element itself as well as its innerHTML
+  
+  ```html
+  <h1 id="pick-me">Greetings to <span>All</span>!</h1>
+  ```
+  ```javascript
+  myElement = documents.querySelector('#pick-me');
+  
+  const innerResult = myElement.innerHTML;
+  // logs: "Greetings To <span>All</span>!"
+  
+  const outerResult = myElement.outerHTML;
+  // logs: "<h1 id="pick-me">Greetings To <span>All</span>!</h1>"
+  ```
+  
+  ## Text Content
+  
+  ### `.textContent` Property
+  - **DO NOT USE**
+  - `.textContent` property sets or gets the text content of an element and all of its desdendants
+  - HTML tags passed to .textContent will be displayed as text, not HTML, have to use .innerHTML for passing HTML tags
+  - returns the text **regardless of css**, even if it's hidden by css for example
+  
+  ### `.innerText` Property
+  
+  - returns text content of an element **as it would be seen on the page** 
+    -  won't return text hidden by css
+    -  will show text in all caps if it's set to appear so by css
+  - not supported by all browser
+  
+  
+  ## Attribute
+  
+  - `.getAttribute()`
+  - `.setAttribute()`
+    - [Element.setAttribute() - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute)
+  - `.removeAttribute`
+  
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

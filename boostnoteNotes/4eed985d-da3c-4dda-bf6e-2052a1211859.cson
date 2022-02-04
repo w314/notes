@@ -1,0 +1,16 @@
+createdAt: "2021-07-07T20:35:19.717Z"
+updatedAt: "2021-07-07T20:35:59.705Z"
+type: "MARKDOWN_NOTE"
+folder: "a2c0786da6dece68d518"
+title: "Visual Studio Code on Linux"
+tags: []
+content: '''
+  # Visual Studio Code on Linux
+  
+  Run `code --verbose` to see error log when it won't start.
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

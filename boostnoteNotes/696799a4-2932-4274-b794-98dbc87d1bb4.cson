@@ -1,0 +1,36 @@
+createdAt: "2021-04-16T13:57:16.667Z"
+updatedAt: "2021-04-16T13:57:50.927Z"
+type: "MARKDOWN_NOTE"
+folder: "096077ec96120ea00fda"
+title: "Maps"
+tags: [
+  "map"
+  "dictionary"
+  "python"
+  "javascript"
+]
+content: '''
+  # Maps
+  
+  ## To check if key is in dictionary
+  
+  ### Python
+  ```python
+  myMap = {'name': 'bob'}
+  if 'name' is in myMap:
+    # do Stuff
+  ```
+  
+  ### JavaScript
+  ```javascript
+  myMap = {'name': 'bob'}
+  if (myMap.hasOwnProperty('name')) {
+    // do stuff
+  }
+  ```
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

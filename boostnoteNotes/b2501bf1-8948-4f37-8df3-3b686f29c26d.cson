@@ -1,0 +1,78 @@
+createdAt: "2019-08-20T17:19:18.410Z"
+updatedAt: "2020-07-01T17:25:11.748Z"
+type: "MARKDOWN_NOTE"
+folder: "68038d270558e5b040df"
+title: "Python Tuples"
+tags: [
+  "python"
+  "tuple"
+]
+content: '''
+  # Python Tuples
+  
+  - tuple is an **immutable**, **ordered** sequence
+  - tuple is compound data type
+  - (tuples are non-existent in javascript)
+  
+  ```python
+  my_tuple = ('foo', 1, (11, 12), 3.14)
+  
+  # parentheses can be optional
+  dimensions = 52, 40, 100
+  ```
+  - unpack a tuple
+  ```python
+  dimensions = 52, 40, 100
+  
+  length, width, height = dimensions
+  ```
+  - tuples can be indexed
+  ```python
+  print(my_tuple[0])
+  # 'foo'
+  print(my_tuple[2][1])
+  # 12
+  print(my_tuple[-1])
+  # 3.14
+  
+  ```
+  - tuples can be concatenated
+  ```python
+  other_tuple = my_tuple + ('bar', 42)
+  print(other_tuple)
+  # ('foo', 1, (11, 12), 3.14, 'bar', 42)
+  ```
+  - tuples can be sliced
+  ```python
+  other_tuple[1:3]
+  # (1, (11, 12))
+  ```
+  
+  - length of the tuple
+  ```python
+  len(other_tuple)
+  # 6
+  ```
+  - sorting a tuple
+  ```python
+  sorted_tuple = sorted(my_tuple)
+  ```
+  
+  - find first index of element in tuple
+  ```python
+  other_tuple.index(3.14)
+  # 3
+  other_tuple.index('pi')
+  # ValueError: tuple.index(x): x not in tuple
+   ```
+  
+  
+  
+  
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

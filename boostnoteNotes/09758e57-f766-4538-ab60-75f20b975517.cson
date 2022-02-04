@@ -1,0 +1,78 @@
+createdAt: "2020-07-03T17:56:18.461Z"
+updatedAt: "2020-07-03T21:33:53.207Z"
+type: "MARKDOWN_NOTE"
+folder: "7b7225fb954665754643"
+title: "WEB DOM Page Style Content"
+tags: []
+content: '''
+  # WEB DOM Page Style Content
+  
+  ## `.style` property of element
+  - [ElementCSSInlineStyle.style - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/ElementCSSInlineStyle/style)
+  - most specific CSS rule you can write for an element
+  - can only modify one CSS style at a time
+  - style properties are written in camelCase: `fontSize`
+  ```javascript
+  const myElement = document.querySelector('h1');
+  myElement.style.color = 'red';
+  myElement.style.fontSize = '2em'
+  ```
+  
+  ## `.cssText` property of element
+  - allows to modify several styles at once
+  - write code in css style using `font-size` vs fontSize
+  ```javascript
+  const myEl = document.querySelector('h1');
+  myEl.style.cssText = 'color: red, font-size: 2em';
+  ```
+  
+  ## `.setAttribute()` method of element
+  - [Element.setAttribute() - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute)
+  - not just for style, can set any other attribute (id, class)
+  ```javascript
+  const myEl = document.querySelector('h1');
+  myEl.setAttribute('style', 'color: red, font-size: 2em');
+  ```
+  
+  ## using class
+  
+  ### `.classList` property
+  - [Element.classList - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList)
+  - returns a `DOMTokenList`
+  [DOMTokenList - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList)
+  - .classList itself has properties
+    - `.add()`
+    - `.remove()`
+    - `.toggle()`
+    return a boolean indicating whether *token* is in the list after the operation
+    - `.contains()`
+  
+  
+  ### `.className` property
+  - not so convinient as .classList
+  - returns a space separated string of the classes
+  - can be converted to array to make it easier to work with it
+  ```javascript
+  // get classes of an element
+  const myElement = document.querySelector('h1');
+  const stringOfClasses = myElement.className;
+  
+  // create an array from the classes string
+  const arrayOfClasses = stringOfClasses.split(' ');
+  
+  // can be used to set new class to element
+  // it will replace all previous classes
+  myElement.className = 'new-class';
+  ```
+   
+  
+  
+  
+  
+  
+'''
+linesHighlighted: [
+  14
+]
+isStarred: false
+isTrashed: false

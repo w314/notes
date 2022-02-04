@@ -1,0 +1,118 @@
+createdAt: "2019-08-21T13:01:48.043Z"
+updatedAt: "2020-07-07T19:09:38.360Z"
+type: "MARKDOWN_NOTE"
+folder: "68038d270558e5b040df"
+title: "Python Dictionaries"
+tags: [
+  "python"
+  "dictionary"
+]
+content: '''
+  # Python Dictionaries
+  
+  - dicionary is a type of collection
+  - has key-value pairs
+  - keys are immutable and unique
+  - (objects can be used as dictionaries in javascript)
+  
+  ```python
+  person = {
+    'name': 'Bob',
+    'age': 89,
+    (0, 1): 6
+  }
+  
+  person
+  # {'name': 'Bob', 'age': 89, (0, 1): 6}
+  ```
+  - access value by key 
+    throws `KeyError` if key is not found
+  
+  ```python
+  person['name']    # returns 'Bob'
+  ```
+  - access value by `get()`
+    returns `None` or set default value if key is not found
+  ```python
+  person.get('color')   # returns None
+  ```
+  - dictionary is a `compound data structure
+    - values can be dictionaries too
+  ```python
+  elements = {"hydrogen": {"number": 1,
+                           "weight": 1.00794,
+                           "symbol": "H"},
+                "helium": {"number": 2,
+                           "weight": 4.002602,
+                           "symbol": "He"}}
+  
+  print(elements['heilum']['weight'])  # 2
+  ```
+  
+  - add new entry to the dictionary
+  ```python
+  person['favorite_color'] = 'maroon'
+  
+  person
+  # {'name': 'Bob', 'age': 89, (0, 1): 6, 'favorite_color': 'maroon'}
+  ```
+  
+  - delete entry from the dictionary - `del()`
+  ```python
+  del(person['favorite_color'])
+  
+  person
+  # {'name': 'Bob', 'age': 89, (0, 1): 6}
+  ```
+  
+  - check if key is in dictionary - `in`
+  ```python
+  'favorite_color' in person
+  # False
+  
+  'age' in person
+  # True
+  ```
+  
+  - get all the keys in a dictionary
+  The output is a listlike object.
+  ```python
+  person.keys()
+  # dict_keys(['name', 'age', (0, 1)])
+  ```
+  
+  - get all values in the dictionary
+  
+  ```python
+  person.values()
+  # dict_values(['Bob', 89, 6])
+  ```
+  
+  - print dictionaries:
+  ```python
+  for k, v in person.items():
+    print(k, v)
+  ```
+  - sorting dictionaries by values
+  ```python
+  import operator
+  
+  d = {1: 2, 3: 4, 4: 3, 2: 1, 0: 0}
+  print('Original dictionary : ',d)
+  # {1: 2, 3: 4, 4: 3, 2: 1, 0: 0}
+  
+  sorted_d = sorted(d.items(), key=operator.itemgetter(1))
+  print('Dictionary in ascending order by value : ',sorted_d)
+  # [(0, 0), (2, 1), (1, 2), (4, 3), (3, 4)]
+  
+  sorted_d = dict( sorted(d.items(), key=operator.itemgetter(1),reverse=True))
+  print('Dictionary in descending order by value : ',sorted_d)
+  # {3: 4, 4: 3, 1: 2, 2: 1, 0: 0}
+  ```
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,15 @@
+createdAt: "2020-08-31T20:45:44.658Z"
+updatedAt: "2020-08-31T20:46:07.364Z"
+type: "MARKDOWN_NOTE"
+folder: "5933e21a727916409ef5"
+title: "Style Guides"
+tags: []
+content: '''
+  # Style Guides
+  
+  ## Python
+  [PEP 8 -- Style Guide for Python Code \\| Python.org](https://www.python.org/dev/peps/pep-0008/)
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

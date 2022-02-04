@@ -1,0 +1,28 @@
+createdAt: "2020-04-14T19:56:23.582Z"
+updatedAt: "2020-04-14T20:15:18.724Z"
+type: "MARKDOWN_NOTE"
+folder: "0502aa55141f2315e808"
+title: "Search"
+tags: [
+  "search,_binary_search"
+]
+content: '''
+  # Search
+  
+  ## Linear Search
+  - time complexity: O(n)
+  - going trough a collection from beginning to end one by one
+  
+  ## `Binary Search`
+  - time complexity: O(log~2~n)
+  - input needs to be sorted
+  - steps of binary search
+    -   find the position of a target value by comparing the middle value with this target value
+      - If the middle value is equal to the target value, then we have our solution (we have found the position of our target value).
+    - If the target value comes before the middle value, we look for the target value in the left half.
+    -  Otherwise, we look for the target value in the right half.
+    - We repeat this process as many times as needed, until we find the target value.
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,20 @@
+createdAt: "2020-02-24T17:20:33.946Z"
+updatedAt: "2020-02-24T17:22:15.482Z"
+type: "MARKDOWN_NOTE"
+folder: "0502aa55141f2315e808"
+title: "Security"
+tags: [
+  "security"
+]
+content: '''
+  # Security
+  
+  - Use environment variables where appropriate
+  - **DO NOT** commit secrets (passwords etc) to `GIT`
+  - Add `config` files to `.gitignore`
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

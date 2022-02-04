@@ -1,0 +1,39 @@
+createdAt: "2021-03-19T17:00:03.815Z"
+updatedAt: "2021-03-19T17:29:04.469Z"
+type: "MARKDOWN_NOTE"
+folder: "68038d270558e5b040df"
+title: "Python 02 Input / Output"
+tags: [
+  "f-string"
+]
+content: '''
+  # Python 02 Input / Output
+  
+  
+  ## Get input from user
+  ```python
+  name = input("Name: ")
+  
+  # input() always returns a string
+  num = int(input("Enter a number: "))
+  ```
+  
+  ## Format strings
+  
+  ```python
+  name = 'bob'
+  print(f"Hello {name}")
+  ```
+  
+  
+  ## Reading from file
+  ```python
+  with open('input01.txt', 'r') as f:
+      length = f.readline()
+      print('input length: ', length)
+      num_string = f.readline()
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

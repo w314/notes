@@ -1,0 +1,49 @@
+createdAt: "2020-10-28T16:00:54.197Z"
+updatedAt: "2020-10-30T21:08:09.675Z"
+type: "MARKDOWN_NOTE"
+folder: "7869a5810e7871ff4be9"
+title: "JavaScript More Info"
+tags: []
+content: '''
+  # JavaScript More Info
+  IN DOCS
+  
+  ## Books on JavaScript
+  
+  [Douglas Crockford's JavaScript](http://crockford.com/javascript/)
+  
+  JavaScript: The Good Parts
+  by Douglas Crockford
+  
+  [The Better Parts by Douglas Crockford at Silicon Valley Code Camp - YouTube](https://www.youtube.com/watch?v=Ji6NHEnNHcA&t=26m9s)
+  
+  Kyle Simpson: You don't know JS serier
+  [GitHub - getify/You-Dont-Know-JS: A book series on JavaScript. @YDKJS on twitter.](https://github.com/getify/You-Dont-Know-JS)
+  
+  
+  ## On objects, classes, inheritance
+  [Object Playground: The Definitive Guide to Object-Oriented JavaScript](http://www.objectplayground.com/)
+  
+  [JavaScript Factory Functions vs Constructor Functions vs Classes \\| by Eric Elliott | JavaScript Scene | Medium](https://medium.com/javascript-scene/javascript-factory-functions-vs-constructor-functions-vs-classes-2f22ceddf33e)
+  
+  [Factory Function Pattern In-Depth \\| by Ronald Chen | Medium](https://medium.com/@pyrolistical/factory-functions-pattern-in-depth-356d14801c91)
+  
+  ## On creating privat properties and methods
+  
+  [Learning JavaScript Design Patterns](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript)
+  
+  [Mastering the Module Pattern - Ultimate Courses™](https://ultimatecourses.com/blog/mastering-the-module-pattern#private-methods)
+  
+  [Learning JavaScript Design Patterns](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript)
+  
+  [Again with the Module Pattern – reveal something to the world \\| Christian Heilmann](https://christianheilmann.com/2007/08/22/again-with-the-module-pattern-reveal-something-to-the-world/)
+  
+  ## On design patterns
+  [GitHub - sohamkamani/javascript-design-patterns-for-humans: An ultra-simplified explanation of design patterns implemented in javascript](https://github.com/sohamkamani/javascript-design-patterns-for-humans)
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

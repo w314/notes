@@ -1,0 +1,96 @@
+createdAt: "2021-03-10T17:53:45.651Z"
+updatedAt: "2021-03-10T18:27:36.837Z"
+type: "MARKDOWN_NOTE"
+folder: "bb83f5f87373282090b3"
+title: "C++ Generic Programming"
+tags: [
+  "generic_programming"
+  "templates"
+  "c++"
+  "deduction"
+]
+content: '''
+  # C++ Generic Programming
+  `Generic programming` is the term for code that is independent of class
+  
+  ## Templates
+  - `Templates` enable generic programming by generalizing a function to apply to any class.
+  
+  ```c
+  #include <cassert>
+  #include <string>
+  
+  template <typename T>
+  T Max(T a, T b) {
+      return a > b ? a : b;
+  }
+  
+  int main() {
+      assert(Max<int>(2, 4) == 4);
+      assert(Max<double>(-1.0, -2.3) == -1.0);
+      assert(Max<char>('a', 'b') == 'b');
+  }
+  ```
+  
+  ## Deduction
+  
+  - `Deduction` is when the compiler determines the type for a template automatically.
+  - deduction occurs when you instantiate an object without explicitly identifying the types. Instead, the compiler "deduces" the types. This can be helpful for writing code that is generic and can handle a variety of inputs.
+  
+  ```c
+  #include <cassert>
+  #include <string>
+  #include <vector>
+  
+  template <typename T>
+  T Max(T a, T b) {
+      return a > b ? a : b;
+  }
+  
+  int main() {
+      // in this case we don't species the type
+      // compiler will deduct it for us
+      assert(Max(2, 4) == 4);
+      assert(Max(-1.0, -2.3) == -1.0);
+      assert(Max('a', 'b') == 'b');
+  
+      // we can even use it with 'vector' if we compile it using c++17 like:
+      // g++ -std=c++17 deduction.cpp
+      std::vector v{1, 2, 3};
+      assert(v.size() == 3);
+  }
+  ```
+  
+  ## Uses in Classes
+  ```c
+  #include <assert.h>
+  #include <string>
+  #include <sstream>
+  
+  // TODO: Add the correct template specification
+  template <typename KeyType, typename ValueType>
+  class Mapping {
+  public:
+    Mapping(KeyType key, ValueType value) : key(key), value(value) {}
+    std::string Print() const {
+      std::ostringstream stream;
+      stream << key << ": " << value;
+      return stream.str();
+    }
+    KeyType key;
+    ValueType value;
+  };
+  
+  // Test
+  int main() {
+    Mapping<std::string, int> mapping("age", 20);
+    assert(mapping.Print() == "age: 20");
+  }
+  ```
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

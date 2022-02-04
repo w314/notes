@@ -1,0 +1,37 @@
+createdAt: "2020-09-18T01:12:56.410Z"
+updatedAt: "2020-09-18T01:16:47.250Z"
+type: "MARKDOWN_NOTE"
+folder: "7869a5810e7871ff4be9"
+title: "JavaScript Map"
+tags: [
+  "javascript"
+  "map"
+]
+content: '''
+  # JavaScript Map
+  
+  [Map - JavaScript \\| MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+  
+  ```js
+  // way to use map:
+  
+  let contacts = new Map()
+  contacts.set('Jessie', {phone: "213-555-1234", address: "123 N 1st Ave"})
+  contacts.has('Jessie') // true
+  contacts.get('Hilary') // undefined
+  contacts.set('Hilary', {phone: "617-555-4321", address: "321 S 2nd St"})
+  contacts.get('Jessie') // {phone: "213-555-1234", address: "123 N 1st Ave"}
+  contacts.delete('Raymond') // false
+  contacts.delete('Jessie') // true
+  console.log(contacts.size) // 1
+  
+  // NEVER USE THIS WAY:
+  let wrongMap = new Map()
+  wrongMap['bla'] = 'blaa'
+  ```
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

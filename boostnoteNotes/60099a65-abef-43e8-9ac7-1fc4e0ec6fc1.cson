@@ -1,0 +1,57 @@
+createdAt: "2019-11-05T20:53:13.639Z"
+updatedAt: "2021-07-20T23:46:08.489Z"
+type: "MARKDOWN_NOTE"
+folder: "7b7225fb954665754643"
+title: "GIT"
+tags: [
+  "git"
+]
+content: '''
+  # GIT
+  
+  ## Git Tag
+  - [Git - Tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
+  - to list tags: `git tag`
+  - to add tag to previous commit:
+  `git tag -a v1.2 -m 'new version'`
+    - `-a` for annonated tag
+    - `-m` for message
+  
+  
+  ## Branches
+  
+  >**Switching branches carries uncommitted changes with you**. 
+  
+  - either commit first
+  - or run `git checkout .` to undo them
+  - or run `git stash` before switching. (You can get your changes back with `git stash apply`)
+  
+  ### Merging Branches
+  
+  Checkout the branch you want to merge the other branch into (master) and run:
+  `git merge <branch-to-be-merged>`
+  ## Undos and Ignore
+  
+  #### Reset unstaged changes
+  `git reset --hard`
+  deletes all changes made since last commit
+  
+  #### Drop staged (unstage) changes
+  `git restore <file>` like it shows in the `git status` instructions
+   
+  
+  ### File in .gitignore not ignored
+  .gitignore only ignores files that are not part of the repository yet. If you already git added some files, their changes will still be tracked. To remove those files from your repository (but not from your file system) use `git rm --cached` on them.
+  
+  ## Git configuration
+  **see git configuration**:
+  `git config --list`
+  
+  **configure git**:
+  `git config --global user.name "Piroska Werner"`
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

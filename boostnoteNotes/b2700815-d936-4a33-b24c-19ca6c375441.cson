@@ -1,0 +1,44 @@
+createdAt: "2021-03-05T18:57:00.873Z"
+updatedAt: "2021-03-05T19:11:54.769Z"
+type: "MARKDOWN_NOTE"
+folder: "bb83f5f87373282090b3"
+title: "C++ Struct"
+tags: []
+content: '''
+  # C++ Struct
+  - `Struct` is a user defined type
+  By convenction type names start by capital letter
+  
+  ```c++
+  struct Date {
+    int day;
+    int month;
+    int year;
+  }
+  
+  // to create an instance
+  Date date;
+  // initailize attributes
+  date.day = 18;
+  ```
+  - By convention progammers use `structures` when member variables are independent of each other and `classes` when member variables are related by an invariant. An `invariant` is a rule that limits the value of member variables.
+  
+  #### Member initialization
+  Usually we avoid instatiating an object with undefined members, therefore we initialize the members in the structure definition.
+  ```c++
+  struct Date {
+    int day {1};
+    int month {1};
+    int year {0};
+  }
+  ```
+  
+  #### Access specifiers
+  - Acces specifiers of a structure can be, `public`, or `private`
+  - By default all all members of a structure are `public`
+'''
+linesHighlighted: [
+  1
+]
+isStarred: false
+isTrashed: false

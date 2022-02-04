@@ -1,0 +1,46 @@
+createdAt: "2020-04-09T20:11:13.389Z"
+updatedAt: "2020-04-09T20:31:38.434Z"
+type: "MARKDOWN_NOTE"
+folder: "0502aa55141f2315e808"
+title: "Hashing"
+tags: [
+  "hashing"
+]
+content: '''
+  # Hashing
+  
+  - Allows for constant time search O(1)
+  - The purpose of a hash function is to transfrom some value into one that can be stored and retreived easily
+  - Hash function usually returns an index of an array
+  - Hash function usually takes the last few number of a big number as those are the most random, divides it with a number and give the reminder as the index of an array.
+  `0123456 -> 56 % 10 = 6`
+  
+  ## Collision
+  - `collision` happens when a hash function returns the same number for two different inputs
+  `0123456 -> 56 % 10 = 6`
+  `6543216 -> 16 % 10 = 6`
+  
+  Two ways of solving a `hash collision`
+  #### Change your hash function
+  - change the value in your hash function, all the function completely to have more slots to store all your values
+  `0123456 -> 56 % 12 = 8`
+  `6543216 -> 16 % 12 = 4`
+  - allows you to maintain O(1) lookup
+  - by using a bigger number in your hash function, you'll need much more space to store your values
+  `X % 1,000,000`
+  - if you do it reactively every time there is collision you have to move the values in your old array incresing complexity in both time and space
+  
+  #### Change the structure of the array
+  - insted of using a single value at each index, use a list of values, what are called `buckets`
+  - you have to iterate through a list when searching with a constant lookup time in the average case
+  - in worst case scenario when all your values are in one bucket it can be like iterating through a list O(n)
+  - ideally you should have 1-3 elements in one bucket
+  - you can also use a second hash function to split up elements in your bucket even more
+  - 
+  
+'''
+linesHighlighted: [
+  0
+]
+isStarred: false
+isTrashed: false

@@ -1,0 +1,26 @@
+createdAt: "2021-03-19T17:20:16.722Z"
+updatedAt: "2021-03-19T17:32:51.181Z"
+type: "MARKDOWN_NOTE"
+folder: "68038d270558e5b040df"
+title: "Python 04 Sequences / Collections"
+tags: []
+content: '''
+  # Python 04 Sequences / Collections
+  
+  Sequences are ordered
+  Collection are unordered
+  
+  Sequence allows me to access individual elements inside of the sequence
+  Square bracket notation `[]` let's me access the indiviual elements in the sequence
+  - str
+  `name = "Harry"`
+  - list - sequence of mutable values
+  `names= ["Harry", "Ron", "Herminone"]`
+  - tuple - sequence of immutable values
+  `coordinates = (10.0, 20.0)`
+  - set - collections of unique values
+  - dict - collections of key-value pair
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

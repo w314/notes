@@ -1,0 +1,112 @@
+createdAt: "2021-02-02T20:11:00.085Z"
+updatedAt: "2021-03-02T19:06:39.941Z"
+type: "MARKDOWN_NOTE"
+folder: "bb83f5f87373282090b3"
+title: "C++ Variables"
+tags: [
+  "structures"
+  "struct"
+  "variables"
+  "primitives"
+  "static"
+  "const"
+  "constexpr"
+]
+content: '''
+  # C++ Variables
+  Every c++ variable is defined with a type.
+  
+  
+  ## Primitives
+  C++ includes **fundamental types**, also called primitives like `int`, `float`.
+  
+  ## Additional types in Standard Library
+  The Standard Library include additional types like `std::string`.
+  
+  ## Structures
+  Structures are user defined types, they allow developers to create their own types.
+  - it's a convention to start the name of the structure with capital letter
+  - we avoid instantiating an object with undefined members, therefore we initialize the members of the structure when we define it
+  - by default all member of a struct are `public`
+  ```c
+  # include <iostream>
+  
+  // define structure Date
+  struct Date {
+    int day{1};
+    int month{1};
+    int year{2021};
+  }
+  
+  // create an instance of Date
+  Date date;
+  
+  // initialize the attributes of date
+  date.day = 1;
+  date.month = 2;
+  date.year = 2021;
+  
+  std::cout << date.day << "/" << date.month << "/" date.year << "\\n";
+  ```
+  
+  To be able to controll values entered:
+  - make variables private
+  - provide public accessors and mutators
+  - for trivial setters and getters - no checks on input, it's better to keep variables public
+  - usually `struct` are for cases when public variables are fine, if you need `invariants` - rules that limit values of member variables better to use `classes`
+  ```c
+  # include <iostream>
+  
+  struct Date {
+  
+    public:
+      int Day() { return day; }
+      // oversimplified example to test day input
+      void Day(int d) { 
+        if (d >= 1 && d <= 31) {
+          this.day = d;
+        }
+      }
+  
+    private:
+      int day{1};
+      int month{1};
+      int year{2021};
+  }
+  
+  ```
+  
+  ### static variables
+  - `static` variable belongs to the entire class instead of to a specific instance of the class
+  - static members are declared within their class (often in the header file) but in most cases they must be defined within the global scope. That's because memory is allocated for static variables immediately when the program begins, at the same time any global variables are initialized.
+  ```c
+  # include <cassert>
+  
+  class Foo {
+    public:
+      // static variable declared
+      // in this case it has to be public
+      static int count;
+      Foo() { Foo::count += 1; }
+  };
+  
+  // static variable initialized
+  int Foo::count = 0;
+  
+  int main() {
+    Foo f{};
+    assert(Foo::count == 1);
+  }
+  ```
+  - Exception to this rule if the `static` variable is declared as `contexpr`
+  ```c
+  struct Kilometer {
+    // when initialized at compile time
+    // it could be a private variable too
+    static constexpr int meters{1000};
+  };
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

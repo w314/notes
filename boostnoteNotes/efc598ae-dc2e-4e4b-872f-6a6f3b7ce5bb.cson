@@ -1,0 +1,78 @@
+createdAt: "2020-09-16T20:19:09.313Z"
+updatedAt: "2020-09-17T16:25:18.162Z"
+type: "MARKDOWN_NOTE"
+folder: "ae0700cca340ec1715f7"
+title: "React Router"
+tags: []
+content: '''
+  # React Router
+  
+  install with: `npm install --save react-router-dom`
+  
+  ## BrowserRouter Component
+  - listens to changes in the URL
+  - makes sure the right screen shows up
+  
+  To use:
+  - in `index.js`
+  ```js
+  ...
+  // import BrowserRouter
+  import { BrowserRouter } from 'react-router-dom'
+  ...
+  
+  // Wrap <App /> in <BrowserRouter />
+  ReactDOM.render(
+    <BrowserRouter><App /></BrowserRouter>,
+    document.getElementById('root')
+  )
+  ```
+  
+  ## Link Component
+  - [React Router: Declarative Routing for React.js](https://reactrouter.com/web/api/Link)
+  - used in place of `<a>` tags, renders an html anchor (a) tag
+  - Link tells BrowserRouter to update the URL
+  - `to` property tells `Link` the path to route to
+  ```jsx
+  import { Link } from 'react-router-dom'
+  
+  // to property can be a string
+  <Link to="/about">About</Link>
+  
+  // or an object
+  <Link to={{
+    pathname: '/courses',
+    search: '?sort=name',
+    hash: '#the-hash',
+    state: { fromDashboard: true }
+  }}>
+    Courses
+  </Link>
+  ```
+  
+  ## Route Component
+  - takes a path
+  - it URL matches the path it renders some content
+  
+  ```js
+  import { Route } from 'react-router-dom'
+  
+  // if no props are passed to Componenet
+  <Route path='/create' render={CreateContact}/>
+  
+  // if props are passed
+  <Route path='/' render={() => (
+    <ListContacts
+      contacts={this.state.contacts}
+      onDeleteContact={this.removeContact}
+    />
+  )}/>
+  
+  
+  ```
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

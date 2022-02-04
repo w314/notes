@@ -1,0 +1,73 @@
+createdAt: "2019-08-27T14:51:36.668Z"
+updatedAt: "2020-02-07T20:13:42.803Z"
+type: "MARKDOWN_NOTE"
+folder: "1b2c017ab342eea0830f"
+title: "SQL Built-In Functions"
+tags: [
+  "sql"
+  "built-in_functions"
+]
+content: '''
+  # SQL Built-In Functions
+  
+  ## Aggregate or column functions
+  - input : collections of values (e.g. entire column)
+  - output : single value of NULL
+  
+  - `SUM`
+  - `MIN`
+  - `MAX`
+  - `AVG`
+  
+  
+  ## Scalar and string functions
+  - performs operations on individual values
+  -  `ROUND` round up or down to the nearest integer
+  -  `LENGTH` calculates length of a string
+  -  `UCASE`
+  -  `LCASE`
+  ```sql
+  SELECT *
+  FROM petsale
+  WHERE LCASE(animal) = 'cat'
+  
+  
+  SELECT DISTINCT(LCASE(animal))
+  FROM petsales
+  ```
+  
+  ## Date and time functions
+  
+  ### Db2 date\\time data types
+  - `DATE` : YYYYMMDD
+  - `TIME` : HHMMSS
+  - `TIMESTAMP` : YYYYXXDDHHMMSSZZZZ (X for month, Z for microsecond)
+  
+  ### built-in functions:
+  - `YEAR()`
+  - `MONTH()`
+  ```sql
+  SELECT COUNT(*)
+  FROM petsale
+  WHERE MONTH(saledate) = '05'
+  ```
+  - `DAY()` : get the day portion of a date
+  - `WEEK()`
+  
+  
+  ### date of time arithmetic
+  - What is the date 3 dayes after the sale?
+  ```sql
+  SELECT (saledate + 3 DAYS)
+  FROM petsale
+  ```
+  - How many days past since the sale? By using special register `CURRENT_DATE`
+  ```sql
+  SELECT (CURRENT_DATE - saledate)
+  FROM petsale
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

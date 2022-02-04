@@ -1,0 +1,53 @@
+createdAt: "2019-08-28T17:06:06.759Z"
+updatedAt: "2020-06-25T17:23:18.626Z"
+type: "MARKDOWN_NOTE"
+folder: "7869a5810e7871ff4be9"
+title: "Conditions and Branching in JavaScript"
+tags: [
+  "javascript"
+  "if"
+  "logical_operators"
+]
+content: '''
+  # Conditions and Branching in JavaScript
+  
+  ## `if` statement
+  ```javascript
+  if (condition) {
+    statement;
+  } else if (condition) {
+    statement;
+  } else {
+    statement;
+  }
+  ```
+  
+  ### truthy values
+  A value is truthy when considered `true` in a Boolean context. Javascript uses type coersion in Boolean contexts. All values are truthy unless they are defined as falsy.
+  
+  ### falsy values
+  - `false` : the keyword false
+  - 0 : the number zero
+  - "", '', `` : an empty string
+  - `null` : null - the absence of any value
+  - `undefined`: undefined - the primitive value
+  - `NaN` : Nan - not a number
+  
+  A boolean object whose value is `false` is considered truthy:
+  ```javascript
+  let b = new Boolean(false);
+  if (b) \\\\ this condition is truthy
+  ```
+  
+  ## Logical Operators
+  - `!`  - not
+  - `&&` - and
+  - `||` - or
+  
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: true

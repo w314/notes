@@ -1,0 +1,66 @@
+createdAt: "2020-09-09T20:03:56.019Z"
+updatedAt: "2021-06-01T20:23:10.772Z"
+type: "MARKDOWN_NOTE"
+folder: "5933e21a727916409ef5"
+title: "Arrays"
+tags: [
+  "arrays"
+  "python"
+  "javascript"
+]
+content: '''
+  # Arrays
+  
+  ## Get last element
+  
+  - python: `arr[-1]`
+  - javascript: `arr[arr.length-1]`
+  
+  ## Swap two elements of the array
+  
+  #### python
+  ```python
+  arr[0], arr[1] = arr[1], arr[0]
+  ```
+  
+  ### javascript
+  ```javascript]
+  
+  const arrElement = arr[1];
+  arr[1] = arr[0];
+  arr[0] = arrElement;
+  ```
+  
+  ## Merging two arrays
+  ### python
+  ```python
+  a = [1, 2]
+  b = [3, 4]
+  a = a.extend(b)    # [1, 2, 3, 4]
+  ```
+  
+  ### javascript
+  ```javascript
+  let a = [1, 2]
+  let b = [3, 4]
+  a = [...a, ...b]    // [1, 2, 3, 4]
+  ```
+  
+  ## Slicing arrays
+  
+  ### python
+  ```python
+  arr = [1, 2, 3]
+  arr[1:]    # [2, 3]
+  ```
+  ### javascript
+  ```javascript
+  let arr = [1, 2, 3]
+  arr.slice(1,)    // [2, 3]
+  ```
+'''
+linesHighlighted: [
+  0
+]
+isStarred: false
+isTrashed: false

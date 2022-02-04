@@ -1,0 +1,34 @@
+createdAt: "2021-02-05T17:48:06.418Z"
+updatedAt: "2021-02-05T17:49:36.718Z"
+type: "SNIPPET_NOTE"
+folder: "096077ec96120ea00fda"
+title: "Functions"
+tags: [
+  "function"
+]
+description: "Functions"
+snippets: [
+  {
+    linesHighlighted: []
+    name: "functionsJavaScript.js"
+    mode: "JavaScript"
+    content: '''
+      function reusableFunction() {
+        console.log('Hi');
+      }
+      
+      reusableFunction();
+    '''
+  }
+  {
+    linesHighlighted: []
+    name: "functionsPython.py"
+    mode: "Python"
+    content: '''
+      def function_name (parameter='default_value'):
+        statements
+    '''
+  }
+]
+isStarred: false
+isTrashed: false

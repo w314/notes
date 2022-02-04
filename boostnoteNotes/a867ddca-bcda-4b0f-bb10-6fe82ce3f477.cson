@@ -1,0 +1,78 @@
+createdAt: "2020-06-30T20:50:36.687Z"
+updatedAt: "2020-07-03T21:41:37.051Z"
+type: "MARKDOWN_NOTE"
+folder: "7b7225fb954665754643"
+title: "WEB DOM"
+tags: [
+  "dom"
+  "document"
+]
+content: '''
+  # WEB DOM
+  
+  - the `DOM` is a WEB API
+  [Document Object Model (DOM) - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
+  
+  ## Document
+  
+  - [Document - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document)
+  - inherits from `Node Interface`
+  - `document` is an object, with methods to use to  select its elements
+  
+  ### Select Elements
+  - [Element - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element)
+  
+  ### query selector
+  - [Document.querySelector() - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
+  - **only returns one element** (the first element with given class or tag it finds)
+  ```javascript
+  // find and return the element with an ID of "header"
+  document.querySelector('#header');
+  
+  // find and return the first element with the class "header"
+  document.querySelector('.header');
+  
+  // find and return the first <header> element
+  document.querySelector('header');
+  ```
+  
+  ### query selector all
+  - [Document.querySelectorAll() - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll)
+  - returns a `NodeList` ( [NodeList - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/NodeList) ) , not an array, so array methods cannot be used with it, but a simple for loop works
+  - NodeList has a `.forEach()` method, but it's not fully suported by all browsers
+  ```javascript
+  // find and return a list of elements with the class "header"
+  document.querySelectorAll('.header');
+  
+  // find and return a list of <header> elements
+  document.querySelectorAll('header');
+  ```
+  
+  #### select by ID
+  - pass just the name 'myElement' not '#myElement'
+  - returns `null` if not found
+  - returns a single item
+  ```javascript
+  const content = document.getElementById('content');
+  ```
+  
+  ### #select by class
+  - [Document.getElementsByClassName() - Web APIs \\| MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName)
+  - returns an `HTML collection` of elements
+  ```javascript
+  document.getElementsByClassName('brand-name');
+  ```
+  
+  #### select by tag
+  - returns an array of elements
+  ```javascript
+  document.getElementsByTagName('p');
+  ```
+  
+  
+'''
+linesHighlighted: [
+  52
+]
+isStarred: false
+isTrashed: false

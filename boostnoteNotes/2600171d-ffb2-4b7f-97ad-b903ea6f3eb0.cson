@@ -1,0 +1,86 @@
+createdAt: "2020-04-04T17:16:19.272Z"
+updatedAt: "2020-04-15T19:21:35.739Z"
+type: "MARKDOWN_NOTE"
+folder: "0502aa55141f2315e808"
+title: "Arrays and Lists"
+tags: [
+  "data_structures"
+  "array"
+]
+content: '''
+  # Arrays and Lists
+  
+  ## Arrays
+  - collection of items
+  - items have an order to them
+  - allows direct access
+  - When an array is created, it is always given some initial size—that is, the number of elements it should be able to hold (and how large each element is). 
+  - The computer then finds a block of memory and sets aside the space for the array. Importantly, the space that gets set aside is one, continuous block. That is, all of the elements of the array are contiguous, meaning that they are all next to one another in memory.
+  - all of the elements are the same size.
+  - Because all of the elements are 1) next to one another and 2) the same size, this means that if we know the location of the first element, we can calculate the location of any other element.
+  - Since we can easily calculate the location of any item in the array, we can assign each item an index and use that index to quickly and directly access the item.
+  - adding and removing elements are complicated (to add or delete an element in the middle of the array you have to move all the elements after it)
+  
+  ## Linked List
+  - items have an order to them
+  - elements of a list may or may not be next to one another in memory
+  - there are no indices
+  - allows no direct access only sequential
+  - first node is called the `head`
+  - in `Singly Linked Lists` each node is connected only to the next in the list
+  - `Double Linked Lists` has pointer to he next element as well as to the previous element
+  - if we keep track only the `head` of the list adding an extra element to the tail (`append`) runs in linear time `O(n)` as you have to iterate trough the list adding, however adding to the head of the list (`prepending`) can be done in constant time `O(1)` 
+  - `circular linked list` occurs when the chain of nodes links back to itself somewhere (in the middle)
+    - it's considered pathological as you can never reach teh end of the list
+    - we usually want to detect that we do not have a circle in our linked list
+  ### Arrays vs Linked Lists
+  - both store the value they store and extra information
+    - in Arrays it's the index
+    - in Linked List it's a reference to the next element (the memory address of the next element)
+  - insertion takes constant time in Linked List vs depending on where you are in an Array and how many elements you have to iterate through
+  
+  ### how to implement a simple linked list
+  - linked list is made of nodes
+  - each node has two things
+    - data or value we want the node to hold
+    - reference to the next node
+  - End of the list points to `None`
+  
+  ## Stacks
+  - `LIFO` last in first out 
+  - the opeartion when you add a new element to a stack is called `push` (O(1)) 
+  - taking an element off of the stack is called `pop` (O(1))
+  - you could use a linked list to implement it 
+  
+  
+  ## Queue
+  - `FIFO` structure, first in first out
+  - first element(oldest) is called the `head`
+  - the last element (newest) is called the `tail`
+  - when you add an element to the `tail` the operation is called `enqueue`
+  - when your remove the `head` element the operation is called `dequeue`
+  - if you look at the `head` element but do not remove it is called `peek`
+  -  `Deques` are special double ended `queue` that goes both ways, you can `enqueu` or `dequeu` from either end
+      - you can treat as a `stack`, enqueu and dequeu at the same end 
+      - or as a `queue` and add elements at one end and remove them from the other 
+  -  in a `priority queue` you assign each element a numerical priority when you insert them into the queue, when you deque you remove the element with the highest priority (the oldest of those if there are more of them)
+  
+  ## Sets
+  - collection of items
+  - items have no order to them
+  - doesn't allow duplicate items
+  
+  
+  ## Maps 
+  - also called dictionaries
+  - is a key-value structure
+  - set based data structure, keys in a map are a set
+  
+  ### Hash Maps
+  - use the key of the map as the input of a hash function and store the key, value pair in the bucket of the hash value produced by the function
+  
+    
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

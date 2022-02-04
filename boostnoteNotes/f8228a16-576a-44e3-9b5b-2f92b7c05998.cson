@@ -1,0 +1,103 @@
+createdAt: "2019-08-19T18:05:22.878Z"
+updatedAt: "2020-02-07T20:11:59.846Z"
+type: "SNIPPET_NOTE"
+folder: "68038d270558e5b040df"
+title: ""
+tags: [
+  "variables"
+  "javascript"
+  "python"
+]
+description: ""
+snippets: [
+  {
+    linesHighlighted: []
+    name: "Variables in Python.md"
+    mode: "Markdown"
+    content: '''
+      # Variables in Python
+      
+      - int
+      - float
+      - str
+      - boolean (True / False)
+      
+      ## Determine Variable Type
+      ```python
+      type(True)
+      # bool
+      
+      type(1) 
+      # int
+      
+      type(1.0)
+      # float
+      ```
+      
+      
+      ## Type Casting
+      
+      ```python
+      float(2)
+      # 2.0
+      
+      int(1.7)
+      # 1
+      
+      int('1')
+      #  1
+      
+      int('a')
+      # ValueError: invalid literal for int() with base 10: 'a'
+      
+      int(True)
+      # 1
+      
+      int(False)
+      # 0
+      
+      float(True)
+      # 1
+      
+      float(False)
+      # 0
+      
+      str(1)
+      # '1'
+      
+      str(4.67)
+      # '4.67'
+      
+      bool(1)
+      # True
+      
+      bool(0)
+      #  False
+      
+      
+      ## Mathematical Operations
+      
+      - float division:
+      ```python
+      25 / 5
+      # 5.0
+      ```
+      
+      - integer division:
+      ```python
+      25 // 6
+      # 4
+      ```
+      
+      ## Checking the Specifics of Float in the Runtime Environment
+      
+      ```python
+      import sys
+      sys.float_info
+      ```
+      
+    '''
+  }
+]
+isStarred: false
+isTrashed: true

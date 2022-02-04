@@ -1,0 +1,110 @@
+createdAt: "2019-08-19T18:17:08.722Z"
+updatedAt: "2021-07-14T16:04:26.052Z"
+type: "MARKDOWN_NOTE"
+folder: "7869a5810e7871ff4be9"
+title: "JavaScript Strings"
+tags: [
+  "string"
+  "javascript"
+  "template_literals"
+]
+content: '''
+  # JavaScript Strings
+  
+  - The String global object is a consctructor for strings or a sequence of characthers.
+  
+  
+  ## Template Literals
+  - Print strings using template literals using backticks.
+  - You can performe operations, call functions, use loops inside embedded expressions
+  ```javascript
+  let name = myName;
+  let greeting = `Hello, my name is ${myName}.`
+  
+  // Over muliple lines
+  let note = `${teacherName},
+  
+  Please excuse ${studentName}.
+  ....
+  
+  `
+  ```
+  
+  
+  ### Length of String
+  ```javascript
+  let myStr = 'Strange String';
+  
+  console.log(myStr.length);
+  // 14
+  ```
+  
+  ### Get last character
+  ```javascript
+  const name = 'bobek';
+  const lastChar = name[name.length - 1];
+  // name[-1] is not working in javascript
+  ```
+  
+  ### Slicing
+  
+  `str.slice(beginIndex[, endIndex])`
+  
+  ```javascript
+  const str = 'The quick brown fox jumps over the lazy dog.';
+  
+  console.log(str.slice(-9,-5));
+  // 'lazy'
+  ```
+  
+  ### Concatenating
+  
+  The preferable method is using the `+` or `+=` operators as this method is several times faster than `concat()`.
+  
+  ```javascript
+  const str1 = 'Hello';
+  const str2 = 'World';
+  console.log(str1 + ' ' + str2);
+  // 'Hello World'
+  ```
+  
+  
+  ### ASCII Code
+  
+  ```javascript
+  const str = 'Hello';
+  console.log(str.charCodeAt(0))
+  // 72
+  ```
+  
+  
+  ## Escape Sequences
+  
+  They work with both double `""` and single `''` quotes.
+  | Code |	Output |
+  |------| --------|
+  |\\XXX (XXX = 1 - 3 octal digits; range of 0 - 377)	| ISO-8859-1 character \\ Unicode code point between U+0000 and U+00FF|
+  |\\\\'| 	single quote|
+  |\\\\"|	 double quote|
+  |\\\\\\	|backslash|
+  |\\\\n|	new line|
+  |\\\\r|	carriage return|
+  |\\\\v|	vertical tab\\
+  |\\\\t|	tab|
+  |\\\\b|	backspace|
+  |\\\\f|	form feed|
+  |\\\\uXXXX (XXXX = 4 hex digits; range of 0x0000 - 0xFFFF)|	UTF-16 code unit \\ Unicode code point between U+0000 and U+FFFF|
+  |\\\\u{X} ... \\u{XXXXXX} (X…XXXXXX = 1 - 6 hex digits; range of 0x0 - 0x10FFFF)|	UTF-32 code unit \\ Unicode code point between U+0000 and U+10FFFF |
+  |\\\\xXX (XX = 2 hex digits; range of 0x00 - 0xFF)|	ISO-8859-1 character \\ Unicode code point between U+0000 and U+00FF|
+  
+  
+  
+  
+'''
+linesHighlighted: [
+  10
+  100
+  96
+]
+isStarred: false
+isTrashed: false

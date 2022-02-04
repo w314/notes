@@ -1,0 +1,93 @@
+createdAt: "2021-03-09T16:50:46.868Z"
+updatedAt: "2021-03-09T17:04:46.117Z"
+type: "MARKDOWN_NOTE"
+folder: "bb83f5f87373282090b3"
+title: "C++ Operator Overload"
+tags: [
+  "c++"
+  "operator_overload"
+]
+content: '''
+  # C++ Operator Overload
+  - You can choose any operator from the ASCII table and give it your own set of rules!
+  - In order to overload an operator, use the `operator` keyword in the function signature:
+  ```c
+  Complex operator+(const Complex& addend) {
+    //...logic to add complex numbers
+  }`
+  ```
+  ## `()` overload example
+  ```c
+  #include <cassert>
+  #include <vector>
+  
+  class Matrix {
+  public:
+      Matrix(int rows, int columns) 
+          : rows_(rows), columns_(columns), values_(rows*columns) {} 
+      // overloading the "()" operator to use to SET matrix values
+      // returning a reference to an integer: int& 
+      // so when it's called, like matrix(1,1) it can be used to overwrite the matrix value
+      // you call matrix(1,1) get an address and can use it like matrix(1, 1) = 5
+      int& operator()(int row, int column) {
+          // getting matrix values from our one dimensional vector
+          return values_[row*columns_+column];
+      }
+      // overloading the "()" operator in this case to GET matrix values
+      // its a const function, you can not change values
+      int operator()(int row, int column) const {
+          return values_[row *columns_+column];
+      }
+  private:
+      // instead of a 2 dimensional vector<vector>
+      // we use a simple vector as it's easier
+      int rows_;
+      int columns_;
+      std::vector<int> values_; 
+   
+  };
+  
+  int main() {
+      Matrix matrix(2,2);
+      matrix(0,0) = 4;
+      assert(matrix(0,0) == 4);
+  
+      return 0;
+  }
+  ```
+  
+  ## `+` overload example
+  ```c
+  #include <assert.h>
+  
+  // TODO: Define Point class
+  class Point {
+  public:
+    // TODO: Define public constructor
+      Point(int x = 0, int y = 0 ) : x(x), y(y) {};
+    // TODO: Define + operator overload
+      Point operator+(const Point& addend) {
+          Point sum;
+          sum.x = x + addend.x;
+          sum.y = y + addend.y;
+          return sum;
+      }
+    // TODO: Declare attributes x and y
+      int x, y;
+  };
+  
+  // Test in main()
+  int main() {
+    Point p1(10, 5), p2(2, 4);
+    Point p3 = p1 + p2; // An example call to "operator +";
+    assert(p3.x == p1.x + p2.x);
+    assert(p3.y == p1.y + p2.y);
+  }
+  ```
+  
+'''
+linesHighlighted: [
+  52
+]
+isStarred: false
+isTrashed: false

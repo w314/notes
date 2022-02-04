@@ -1,0 +1,48 @@
+createdAt: "2019-08-27T15:18:13.983Z"
+updatedAt: "2020-02-07T20:13:39.146Z"
+type: "MARKDOWN_NOTE"
+folder: "1b2c017ab342eea0830f"
+title: "Sub_queries in Sql"
+tags: [
+  "sql"
+  "sub_query"
+  "sub_select"
+  "select"
+]
+content: '''
+  # Sub_queries in Sql
+  
+  ### Sub_squeries in `WHERE` clause
+  ```sql
+  SELECT column1
+  FROM table
+  WHERE column2 = (SELECT MAX(column2) FROM table)
+  ```
+  ```sql
+  SELECT *
+  FROM employees
+  WHERE salary > (SELECT AVG(salary) FROM employees)
+  ```
+  - just trying to use `salary > AVG(salary)` gives the error message: invalid use of an aggregate function
+  
+  ### Column Expressions
+  sub_queries in the `SELECT` clause
+  ```sql
+  SELECT employee_id, salary,
+    (SELECT AVG(salary) FROM employees) as avg_salary
+  FROM employees
+  ```
+  
+  ### Derived Tables or Table Expressions
+  sub_queries in the `FROM` clause
+  ```sql
+  SELECT *
+  FROM
+    (SELECT employee_id, employee_name FROM employees)
+    as employee4all
+  ```
+  (Makes more sence with joint tables.)
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

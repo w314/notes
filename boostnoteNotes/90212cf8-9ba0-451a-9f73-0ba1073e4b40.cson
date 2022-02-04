@@ -1,0 +1,37 @@
+createdAt: "2019-08-28T19:44:15.772Z"
+updatedAt: "2020-02-07T20:13:57.294Z"
+type: "MARKDOWN_NOTE"
+folder: "68038d270558e5b040df"
+title: "Classes and Objects in Python"
+tags: [
+  "python"
+  "class"
+  "object"
+]
+content: '''
+  # Classes and Objects in Python
+  
+  - Class is a blueprint for objects
+  ```python
+  class Point(object):
+  
+    def __init__(self, x, y):
+      self.x = x
+      self.y = y
+      
+    def print_point(self):
+      print('x = ', self.x, ', y = ', self.y)
+  
+  
+  p1 = Point(1, 2)
+  p1.print_point()
+  # x = 1,  y = 2
+  
+  p1.x = 2
+  p1.print_point()
+  # x = 2, y = 2
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

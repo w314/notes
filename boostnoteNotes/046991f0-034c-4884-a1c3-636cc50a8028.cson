@@ -1,0 +1,284 @@
+createdAt: "2019-08-07T19:39:11.149Z"
+updatedAt: "2021-05-03T14:43:00.683Z"
+type: "MARKDOWN_NOTE"
+folder: "7869a5810e7871ff4be9"
+title: "JavaScript Functions"
+tags: [
+  "java"
+  "JS"
+  "function"
+  "first_class_function"
+  "callback"
+  "higher_order_function"
+  "iffe"
+]
+content: '''
+  # JavaScript Functions
+  ALREADY IN DOCS
+  
+  [Functions - JavaScript \\| MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)
+  
+  **Functions** package up code so you can easily use (and reuse) a block of code. **Parameters** are variables that are used to store the data that's passed into a function for the function to use. **Arguments** are the actual data that's passed into a function when it is invoked:
+  
+  ## JavaScript functions are `First-Class Functions`
+  
+  - can be stored in variables
+  - can be returned from a function
+  - can be passed as arguments into another function
+  - can be stored in data structures
+  - [First-class function - Wikipedia](https://en.wikipedia.org/wiki/First-class_function)
+  
+  
+  
+  #### function declaration:
+  A function declaration defines a function  and doesn't itself return a value.
+  ```javascript
+  function myFunction(parameters) {
+    return;
+  }
+  
+  // to call or invoke the function:
+  myFunction(parameters);
+  ```
+  - function declarations are hoisted and loaded before a sctipt runs.
+  
+  #### functions expression:
+  You can store functions in a variable. If a function is stored in a variable it's called function expression.
+  
+  ```javascript
+  let catSays = function(max) {
+    let catMessage = "";
+    for (var i = 0; i < max; i++) {
+      catMessage += "meow ";
+    }
+    return catMessage;
+  };
+  
+  // to invoke the function
+  catSays(3);
+  
+  // withouth the () it's just accessing the variable
+  catSays;
+  /*
+  function(max) {
+    var catMessage = ""
+    for (var i = 0; i < max; i++) {
+      catMessage += "meow ";
+    }
+    return catMessage;
+  }
+  */
+  ```
+  - function expression doesn't need to have a name, in this case it's an `anonymus function`. It also can have a name, it cannot be invoked by that name, but the name can help with debugging.
+  - function expressions **are not hoisted** as they involve variable assignment and only variable declarations are hoisted.
+  - function expression does return a value and assignes it to the variable.
+  
+  ## Immidiately Invoked Function Expression (`IIFE`)
+  - Immideately Invoked Function Expression is a function that is immediately invoked after it's designed. 
+  - Utilizing `IIFE` along with `closures` allows for a `private scope`.
+  - `IIFE` is only intended to be invoked once, if you don't need a function to be resued, using `IIFE` will minimize the pollution of the global environment as less variables are created.
+  
+  #### `function declaration` to `IIFE`
+  - `Function declaration`:
+  It returns nothing.
+  ```javascript
+  function logger() {
+    console.log('Hello there!');
+  }
+  ```
+  - `Function expression`
+    - By wrapping the `function declaration` into `()`, you can create a `function expression`:
+    - This will return the function declaration.
+    - It could also be anonymus.
+  ```javascript
+  (function logger() {
+    console.log('Hello there!');
+  });
+  ```
+  - `IIFE`
+    - By adding extra pair of `()` to the end of the `function expression` you can immideately invoke it, creating an `IIFE`, `immediately invoked function expression`. (Will log the string *Hello there!*.)
+    - Creates a *private scope*.
+  ```javascript
+  (function logger() {
+    console.log('Hello there!');
+  })();
+  
+  // This is also valid syntax:
+  (function logger() {
+    console.log('Hello there!');
+  }());
+  
+  ```
+  
+  #### passing arguments to `IIFE`
+  ```javascript
+  ((x, y) => {
+      console.log(x * y);
+    }
+  )(2, 3);
+  ```
+  
+  #### using `IIFE` to create button click counter
+  If we want to alert the user every second time he click a button a page we need a counter. It could be a global variable, but anybody could change it that way.
+  So we use `IIFE` and leverage `closure` to protect our *count* variable to be able to accessed externally.
+  ```javascript
+  const button = document.getElementById('button');
+  button.addEventListener('click', (() => {
+    let count = 0;
+    return () => {
+      count += 1;
+      if(count === 2) {
+        alert('This aler appears every other click!');
+        count = 0;
+      }
+    }
+  })());
+  ```
+  
+  ## `higher-order functions`
+  A function that take other functions as arguments and/or returns a function is a `higher-order function`.
+  ```javascript
+  function alertThenReturn() {
+    alert('Message 1!');
+  
+    return function () {
+      alert('Message 2!');
+    };
+  }
+  ```
+  If *alertThenReturn()* is invoked in a browser, we'll first see an alert message that says *'Message 1!'*, followed by the *alertThenReturn()* function returning an anonymous function. However, we don't actually see an alert that says *'Message 2!'*, since none of the code from the inner function is executed.
+  ### how to invoke the returned function
+  - assign it to a variable and invoke it that way
+  ```javascript
+  const innerFunction = alertThenReturn();
+  // alerts 'Message 1!'
+  innerFunction();
+  // alerts 'Message 2!'
+  ```
+  - the returned function can alse be immediately invoked
+  ```javascript
+  alertThenReturn()();
+  // alerts 'Message 1!' then alerts 'Message 2!'
+  ```
+  We have a double set of parentheses (i.e. ()()) in that function call. The first pair of parentheses executes the *alertThenReturn()* function. The return value of this invocation is a function, which then gets invoked by the second pair of parentheses!
+  
+  ## `callback` functions
+  
+  A function that is passed as an argument into an other functions is a `callback` function.
+  
+  Callback functions can delegate calling functions to other functions. This allows you to build applications with `composition`, leading to cleaner and more efficient code.
+  
+  ```javascript
+  // function expression catSays
+  let catSays = function(max) {
+    let catMessage = "";
+    for (let i = 0; i < max; i++) {
+      catMessage += "meow ";
+    }
+    return catMessage;
+  };
+  
+  // function declaration helloCat accepting a callback
+  function helloCat(callbackFunc) {
+    return "Hello " + callbackFunc(3);
+  }
+  
+  // pass in catSays as a callback function
+  helloCat(catSays);
+  ```
+  
+  Callback functions are commonly passed into array methods and called and the elements in the array like:
+  - `forEach()`
+  - `map()`
+  - `filter()`
+  - see note: [JavaScript Array](:note:042a04c4-806a-4652-a05c-566cf3eacc0f)
+  
+  #### Inline Functions Expression
+  
+  ```javascript
+  /*
+  Function declaration that takes in two arguments:
+  - function for displaying a message
+  - name of a movie
+  */
+  function movies(messageFunction, name) {
+    messageFunction(name);
+  }
+  
+  // Call the movies function with
+  // anonymus inline function expression
+  movies(function displayFavorite(movieName) {
+    console.log("My favorite movie is " + movieName);
+  }, "Finding Nemo");
+  //Returns: My favorite movie is Finding Nemo
+  ```
+  
+  **Why use anonymous inline function expressions?**
+  
+  Using an anonymous inline function expression might seem like a very not-useful thing at first. Why define a function that can only be used once and you can't even call it by name?
+  
+  Anonymous inline function expressions are often used with function callbacks that are probably not going to be reused elsewhere. Yes, you could store the function in a variable, give it a name, and pass it in like you saw in the examples above. However, when you know the function is not going to be reused, it could save you many lines of code to just define it inline.
+  
+  
+  
+  ## Function Scope
+  JavaScript was originally function scoped, means variables declared inside a function were not available outside of it. There was no block scope at all, every variable declared within a function - even within an if block  - were available everywhere in the function. 
+  With ES6 came `let` and `const` and these use `block scope` even without `strict` mode.
+  
+  With ES6 in `strict` mode functions declared within functions are also scoped to the block they are declared. Before that block-level functions were forbidden in strict mode.
+  
+  When a function runs it creates a new `runtime scope`. This scope represent the *conext* of the function, which means the set of variables available for the function to use.
+  
+  #### Variables available in `runtime scope`
+  - the functions arguments
+  - local variables declared within the function
+  - variables from it parent function's scope
+  - global variables
+  
+  More on scope see note: [JavaScript Variables](:note:bbba668c-a396-4592-90a0-ea3ae9d85244)
+  
+  ## Closure
+  [Closures - JavaScript \\| MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
+  The process of a function retaining access to its scope is called `closure`. Every function has a closure. Whenever a function is declared a closure is created for it. You can see varaibles available in the closure in the debugger.
+  
+  Closure is the combination of a function the the lexical environment within which that function was created.
+  The `lexical environment` means the function's scope, the identifiers it has access to.
+  
+  The closure is especially powerful when a function is returned from another function. If a function is returned from an other function and is run somewhere else it has still access to the variables of the function it was declared in becouse of closure.
+  ```javascript
+  function myCounter() {
+    let count = 0;
+  
+    return function () {
+      count += 1;
+      return count;
+    };
+  }
+  
+  let counter = myCounter();
+  let otherCounter = myCounter();
+  counter(); //1
+  counter(); //2
+  otherCounter(); //1
+  counter.count;  //undefined
+  ```
+  `Closure` makes it possible for each counter to makes its own counting independent from each other as each has access to its own scope. It is also impossible to reset the counters from the outside as the count variable is not accessible from the outside.
+  
+  #### Closure and Memory Management
+  [Memory Management - JavaScript \\| MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management)
+  
+  Javascript manages memory with automatic `garbage collection`. When data is no longer referable (there are no remaining references to that variable for executable code) it's collected and destroyed at some later point in time. Until data is in a closure its referecable and not collected.
+  
+  ## Factory Functions
+  Factory functions create JavaScript objects.
+  [Factory Functions in JavaScript Explained With Examples \\| by Mehdi Aoussiad | JavaScript in Plain English](https://javascript.plainenglish.io/factory-functions-in-javascript-explained-with-examples-8b93e98de117)
+  
+  
+  
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

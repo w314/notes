@@ -1,0 +1,103 @@
+createdAt: "2021-03-06T02:11:39.378Z"
+updatedAt: "2021-03-06T02:28:04.714Z"
+type: "MARKDOWN_NOTE"
+folder: "68038d270558e5b040df"
+title: "Labda, Reduce, Filter, Map"
+tags: [
+  "reduce"
+  "map"
+  "filter"
+  "python"
+  "lambda"
+]
+content: '''
+  # Labda, Reduce, Filter, Map
+  
+  ## Labda
+  You can think of lambda as a one-line function without a name.
+  `lambda arguments: expression`
+  
+  ```python
+  def add(x, y):
+    return x + y
+    
+  # USING LAMBDA
+  labda x, y : x + y
+  ```
+  
+  ## Map
+  The `map()` function iterates through all items of a given iterable and executes we passed as an argument on each of them.
+  Returns a map_object type, an iterable.
+  
+  ```python
+  # Without using lambdas
+  def starts_with_A(s):
+      return s[0] == "A"
+  
+  fruit = ["Apple", "Banana", "Pear", "Apricot", "Orange"]
+  map_object = map(starts_with_A, fruit)
+  
+  # print by casting map_object on a list
+  print(list(map_object))
+  # returns [True, False, False, True, False]
+  
+  
+  # USING LAMBDA
+  result_list = list(map(lambda s: s[0] == 'A', fruit))
+  ```
+  
+  ## Filter
+  
+  Returns a list
+  
+  ```python
+  # Without using lambdas
+  def starts_with_A(s):
+      return s[0] == "A"
+  
+  fruit = ["Apple", "Banana", "Pear", "Apricot", "Orange"]
+  filter_object = filter(starts_with_A, fruit)
+  # returns: ['Apple', 'Apricot']
+  
+  print(list(filter_object))
+  
+  # USING LAMBDA
+  lambda_filter = filter(lambda s: s[0] == 'A', fruit)
+  ```
+  
+  ## Reduce
+  
+  Returns a single value.
+  `reduce(function, sequence[, initial])`
+  
+  We start with a list [2, 4, 7, 3] and pass the add(x, y) function to reduce() alongside this list, without an initial value
+  
+  reduce() calls add(2, 4), and add() returns 6
+  
+  reduce() calls add(6, 7) (result of the previous call to add() and the next element in the list as parameters), and add() returns 13
+  
+  reduce() calls add(13, 3), and add() returns 16
+  
+  Since no more elements are left in the sequence, reduce() returns 16
+  
+  The only difference, if we had given an initial value would have been an additional step - 1.5. where reduce() would call add(initial, 2) and use that return value in step 2.
+  
+  ```python
+  from functools import reduce
+  
+  def add(x, y):
+      return x + y
+  
+  list = [2, 4, 7, 3]
+  print(reduce(add, list))
+  # returns: 16
+  
+  # USING LAMBDA
+  total = reduce(lambda x, y: x + y, list)
+  
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

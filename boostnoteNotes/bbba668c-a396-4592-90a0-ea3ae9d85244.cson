@@ -1,0 +1,163 @@
+createdAt: "2019-08-19T18:06:47.919Z"
+updatedAt: "2021-01-13T17:23:48.597Z"
+type: "MARKDOWN_NOTE"
+folder: "7869a5810e7871ff4be9"
+title: "JavaScript Variables"
+tags: [
+  "variables"
+  "javascript"
+  "scope"
+  "type_coersion"
+  "type_conversion"
+  "falsy"
+  "truthy"
+]
+content: '''
+  # JavaScript Variables
+  
+  ## Variable Declaration & Initialization
+  
+  ### Variable Declaration
+  - A variable declrataion introduces a new identifier. 
+  - Variables are initialized as undefined when they are created.
+  ```javascript
+  var myVar
+  console.log(myVar)
+  // undifined
+  ```
+  
+  ### Variable Initialization
+  - When you first assign a value to a variable
+  
+  ## Implicit type coercion
+  JavaScript is known as a loosely typed language, you do not need to specify data types. Instead, when your code is interpreted by the JavaScript engine it will automatically be converted into the "appropriate" data type. This is called implicit type coercion
+  
+  ```javascript
+  let myVar = "julia" + 1
+  // julia1
+  
+  ' ' == false
+  // true
+  ```
+  - Use `===` for strict equality
+  ```javascript
+  '1' == 1
+  // true
+  
+  
+  '1' === 1
+  // false
+  ```
+  
+  ## Type Conversion
+  
+  - `parseInt(string , radix);`
+  radix is optional, but as it doens't default to 10, best to specify it
+  - `parseFloat(string)`
+  
+  
+  ## Truthy - Falsy Values
+  
+  ### Falsy Values
+  Value is falsy if it converts to `false` when evaluated in a boolean context. Falsy values:
+  - `false`
+  - `null`
+  - `undefined`
+  - `0` (number zero)
+  - `''` (empty string)
+  - `NaN`
+  
+  ### Truthy Values:
+  - `true`
+  - `{}`
+  - `[]`
+  - anything that is not `falsy`
+  
+  
+  
+  
+  ## Scope
+  
+  ### Lexical Scope
+  `Lexial scope` determines where a variable can be seen in code. It can be:
+  - function scope
+  - block scope - `let ` and `const` are block-scope variables
+  -[block - JavaScript \\| MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/block)
+  
+  ### Runtime Scope
+  When a function runs it creates a `runtime scope`. This scope represents the *context* of the function, which means the set of variables available for the function to use. See note: [JavaScript Functions](:note:046991f0-034c-4884-a1c3-636cc50a8028)
+  
+  
+  ### Scope Chain
+  Whever the code starts to access a variable the JavaScript interpreter will look it up in the `scope chain` from inner to outer scopes.
+  - locally (in child function) >
+  - in parent function >
+  - wihtin global variables >
+  - if it's not found anywhere it comes back `undefined`
+  
+  
+  #### Variable Shadowing
+  If you declare a variable with the same name as another variable somewhere in the `scope chain` the variable with local scope with temporarily *shadow* the variable in the outer scope. It's called `variable shadowing`.
+  
+  Variable *x* gets reassigned in *addTwo()* function. No new variable named *x* is declared:
+  
+  ```javascript
+  let x = 1;
+  
+  function addTwo() {
+    x = x + 2;
+  }
+  
+  addTwo();
+  x = x + 1;
+  console.log(x);
+  // 4
+  ```
+  
+  If we declare a new variable *x* with *let*  the *x* of the global scope isn't overwritten:
+  
+  ```javascript
+  let x = 1;
+  
+  function addTwo() {
+    let x = x + 2;
+  }
+  
+  addTwo();
+  x = x + 1;
+  console.log(x);
+  // 2
+  ```
+  
+  ### Hoisting
+  Before any code is executed all function declarations and variable declaractions are hoisted to the top of their scope.
+  Variable assignments are not hoisted. If you call variable before it's assigned you get undefined for `var` variables and an error for `let` and `const`.
+  
+  
+  ## Determine Variable Type
+  ```javascript
+  const myVar = 1;
+  typeof(myVar);
+  // number
+  ```
+  
+  ## Arithmetic Operations
+  ```javascript
+  const a = 1;
+  const b = 2;
+  const c = a \\ b;
+  console.log(c);
+  // 0.5
+  ```
+  
+  
+  
+  
+  
+  
+'''
+linesHighlighted: [
+  64
+]
+isStarred: false
+isTrashed: false
