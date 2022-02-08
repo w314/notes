@@ -1,16 +1,23 @@
-createdAt: "2020-03-30T23:30:39.127Z"
-updatedAt: "2020-06-30T22:15:04.950Z"
-type: "MARKDOWN_NOTE"
-folder: "68038d270558e5b040df"
-title: "formatting strings"
-tags: [
-  "python"
-  "print"
-  "string_literal"
-]
-content: '''
-  ## formatting strings
-  
+# Strings
+
+## last character of a string
+
+### JavaScript
+```javascript
+const myStr = 'Bobek';
+const lastChar = myStr[myStr.length - 1];
+```
+
+### Python
+```python
+my_str = 'Bobek'
+last_char = my_str[-1]
+```
+
+## Formating strings
+
+### Python
+
   To use `formatted string literals`, begin a string with `f` or `F` before the opening quotation mark or triple quotation mark. Inside this string, you can write a Python expression between { and } characters that can refer to variables or literal values.
   
   ```python
@@ -27,9 +34,3 @@ content: '''
   '{:-9} YES votes  {:2.2%}'.format(yes_votes, percentage)
   ' 42572654 YES votes  49.67%'
   ```
-'''
-linesHighlighted: [
-  2
-]
-isStarred: false
-isTrashed: true

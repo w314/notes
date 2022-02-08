@@ -1,13 +1,4 @@
-createdAt: "2019-08-21T19:30:29.676Z"
-updatedAt: "2020-02-21T00:43:33.305Z"
-type: "MARKDOWN_NOTE"
-folder: "1b2c017ab342eea0830f"
-title: "SELECT Statement in SQL"
-tags: [
-  "sql"
-  "string_pattern"
-]
-content: '''
+select, sql, select_distinct, case, like
   # SELECT Statement in SQL
   
   - use `LIKE` to search for a pattern

@@ -16,6 +16,8 @@ content: '''
   - list is compound data type
   - list is an ordered sequence
   - lists are mutable (unlike tuples)
+
+  ## Creating lists
   
   ```python
   lst = [0] * 3
@@ -62,6 +64,8 @@ content: '''
   ```
   
   ### Modifying lists
+
+  #### Adding elements with `append()` vs `extend()`
   
   - use `extend()` to concatenate new elements to list
   ```python
@@ -77,13 +81,25 @@ content: '''
   print(lst)
   # [1, 2, 3, [4, 5]]
   ```
-  - change element based on index
+
+  ### Add element with `insert()`
+  - use `insert()` to insert an item at a specified index
+  ```python
+  my_list = [1, 2, 3]
+  my_list.insert(1, 'bob')
+  ````
+
+
+  ### Change element based on index
   ```python
   lst = [1, 2, 3]
   lst[1] = 1
   print(lst)
   # [1, 1, 3]
   ```
+
+  ### Delete element
+
   - use `del()` to delete a specific element
   ```python
   lst = [1, 2, 3]
