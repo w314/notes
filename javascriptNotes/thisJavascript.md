@@ -1,18 +1,8 @@
-createdAt: "2019-08-05T22:29:08.411Z"
-updatedAt: "2020-10-29T20:21:05.676Z"
-type: "MARKDOWN_NOTE"
-folder: "7869a5810e7871ff4be9"
-title: "JavaScript: this"
-tags: [
-  "JS"
-  "this"
-  "javascript"
-]
-content: '''
+javascript, this
+
   # JavaScript: `this`
-  Whenever  function is called a `this` variable is set to an object.
-  
-  The value of this inside a function depends on **how the function is invoked**.
+>  The `this` keyword refers to an object.
+  **Which** object depends on how `this` is being invoked (used or called). 
   
   ## Invoking a constructor function
   Invoking a `costructor function` with the `new` operator sets `this` to the *newly-created object*.

@@ -1,11 +1,10 @@
 rest
 
-# REST 
-- **RE**presentational **S**tate **T**ransfer</span>
-- A pattern for organizing API endpoints
+# REST
 
+> A pattern for organizing API endpoints
 
-REST implies a specific set of API endpoints for every entity in the app.
+REST (**RE**presentational **S**tate **T**ransfer) implies a specific set of API endpoints for every entity in the app.
 There are 5 actionable RESTful routes for APIs
 - INDEX 
     - /users -> GET
