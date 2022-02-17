@@ -170,10 +170,7 @@ express nodemon nodejs middleware
   
   
   ```
-'''
-linesHighlighted: [
-  35
-  49
-]
-isStarred: false
-isTrashed: false
+
+  ## OTHER OLD NOTES
+  - [View Engine](http://expressjs.com/en/guide/using-template-engines.html)
+  - [How to serve static files](http://expressjs.com/en/guide/using-template-engines.html)

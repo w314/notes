@@ -1,17 +1,26 @@
 nodejs npm
 
-# Node.js
+# [Node.js](https://nodejs.org/en/)
 ## Install
-### [To install latest Node version on Ubuntu.](https://www.freecodecamp.org/news/how-to-install-node-js-on-ubuntu-and-update-npm-to-the-latest-version/)
-- install `NVM` *Node Version Manager*
-Running the script first without the `| bash` will show what the script will do
+### Linux - Install latest version
+`Ubuntu` package manager doesn't have the latest version. To install:
+- install [NVM](https://github.com/nvm-sh/nvm) *(Node Version Manager)*
 ```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+```
+Running the script first without the `| bash` will show what the script will do
+
+- Restart Terminal
+- Check installation
+```
+nvm --version
+```
+- install latest version
+```bash
+nvm install 16.14
 ```
 
-^ DID NOT WORK
-
-## Uninstall packages
+## Uninstall npm packages
 https://nodejs.dev/learn/uninstalling-npm-packages
 
 ```bash
