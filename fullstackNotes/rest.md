@@ -1,6 +1,7 @@
 rest
 
 # REST
+[more info](https://restfulapi.net/)
 
 > A pattern for organizing API endpoints
 
