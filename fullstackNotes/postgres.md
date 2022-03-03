@@ -52,6 +52,7 @@ count integer
 ```
 
 ## CRUD
+> Use single quotes for strings
 
 #### CREATE
 ```sql
@@ -81,7 +82,15 @@ INSERT INTO my_table(text) VALUES (‘How ‘’s it going?’);
 INSERT INTO “my_table”(“text”) VALUES (‘How’’s it going?’);
 
 
+## Problems
 
+INSERT Problem
+
+Column "John" doesn't exists with:
+`INSERT INTO <table> (name) VALUES ("John")
+
+Solution:
+Use single quotes. The issue is with the double quotes - postgres is interpreting them as "delimited identifiers" (i.e. the name of an object, such as a column in a table).
 
 
 
