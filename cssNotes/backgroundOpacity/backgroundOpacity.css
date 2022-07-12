@@ -1,0 +1,24 @@
+body {
+    max-width: 800px;
+    margin: auto;
+}
+
+h1, h2, p {
+    text-align: center;
+}
+
+div {
+    /* width: 300px; */
+    height: 30px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.withOpacity {
+    background-color: rgb(0, 128, 0);
+    opacity: 0.3
+}
+
+.withRGBA {
+    background-color: rgba(0, 128, 0, 0.3);
+}
