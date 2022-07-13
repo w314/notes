@@ -40,11 +40,12 @@ if you want to specify the port use:
 
 ## Data flow within an application
 Ways that data can flow within an application:
-- From the component class to the template: `interpolation`
-- From the template to the component class: `event binding`
-- From the parent component to its child component: `input property binding`
+- From the component class to the template: `interpolation` -  `{{}}`
+- From the template to the component class: `event binding` - `(click)="functionName()"`
+- From the parent component to its child component: `input property binding` - `@Input()`
+- From child component to its parent component: `output property binding` - `@Output()`
 
-## Display parent component with its children
+## `Interpolation` and `Input Property Binding`
 Creating a Zoo component which will display a list of animals, each list item will be represented by ZooAnimal component.
 
 
@@ -64,12 +65,14 @@ export class Animal {
   id: number;
   name: string;
   diet: string;
+  votes: number;
 
   // initialize in constractor when using strict mode
   constructor() {
     this.id = 0;
     this.name = '';
     this.diet = '';
+    this.votes = 0;
   }
 }
 ```
@@ -102,6 +105,7 @@ export class ZooAnimalComponent implements OnInit {
       id: 0,
       name: '',
       diet: '',
+      votes: 0,
     }
    }
   
@@ -113,7 +117,8 @@ export class ZooAnimalComponent implements OnInit {
 `zoo-animal.component.html`:
 ```html
   <h2>{{ animal.name }}<h2>
-  <p>{{ animal.diet }}<p>
+  <p>Diet: {{ animal.diet }}<p>
+  <p>Votes: {{ animal.votes }}</p>
 ```
 
 ### Setup `zoo` component
@@ -138,7 +143,8 @@ export class ZooComponent implements OnInit {
   // initialize animals property
   ngOnInit(): void {
     this.animals = [
-      { id: 1, name: 'frog', diet: 'flies'}, {id: 2, name: 'stork', diet: 'frogs'}
+      { id: 1, name: 'frog', diet: 'flies', votes: 0},
+      {id: 2, name: 'stork', diet: 'frogs', votes: 0}
     ]
   }
 }
@@ -154,4 +160,96 @@ export class ZooComponent implements OnInit {
 `app.component.html`
 ```html
 <app-zoo></app-zoo>
+```
+
+## `Event Binding` and `Output Property Binding`
+Add an upvote button and a like button to each animal, let the parent company know if the like button was clicked. 
+
+`zoo-animal.component.html`:
+```html
+<h2>{{ animal.name }}</h2>
+<p><strong>Diet:</strong> {{ animal.diet }}</p>
+<p>Votes: {{ votes }}</p>
+<!-- 
+  Add button for upvotes and like, 
+  use event binding to communicate from template to component class
+-->
+<button (click)="upvote(animal)">Upvote</button>
+<button (click)="like(animal)">Like</button>
+```
+
+`zoo-animal.component.ts`:
+```typescript
+// Import Output and EventEmitter for data flow
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Animal } from '../models/Animal'
+
+@Component({
+  selector: 'app-zoo-animal',
+  templateUrl: './zoo-animal.component.html',
+  styleUrls: ['./zoo-animal.component.css']
+})
+export class ZooAnimalComponent implements OnInit {
+
+  @Input() animal: Animal;
+  @Output() likeAnimal: EventEmitter<Animal> = new EventEmitter;
+
+  constructor() {
+    this.animal = {id: 0, name: '', diet: '', votes: 0,}
+  }
+
+  ngOnInit(): void {
+  }
+
+  // create upvote function for event click event
+  upvote(animal: Animal): void {
+    animal.votes++;
+  }
+
+  // create like function, its role is to notify the parent component
+  like(animal: Animal): void {
+    this.likeAnimal.emit(animal)
+  }
+}
+```
+
+Receive event emitted by child component.
+`zoo-component.html`
+```html
+<h1>{{ title }}</h1>
+<!-- 
+  bind property likeAnimal decorated by output in child component
+  and point it to a function in the parent class
+ -->
+<app-zoo-animal *ngFor="let animal of animals" [animal]="animal" (likeAnimal)="likeAnimal($event)"></app-zoo-animal>
+```
+`zoo-component.ts`
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { Animal } from '../models/Animal'
+
+@Component({
+  selector: 'app-zoo',
+  templateUrl: './zoo.component.html',
+  styleUrls: ['./zoo.component.css']
+})
+export class ZooComponent implements OnInit {
+  title: string = 'Animals in the Zoo';
+  animals: Animal[] = [];  
+
+  constructor() { }
+
+  ngOnInit(): void {
+    this.animals = [
+      { id: 1, name: 'frog', diet: 'flies', votes: 0},
+      {id: 2, name: 'stork', diet: 'frogs', votes: 0}
+    ]    
+  }
+
+  // add function to handle event in child componenet
+    likeAnimal(animal: Animal): void {
+    alert(`You liked ${animal.name}!`)
+  }
+
+}
 ```
