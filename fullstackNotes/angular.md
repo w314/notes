@@ -38,8 +38,15 @@ if you want to specify the port use:
     3. `mycomponent.componenets.spec.ts` for tests
     4. `mycomponent.components.ts`
 
+## Data flow within an application
+Ways that data can flow within an application:
+- From the component class to the template: `interpolation`
+- From the template to the component class: `event binding`
+- From the parent component to its child component: `input property binding`
+
 ## Display parent component with its children
 Creating a Zoo component which will display a list of animals, each list item will be represented by ZooAnimal component.
+
 
 ### 1. Create components
 ```bash

@@ -13,4 +13,4 @@
 Use `GCM` (*Git Creadential Manager*) to store the `PAT`.
 - [Install Git Creadential Manager](https://github.com/GitCredentialManager/git-credential-manager#linux-install-instructions)
 
-When using `git push` a pop-up window comes up, and there is a possiblity to enter the token.
+When using `git push` for the first time, a pop-up window comes up, and there is a possiblity to enter the token. After that the token is already stored.
