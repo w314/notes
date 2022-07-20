@@ -253,3 +253,67 @@ export class ZooComponent implements OnInit {
 
 }
 ```
+
+## Navigation
+Creating a new component About, and setup a router and navbar.
+
+### 1. Generate `About` Component
+```bash 
+ng g c About
+```
+### 2. Configure router
+#### 2.a [Add the `AppRoutingModule`](https://angular.io/tutorial/toh-pt5#add-the-approutingmodule) if you dont have one already
+In Angular, the best practice is to load and configure the router in a separate, top-level module. The router is dedicated to routing and imported by the root `AppModule`.
+
+By convention, the module class name is `AppRoutingModule` and it belongs in the `app-routing.module.ts` in the `src/app` directory.
+
+Run ng generate to create the application routing module.
+```bash
+ng generate module app-routing --flat --module=app
+```
+  `--flat`	Puts the file in src/app instead of its own directory.<br>
+  `--module=app`	Tells ng generate to register it in the imports array of the AppModule.
+  #### 2.b Configure Router
+  Edit `app-routing.module.ts` to include:
+  ```typescript
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router'
+import { ZooComponent } from './zoo/zoo.component';
+import { AboutComponent } from './about/about.component';
+
+const routes: Routes = [
+  { path: '', component: ZooComponent },
+  { path: 'About', component: AboutComponent },
+]
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+```
+
+### 3. Create NavBar Component
+```bash
+ng g c NavBar
+```
+Modify `nav-bar-component.html` to:
+```html
+<nav>
+  <ul>
+    <!-- 
+      Using routerLink instead of href allows navigation without reloading the pages.
+      Make not of the using / for root.
+    -->
+    <li><a routerLink="/">Zoo</a></li>
+    <li><a routerLink="/About">About</a></li>
+  </ul>
+</nav>
+```
+
+### 4. Add Navbar and Router to home page
+Modify `app.component.html` to:
+```html
+<app-nav-bar></app-nav-bar>
+<router-outlet></router-outlet>
+```
