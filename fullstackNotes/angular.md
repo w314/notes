@@ -317,3 +317,123 @@ Modify `app.component.html` to:
 <app-nav-bar></app-nav-bar>
 <router-outlet></router-outlet>
 ```
+
+## Setting up services
+Components supposed to only deal with UI, the data we used above should be provided by services.
+
+### Create service the get animal data
+- in on step we create `services` directory as weel as the `animal` service
+```bash
+ng g s services/animal
+```
+- in `animal.service.ts` add a `getAnimals()` function to get the data
+```typescript
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AnimalService {
+
+  constructor() { }
+
+  // add function to get data
+  getAnimals() {
+    return [
+      { id: 1, name: 'frog', diet: 'flies', votes: 0},
+      {id: 2, name: 'stork', diet: 'frogs', votes: 0}
+    ]
+  }
+}
+```
+
+### Add service to zoo component
+- remove hard coded data from zoo component
+- import AnimalService
+- set is as a parameter of the constructor
+- use the service to get the data
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { Animal } from '../models/Animal'
+// import AnimalService to provide animal data
+import { AnimalService } from '../services/animal.service';
+
+@Component({
+  selector: 'app-zoo',
+  templateUrl: './zoo.component.html',
+  styleUrls: ['./zoo.component.css']
+})
+export class ZooComponent implements OnInit {
+  title: string = 'Animals in the Zoo';
+  animals: Animal[] = [];  
+
+  // set AnimalService as a parameter of the  constructor
+  constructor(private animalService: AnimalService) { }
+
+  ngOnInit(): void {
+    // get data from AnimalService
+    this.animals = this.animalService.getAnimals();
+  }
+  likeAnimal(animal: Animal): void {
+    alert(`You liked ${animal.name}!`)
+  }
+}
+```
+l
+### Add a service to handle data sharing among unrelated components
+Ideal service like that could be a bookmark manager, in this case the service will handle a favourite animal list.
+ - create service for favourite animals
+```bash
+ng g s services/favouriteAnimals
+```
+- edit `favourite-animals.service.ts`:
+```typescript
+import { Injectable } from '@angular/core';
+// import Animal model
+import { Animal } from '../models/Animal'
+
+@Injectable({
+  providedIn: 'root'
+})
+export class FavouriteAnimalsService {
+  favouriteAnimals: Animal[] = []
+  constructor() { }
+
+  // function to provide list of favourite animals
+  getFavouriteAnimals() {
+    return this.favouriteAnimals;
+  }
+
+  // function to add animal to list of favourite animals
+  addFavouriteAnimal(animal: Animal) {
+    this.favouriteAnimals.push(animal);
+    return this.favouriteAnimals;
+  }
+
+  // function to clear favourite animals list
+  clearFavouriteAnimalList() {
+    this.favouriteAnimals = [];
+    return this.favouriteAnimals;
+  }
+}
+```
+- add `Add to Favourite` button to `app-zoo-animal.component.html`
+```html
+<!--   Add button to add animal to favourite animal list -->
+<button (click)="favourite(animal)">Add to Favourite</button>
+```
+- communicate click of `Add to Favourite Animals` button to `FavouriteAnimalsService` in `app-zoo-animal.component.ts`:
+```typescript
+  /* ..  */
+  // create event emitter to communicate clik of 
+  // Add to Favourite Animals button to parent component
+  @Output() addToFavourite: EventEmitter<Animal> = new EventEmitter;
+  /* ..  */
+  // create favourite function that is called when
+  // Add To Favourite Animals button is clicked
+  favourite(animal: Animal): void {
+    // use emitter to emit click event
+    this.addToFavourite.emit(animal)
+  }
+```
+- look for `addToFavourite` emitter in `zoo-app.component.ts`
