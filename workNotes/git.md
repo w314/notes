@@ -12,6 +12,13 @@ In your GitHub Account: <br>->
  Settings (right top corner) <br>-> Developer Settings (bottom of left panel) <br>-> Personal access tokens (on left panel) <br>-> Generate new token (button in top right corner)  
 #### 2. store `PAT`
 Use `GCM` (*Git Creadential Manager*) to store the `PAT`. (It may already be intstalled)
-- [Install Git Creadential Manager](https://github.com/GitCredentialManager/git-credential-manager#linux-install-instructions)
+- [Install Git Creadential 
+Manager](https://github.com/GitCredentialManager/git-credential-manager#linux-install-instructions)
+    - [download `.deb` package](https://github.com/GitCredentialManager/git-credential-manager/releases/tag/v2.0.785)
+    - run
+    ```bash
+    sudo dpkg -i <path-to-package>
+    git-credential-manager-core configure
+    ```
 
 When using `git push` for the first time, a pop-up window comes up, and there is a possiblity to enter the token. After that the token is already stored.
