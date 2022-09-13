@@ -19,6 +19,7 @@ Manager](https://github.com/GitCredentialManager/git-credential-manager#linux-in
     ```bash
     sudo dpkg -i <path-to-package>
     git-credential-manager-core configure
+    export GCM_CREDENTIAL_STORE="cache"
     ```
 
 When using `git push` for the first time, a pop-up window comes up, and there is a possiblity to enter the token. After that the token is already stored.
