@@ -26,4 +26,4 @@ Manager](https://github.com/GitCredentialManager/git-credential-manager#linux-in
     export GCM_CREDENTIAL_STORE="cache"
     ```
 
-When using `git push` for the first time, a pop-up window comes up, and there is a possiblity to enter the token. After that the token is already stored.
+When using `git push` for the first time, a pop-up window comes up, chose `token` as sign in method and enter it. After that the token is already stored.
