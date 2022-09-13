@@ -18,7 +18,11 @@ Manager](https://github.com/GitCredentialManager/git-credential-manager#linux-in
     - run
     ```bash
     sudo dpkg -i <path-to-package>
+    ```
+    ```bash
     git-credential-manager-core configure
+    ```
+    ```bash
     export GCM_CREDENTIAL_STORE="cache"
     ```
 
