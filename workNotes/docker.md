@@ -2,8 +2,38 @@ notes docker docker-compose
 
 # Docker
 
-## [Docker Compose](https://medium.com/codex/docker-compose-explained-3954baf495ec)
+## Manipulate docker containers
+- list containers
+```bash
+sudo docker ps
+```
+- stop container
+```bash
+sudo docker stop <CONTAINER_NAME>
+```
 
+## Manipulate Volumes
+
+Problem: changed `.env` file but even after removing docker container with `rm` and using `docker compose up` again the database name and user was the same.
+<br>Solution: remove volume
+
+- list volumes
+```bash
+sudo docker volume ls
+```
+- inspect volume
+```bash
+sudo docker volume inspect <VOLUME_NAME>
+```
+- remove volume (after deleting container)
+```bash
+sudo docker volume rm <VOLUME_NAME>
+```
+
+## [Docker Compose](https://medium.com/codex/docker-compose-explained-3954baf495ec)
+- [medium article](https://medium.com/codex/docker-compose-explained-3954baf495ec)
+
+### Usage
 Create containers using the command docker-compose up.
 Please use detach mode using -d.
 
