@@ -8,6 +8,8 @@ To use docker-compose:
 1. Define the services that make up your app in a `docker-compose.yaml` file, so that they can run together in an isolated environment
 1. Run `docker compose up` that starts and runs your app
 
+
+
 Docker Compose Explained
 Learn how to create a YAML file for Docker containers and create containers using docker-compose.
 
