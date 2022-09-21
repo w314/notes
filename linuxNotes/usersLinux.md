@@ -1,10 +1,4 @@
-createdAt: "2021-03-02T13:31:50.973Z"
-updatedAt: "2021-03-02T18:25:28.966Z"
-type: "MARKDOWN_NOTE"
-folder: "a2c0786da6dece68d518"
-title: "Linux Users"
-tags: []
-content: '''
+
   # Linux Users
   
   If starting vitual machine with vagrant after logging in with `vagrant ssh` you are logged in with standard user vagrant, who has `sudo` capabilities
@@ -67,9 +61,6 @@ content: '''
   `PasswordAuthentication no`
   - have to restart the service for the changes to take effect:
   `sudo service ssh restart`
-      
-  
-  
   
 '''
 linesHighlighted: []
