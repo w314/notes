@@ -78,12 +78,13 @@ Did not install the latest version
 
 2. Python was already installed
 
-3. install npm
+3. [npm](https://www.npmjs.com/)
 ```bash
 sudo apt install npm
 ```
 
-4. install [docker](https://docs.docker.com/engine/install/ubuntu/)
+4. [docker](https://docs.docker.com/engine/install/ubuntu/)
+5. 
 
 ## How to install `tar` files
 > `tar` are compressed files

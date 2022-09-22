@@ -3,27 +3,39 @@
 # Postgres
 
 ## Installation:
-Install postgres, during installation set password for postgres superuser and local port
-On windows after installation set the Path environmental variable. Search for environmental variables and edit Path.
+- Install postgres, during installation set password for postgres superuser and local port
+- On windows after installation set the Path environmental variable. Search for environmental variables and edit Path.
 
 
-To start postgres in terminal use: `psql -U postgres`
-
-It will ask for password, if you forgot password, you can reset it: postgres reset password
-find pg_hba configuration file stored in the database data directory (C:\Program Files\PostgreSQL\14\data )
-backup pg_hba as pg_hba.bk
-Edit the pg_hba file and change the method of all local connection (there are several change all of them)  to: trust
-start postgres in terminal
-psql -U postgres
-it will let you log in without a password
- set password for postgres user:
-ALTER USER postgres WITH PASSWORD ‘new_password’;
-restore the original pg_dba.conf file
+To start postgres in terminal use: 
+```bash
+`psql -U postgres`
+```
+- It will ask for password
+- if you forgot password: 
+    - reset password:
+    ```bash
+    postgres reset password
+    ```
+    - find `pg_hba` configuration file stored in the database data directory (C:\Program Files\PostgreSQL\14\data )
+    - backup `pg_hba` as `pg_hba.bk`
+    - Edit the `pg_hba` file and change the method of all local connection (there are several change all of them)  to: trust
+    start postgres in terminal
+    - start postgres again
+    ```bash
+    psql -U postgres
+    ```
+    - it will let you log in without a password
+    - set password for postgres user:
+    ```bash
+    ALTER USER postgres WITH PASSWORD ‘new_password’;
+    ```
+    - restore the original pg_dba.conf file
 
 To exit postgres in the terminal enter: \q
 
 
-postgres commands:
+## Postgres commands
 <table>
 <tr><td>\l</td><td>list databases</td></tr>
 <tr><td>\c</td><td>connect to database</td></tr>
@@ -34,10 +46,18 @@ postgres commands:
 
 
 ## Setup Scheema
+- create user
+```sql
+CREATE USER <user_name> WITH PASSWORD '<password>';
+```
 - create database
 ```sql
 create database <database_name>
 ```
+```sql
+GRANT ALL PRIVILEGES ON DATABASE <database_name> TO <user_name>;
+```
+
 - connect to database
 ```bash
 \c <database_name>
