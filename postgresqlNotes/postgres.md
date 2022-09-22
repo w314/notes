@@ -4,7 +4,14 @@
 
 ## Installation:
 - Install postgres, during installation set password for postgres superuser and local port
-- On windows after installation set the Path environmental variable. Search for environmental variables and edit Path.
+- On windows after installation set the Path environmental variable. Search for environmental variables and edit Path.when preapring tables for tests,
+use
+TRUNCATE <table_name> CASCADE
+instead of
+DELETE FROM <table_name>
+TRUNCATE resets primary key numbers, while DELETE does not
+CASCADE is needed if the table is used as a foreign key in another table
+
 
 
 To start postgres in terminal use: 
@@ -70,6 +77,18 @@ name VARCHAR(50),
 count integer
 );
 ```
+
+- clear tables
+```sql
+TRUNCATE <table_name> CASCADE
+```
+or
+```sql
+DELETE FROM <table_name>
+```
+- `TRUNCATE` resets primary key numbers, while DELETE does not
+- `CASCADE` is needed if the table is used as a foreign key in another table
+
 
 ## CRUD
 > Use single quotes for strings
