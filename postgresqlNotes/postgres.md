@@ -47,6 +47,7 @@ To exit postgres in the terminal enter: \q
 <tr><td>\l</td><td>list databases</td></tr>
 <tr><td>\c</td><td>connect to database</td></tr>
 <tr><td>\dt</td><td>display tables in a database</td></tr>
+<tr><td>\d+ tablename</td><td> describe table</td></tr>
 <tr><td>\q</td><td>quit psql back to normal terminal</td></tr>
 <tr><td>\du</td><td>list users</td></tr>
 </table>
