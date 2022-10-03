@@ -1,6 +1,10 @@
 nodejs npm
 
 # [Node.js](https://nodejs.org/en/)
+
+## READ
+- [Node.js project architecture](https://softwareontheroad.com/ideal-nodejs-project-structure/)
+- [The 12 factor app](https://12factor.net/)
 ## Install
 ### Linux - Install latest version
 `Ubuntu` package manager doesn't have the latest version. To install:
