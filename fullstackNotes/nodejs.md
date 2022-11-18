@@ -19,9 +19,9 @@ Running the script first without the `| bash` will show what the script will do
 ```
 nvm --version
 ```
-- install latest version
+- install latest supported version
 ```bash
-nvm install 16.14
+nvm install --lts
 ```
 
 ## Uninstall npm packages
