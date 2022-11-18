@@ -39,6 +39,7 @@ if you want to specify the port use:
     4. `mycomponent.components.ts`
 
 ## Data flow within an application
+
 Ways that data can flow within an application:
 - From the component class to the template: `interpolation` -  `{{}}`
 - From the template to the component class: `event binding` - `(click)="functionName()"`

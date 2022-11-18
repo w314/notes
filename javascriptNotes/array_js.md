@@ -1,21 +1,4 @@
-createdAt: "2019-11-21T18:15:03.534Z"
-updatedAt: "2021-03-06T01:42:34.109Z"
-type: "MARKDOWN_NOTE"
-folder: "7869a5810e7871ff4be9"
-title: "JavaScript Array"
-tags: [
-  "js"
-  "javascript"
-  "array"
-  "map"
-  "forEach"
-  "destructuring"
-  "spread"
-  "rest"
-  "arguments_object"
-  "variadic_function"
-]
-content: '''
+
   # JavaScript Array
   ```javascript
   myArray = [1, 2, 'szia'];
@@ -25,6 +8,12 @@ content: '''
   
   // Get last element:
   myArray[myArray.length-1];
+```
+
+## Max of Array
+```javascript
+const nums = [3, 7, 2]
+const maxValue = Math.max.apply(null, nums)
   ```
   
   ## Array Properties
@@ -163,7 +152,7 @@ content: '''
   
   Destructuring values from an array:
   ```javascript
-  const poin = [10, 25, 7];
+  const point = [10, 25, 7];
   
   const [x, y, z] = point;
   
@@ -171,9 +160,3 @@ content: '''
   const [x, , z] = point
   const [x, y] = point
   ```
-'''
-linesHighlighted: [
-  155
-]
-isStarred: false
-isTrashed: false

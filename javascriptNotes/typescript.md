@@ -259,15 +259,27 @@ content: '''
   In case of the generic function, we can use it with numbers as well as string. Whatever type will call the function will translate to its return as well.
   
   
+### New Dictionary
+
+```typescript
+tokens = {} as {[key: string]: string}
+```
+
   
+## Errors
+
+[expression of string cannot be used as index](https://stackoverflow.com/questions/57086672/element-implicitly-has-an-any-type-because-expression-of-type-string-cant-b)
   
-  
-  
-'''
-linesHighlighted: [
-  15
-  7
-  119
-]
-isStarred: false
-isTrashed: false
+```typescript
+const someObj:ObjectType = data;
+const field = 'username';
+
+// This gives an error
+const temp = someObj[field];
+
+// Solution 1: When the type of the object is known
+const temp = someObj[field as keyof ObjectType]
+
+// Solution 2: When the type of the object is not known
+const temp = someObj[field as keyof typeof someObj]
+```
