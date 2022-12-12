@@ -17,7 +17,7 @@ const sorted = [...strings].sort()
 ```
 - use the `...` `spread` syntax to make a copy of the array before sorting
 
-## Sort stringbers
+## Sort numbers
 ```javascript
 const nums = [3, 4, 18, 1, 8]
 

@@ -34,11 +34,45 @@ content: '''
   To move all files, but not folders:
   If you are interested in moving all files (but not folders) from Downloads folder to Videos folder, use this command
   `find ~/Downloads/ -type f -exec mv -t ~/Videos \\{\\} \\+`
-  ## Working with files with 
+  ## Working with files
   
-  ### writing to files - `echo`
-  - `echo "adding this text to file" > my_file.txt `
-  if using the `>` redirection operator the file is created if it doesn't exits. The output from 'echo' is added at the start of the file **overwriting any previous content**.
+  ### File editing
+
+  - **append multiple lines to a file**, you can use `echo -e` and separate each line with a `\n` (newline character)
+  ```bash
+  echo -e "Bash is my favorite shell. \nZ shell is alright too." >> file.txt
+  ```
+<hr/>
+
+  - **add text to a certain line** in the file
+
+```bash
+sed -i "1iimport 'bootstrap/dist/css/bootstrap.min.css'\n" src/App.tsx
+```
+`1i` at the beginning of the string to be added specifies the line `1` to insert `i` the text into
+
+<hr/>
+
+  - **overwriting any previous content** 
+  
+  ```bash
+  `echo "adding this text to file" > my_file.txt ` 
+  ```
+  if using the `>` redirection operator the file is created if it doesn't exits. The output from 'echo' is added at the start of the file.
+
+  <hr/>
+
+- **delete line with specific string** from file
+
+```bash
+sed -i '/index.css/d'  src/main.tsx
+```
+- `sed` is a text editing command
+- `-i` for editing the file itself
+- `'/index.css/d'` will delete (`d`) the line with the pattern provided (`index.css`) 
+
+<hr/>
+
   - `echo "adding this text to file" >> my_file.txt`
   if we use the `>>` redirection operator, the file is created if it doesn't exiss like before, but the **output is added to the end of the file and no previous content is deleted**.
   - echo-ing special characters:

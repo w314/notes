@@ -1,13 +1,20 @@
 ## VSCode Shourtcuts
-`Ctrl` + ` ` `  ` ` - Toggle Terminal Window
+
+- Terminal Window toggle    
+`Ctrl` + ` ` `  
+
+- Explorer Panel toggle     
+`Ctrl` + `B`
 
 ### Selection
-`Ctrl` + `l` - select line
+- select line       
+`Ctrl` + `L`
 
 ### Edit
-`Alt` + `Up` or `Down` to move selected line
+- move current line     
+`Alt` + `Up` or `Down`
 
-## Open folder from terminal
+### Open folder from terminal
 - `cd` into folder
 - `code -n .`
 
