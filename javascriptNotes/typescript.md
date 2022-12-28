@@ -89,6 +89,10 @@ content: '''
   ```
   
   ### Objects, Interfaces & Type Aliases
+
+  - [type vs interface](https://www.geeksforgeeks.org/what-is-the-difference-between-interface-and-type-in-typescript/)
+
+  
   If the object will never need additional properties later on you can: 
   ```typescript
   let student:{name: string, age: number, enrolled: boolean}  = 
@@ -130,7 +134,9 @@ content: '''
   Type Aliases can also by used for objects.
   [TypeScript: Documentation - Everyday Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces)
   Type aliases for objects and interfaces are very similar, and in many cases you can choose between them freely. Almost all features of an `interface` are available in `type`, the key distinction is that a type cannot be re-opened to add new properties vs an interface which is always extendable.
-  
+
+
+
   - Extending an interface / type
   ```typescript 
   // Extending an Interface
