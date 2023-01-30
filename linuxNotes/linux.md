@@ -1,14 +1,5 @@
-createdAt: "2021-02-10T19:26:18.665Z"
-updatedAt: "2021-03-02T13:32:11.879Z"
-type: "MARKDOWN_NOTE"
-folder: "a2c0786da6dece68d518"
-title: "Linux"
-tags: [
-  "linux"
-  "security"
-  "$PATH"
-]
-content: '''
+linux, file, permission, execute, chmod
+
   # Linux
   
   ## File System
@@ -26,7 +17,7 @@ content: '''
   drwx------ 2 vagrant vagrant 4096 Feb 10 13:37 .ssh
   ```
   - if the first character in the line is `d`, it's a direcory, if it's `-` it's a file
-  
+
   #### $PATH variable
   [EnvironmentVariables - Community Help Wiki](https://help.ubuntu.com/community/EnvironmentVariables)
   `$Path` variable has the list of directories the system will look through to find a command.
@@ -41,7 +32,23 @@ content: '''
   
   
   
-  
+## File Permissions
+
+### List file permissions
+```bash
+ls -l
+```
+
+### Make file executable
+```shell
+chmod +x <file_name>
+```
+
+### Exectue file
+Use `./`
+```shell
+./<file_name>.sh
+```
   
   ## Security
   - disable remote login access for `root` user
