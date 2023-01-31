@@ -1,30 +1,22 @@
-linux, ubuntu, apt,
+linux, ubuntu, apt, install, vscode
 
 
 # Setup New Linux System
 
+## How to Install Linux on Windows machine
 
+Create bootable USB drive using `UNetbootIN`
 
-## Connect remotely to system
-[How to Fix “Connection Refused By Port 22” on Ubuntu 22.04 LTS](https://itsubuntu.com/how-to-fix-connection-refused-by-port-22-on-ubuntu-22-04-lts/)
+## How to install `tar` files
+> `tar` are compressed files
+1.  Download file
+2.  `untar` it
+    - go to `Downloads`
+    - `tar -xvf <filename>`
+3. it will create a directory for the files, cd into it
+    - it can give further instructions in a README 
+    - it can be ready to use
 
-Port 22 is used by SSH on Ubuntu for communicating with other machines in the network to transfer data. Port 22 is also used to access the remote system.
-
-The most common reason behind this error is  OpenSSH has not being installed on Ubuntu where you are trying to connect.  To see whether OpenSSH is installed or not, run the following command on a remote machine.
-```bash
-sudo apt list --installed | grep openssh-server
-```
-If you see nothing printed out on the console, then you do not have it installed. You can easily install OpenSSH using the following command:
-```bash
-sudo apt install openssh-server -y
-```
-```bash
-sudo systemctl status ssh
-```
-Now, you can make it active with the following command
-```bash
-sudo systemctl start ssh
-```
 
 
 
@@ -42,7 +34,17 @@ Install Chrome .deb package on your system:
 sudo apt install ./google-chrome-stable_current_amd64.deb
 ```
 
-## Instal VSCode with `apt` package manager
+## Instal VSCode
+### A) BEST SOLUTION
+- with `wget` and `dpkg`
+- grab and instal latest VSCode:
+```bash
+wget 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64' -O /tmp/code_latest_amd64.deb
+sudo dpkg -i /tmp/code_latest_amd64.deb
+```
+- can be saved to a file like `auto-update-vscode.sh` and run every time VSCode needs updating
+- gets latest version unlike `apt` package manager
+### B) with `apt` package manager
 1. Update system repository
 ```bash
 sudo apt update
@@ -84,15 +86,10 @@ sudo apt install npm
 ```
 
 4. [docker](https://docs.docker.com/engine/install/ubuntu/)
-5. 
 
-## How to install `tar` files
-> `tar` are compressed files
-1.  Download file
-2.  `untar` it
-    - go to `Downloads`
-    - `tar -xvf <filename>`
-3. it will create a directory for the files, cd into it
-    - it can give further instructions in a README 
-    - it can be ready to use
+5. yarn
+```bash
+npm install --global yarn
+```
+
 

@@ -1,17 +1,52 @@
 react, deploy, github
 
-# Deploy React App created with `Vite`
-- [deploy to github pages from vite](https://towardsdev.com/deploying-react-application-to-github-pages-with-vite-2d3e32ae97e7)
+# Deploy React App
 
-- create app `npm create vite`
-- cd into app directory
-- `npm install`
-- `code -n .` (open in VS code)
-- initiate git repository: `git init`
-- add remote repo: `git remote add <remote_repo_url>`
-- add `base: "/",` to `vite.config.ts`
-- add `"homepage": "https://<user_name>.github.io/<repo_name>",` to `package.json`
-- run `npm install gh-pages --save-dev` to install [gh_pages](https://www.npmjs.com/package/gh-pages)
-- add `"deploy": "npm run build && gh-pages -d dist"` to `package.json` `scripts`
-- remove `dist` directory from `.gitignore`
-- run `npm run deploy` to deploy
+## Deploy React App created with `Vite`
+### 1. create app 
+```shell
+# create app
+npm create vite
+
+# cd into app direcotry
+cd <app_name>
+
+# install node packeges
+npm install
+
+# open in VSCode
+code -n .
+```
+### 2. Set up GIT
+```shell
+# initiate git repository 
+git init
+
+# make initial commit
+git add .
+git commit -m 'feat: Initial commit'
+
+# push content to remote repository
+# add remote repo
+git remote add origin <remote_repo_url>
+git push -u origin master
+```
+
+### 3. Deploy App to github pages
+- install [gh_pages](https://www.npmjs.com/package/gh-pages)
+```bash
+npm install --save gh-pages
+```
+- setup app for deployment
+  - add `base: "/<repo_name>/",` to `vite.config.ts`
+  - add `"homepage": "https://<user_name>.github.io/<repo_name>",` to `package.json`
+  - add new scripts to `package.json` `scripts`
+```bash
+"predeploy": "npm run build",
+"deploy": "gh-pages -d dist",
+```
+- deploy app
+```bash
+npm run deploy
+```
+(the `predeploy` script will run automatically)
