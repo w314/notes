@@ -10,7 +10,7 @@ react, deploy, github
 git remote add origin <remote_repo_url>
 git push -u origin master
 ```
-
+  
 ### 2. If using `VITE`
 In `vite.config.ts` add:
 ```typescript
