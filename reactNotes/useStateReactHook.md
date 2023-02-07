@@ -2,6 +2,13 @@ react, hooks, useState
 
 # useState React Hooks
 
+Resources
+- [web dev simplified intro](https://www.youtube.com/watch?v=O6P86uwfdR0)
+
+My Projects:
+- [reactUseStateExample](https://github.com/w314/reactUseStateExample)
+- [search and select in list](https://github.com/w314/reactSearchExample) 
+
 Hooks can only be used with `function components`
 
 ## About `useState`
