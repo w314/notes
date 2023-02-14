@@ -19,9 +19,12 @@ linux, file, permission, execute, chmod
   - if the first character in the line is `d`, it's a direcory, if it's `-` it's a file
 
   #### $PATH variable
-  [EnvironmentVariables - Community Help Wiki](https://help.ubuntu.com/community/EnvironmentVariables)
+  [EnvironmentVariables](https://help.ubuntu.com/community/EnvironmentVariables): the
   `$Path` variable has the list of directories the system will look through to find a command.
+
+  Set `$PATH` in `~/.profile`. [Example here.](https://askubuntu.com/questions/60218/how-to-add-a-directory-to-the-path)
   
+
   ### Main directories
   - `etc` for configuration files
   - `var` for variable files, files that you expect to grow, change in size over time like system and application logs
@@ -57,10 +60,9 @@ Use `./`
       - most linux distributions do not auto-update the software installed on the system, do it yourslef and test your apps that recent updates don't break you your applications
   
   
-  ## Help
+  ## Useful commands
+  ### - man
   Use `man` before command to know more about that command.
-  
-'''
-linesHighlighted: []
-isStarred: false
-isTrashed: false
+
+  ### - whereis
+ `whereis <command-name>` tells you where the executable files of that command are 
