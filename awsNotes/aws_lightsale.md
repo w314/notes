@@ -13,7 +13,8 @@ aws, lightsale, server
 - Go to Account -> Account -> SSH Keys -> Upload Key(under Custome keys)
 ## Connect to server
 - an `ubuntu` username is created 
-- sign in by `ssh ubuntu@<public-ip-address>
+- [attach static ip to instance](https://lightsail.aws.amazon.com/ls/docs/en_us/articles/lightsail-create-static-ip) to keep the public ip address from changing when the instance is stopped and restarted
+- sign in by `ssh ubuntu@<static-ip>
 
 ## Configure Linux Server
 
@@ -26,6 +27,13 @@ sudo apt-get upgrade
 in this case:
 - it asked about replacing `.ssh/ssh-cofig and i said replace
 - i've upgraded ubuntu
+
+### Second time:
+- it asked about replacing `.ssh/ssh-cofig and i said to keep local version
+- exit-ed, entered again was told that reboot required
+
+
+
 
 ### installing vs code 
 ```bash
@@ -56,4 +64,19 @@ Gives this error message, when starting from its own directory:
 
 [set DIPSLAY environmental veriable](https://stackoverflow.com/questions/73725613/electron-missing-x-server-or-display)
 <hr>
+
+At the end used vscode on local machine ssh-ing to remote server from there.
+
+<strong>Error</strong>
+
+VSCode keeps dropping ssh connection
+
+[Solution](https://earlruby.org/2021/06/fixing-vscode-when-it-keeps-dropping-ssh-connections/)
+
+### Setting up store app
+
+- git was already installed on lightsale
+- `git clone https://github.com/w314/storeApp.git store`
+- npm was not installed
+- `sudo apt install npm`
 
