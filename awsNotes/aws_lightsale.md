@@ -32,6 +32,13 @@ in this case:
 - it asked about replacing `.ssh/ssh-cofig and i said to keep local version
 - exit-ed, entered again was told that reboot required
 
+>Problem:
+
+`The following packages have been kept back`. Not all packages are upgraded, and ubuntu doesn't allow the ubuntu upgrade if not everything is upgraded.
+
+[Solution](https://askubuntu.com/questions/601/the-following-packages-have-been-kept-back-why-and-how-do-i-solve-it)
+
+`sudo apt-get --with-new-pkgs upgrade`
 
 
 
@@ -62,7 +69,9 @@ Gives this error message, when starting from its own directory:
 
 <strong>Possible solution (untried)</strong>
 
-[set DIPSLAY environmental veriable](https://stackoverflow.com/questions/73725613/electron-missing-x-server-or-display)
+- [set DIPSLAY environmental veriable](https://stackoverflow.com/questions/73725613/electron-missing-x-server-or-display)
+- [about $DISPLAY environmental variable](https://askubuntu.com/questions/432255/what-is-the-display-environment-variable)
+
 <hr>
 
 At the end used vscode on local machine ssh-ing to remote server from there.
