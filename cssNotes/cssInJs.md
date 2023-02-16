@@ -33,3 +33,13 @@ render(<Button>This my button component.</Button>)
 ```
 
 - can inherit styles from other style component: [examples](https://stackoverflow.com/questions/55916786/create-new-component-and-inherit-styles-from-styled-component)
+```typescript
+const Name = styled.div`
+  display: inline-block;
+  background-color: #6a8ebc;
+`
+// PrevName inherits styles of Name and overwrites background-color
+const PrevName = styled(Name)`
+  background-color: #13a313
+`
+```
