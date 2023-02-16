@@ -21,6 +21,7 @@ import styled from '@emotion/styled'
 ### [How to use](https://emotion.sh/docs/styled)
 
 - can call it with a `template literal`
+- variable name has to start with Uppercase letter
 ```javascript
 import styled from '@emotion/styled'
 
@@ -31,3 +32,4 @@ const Button = styled.button`
 render(<Button>This my button component.</Button>)
 ```
 
+- can inherit styles from other style component: [examples](https://stackoverflow.com/questions/55916786/create-new-component-and-inherit-styles-from-styled-component)
