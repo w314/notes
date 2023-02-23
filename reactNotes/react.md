@@ -6,10 +6,10 @@
 
 A) using `vite`
 ```bash
-npm create vite
+npm create vite / yarn create vite
 cd yourApp
-npm install
-npm run dev
+npm install / yarn
+npm run dev / yarn dev
 ```
 - the `app name` will be also the name of the folder created for the app
 - select `react` as framework
@@ -28,55 +28,6 @@ It comes with npm warinings:
 - move `react-srcipts` to `dev-dependencies`
 - run `npm audit --omit=dev`
 
-## Routing
-
-Install `react router`
-
-```bash
-npm i react-router-dom
-```
-
-Edit `src/main.tsx`:
-```tsx
-import { BrowserRouter } from 'react-router-dom'
-// ...
-<BrowserRouter>
-    <App />
-</BrowserRouter>
-//...
-```
-
-`src/App.tsx`
-```tsx
-import { Routes, Route, Navigate } from 'react-router-dom'
-
-function App(){
-
-    return (
-      
-        <Routes>
-            <Route path='/' element={<h1>STORE</h1>} />
-            <Route path='/cart' element={<h1>CART</h1>} />
-                    <Routes>
-            <Route path='/products' element={<h1>Hi</h1>}/>
-            <Route path='/new' element={<h1>NEW</h1>} />
-            {/* routes can be nested */}
-            <Route path='/:id'>
-                {/* index: the path of parent route */}
-                <Route index element={<h1>Show</h1>} />
-                <Route path='edit' element={<h1>Edit</h1>} />
-            </Route>
-            <Route path='*' element={<Navigate to='/' />} />
-        </Routes>
-            {/* redirecting any non-existent path to home page */}
-            <Route path='*' element={<Navigate to='/' />} />
-        </Routes>
-    )
-}
-
-export default App
-```
-OLD:
 
 ### 2. Add `esLint` and `Prettier`
 ```bash

@@ -5,17 +5,19 @@ react, useContext, hooks
 
 ## 1. Create context
 ```jsx
-
+const MyContext = React.createContext(defaultValue)
 ```
+- each user of context will read the current value to the nearest provider **above** it in the tree
+- the default value will only be used if no provider is found
 
-## The `Provider`
+## 2 Create `Provider`
 - Every context created by `createContext` has a provider.
-- You have to wrap every component you want to access the conext into the provider
+- You have to wrap every component you want to access the context into the provider
 ```javascript
 <MyContext.Provider value={myData}>
 </MyContext.Provider>
 ```
-- Provider has a single property, the `value`, that has the value of the conext.
+- Provider has a single property, the `value`, that has the value of the context.
 - All child components will have access to the value of the variable in `value`
 
 ## How to use context in a component

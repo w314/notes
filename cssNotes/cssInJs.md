@@ -25,14 +25,27 @@ import styled from '@emotion/styled'
 ```javascript
 import styled from '@emotion/styled'
 
+//!!! Variable name has to be PascalCase
+
+// call using a template literal
+// write code as regular css
 const Button = styled.button`
   color: turquoise;
 `
 
+// call using object style
+// use camelCase for property name
+// use '' for property values
+const Button1 = styled.button({
+  backgroundColor: 'red'
+})
+
 render(<Button>This my button component.</Button>)
 ```
 
-- can inherit styles from other style component: [examples](https://stackoverflow.com/questions/55916786/create-new-component-and-inherit-styles-from-styled-component)
+### Inherit style from other styled component
+
+Can inherit styles from other style component: [examples](https://stackoverflow.com/questions/55916786/create-new-component-and-inherit-styles-from-styled-component)
 ```typescript
 const Name = styled.div`
   display: inline-block;
@@ -43,3 +56,6 @@ const PrevName = styled(Name)`
   background-color: #13a313
 `
 ```
+
+### Use variables to determine style
+
