@@ -29,7 +29,7 @@ ng serve
 
 ## Create Basic Page
 ### 1. Use variable for Title
-React
+#### React
 ```bash
 # create component
 touch src/components/HomePage.tsx
@@ -60,7 +60,7 @@ import HomePage from './components/HomePage'
   )
 // ... code
 ```
-Angular
+#### Angular
 ```bash
 # generate component
 ng g c components/HomePage
@@ -69,7 +69,7 @@ Edit `src/app/components/home-page.component.ts`
 ```typescript
 // ...code
 export class HomePageComponent implements OnInit {
-  // set title variable
+  // declare title property
   title = 'Angular Home Page'
 
   // ...code
@@ -77,12 +77,60 @@ export class HomePageComponent implements OnInit {
 ```
 `src/app/components/home-page.component.html`:
 ```html
+<!-- use interpolation {{ }}to let information flow  -->
+<!-- from component class to the template -->
 <h1>{{title}}</h1>
 ```
 `src/app.component.html`:
 ```html
 <app-home-page></app-home-page>
 ```
+### 2. Add counter
+#### React
+Edit `src/components/HomePage.tsx`
+```tsx
+// import useState
+import { useState } from 'react'
+
+  //...
+ 
+  // use state to manage clickCount
+  // useState return an array with two element:
+  // count - the current state
+  // setCount - the function to use to modify state
+  const [count, setCount] = useState(0)
+
+  return (
+    // ...
+     <h2>Counter</h2>
+     {/* use count state to display current count number */}
+     <p>{count}</p>
+     {/* on click increase current count by one */}
+     {/* use the function form of setCount */}
+     <button onClick={() => setCount((prevCount) => prevCount + 1)}>+</button>
+    //...
+```
+
+#### Angular
+Edit `src/app/components/home-page.component.html`
+```html
+<h2>Counter</h2>
+<p>{{count}}</p>
+<!-- use event (click) binding to connect template -->
+<!-- to function declared in component class -->
+<button (click)="increaseCount()">+</button>
+```
+Edit `src/app/components/home-page.component.ts`
+```typescript
+// declare count property to use in counter
+count = 0
+// declare function to increase count in counter
+increaseCount() {
+  this.count = this.count + 1
+}
+```
+
+<hr />
 
 ## Setup Routing
 ### 1. Setup components for pages
