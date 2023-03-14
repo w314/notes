@@ -27,6 +27,18 @@ ng serve
 ```
 <hr />
 
+## Fetch data from server to use in components
+
+### React
+
+
+### Angular
+Create Service
+```bash
+mkdir src/app/services
+ng g c src/app/services/ProductService
+```
+
 ## Create Basic Page
 ### 1. Use variable for Title
 #### React
