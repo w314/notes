@@ -5,6 +5,7 @@ react, angular
 ## Start project
 
 ### React
+
 ```bash
 # create
 yarn create vite
@@ -15,6 +16,7 @@ yarn run dev
 ```
 
 ### Angular
+
 ```bash
 # create
 ng new <project-name>
@@ -25,28 +27,94 @@ ng new <project-name>
 # start
 ng serve
 ```
+
 <hr />
 
-## Fetch data from server to use in components
+## Use variable for Title
 
 ### React
 
-
 ### Angular
-Create Service
-```bash
-mkdir src/app/services
-ng g c src/app/services/ProductService
+
+`src/app.component.ts`
+
+```typescript
+// ...code
+export class AppComponent {
+  // declare title property
+  title = "Angular App";
+
+  // ...code
+}
 ```
 
-## Create Basic Page
-### 1. Use variable for Title
+`src/app/components/home-page.component.html`:
+
+```html
+<!-- use interpolation {{ }}to let information flow  -->
+<!-- from component class to the template -->
+<h1>{{title}}</h1>
+```
+
+## Create Counter
+
+### React
+
+### Angular
+
+Import `FormsModule` to `app.module.ts`.
+
+```ts
+import { FormsModule } from '@angular/forms';
+
+
+@NgModule({
+
+  imports: [
+    FormsModule
+  ],
+})
+```
+
+Edit `src/app.component.ts`:
+
+```typescript
+export class AppComponent {
+  // declare count property
+  count = 0;
+  // declare methods to increas and decrease count
+  increaseCount(): void {
+    this.count++;
+  }
+  decreaseCount(): void {
+    this.count--;
+  }
+}
+```
+
+Edit `src/app/components/home-page.component.html`:
+
+```html
+<button (click)="decreaseCount()">-</button>
+<!-- use interpolation {{ }}to let information flow  -->
+<!-- from component class to the template -->
+<p>{{count}}</p>
+<button (click)="increaseCount()">+</button>
+```
+
+OLD NOTES BELOW
+
+## Use variable for Title
+
 #### React
+
 ```bash
 # create component
 touch src/components/HomePage.tsx
 ```
+
 `src/components/HomePage.tsx`
+
 ```typescipt
 import React from 'react'
 
@@ -62,50 +130,76 @@ export default function HomePage() {
 ```
 
 Edit `src/App.tsx`:
+
 ```typescript
 // import HomePage
-import HomePage from './components/HomePage'
+import HomePage from "./components/HomePage";
 
 // ... code
-  return (
-    <HomePage></HomePage>
-  )
+return <HomePage></HomePage>;
 // ... code
 ```
+
 #### Angular
+
 ```bash
 # generate component
 ng g c components/HomePage
 ```
+
 Edit `src/app/components/home-page.component.ts`
+
 ```typescript
 // ...code
 export class HomePageComponent implements OnInit {
   // declare title property
-  title = 'Angular Home Page'
+  title = "Angular Home Page";
 
   // ...code
 }
 ```
+
 `src/app/components/home-page.component.html`:
+
 ```html
 <!-- use interpolation {{ }}to let information flow  -->
 <!-- from component class to the template -->
 <h1>{{title}}</h1>
 ```
+
 `src/app.component.html`:
+
 ```html
 <app-home-page></app-home-page>
 ```
+
+## Fetch data from server to use in components
+
+### React
+
+### Angular
+
+Create Service
+
+```bash
+mkdir src/app/services
+ng g c src/app/services/ProductService
+```
+
+## Create Basic Page
+
 ### 2. Add counter
+
 #### React
+
 Edit `src/components/HomePage.tsx`
+
 ```tsx
 // import useState
 import { useState } from 'react'
 
   //...
- 
+
   // use state to manage clickCount
   // useState return an array with two element:
   // count - the current state
@@ -124,7 +218,9 @@ import { useState } from 'react'
 ```
 
 #### Angular
+
 Edit `src/app/components/home-page.component.html`
+
 ```html
 <h2>Counter</h2>
 <p>{{count}}</p>
@@ -132,7 +228,9 @@ Edit `src/app/components/home-page.component.html`
 <!-- to function declared in component class -->
 <button (click)="increaseCount()">+</button>
 ```
+
 Edit `src/app/components/home-page.component.ts`
+
 ```typescript
 // declare count property to use in counter
 count = 0
@@ -145,65 +243,78 @@ increaseCount() {
 <hr />
 
 ## Setup Routing
+
 ### 1. Setup components for pages
+
 #### React
+
 ```bash
 touch src/components/HomePage.tsx
 touch src/components/Pricing.tsx
 ```
+
 In each file add code:
 
 (or use `rfc+TAB` if using [ES7+ React/Redux/React-Native snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets))
+
 ```typescript
-import React from 'react'
+import React from "react";
 
 export default function HomePage() {
-  return (
-    <div>HomePage</div>
-  )
+  return <div>HomePage</div>;
 }
 ```
+
 ### 2. Setup Router
+
 #### React
+
 ```bash
 yarn add react-router-dom
 ```
+
 Edit `src/main.tsx`
+
 ```typescript
 // import browser router
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from "react-router-dom";
 
 // enclose App in <BrowserRouter>
 <BrowserRouter>
   <App />
-</BrowserRouter>
+</BrowserRouter>;
 ```
+
 ### Angular
 
 If you did **not** include `routing` when setting up the application (if you did, skip this step):
+
 ```bash
 ng generate module app-routing --flat --module=app
 ```
+
 - `--flat` puts the file under src/app instead of its own directory
 - `--module=app` tells `ng generate` to register it in the imports array of the AppModule (`src/app.module.ts`)
 
 `src/app/app-routing.module.ts`
+
 ```typescript
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 ```
 
 ### 2. Create NavBar Component
 
 #### React
+
 ```bash
 # add components directory
 mkdir src/components
@@ -211,24 +322,26 @@ mkdir src/components
 touch src/components/NavBar.tsx
 ```
 
-
 #### Angular
+
 ```bash
 # add components directory
 mkdir src/app/components
 # generate NavBar component
 ng g c components/NavBar
 ```
+
 `src/app/components/nav-bar/nav-bar.component.ts`:
+
 ```typescript
 
 ```
+
 - import Router
 - add Router as constructor parameter
 
-
-
 Edit `src/App.tsx`:
+
 ```typescript
 // import Routes
 import { Routes, Route } from react-router-dom

@@ -1,4 +1,4 @@
-compare, python, py, js, javascript
+awcompare, python, py, js, javascript
 
 # Compare
 
