@@ -308,3 +308,45 @@ short s = (short)i;
 - `sort`, `reverse`, `rotate`, `swap`
 - `replaceAll`, `fill`, `copy`
 - `indexOfSubList`, `lastIndexOfSublist`
+
+## WK 3
+
+### 3.1 Describe inheritance and how would you use it in a project?
+
+### 3.2 Describe abstraction and how would you use it in a project?
+
+### 3.3 Describe polymorphism and how would you use it in a project?
+
+### 3.4 Describe encapsulation and how would you use it in a project?
+
+### 3.5 How is method overriding different from method overloading?
+
+### 3.6 What are the four levels of access we can give to class members? How are they different from one another?
+
+### 3.7 What is the purpose of using getter and setter methods?
+
+### 3.8 Why would you use an interface over an abstract class?
+
+### 3.9 What methods are commonly overridden from the Object class and why?
+
+### 3.10 What state and behavior would you define in a parent class but not a subclass?
+
+### 3.11 What state and behavior would you define in a subclass but not in the parent class?
+
+### 3.12 What are the SOLID design principles and are they important?
+
+### 3.13 What is Maven? Why would we use it?
+
+### 3.14 What is the SDLC? Why is it important?
+
+### 3.15 When would you use an Agile methodology versus Waterfall?
+
+### 3.16 What is test driven development?
+
+### 3.17 Why are unit tests important?
+
+### 3.18 How can JUnit annotations help with running our tests?
+
+### 3.19 What are the Maven build lifecycle phases?
+
+### 3.20 Describe the POM.xml file and its importance.
