@@ -93,9 +93,32 @@ export class AppComponent {
 ## Data flow within an application
 
 Ways that data can flow within an application:
+### component class - template
+#### interpolation component -> template
+From the component class to the template: `interpolation` : `{{ propertyName }}`
+#### `ngModel` directive template <-> components class
+- From the template to the component class and vica versa: `ngModel` `directive` : [(ngModel)]="propertyName"
 
-- From the component class to the template: `interpolation` - `{{}}`
-- From the template to the component class: `event binding` - `(click)="functionName()"`
+```html
+<!-- use ngModel directive to store user input to name property -->
+<input type="text"> [(ngModel)]="name">
+<!-- use interpolation to display name property on page -->
+<p>Hi {{ name }}</p>
+````
+To use the `ngModule` directive import `FormsModule` in  `src/app.module.ts`
+```ts
+// import FormsModule
+import { FormsModule } from '@angular/forms';
+
+// add to the imports arre in `@NgModule`
+@NgModule( {
+  imports: [
+    FormsModule
+  ]
+})
+```
+
+### between components
 - From the parent component to its child component: `input property binding` - `@Input()`
 - From child component to its parent component: `output property binding` - `@Output()`
 
