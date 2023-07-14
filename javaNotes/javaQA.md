@@ -328,6 +328,8 @@ Animal -> Cat, Dog
 
 ### 3.2 Describe abstraction and how would you use it in a project?
 
+`Abstraction` is a programming principle in which we hide underlying complexity through a simplified interface.
+
 ### 3.3 Describe polymorphism and how would you use it in a project?
 
 `polymorphism` means "taking on many forms". In the realm of programming, it describes how objects can behave differently in different contexts. In OOP polymorphism provides the means to perform a single action in multiple different ways
@@ -381,6 +383,11 @@ Types:
 ### 3.7 What is the purpose of using getter and setter methods?
 
 ### 3.8 Why would you use an interface over an abstract class?
+
+Interfaces have these advantages over class:
+
+- Implementation details do not need to be provided in the interface.
+- A class can only extend one other class, but it can implement as many interfaces as needed.
 
 ### 3.9 What methods are commonly overridden from the Object class and why?
 
