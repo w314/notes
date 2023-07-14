@@ -384,6 +384,15 @@ Types:
 
 ### 3.9 What methods are commonly overridden from the Object class and why?
 
+- `equals()`
+- `hashCode()`
+- `toString()`
+
+In Object class `equals()` is true if we compare the same instance, for value objects we may want to compare based on property values.
+
+- two instances of _Person_ with same name and birthday should be different
+- we may want to two instances of _Money_ with same ammount and currancy be the same, in this case we have to change both the `equals()` and `hashCode()` methods
+
 ### 3.10 What state and behavior would you define in a parent class but not a subclass?
 
 ### 3.11 What state and behavior would you define in a subclass but not in the parent class?
