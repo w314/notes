@@ -8,11 +8,11 @@ maven, java
 
 #### Step 1: Download the JDK Binaries
 
-Go to the [URL](https://www.oracle.com/java/technologies/downloads/), copy the download link for Linux/x64 build ending `linux-x64_bin.tar.gz`. Then use the below command to download and extract it.
+Go to the [URL](https://jdk.java.net/20/), copy the download link for Linux/x64 build ending `linux-x64_bin.tar.gz`. Then use the below command to download and extract it.
 
 ```bash
-$ wget https://download.oracle.com/java/20/latest/jdk-20_linux-x64_bin.tar.gz
-$ tar -xvf jdk-20_linux-x64_bin.tar.gz
+$ wget https://download.java.net/java/GA/jdk20.0.1/b4887098932d415489976708ad6d1a4b/9/GPL/openjdk-20.0.1_linux-x64_bin.tar.gz
+$ tar -xvf openjdk-20.0.1_linux-x64_bin.tar.gz
 $ sudo mv jdk-20.0.1 /opt/
 ```
 
@@ -64,7 +64,18 @@ Execute `mvn -version` command and it should produce the following output.
 
 ## Create Project
 
-Have extension pack for java installed in vsCode.
+### In `vsCode`
+
+- Have extension pack for java installed in vsCode.
+- CTRL + SHIFT + P
+- Maven: Create Maven Project
+- The "Do you want to select an archetype?" means do you want to use a template?
+- for simple test project select `quickstart`, `version 1.4`
+- `group id` is basically the company you work for
+- `artifact id` is the project name
+- select destination folder for project
+- `define version`, press enter if the default value is OK
+- confirm that setup is correct
 
 OR in terminal run:
 
