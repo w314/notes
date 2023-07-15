@@ -406,7 +406,20 @@ In Object class `equals()` is true if we compare the same instance, for value ob
 
 ### 3.12 What are the SOLID design principles and are they important?
 
+- `Single Responsibility Principle (SRP)`: A class should have only one purpose, focusing on a single responsibility or task.
+- `Open-Closed Principle (OCP)`: Software entities should be open for extension but closed for modification, enabling flexibility and avoiding modification of existing code.
+- `Liskov Substitution Principle (LSP)`: Objects of a superclass should be replaceable with objects of their subclasses without effecting the consistency of the program's behavior.
+  `Interface Segregation Principle (ISP)`: Clients should not be forced to depend on interfaces they do not use, emphasizing specific interfaces tailored to clients' needs and reducing unnecessary dependencies.
+- `Dependency Inversion Principle (DIP)`: High-level modules should not depend on low-level modules; both should depend on abstractions, promoting loose coupling and dependency inversion through abstractions.
+
 ### 3.13 What is Maven? Why would we use it?
+
+`Maven` is a tool that can be used for building and managing any Java-based project.
+
+- A build automation and dependency management tool for Java. Maven project configuration and dependencies are handled via the `Project Object Model`, defined in the `pom.xml` file.
+- A testing framework
+- A logging library which allows for multiple logging thresholds
+- A library of tools for adding functionality to a Java application
 
 ### 3.14 What is the SDLC? Why is it important?
 
