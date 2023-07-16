@@ -332,31 +332,49 @@ Animal -> Cat, Dog
 
 ### 3.3 Describe polymorphism and how would you use it in a project?
 
-`polymorphism` means "taking on many forms". In the realm of programming, it describes how objects can behave differently in different contexts. In OOP polymorphism provides the means to perform a single action in multiple different ways
+`polymorphism` means "taking on many forms". In OOP polymorphism provides the means to perform a single action in multiple different ways
 
 The most common examples of polymorphism:
 
-- `method overloading`: when there are two or more methods in a class with the same method name, but different method signatures by changing the parameter list.
-  - change in number of parameters
-  - change in types of parameters
-  - compile time / static polymorphism
-- `method overriding`: when a method in a child class has the same method signature as a method in the parent class, but with a different implementation
+- method overloading
+- method overriding
+- upcasting
+- downcasting
 
-  - make class hierarchies more flexible and dynamic
-  - runtime / dynamic polymorphism
-  - `static methods` cannot be overriden
-  - return type can only be changed if it is a subtype of the original type (`covariant return types`)
-  - access modifier can be changed but must provide more _not less_ access
+#### `method overloading`
 
-  `virtual method invocation` when variable is declared as type Animal but refers to a Dog object, calling the method spead will use Dog's implementation of the method
+Within a class when there are two or more methods in a class with the same method name, but different method signatures by changing the parameter list.
 
-- `upcasting`: is the process of casting an object of a subclass to an object of its superclass
-  - done automatically by the Java compiler
-  - safe operation does not involve loss of data
-  - you can access only the members of the superclass, but don not lose any members of the subclass
-- `downcasting`: the process of casting an object of a superclass to an object of its subclass
-  - risky, may result in `ClassCastException` if the object being cast is not actually an instance of the subclass
-  - use `instanceof` operater to check before downcasting
+- change in number of parameters
+- change in types of parameters
+- compile time / static polymorphism
+
+#### `method overriding`
+
+when a method in a child class has the same method signature as a method in the parent class, but with a different implementation
+
+- make class hierarchies more flexible and dynamic
+- runtime / dynamic polymorphism
+- `static methods` cannot be overriden
+- return type can only be changed if it is a subtype of the original type (`covariant return types`)
+- access modifier can be changed but must provide more _not less_ access
+
+`virtual method invocation` when variable is declared as type Animal but refers to a Dog object, calling the method spead will use Dog's implementation of the method
+
+#### `upcasting`
+
+is the process of casting an object of a subclass to an object of its superclass
+
+- done automatically by the Java compiler
+- safe operation does not involve loss of data
+- you can access only the members of the superclass, but don not lose any members of the subclass
+
+#### `downcasting`
+
+The process of casting an object of a superclass to an object of its subclass
+
+- risky, may result in `ClassCastException` if the object being cast is not actually an instance of the subclass
+- use `instanceof` operater to check before downcasting
 
 ### 3.4 Describe encapsulation and how would you use it in a project?
 
@@ -566,3 +584,62 @@ Here's an example:
 
 </project>
 ```
+
+## WK 4
+
+### 4.1 What is SQL and why would we use this language
+
+`Structured Query Language` (`SQL`) is the language used to administer SQL-based RDBM systems.
+
+### 4.2 What are the SQL sublanguages and their purpose?
+
+- `DDL` Data Definition Language. Defines data structure
+  - `CREATE`
+  - `ALTER`
+  - `DROP`
+  - `TRUNCATE`
+  - `RENAME`
+  - COMMENT:
+    - single line `--`
+    - multi-line `/**/`
+- `DML` Data Manipulation Language
+  - `INSERT`
+  - `UPDATE`
+  - `DELETE`
+- `DCL` Data Control Language - manage access permissons to database object
+  - `SELECT -DCL`
+  - `GRANT`
+  - `REVOKE`
+- `TCL` Transaction Control Language. Defines concurrent operation boundaries
+  - `COMMIT`
+  - `ROLLBACK`
+  - `SAVEPOINT`
+- `DQL` Data Query Language. Search, filter, group, aggregate stored data
+  - `SELECT`
+
+### 4.3 What is a RDBMS?
+
+- An RDBMS is a data storage system based on a relational model
+- data that is related to a particular object is stored in tables with each entry being represented as a row
+- and each data point is a column in the row that is validated by a set of constraints
+
+### 4.4 Describe relational database tables.
+
+In MySQL, a table stores and organizes data in columns and rows as defined during table creation.
+
+### 4.5 What are constraints and can you describe a few constraints?
+
+A `constraint` is some restriction on the type or value that can be assigned to a column.
+
+- `NOT NULL`
+- `UNIQUE`
+
+### 4.6 Why would I use the WHERE clause?
+
+### 4.7 What are some operators that can be used in SQL?
+
+### 4.8 What is the JDBC API and the benefits of using it?
+
+### 4.9 What is the DAO Design Pattern and why should we use it?
+
+### 4.10 What information would you need in order to successfully connect to a database?
