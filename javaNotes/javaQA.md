@@ -409,7 +409,7 @@ In Object class `equals()` is true if we compare the same instance, for value ob
 - `Single Responsibility Principle (SRP)`: A class should have only one purpose, focusing on a single responsibility or task.
 - `Open-Closed Principle (OCP)`: Software entities should be open for extension but closed for modification, enabling flexibility and avoiding modification of existing code.
 - `Liskov Substitution Principle (LSP)`: Objects of a superclass should be replaceable with objects of their subclasses without effecting the consistency of the program's behavior.
-  `Interface Segregation Principle (ISP)`: Clients should not be forced to depend on interfaces they do not use, emphasizing specific interfaces tailored to clients' needs and reducing unnecessary dependencies.
+- `Interface Segregation Principle (ISP)`: Clients should not be forced to depend on interfaces they do not use, emphasizing specific interfaces tailored to clients' needs and reducing unnecessary dependencies.
 - `Dependency Inversion Principle (DIP)`: High-level modules should not depend on low-level modules; both should depend on abstractions, promoting loose coupling and dependency inversion through abstractions.
 
 ### 3.13 What is Maven? Why would we use it?
@@ -423,14 +423,146 @@ In Object class `equals()` is true if we compare the same instance, for value ob
 
 ### 3.14 What is the SDLC? Why is it important?
 
+`SDLC` `Software Delevopment Life Cycle`
+
+Helps companies:
+
+- reduce cost
+- deliver software faster
+- meet or exceed customer satisfaction
+
+Stages of SDLC:
+
+- Planning
+- Define Requirements
+- Design and Prototyping
+- Software Development
+- Testing
+- Deployment
+- Operation & Maintenance
+
 ### 3.15 When would you use an Agile methodology versus Waterfall?
+
+- when i want to see results faster
+- when i want to be flexible
+<hr>
+
+#### Waterfall
+
+##### The advantages of waterfall
+
+- Requires less coordination due to clearly defined phases sequential processes
+- A clear project phase helps to clearly define dependencies of work.
+  The cost of the project can be estimated after the requirements are defined
+- Better focus on documentation of designs and requirements
+  The design phase is more methodical and structured before any software is written
+
+##### The disadvantages of waterfall
+
+- Harder to break up and share work because of stricter phase sequences teams are more specialized
+- Risk of time waste due to delays and setbacks during phase transitions
+  Additional hiring requirements to fulfill specialized phase teams whereas agile encourages more cross-functional team composition.
+- Extra communication overhead during handoff between phase transitions
+- Product ownership and engagement may not be as strong when compared to agile since the focus is brought to the current phase.
+
+#### Agile
+
+##### The advantages of agile project management
+
+- Faster feedback cycles
+  Identifies problems early
+- Higher potential for customer satisfaction
+- Time to market is dramatically improved
+- Better visibility / accountability
+- Dedicated teams drive better productivity over time
+- Flexible prioritization focused on value delivery
+
+##### The disadvantages of agile
+
+- Critical path and inter-project dependencies may not be clearly defined as in waterfall
+- There is an organizational learning curve cost
+- True agile execution with a continuous deployment pipeline has many technical dependencies and engineering costs to establish
 
 ### 3.16 What is test driven development?
 
+The `TDD` process consists of writing unit tests first, **before** the implemented application code has been written.
+
+`Unit testing` is the testing of individual software components in isolation from the rest of the system.
+
 ### 3.17 Why are unit tests important?
+
+When refactoring code, the unit tests give us confidence that we can change the source code without breaking existing functionality. This makes debugging much easier.
 
 ### 3.18 How can JUnit annotations help with running our tests?
 
+`Annotations` are used to support, identify, and execute test method features.
+
+- `@BeforeAll`
+- `@BeforeEach`
+- `@AfterEach`
+- `@AfterAll`
+- `@Test`
+
 ### 3.19 What are the Maven build lifecycle phases?
 
+The phases of the build lifecycle are:
+
+- `validate`: validate the project is correct and all necessary information is available
+- `compile`: compile the source code of the project
+- `test`: test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed
+- `package`: take the compiled code and package it in its distributable format, such as a JAR.
+- `verify` - run any checks on results of integration tests to ensure quality criteria are met
+- `install` - install the package into the local repository, for use as a dependency in other projects locally
+- `deploy` - done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.
+
 ### 3.20 Describe the POM.xml file and its importance.
+
+`POM` - `Project Object Model`
+
+`Maven` identifies projects through project coordinates defined in the pom.xml file - these are:
+
+- `group-id`: company name for example: "com.revature"
+- `artifact-id`: project name
+- `version`: version number for example: "0.0.1-SNAPSHOT"
+
+Together, these uniquely identify a specific version of a program.
+
+#### Some other important tags within the `pom.xml` file include:
+
+`<project>` - this is the root tag of the file
+
+- `<modelVersion>` - defining which version of the page object model to be used
+- `<name>` - name of the project
+- `<properties>` - project-specific settings
+- `<dependencies>`: this is where you put your Java dependencies you want to use. Each one needs a
+  - `<dependency>` which has:
+    - `<groupId>`
+    - `<artifactId>`
+    - `<version>`
+- `<plugins>` for 3rd party plugins that work with Maven
+
+Here's an example:
+
+```xml
+<project>
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.revature.app</groupId>
+  <artifactId>my-app</artifactId>
+  <version>1</version>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-artifact</artifactId>
+      <version>${mavenVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-core</artifactId>
+      <version>${mavenVersion}</version>
+    </dependency>
+  </dependencies>
+
+</project>
+```
