@@ -607,7 +607,6 @@ Here's an example:
   - `UPDATE`
   - `DELETE`
 - `DCL` Data Control Language - manage access permissons to database object
-  - `SELECT -DCL`
   - `GRANT`
   - `REVOKE`
 - `TCL` Transaction Control Language. Defines concurrent operation boundaries
@@ -629,17 +628,195 @@ In MySQL, a table stores and organizes data in columns and rows as defined durin
 
 ### 4.5 What are constraints and can you describe a few constraints?
 
-A `constraint` is some restriction on the type or value that can be assigned to a column.
+`Constraints` are used to define a database schema and are the backbone for defining `integrity constraints` of the schema. They help validate data beyond just a simple data type.
 
-- `NOT NULL`
-- `UNIQUE`
+- `NOT NULL` Ensures that a column's value is not null.
+- `UNIQUE` Ensures that a column's value is unique in the table. (Can have one `NULL` value.)
+- `PRIMARY KEY` Combines unique and not null. Uniquely identifies each row.
+- `FOREIGN KEY` Links to a row in another table. Prevents the destruction of those links.
+- `DEFAULT` Specifies a value for a column, if one is not given.
+- `CHECK`
+  - helps us to get only those values that are valid for the condition and our requirements.
+  - ``
+- `CREATE INDEX` Create a sorted index of the column for faster searching.
+
+```sql
+create table content_meta (
+	id int auto_increment primary key,
+    content_type int not null,
+    url varchar(500) not null unique,
+    uploader int not null,
+    size_in_bytes bigint default 1,
+    uploaded_at timestamp default now(),
+    constraint url_scheme_check check(instr(url, 'http://') > 0),
+    constraint size_check check(size_in_bytes > 0), check(size_in_bytes < 10000000),
+    foreign key(content_type) references content_type(id),
+    foreign key(uploader) references users(id),
+    index (content_type)
+);
+```
 
 ### 4.6 Why would I use the WHERE clause?
 
+FILTERING: The filtering clause of a select statement is a `WHERE` clauses that defines how selected rows are filtered from the table. `WHERE` clauses use logical operators to select records that meet specific conditions.
+
 ### 4.7 What are some operators that can be used in SQL?
+
+- Arithmetic
+- Bitwise
+- Comparison
+- Compound
+- Logical
 
 ### 4.8 What is the JDBC API and the benefits of using it?
 
+`JDBC` stands for `Java Database Connectivity`. It is a relatively low-level API used to write Java code that interacts with relational databases via SQL.
+
+Benefit: It is database agnostic. It uses database drivers which implement the interfaces defined in the JDBC API for the given database.
+
+In order to interact with a database, we need to do several things:
+
+#### Register the JDBC driver
+
+Many JDBC drivers are available through `Maven`'s central repository and can be added as a dependency in the `pom.xml` file. (Oracle is an exception.)
+
+#### Open a connection using
+
+- We can use the DriverManager class to get a Connection to the database, given that we have the JDBC URL, username, and password.
+- Generally these parameters should be stored in an external configuration file that can be loaded dynamically and changed without affecting the application code.
+  -JDBC String
+  The database `URL` is an address pointing to the database to be used, also known as the `JDBC String`. The format of this URL varies between database vendors, as shown in the table below:
+- It's always a good idea to close your resources - below the try-with-resources syntax is used to automatically close the Connection being created after the block ends.
+
+```java
+try (Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD)) {
+  // more code goes here
+} catch (SQLException e) {}
+```
+
+- Autocommit mode
+  By default, when a connection is created it is in auto-commit mode, so every SQL statement acts as a transaction and is committed immediately after execution. In order to manually group statements into a transaction, simply call:
+
+```java
+Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
+conn.setAutoCommit(false);
+
+// execute some SQL statements...
+con.commit();
+```
+
+#### Execute SQL statements
+
+The results that are returned in a `ResultSet` object.
+
+##### Statement
+
+Once we have the Connection object, we can write our SQL and execute it:
+
+```java
+Statement stmt = conn.createStatement();
+String sql = "SELECT * FROM employees";
+ResultSet rs = stmt.executeQuery(sql);
+```
+
+##### PreparedStatement
+
+Alternatively, a `PreparedStatement` can be used. This interface gives us the flexibility of specifying parameters with the `?` symbol. It also **protects against SQL injection** when user input is used by pre-compiling the SQL statement.
+
+```java
+PreparedStatement ps = conn.prepareStatement();
+String sql = "SELECT * FROM employees WHERE age > ? AND location = ?";
+ps.setInt(1, 40);
+ps.setString(2, "New York");
+ResultSet rs = ps.executeQuery(sql);
+```
+
+##### CallableStatement
+
+> The Statement and PreparedStatement also have additional methods for sending SQL, including:
+
+- `.execute()` - for any kind of SQL statement, returns a boolean
+- `.executeUpdate()` - for DML statements, returns an int which is the number of rows affected
+
+#### Retreiving Results
+
+Results from an SQL query are returned as a `ResultSet``, which can be iterated over to extract the data:
+
+```java
+List<Employee> empList = new ArrayList<>();
+while (rs.next()) {
+  int id = rs.getInt("id");
+  String name = rs.getString("first_name");
+  empList.add(new Employee(id, name));
+}
+```
+
 ### 4.9 What is the DAO Design Pattern and why should we use it?
 
+The `DAO` (`Data Access Objects`) design pattern logically separates the code that accesses the database into Data Access Objects.
+
+- To use the DAO design pattern, define an interface which declares methods through which the database will be queried.
+- Then, concrete implementation classes can implement the interface and contain the data access logic to return the required data.
+
+### Example
+
+If we have an Employee table in our database we'd like to query, we would create a EmployeeDAO interface:
+
+```java
+public interface EmployeeDAO {
+  // define some CRUD (Create, Read, Update, Delete) operations here
+  public List<Employee> getAllEmployees();
+  public List<Employee> getEmployeesByLocation(String location);
+  public void updateEmployeeById(int id);
+  public void deleteEmployeeById(int id);
+  public void addEmployee(Employee e);
+}
+```
+
+This interface would be implemented for a specific database - e.g. Oracle:
+
+```java
+public class EmployeeDAOImplOracle implements EmployeeDAO {
+  public List<Employee> getAllEmployees() {
+    List<Employee> list = new ArrayList<>();
+    // JDBC code here...
+	return list;
+  };
+  public List<Employee> getEmployeesByLocation(String location) {
+    List<Employee> list = new ArrayList<>();
+    // JDBC code here...
+	return list;
+  };
+  public void updateEmployeeById(int id) {
+    // JDBC code here...
+  };
+  public void deleteEmployeeById(int id) {
+    // JDBC code here...
+  };
+  public void addEmployee(Employee e) {
+    // JDBC code here...
+  };
+}
+```
+
+Now whenever we need to query the Employee table in the database, we have a simple, clean interface which abstracts the data access logic:
+
+```java
+EmployeeDAO dao = new EmployeeDAOImplOracle();
+List<Employee> allEmpls = dao.getAllEmployees();
+allEmpls.forEach( e -> System.out.println(e));
+
+List<Employee> NYEmpls = dao.getEmployeesByLocation("New York");
+NYEmpls.forEach( e -> System.out.println(e));
+```
+
+### Using ResultSet
+
+_Note: You will not be assessed over Callable Statements / Stored Procedures this week
+Note: You will not be assessed over the Persisting Data with JDBC topic_
+
 ### 4.10 What information would you need in order to successfully connect to a database?
+
+- URL (`JDBC String`)
+- username
+- password

@@ -234,7 +234,79 @@ SELECT [ALL | DISTINCT]
 
 _Note: You will not be assessed over the Implementation section of this activity_
 
+`JDBC` stands for `Java Database Connectivity`. It is a relatively low-level API used to write Java code that interacts with relational databases via SQL.
+
+In order to interact with a database, we need to do several things:
+
+- Register the JDBC driver
+- Open a connection using:
+  - Database URL
+  - Username
+  - Password
+- Execute some SQL statement using either:
+- Statement
+- PreparedStatement
+- CallableStatement
+- Retrieve the results that are returned in a `ResultSet` object
+
 ### DAO Design Pattern
+
+The `DAO` (`Data Access Objects`) design pattern logically separates the code that accesses the database into Data Access Objects.
+
+- To use the DAO design pattern, define an interface which declares methods through which the database will be queried.
+- Then, concrete implementation classes can implement the interface and contain the data access logic to return the required data.
+
+### Example
+
+If we have an Employee table in our database we'd like to query, we would create a EmployeeDAO interface:
+
+```java
+public interface EmployeeDAO {
+  // define some CRUD (Create, Read, Update, Delete) operations here
+  public List<Employee> getAllEmployees();
+  public List<Employee> getEmployeesByLocation(String location);
+  public void updateEmployeeById(int id);
+  public void deleteEmployeeById(int id);
+  public void addEmployee(Employee e);
+}
+```
+
+This interface would be implemented for a specific database - e.g. Oracle:
+
+```java
+public class EmployeeDAOImplOracle implements EmployeeDAO {
+  public List<Employee> getAllEmployees() {
+    List<Employee> list = new ArrayList<>();
+    // JDBC code here...
+	return list;
+  };
+  public List<Employee> getEmployeesByLocation(String location) {
+    List<Employee> list = new ArrayList<>();
+    // JDBC code here...
+	return list;
+  };
+  public void updateEmployeeById(int id) {
+    // JDBC code here...
+  };
+  public void deleteEmployeeById(int id) {
+    // JDBC code here...
+  };
+  public void addEmployee(Employee e) {
+    // JDBC code here...
+  };
+}
+```
+
+Now whenever we need to query the Employee table in the database, we have a simple, clean interface which abstracts the data access logic:
+
+```java
+EmployeeDAO dao = new EmployeeDAOImplOracle();
+List<Employee> allEmpls = dao.getAllEmployees();
+allEmpls.forEach( e -> System.out.println(e));
+
+List<Employee> NYEmpls = dao.getEmployeesByLocation("New York");
+NYEmpls.forEach( e -> System.out.println(e));
+```
 
 ### Using ResultSet
 
