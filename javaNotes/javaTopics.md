@@ -125,15 +125,110 @@ Constraints are used to define a database schema and are the backbone for defini
 
 ### Basic Queries
 
+### Aliases
+
+Aliases is used to give a temporary name to a table or a column in a table for the intention to support a specific query.
+
+```sql
+SELECT column_name AS alias_name FROM table_name;
+```
+
+Advantages:
+
+- It provides a very useful feature that allows us to achieve complex tasks quickly.
+- It makes column or table name more readable.
+- It allows us to combine two or more columns
+- It makes the table more user-friendly.
+
 ### Result Set
+
+- `java.sql.ResultSet` interface represents the result set of a query on a database
+- The `ResultSet` is an object which represents a set of data returned from a database as a result of a query input.
+- `executeQuery` method can be used to obtain the result table from the `SELECT` statement in a ResultSet object.
 
 ### DML
 
+The `DML` (`Data Management Language`) sublanguage of SQL is utilized to cre`ate, update, and delete data in a database.
+
+- `INSERT`
+- `UPDATE`
+- `DELETE`
+
+```sql
+INSERT INTO roles (id, name) values (1, 'ADMIN'), (2, 'OWNER'), (3, 'EDITOR'), (4, 'VIEWER');
+
+UPDATE permissions set categoryId=1;
+
+DELETE FROM roles where name='VIEWER';
+```
+
 ### DQL
 
-### Aliases
+- `Data Query Language`
+- `SELECT` query
+
+```sql
+SELECT [ALL | DISTINCT]
+    select_expr [, select_expr] ...
+    [into_option]
+    [FROM table_ref]
+    [WHERE where_condition]
+    [GROUP BY {col_name | expr | position}]
+    [HAVING having_condition]
+    [ORDER BY {col_name | expr | position}]
+        [ASC | DESC]
+    [LIMIT {[offset,] row_count | row_count OFFSET offset}];
+
+```
+
+### Clauses
+
+- FILTERING: The filtering clause of a select statement is a `WHERE` clauses that defines how selected rows are filtered from the table. WHERE` clauses use **logical operators** to select records that meet specific conditions.
+  - `AND` true if both boolean expresions evaluate to true
+  - `IN` true if the operand is included in a list of expressions
+  - `NOT` Reverses the value of any boolean expression
+  - `OR` true if either or both boolean expressions is true
+  - `LIKE` true if the operand matches a pattern
+    - `%`` (percent) match any string of zero or more characters
+    - `_` (underscore) match any single character
+  - `BETWEEN` true if the operand falls within a range
+    Where Logical operators
+- `GROUP BY` groups rows that have the same values into summary rows. Often used with aggregate functions like `COUNT`, `MAX`, `MIN`.
+- `HAVING` is used to filter out groups that meet a condition.
+- `ORDER BY` clause is used to sort the returned records by a specified column. The records can be ordered either `ASC` (ascending) or `DESC` (descending). Ascending order is default if not specified.
+- `LIMIT` clause restricts number of records returned from the select statement.
+- `OFFSET` clause specifies from which record position to start counting from. This is often used in conjunction with the `LIMIT` clause. NOTE: Some SQL implementations use the `SKIP` keyword instead of offset
 
 ### DROP vs TRUNCATE vs DELETE
+
+<table>
+<thead><td>DELETE</td><td>TRUNCATE</td><td>DROP</td></thead>
+<tbody>
+<tr>
+<td>DML</td><td>DDL</td><td>DDL</td>
+</tr>
+<tr>
+<td>WHERE clause can be used to filter and delete one or more rows</td>
+<td>WHERE clause cannot be used</td>
+<td>WHERE clause cannot be used</td>
+</tr>
+<tr>
+<td>It is executed using <strong>row lock</strong>, and each row in the table is locked for deletion</td>
+<td>It is executed using <strong>table lock</strong>, where whole table is locked while removing the records</td>
+<td>It removes a table form the database</td>
+</tr>
+<tr>
+<td>It maintains the log, so it is slower than TRUNCATE</td>
+<td>Least amount of logging needed so it is faster in performace</td>
+<td>It maintains the log, so it is slower than TRUNCATE</td>
+</tr>
+<tr>
+<td>It can roll back the deleted data before committing it</td>
+<td>It cannot be rolled back</td>
+<td>It cannot be rolled back</td>
+</tr>
+</tbody>
+</table>
 
 ### Intro to JDBC API
 
