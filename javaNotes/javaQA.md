@@ -855,13 +855,42 @@ ResultSet rs = ps.executeQuery(sql);
 
 ### 5.2 What is SQL Injection and how can we prevent it using the JDBC?
 
+The exploitation of programming weaknesses in SQL codes to gain access to a database, its resources, and applications
+
 ### 5.3 What is a foreign key?
+
+A `FOREIGN KEY` is a field or collection of fields in a table that refers to the `PRIMARY KEY` of the other table.
+
+- It is responsible for managing the relationship between the tables.
+- The table which contains the foreign key is called the `Child Table`, and the table whose primary key is being referred by the foreign key is called the `Parent Table`.
+
+```sql
+CREATE TABLE Branch(
+    branch_id INT PRIMARY KEY,
+    branch_name VARCHAR(20)
+     );
+-- Add branch_id as foreign key for employee table
+
+ALTER TABLE employee ADD branch_id INT;
+ALTER TABLE employee ADD FOREIGN KEY (branch_id) REFERENCES Branch(branch_id);
+```
 
 ### 5.4 What is referential integrity?
 
 ### 5.5 What is normalization?
 
+`Normalization` is the process of organizing the data and the attributes of a database. it is performed to reduce the data redundancy.
+
 ### 5.6 What is multiplicity?
+
+`Multiplicity` defines the relationship between two tables
+
+- one to one
+- one to many
+- many to one
+- many to many
+
+There are 4 different multiplicity relationships
 
 ### 5.7 Describe what a join is and explain the different types of joins we can create.
 
@@ -869,8 +898,83 @@ ResultSet rs = ps.executeQuery(sql);
 
 ### 5.9 What is a view and why is it useful?
 
+In `MySQL`, a `View` is a virtual table based on the result-set of an SQL statement. A view consists of rows and columns, just like a common table. The view fields are fields from one or more real tables in the database.
+
+Advantages:
+
+- Structure data in a way that users or classes of users find natural or intuitive.
+- Restrict access to the data in such a way that a user can see and manipulate exactly what they need.
+- Summarize data from various tables which can be used to generate documents and reports.
+
+```sql
+CREATE VIEW view_name AS SELECT column1, column2, ... FROM table_name WHERE condition;
+```
+
 ### 5.10 What is HTTP? Why is it important to know about?
+
+`HTTP` (`HyperText Transfer Protocol`) is a technique of transmitting data in a particular format, primarily between a server and a
+
+HTTP works by a client making a connection to a `server`, sending a `request`, and receiving a `response`
+
+The data tranmitted can be:
+
+- `hypertext` - A text documents that have the special ability to link to one another.
+- `hypermedia` - hypertext documents that have the ability to show multiple kinds of media
+
+A request contains:
+
+- the `method` being used
+- the `URL` where the target is
+- version of HTTP is being used
+- Optional information to help the server with the request (called `headers`)
+- For some methods, a `body` which contains some resources (ex.: files to be uploaded)
+
+A response contains:
+
+- version of HTTP is being used
+- status code reflecting the outcome of the request
+- status message which is shorthand and less descriptive than the status code
+- Optional information to detail what happened with the request (called `headers` again)
+- For some methods, a body which contains some resource (ex. file to be downloaded)
 
 ### 5.11 What are common HTTP verbs used when a client application is making a request?
 
+- GET
+  - used to retrieve data from a server at the specified resource
+  - does not modifying any resources
+  - safe and `idempotent` method
+- POST
+  - used to send data to the API server to create or update a resource
+  - the data sent to the server is stored in the request body of the HTTP request
+  - `non-idempotent`
+- PUT
+  - similar to POST, PUT requests are used to send data to the API to update or create a resource
+  - `idempotent`, calling the same PUT request multiple times will always produce the same result
+  - when a PUT request creates a resource the server will respond with a 201 (Created), and if the request modifies existing resource the server will return a 200 (OK) or 204 (No Content)
+- HEAD
+- DELETE
+
+  - deletes the resource at the specified URL
+
+- PATCH
+- OPTIONS
+
 ### 5.12 What are some common HTTP status codes that can be included in a response?
+
+HTTP Status Codes whether a specific HTTP request has been successfully completed.
+
+Responses are grouped in five classes:
+
+- Informational responses (100–199)
+- Successful responses (200–299)
+- Redirection messages (300–399)
+- Client error responses (400–499)
+- Server error responses (500–599)
+
+Common Status Codes:
+
+- 200 - OK, success
+- 201 - Created
+- 400 - Bad Request, client error
+- 404 - Not Found
+- 500 - Internal Server Error

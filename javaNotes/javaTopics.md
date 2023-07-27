@@ -360,39 +360,125 @@ _You will need to know why Prepared Statements can help prevent SQL Injection. A
 
 _You will NOT be assessed over the written material: Configuring a Connection Factory once Connection Pooling is introduced_
 
+A `properties file` stores information as key value pairs, each on their own line; the file has a `.properties` extension.
+
+- security
+- one place to change values (in case of changing password)
+
+```java
+FileInputStream fileStream = new FileInputStream("pathtopropertiesfile");
+Properties properties = new Properties();
+properties.load(fileStream);
+URL = properties.getProperty("URL");
+CONNECTION_PASSWORD = properties.getProperty("CONNECTION_PASSWORD");
+CONNECTION_USERNAME = properties.getProperty("CONNECTION_USERNAME");
+```
+
 ### Foreign Key
 
 ### Normalization
 
 _1NF, 2NF, and 3NF_
 
+`Normalization` is the process of organizing the data and the attributes of a database. it is performed to reduce the data redundancy.
+
+First, second, and third normal forms are stepping stones to the `Boyce-Codd normal form` and, when appropriate, the higher normal forms.
+
+#### 1NF
+
+A relation is in `1NF` (`First Normal Form`) if:
+
+- all its attributes have an atomic value (each column must have only one value for each row in the table)
+- there must be a primary key for identification
+- no duplicated rows or columns
+
+#### 2NF
+
+A relation is in `2NF` if it is:
+
+- in `1NF`
+- all non-key attributes are completely dependent only on the `Primary Key`, no hidden dependencies
+
+#### 3NF
+
+A relation is in 3NF if:
+
+- in 2NF
+- there is no transitive dependency
+
+The attributes should be mutually independent which means, none of the attributes should be functionally dependent on any combination of attributes. This mutual independence makes sure that any update on the individual attribute will not affect other attributes in a row.
+
 ### Referential Integrity
 
+`REFERENTIAL INTEGRITY` is the relationship between tables.
+
+Referential Integrity:
+
+- requires that a foreign key cannot be defined unless its corresponding primary key exists is a referential integrity constrain.
+- does not allow the addition of any record in a table that contains the foreign key unless the reference table contains a corresponding primary key.
+- does not allow to deletion of a record in a table that contains the foreign key, to delete the record in the parent table, the corresponding record in the child table should be deleted first. to solve this issue `ON DELETE CASCADE` is used.
+- Other options are to set the foreign key to null or to its default value (only if the default value references an existing value in the primary-key table).
+
 ### Composite Key
+
+`Composite Key` is combining two or more keys in a table to create a primary key to uniquly identify a record.
+
+It is also known as `Compound Key`, where each attribute creating a key is a `foreign key`.
 
 ### Join
 
 #### Inner
 
+`INNER JOIN` restricts records retrieval from Table1 and Table2 to those that satisfy the join requirement.
+
 #### Left
+
+`LEFT JOIN` returns all records from the left table, and the records that match the condition from the right table.
 
 #### Right
 
+`RIGHT JOIN` returns all records from the right table, and the records that match the condition from the left table.
+
 #### Cross
+
+`MySQL` `CROSS JOIN`, commonly knows as a `CARTESIAN JOIN`, returns all possible row combinations from each table.
+
+If no other condition is provided, the result set is obtained by multiplying each row of table1 with all rows in table2.
+
+If there is a relationship between two tables and we add a WHERE clause, then the CROSS JOIN will produce the same result as INNER JOIN.
+
+Real world application includes calculating all possibilities when launching a space rocket.
 
 #### Self
 
+`SELF JOIN` is an SQL statement which is used to intersect or join a table in the database to itself.
+
 ### Set Operators
+
+SET Operators are specific type of operators which are used to combine the result of two queries.
 
 #### UNION
 
-#### ALL clause
+The `UNION` command is used to combine more than one SELECT query results into a single query contain rows from all the select queries.
+
+- The number of columns and data types in the SELECT statements must be the same in order for the UNION command to work.
+- `MySQL` uses the `DISTINCT` clause as the default when executing UNION
+
+#### UNION ALL
+
+The `UNION ALL` clause is used to display all even the duplicate rows in UNION query.
 
 #### INTERSECT
 
+The `INTERSECT` clause is used to display all records which are common between two tables.
+
 #### MINUS
 
+The `MINUS` clause ( also called as `EXCEPT` clause in some books) is used to display the records from table 1 while removing the records which are also present in table 2.
+
 ### View
+
+Views, which are a type of virtual tables.
 
 ### HTTP Introduction
 
