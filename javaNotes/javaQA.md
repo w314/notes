@@ -820,3 +820,57 @@ Note: You will not be assessed over the Persisting Data with JDBC topic_
 - URL (`JDBC String`)
 - username
 - password
+
+## WK 5
+
+### 5.1 What is the difference between a Simple and Prepared JDBC statement?
+
+Once we have the `Connection object`, we can write our SQL and execute it.
+
+#### `Statement`
+
+The `Statement interface` is used for executing static SQL statements.
+
+```java
+Statement stmt = conn.createStatement();
+String sql = "SELECT * FROM employees";
+ResultSet rs = stmt.executeQuery(sql);
+```
+
+#### `Prepared Statment`
+
+The `PreparedStatement interface` is used for executing pre-compiled SQL statements.
+
+```java
+PreparedStatement ps = conn.prepareStatement();
+String sql = "SELECT * FROM employees WHERE age > ? AND location = ?";
+ps.setInt(1, 40);
+ps.setString(2, "New York");
+ResultSet rs = ps.executeQuery(sql);
+```
+
+- This interface gives us the flexibility of specifying parameters with the `?`symbol.
+
+- Protects against `SQL injection` when user input is used by pre-compiling the SQL statement
+
+### 5.2 What is SQL Injection and how can we prevent it using the JDBC?
+
+### 5.3 What is a foreign key?
+
+### 5.4 What is referential integrity?
+
+### 5.5 What is normalization?
+
+### 5.6 What is multiplicity?
+
+### 5.7 Describe what a join is and explain the different types of joins we can create.
+
+### 5.8 What is the difference between a join and a set operation?
+
+### 5.9 What is a view and why is it useful?
+
+### 5.10 What is HTTP? Why is it important to know about?
+
+### 5.11 What are common HTTP verbs used when a client application is making a request?
+
+### 5.12 What are some common HTTP status codes that can be included in a response?

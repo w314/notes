@@ -312,3 +312,94 @@ NYEmpls.forEach( e -> System.out.println(e));
 
 _Note: You will not be assessed over Callable Statements / Stored Procedures this week
 Note: You will not be assessed over the Persisting Data with JDBC topic_
+
+## Week 5 Assessment
+
+### Statement vs Prepared Statement
+
+Once we have the `Connection object`, we can write our SQL and execute it.
+
+#### `Statement`
+
+The `Statement interface` is used for executing static SQL statements.
+
+```java
+Statement stmt = conn.createStatement();
+String sql = "SELECT * FROM employees";
+ResultSet rs = stmt.executeQuery(sql);
+```
+
+#### `Prepared Statment`
+
+The `PreparedStatement interface` is used for executing pre-compiled SQL statements.
+
+```java
+PreparedStatement ps = conn.prepareStatement();
+String sql = "SELECT * FROM employees WHERE age > ? AND location = ?";
+ps.setInt(1, 40);
+ps.setString(2, "New York");
+ResultSet rs = ps.executeQuery(sql);
+```
+
+- This interface gives us the flexibility of specifying parameters with the `?`symbol.
+
+- Protects against `SQL injection` when user input is used by pre-compiling the SQL statement
+
+#### Additional methods to send `SQL`
+
+The `Statement` and `PreparedStatement` also have additional methods for sending SQL, including:
+
+- `.execute()` - for any kind of SQL statement, returns a `boolean`
+- `.executeUpdate()` - for `DML` statements, returns an `int` which is the number of rows affected
+
+### SQL Injection
+
+_You will need to know why Prepared Statements can help prevent SQL Injection. All other information in the Preventing SQL Injection activity is supplementary._
+
+### Properties file
+
+_You will NOT be assessed over the written material: Configuring a Connection Factory once Connection Pooling is introduced_
+
+### Foreign Key
+
+### Normalization
+
+_1NF, 2NF, and 3NF_
+
+### Referential Integrity
+
+### Composite Key
+
+### Join
+
+#### Inner
+
+#### Left
+
+#### Right
+
+#### Cross
+
+#### Self
+
+### Set Operators
+
+#### UNION
+
+#### ALL clause
+
+#### INTERSECT
+
+#### MINUS
+
+### View
+
+### HTTP Introduction
+
+### HTTP verbs
+
+_You should be familiar with GET, POST, PUT, and DELETE_
+
+### HTTP status codes
+
+_You need to know what each category of status represents as well as common status codes (200, 201, 400, 404, 500)_
