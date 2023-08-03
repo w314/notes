@@ -13,7 +13,28 @@
 
 ### 1.5 What is a method?
 
-Block of reusable code that can be invoked again and again.
+> Block of reusable code that can be invoked again and again.
+
+Anytime you can identify repetitive code in your application, abstracting that logic into a method is generally the best solution to keep your program manageable.
+
+The core parts of a method are:
+
+- method name - unique
+- method parameters - variables passed inside of the parenthesis of the method which we are able to utilize inside of our method. These values are given to us from the entity that invokes the method.
+- return type
+
+```java
+int addNums(int n1, int n2) {
+  return n1 + n2;
+}
+
+// invoking the method
+addNums(1, 2);
+// storing method return value
+// method return value's type = variable type
+int total = addNums(1, 2);
+
+```
 
 ### 1.6 What is a variable?
 
@@ -24,13 +45,28 @@ Block of reusable code that can be invoked again and again.
 
 ### 1.7 What is the difference between the JDM, JRE, and JVM?
 
-- `JVM` Programs that are written in Java are executed utilizing the Java Virtual Machine (JVM). The JVM is a special program that knows how to execute the programs that you write in Java
-- `JRE` In order to run Java code, you also need a Java Runtime Environment (JRE), which contains all the runtime libraries that your code will be calling and using. The JRE contains the JVM within it
-- `JDK`: JDK - Java Development Kit, which provides developer tools like a compiler, debugger, documentation tools, and other command-line utilities. The JDK also has a JRE inside of it
+`JDK` `Java Development Kit` contains `JRE` and development tools like compiler, debugger, documentation tools.
+
+`JRE` (`Java Runtime Environment`) contains `JVM` and runtime libraries.
+
+`JVM` (`Java Virtual Machine`) runs compiled bytecode in a virtual environment that is same accross every platform. However you need JVM that is specific to the operating system. It uses `JIT` `Just In Time` compiler to turn that bytecode to machine code.
+
+- `JVM` (`Java Virtual Machine`) The JVM is a special program that knows how to execute the programs that you write in Java, Java programs are execute in the JVM. Each operating system has its own JVM.
+- `JRE` (`Java Runtime Environment`) contains all the runtime libraries that your code will be calling and using. The JRE contains the JVM within it.
+- `JDK` (`Java Development Kit`) provides developer tools like a compiler, debugger, documentation tools, and other command-line utilities. The JDK also has a JRE inside of it
 
 ### 1.8 What is a conditional statement?
 
+`Conditional statement` is a statement that uses a Boolean expressions and only executes the a block of statement if the Boolean expression returns `true`.
+
+- if
+- switch
+- while
+- do-while
+
 ### 1.9 Explain the different kinds of loops you can create and use in a program.
+
+`Loops` are java statements that allow for the repeated execution of the same statement or block of statements.
 
 ```java
 // FOR loop
@@ -76,7 +112,7 @@ public class HelloWorld{
 - data types defined by the language
 - stores the value of the data
 - types
-  - boolean_1 bit_true or false
+  - boolean 1 bit true or false
   - byte 1 byte numerical
   - char 2 bytes 1 character
   - short 2 bytes numerical
@@ -88,6 +124,8 @@ public class HelloWorld{
 ### 1.12 What is the modulo operator? How is it useful?
 
 ### 1.13 What are shorthand assignment operators?
+
+Assgnment operators assign value to a variable.
 
 = += -= \*= /= %= &= ^=
 
@@ -111,6 +149,20 @@ int b = ++a; // b=6, a=6
 
 ### 1.16 What is an array? Why is it useful?
 
+An `array` is a `contiguous block of memory` storing a group of `sequentially stored` elements of the same type.
+
+- fixed size and cannot be resized after declaration
+- items in an array are referenced via their index in square bracket notation, which begins with 0 for the first element
+- ave a length property specifying the length of the array
+
+```java
+// would be filled with the default value of integer: 0
+int[] myArray = new int[5];
+
+// OR
+int[] otherArray = {1, 2, 3};
+```
+
 ### 1.17 What is a stacktrace? How can you use it to debug your application?
 
 Each JVM thread (a path of execution) is associated with a stack that's created when the thread is created. This data structure is divided into frames, which are data structures associated with method calls. For this reason, each thread's stack is often referred to as a method-call stack.
@@ -119,7 +171,7 @@ When an exception / error gets thrown. A stack trace is displayed to the console
 
 ### 1.18 What is the Scanner class used for? Give an example of how you would use it.
 
-- The Scanner class is used to get user input, and it is found in the java.util package.
+- The `Scanner` class is used to get user input, and it is found in the `java.util` package.
 
 ```java
 import java.util.Scanner;
@@ -148,9 +200,29 @@ class Main {
 
 ### 1.21 What is an operating system?
 
+_Note: You will not be assessed on the different types of operating systems or on process management_
+
 - a software that communicates with the hardware and allows other programs to run
+- it is comprised of system software, or the fundamental files your computer needs to boot up and function
+- they allow you to install and run programs written for the operating system
+- every device (computer, tablet, phone) has an operating system
+- the hardware you choose affects what operating system(s) you can run (Windows on PC hardware, Mac OS X Apple, Linux on both)
+- they provide
+
+  - Process and `Process Management` (`process` is a program in execution)
+  - `Threads` - a thread as a flow of execution through the process code. The thread keeps track of all the instructions that need to be executed next in the program counter. Also, the thread contains system registers that hold the current working variables. Also, the thread's stack contains the execution history.
+
+  - `Scheduling` - in scheduling, the process manager takes the responsibility to remove the running process from the CPU and chooses another process based on a specific strategy.
+  - `Memory Management` - the functionality of an operating system that handles and manages the primary memory. Processes move back and forth between the main memory and the disk during the execution.
 
 ### 1.22 What does the term "full stack" mean?
+
+> `Full stack` covers two separate development domains: the front end and the back end.
+
+- The `front end` includes everything that a client, or site viewer, can see and interact with.
+- The `back end` refers to all the servers, databases, and other internal architecture that drives the application; usually, the end-user never interacts with this realm directly.
+  -Front end platforms are usually built with HTML, CSS, and JavaScript; however, they can also be made via pre-packaged code libraries or content management systems like WordPress.
+- Back end developers, in contrast, refine the software code that communicates with servers, databases, or other proprietary software that conveys information to front end interfaces.
 
 ### 1.23 Which datatype represents text in Java?
 
@@ -167,6 +239,8 @@ class Main {
   - `JVM` creates machine code
 
 ### 1.28 Give me an example of why you would need to create a method other than the main method.
+
+Calculate triangle area.
 
 ### 1.29 Can you describe some of the basic entities of a Java program?
 
@@ -187,7 +261,7 @@ class Main {
 
 - `if` execute a statement or a block of statements only if some conditional test turns out to be true
 - `switch` execute one of several blocks of statements depending on the value of a variable of certain types
-- loops: allow for the repeated execution of the same statement or block of statements
+- `loops`: allow for the repeated execution of the same statement or block of statements
 
 ### 1.32 What is the modulo operator and why would we use it?
 
