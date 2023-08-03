@@ -13,7 +13,7 @@
 
 ### 1.5 What is a method?
 
-Blocks of reusable code that can be invoked again and again.
+Block of reusable code that can be invoked again and again.
 
 ### 1.6 What is a variable?
 
