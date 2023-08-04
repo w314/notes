@@ -428,11 +428,26 @@ An object is an instance of a class in memory.
 
 ### 2.6 What is the role of garbage collection in Java?
 
-Removing objects from the heap which have no references to them.
+Garbage collection is the process of removing objects from the heap which have no references to them.
+
+Garbage collection is run in the background by the JVM. There is no way we can explicitly force garbage collection to happen, but we can request garbage collection to be run through the use of one of the following:
+
+- System.gc()
+- Runtime.getRuntime().gc()
+- System.runFinalize()
 
 ### 2.7 If I define a variable within a method, how can I access its value outside of the method?
 
+When a variable is declared in a Java program, it is attached to a specific scope within the program, which determines where the variable resides. The different scopes of a variable in Java are:
+
+- `Instance, or object scope` - The variable is attached to individual objects created from the class.
+- `Class, or static scope` - Resides on the class definition itself.
+- `Method scope` - Declared within a method block; only available within the method in which they are declared.
+- `Block scope` - Only exist within the specific control flow block (for, while, etc.)
+
 ### 2.8 Describe the difference between the stack and the heap.
+
+To run an application in an optimal way, JVM divides memory into stack and heap memory. Whenever we declare new variables and objects, call a new method JVM designates memory to these operations from either Stack Memory or Heap Space.
 
 #### `Stack` vs `Heap`
 
@@ -450,7 +465,7 @@ Removing objects from the heap which have no references to them.
 - It grows and shrinks as new methods are called and returned, respectively.
 - Variables inside the stack exist only as long as the method that created them is running.
 - It's automatically allocated and deallocated when the method finishes execution.
-- If this memory is full, Java throws java.lang.StackOverFlowError.
+- If this memory is full, Java throws `java.lang.StackOverFlowError`.
 - Access to this memory is fast when compared to heap memory.
 - This memory is threadsafe, as each thread operates in its own stack.
 
@@ -458,9 +473,67 @@ Removing objects from the heap which have no references to them.
 
 - used for the dynamic memory allocation of Java objects and JRE classes at runtime.
 
+<table>
+<thead>
+<tr>
+<td>Parameter</td>	<td>Stack Memory</td>	<td>Heap Space</td></tr>
+</thead>
+<tbody>
+<tr>
+<td>Application</td>
+<td>Stack is used in parts, one at a time during execution of a thread</td>
+<td>The entire application uses Heap space during runtime</td>
+</tr>
+<tr>
+<td>Size</td>
+<td>Stack has size limits depending upon OS, and is usually smaller than Heap</td>
+<td>There is no size limit on Heap</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Stores only primitive variables and references to objects that are created in Heap Space</td>
+<td>All the newly created objects are stored here</td>
+</tr>
+<tr>
+<td>Order</td>
+<td>It's accessed using Last-in First-out (LIFO) memory allocation system</td>
+<td>This memory is accessed via complex memory management techniques that include Young Generation, Old or Tenured Generation, and Permanent Generation.</td>
+</tr>
+<tr>
+<td>Life</td>
+<td>Stack memory only exists as long as the current method is running</td>
+<td>Heap space exists as long as the application runs</td>
+</tr>
+<tr>
+<td>Efficiency</td>
+<td>Much faster to allocate when compared to heap</td>
+<td>Slower to allocate when compared to stack</td>
+</tr>
+<tr>
+<td>Allocation/Deallocation</td>
+<td>This Memory is automatically allocated and deallocated when a method is called and returned, respectively</td>
+<td>Heap space is allocated when new objects are created and deallocated by Garbage Collector when they're no longer referenced</td>
+</tr>
+</tbody>
+
+</table>
+
 ### 2.9 What is a constructor and how is it different from a method?
 
-Constructors:
+A `constructor` is a special method that declares how an object is to be instantiated and initialized from the class "blueprint".
+
+- A constructor is declared like a method, except its method signature does not contain a return type, and a constructor always has the same name as the class.
+
+- The new object created by the constructor is always of the class in which the constructor is declared.
+  this refers to the object which is being instantiated - it is used to initialize instance variables, or - to call other constructors (this is called constructor chaining)
+  There is another keyword important for constructors - the super keyword, which references the "super", or parent, class.
+  When invoked as a method (super()), the parent class constructor will be called.
+  A super() call (or a this() call) must be the first line of any constructor.
+- If not explicitly provided, the compiler will inject super() it on the first line implicitly.
+  The "default" constructor takes no arguments and simply calls super() (see above) - sometimes it is referred to as the "default, no-args" constructor.
+- However if we define our own constructor(s) in the class, we will not receive a default constructor from the compiler.
+
+#### Constructors vs. Methods
 
 - have no return types
 - have same name as class
