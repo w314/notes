@@ -39,13 +39,23 @@ variableName = value;
 
 > Block of reusable code that can be invoked again and again.
 
-Anytime you can identify repetitive code in your application, abstracting that logic into a method is generally the best solution to keep your program manageable.
+#### `Method Signature`
 
-The core parts of a method are:
+All methods in a class are defined by:
 
-- method name - unique
-- method parameters - variables passed inside of the parenthesis of the method which we are able to utilize inside of our method. These values are given to us from the entity that invokes the method.
+- their access modifier
+- any non-access modifiers
 - return type
+- method name
+- (optionally) a throws exception declaration
+
+Together, these form the `method signature`.
+
+#### Method Parameters
+
+Method parameters are variables passed inside of the parenthesis of the method which we are able to utilize inside of our method. These values are given to us from the entity that invokes the method.
+
+Anytime you can identify repetitive code in your application, abstracting that logic into a method is generally the best solution to keep your program manageable.
 
 ```java
 int addNums(int n1, int n2) {
@@ -140,6 +150,11 @@ public class HelloWorld{
   }
 }
 ```
+
+- `public` is an access modifier
+- `static` is a non-access modifier
+- `void` is the "return type" of the method
+- the array of Strings defined in the method parameters are passed from the command line when the java command is run
 
 ### 1.11 What is a primitive datatype? Please list a few and explain them.
 
@@ -351,19 +366,65 @@ Calculate triangle area.
 
 ### 2.1 What is a package and why would we use one?
 
-- a `package` is a collection of classes, interfaces, and enums in a hierarchial manner
+- a `package` is a collection of classes, interfaces, and enums in a hierarchial manner.
 - why?
+
   - keep your classes separate from the classes in the Java API
   - reuse classes in other applications.
   - distribute your classes to others.
 
+- naming convention: lowercase characters separated by periods in the reverse way you would specify a web domain (com.revature.mypackage)
+
+- usage
+  - by default, everything in the `java.lang` package is imported.
+  - classes can be referenced anywhere in a program by their "fully qualified class name" - which is the package declaration followed by the class, in order to uniquely identify the class
+  - using imports
+- declare package: the first (non-commented) line in a .java file
+  declares the package in which the class will reside.
+
+```java
+// declare the package this class belongs to
+package com.revature.mypackage;
+
+// import other packages to use
+import java.util.*;
+```
+
 ### 2.2 What is the difference between using an instance variable and a static variable?
+
+The static keyword in Java is mainly used for memory management. The static keyword in Java is used to share the same variable or method of a given class.
+
+When a member is declared static, it can be accessed before any objects of its class are created, and without reference to any object.
+
+A static variable is a variable of a class that isn’t associated with an instance of a class.
+
+Instead, the variable belongs to the class itself.
+
+As a result, you can access the static variable without first creating a class instance.
 
 ### 2.3 What is the difference between calling an instance method and a static method?
 
+A static method is a method of a class that isn’t associated with an instance of a class.
+
+Instead, the method belongs to the class itself.
+
+As a result, you can access the static method without first creating a class instance.
+
 ### 2.4 What are classes used for?
 
+A class is a template used to instantiate objects.
+
+A class used as the `type` for a `reference variable` determines what behaviors of an object can be invoked, and how any variables get initialized.
+
+We use classes to create a blueprint for objects.
+
 ### 2.5 Describe what an object is.
+
+An object is an instance of a class in memory.
+
+- In Java, you never interact with objects directly. Instead, you interact with them through their reference, which is the memory address used by the JVM to find a particular object.
+
+- constructor declares how an object is to be instantiated and initialized from the class "blueprint".
 
 ### 2.6 What is the role of garbage collection in Java?
 
