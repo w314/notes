@@ -538,7 +538,7 @@ A `constructor` is a special method that declares how an object is to be instant
 - have no return types
 - have same name as class
 - provide no functionality to object
-- called at object creation when a class is instanceated
+- automatically called at object creation when a class is instanceated
 
 ### 2.10 What is the difference between an array and an ArrayList?
 
