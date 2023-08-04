@@ -2,6 +2,30 @@
 
 ### 1.1 What is the difference between assigning and declaring a variable?
 
+#### Declare
+
+- syntax:
+
+```java
+datatype variableName;
+```
+
+- Java is a strongly-typed language which means that all variables in Java must define what type of data we can store into that variable.
+- This statement creates a place in memory for Java to store information of that specific datatype.
+- camelCase naming convention
+- We can refer to this named place in memory using the variable name. If we want to store a value in the variable
+
+#### Assign
+
+- syntax:
+
+```java
+variableName = value;
+```
+
+- stores a value in the variable
+- only work as long as the new variable is of the same datatype
+
 ### 1.2 What do a pair of opening and closing curly braces represent?
 
 ### 1.3 What is the difference between source code and bytecode?
@@ -38,10 +62,20 @@ int total = addNums(1, 2);
 
 ### 1.6 What is a variable?
 
-- container for storing data.
-- types:
-  - primitive type
-  - reference type
+> A `varibale` is a container for storing data.
+
+```java
+dataType variableName = value;
+```
+
+Java is strongly typed meaning that when a variable is declared in Java, the type must be specified.
+
+Types:
+
+- primitive type - data types defined by the language itself
+- reference type - data types defined in the Java API or by a programmer
+
+The `variable name` is the unique identifier used to reference that variable again.
 
 ### 1.7 What is the difference between the JDM, JRE, and JVM?
 
@@ -165,13 +199,19 @@ int[] otherArray = {1, 2, 3};
 
 ### 1.17 What is a stacktrace? How can you use it to debug your application?
 
-Each JVM thread (a path of execution) is associated with a stack that's created when the thread is created. This data structure is divided into frames, which are data structures associated with method calls. For this reason, each thread's stack is often referred to as a method-call stack.
+> `Stack trace` is a report of the active `stack frames` at a certain point in time during a thread's execution.
+
+Each `JVM thread` (a path of execution) is associated with a stack that's created when the thread is created.
+
+This data structure (stack) is divided into `frames`, which are data structures associated with method calls. For this reason, each thread's stack is often referred to as a method-call stack.
 
 When an exception / error gets thrown. A stack trace is displayed to the console.
 
 ### 1.18 What is the Scanner class used for? Give an example of how you would use it.
 
-- The `Scanner` class is used to get user input, and it is found in the `java.util` package.
+The `Scanner` class is used to get user input.
+
+- found in the `java.util` package
 
 ```java
 import java.util.Scanner;
@@ -187,6 +227,19 @@ class Main {
   }
 }
 ```
+
+Methods:
+
+- `nextBoolean()` Reads a boolean value from the user
+- `nextByte()` Reads a byte value from the user
+- `nextDouble()` Reads a double value from the user
+- `nextFloat()` Reads a float value from the user
+- `nextInt()` Reads a int value from the user
+- `nextLine()` Reads a String value from the user
+- `nextLong()` Reads a long value from the user
+- `nextShort()` Reads a short value from the user
+
+If you enter wrong input (e.g. text in a numerical input), you will get an exception/error message (like `InputMismatchException`).
 
 ### 1.19 When would you use an if statement over a switch statement?
 
@@ -226,6 +279,29 @@ _Note: You will not be assessed on the different types of operating systems or o
 
 ### 1.23 Which datatype represents text in Java?
 
+Strings.
+
+- are not a primitive data type but a reference type
+- a string variable holds a reference to an object created from the String class, not the value of the string itself
+- Strings are immutable, constant objectsm, this is accomplished by having internal, private and final fields and not implementing any "setter" methods which would alter the state of those fields.
+- Because Strings are immutable, all of the methods in the String class return a new String - the original is not modified.
+- When Strings are created they are placed in a special location within the `heap` called the `String Pool`.
+- When String literals are created, if there is an existing String that matches in the String Pool, the reference variable will point to the existing value.
+- Duplicates will not exist in the String Pool. This is important because Strings take up a lot of memory. Being able to reuse the same value throughout your application is advantageous.
+- One way to circumvent the above process is to use the new keyword along with the String constructor, which will explicitly create a new String object in memory, even if one already exists in the String Pool.
+
+The String API consists of the following:
+
+- `toUpperCase()` -Converts all the characters of a string to upper case.
+- `toLowerCase()`-Converts all the characters of a string to lower case
+- `charAt(int index)` -This returns the indexed character of a string, where the index of the initial character is 0
+- `concat(String s)` -This returns a new string consisting which has the old string + s
+- `equals(String s)` -Checks if two strings are equal
+- `equaIsIgnoreCase(String s)` -This is like equals(), but it ignores the case(Ex: ‘Hello’ and ‘hello’ are equal)
+- `length( )` -Returns the number of characters in the current string.
+- `replace(char old, char new)` -This returns a new string, generated by replacing every occurrence of old with new.
+- `trim()` -Returns the string that results from removing white space characters from the beginning and ending of the current string.
+
 ### 1.24 How would you access the last value in an array if you do not know the size of the array?
 
 ### 1.25 What steps would you take to debug your program if it crashed with an error message in the console?
@@ -244,9 +320,15 @@ Calculate triangle area.
 
 ### 1.29 Can you describe some of the basic entities of a Java program?
 
-- Classes
-- Variables
-- Methods
+- classes
+- variables
+- methods
+
+`Classes` are blueprints for creating objects in Java. Classes can have variables and methods within them to represent state and behavior.
+
+`Variables` are containers to store data.
+
+`Methods` are blocks of reusable code.
 
 ### 1.30 What are some of the benefits of Java?
 
@@ -269,7 +351,7 @@ Calculate triangle area.
 
 ### 2.1 What is a package and why would we use one?
 
-- a `package` is a collection of classes, interfaces, and enums in a hierarchial manner.
+- a `package` is a collection of classes, interfaces, and enums in a hierarchial manner
 - why?
   - keep your classes separate from the classes in the Java API
   - reuse classes in other applications.
