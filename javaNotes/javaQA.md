@@ -641,8 +641,10 @@ short s = (short)i;
 
 ### 2.17 What is autoboxing and unboxing?
 
-- `Boxing` is the process of converting a primitive to its wrapper class. Java has a feature called `autoboxing`which will automatically convert primitives to wrapper classes implicitly. In case when passing an `int` variable as parameter to a function requesting an `Integer`.
+- `Boxing` - the process of converting a primitive to its wrapper clas
+- `autoboxing` - Java feature which will automatically convert primitives to wrapper classes implicitly. In case when passing an `int` variable as parameter to a function requesting an `Integer`.
 - `Unboxing` is the reverse - converting a wrapper class to its primitive.
+- Wrapper classes have static helper methods like .parseX() and .valueOf() for explicit primitive conversion.
 
 ### 2.18 If there was an error in the console when you tried to run your program, how would you debug?
 
