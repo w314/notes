@@ -740,9 +740,23 @@ Types:
 Example:
 Animal -> Cat, Dog
 
+```java
+class Animal {
+  ...
+}
+
+class Dog extends Animal {
+  ...
+}
+```
+
 ### 3.2 Describe abstraction and how would you use it in a project?
 
-`Abstraction` is a programming principle in which we hide underlying complexity through a simplified interface.
+`Abstraction` is an OOP programming principle.
+
+Through abstraction we hide underlying complexity through a simplified interface.
+
+example: Shape class, getArea() method
 
 ### 3.3 Describe polymorphism and how would you use it in a project?
 
@@ -790,6 +804,11 @@ The process of casting an object of a superclass to an object of its subclass
 - risky, may result in `ClassCastException` if the object being cast is not actually an instance of the subclass
 - use `instanceof` operater to check before downcasting
 
+EXAMPLE
+method overloading - temperature converter working with both integers, doubles or string
+
+method overriding - speak method implemented differently in Animal subspecies
+
 ### 3.4 Describe encapsulation and how would you use it in a project?
 
 - `encapsulation` is a process of wrapping data and methods in a single unit.
@@ -798,6 +817,17 @@ The process of casting an object of a superclass to an object of its subclass
 - `encapsulation` is as a protective wrapper that prevents the code and data from being arbitrarily accessed by other code defined outside the wrapper.
 
 > `encapsulation` means **restricting access to data members** by using access modifiers and getter/setter methods
+
+When encapsulating your code, certain conventions should be followed:
+
+- All instancce fields for a class should be private
+- Each field should have getters and setters as needed (typically these are public, but other access modifiers can be used as needed).
+- Getter and Setter Methods (a.k.a. 'accessor' and 'mutator' methods) should use the following name convention:
+  - getVariableName
+  - setVariableName
+
+EXAMPLE
+employee object, make slary private, setSalary checks valid salary number, getSalary check is user has access rights
 
 ### 3.5 How is method overriding different from method overloading?
 
