@@ -544,19 +544,56 @@ A `constructor` is a special method that declares how an object is to be instant
 
 ### 2.11 What is the difference between an Error and an Exception?
 
+Both `Error` and `Exception` extend the `Throwable` class
+
 #### `Error`
 
-Represents something that went so horribly wrong with your application that you should not attempt to recover from. Some examples of errors are:
+1. `Compilation Error`
 
-- ExceptionInInitializerError
-- OutOfMemoryError
-- StackOverflowError
+- occurs at compile time
+- syntax error
+- not handling checked exceptions
+- eg: `SyntaxError`
+
+2. `Error`
+
+- occurs at runtime
+- severe problem with the program
+- we dot hand attempt to recover from them
+- eg: `OutOfMemoryError`
 
 #### `Exception`
 
+Exceptions are the conditions that occur at runtime and may cause the termination of the program. But they are recoverable using try, catch and throw keywords.
+
+- can be recovered from with `try - catch`
+- two types
+  - checked
+    - must be handled
+    - eg: `IOException`
+  - unchecked
+    - runtime errors
+    - eg: `ArrayOutOfBounds`
+
 ### 2.12 How would you handle an exception?
 
+When risky code is written that has the possibility of throwing an exception, it can be dealt with in one of two ways:
+
+1. `Handling` means that the risky code is placed inside a `try/catch` block
+2. `Declaring` means that the type of exception to be thrown is listed in the method signature with the throws keyword. This is also called "ducking" the exception - you let the code which calls the method deal with it.
+
+If the exception is not handled anywhere in the program, it will propagate up through the call stack until it is handled by the JVM which then terminates the program.
+
 ### 2.13 What is the difference between a checked and an unchecked exception?
+
+- Checked exception require mandatory handling:
+
+  - try - catch
+  - throws
+
+- Handling the exception is checked during compilation, gives compliation error if not handled.
+
+- Exception-handling is mandatory for any exception class that is not a subclass of either Error or RuntimeException.
 
 ### 2.14 If you received text input from the user, how would you go about comparing it to a value, like "yes" or "no"?
 
@@ -568,13 +605,32 @@ boolean isSame = str1.equals(str2);
 
 ### 2.15 What is explicit and implicit casting?
 
-- `implicit casting`: Java is able to do this conversion automatically
-- `explicit casting` with `()`:
+`Casting` is the process of converting a data type to another data type.
+
+`implicit casting`
+
+- automatically done by Java
+- does it with primitive data types
+- where there is no loss of data
+
+  - If one of the values is a double, the other value is converted to a double
+  - If neither is a double but one is a float, the other is converted to a float.
+  - If neither is a double nor a float but one is a long, the other is converted to a long.
+  - If all else fails, both values are converted to int.
+
+`explicit casting`
+
+- done by programmer
+- uses `()`:
 
 ```java
 int i = 200;
 short s = (short)i;
 ```
+
+- In some cases you will have to use the data type's own methods to convert. Some of these methods are listed in the table below.
+  - `String` to `int` with `Integer.parseInt(String)`
+  - `int` to `String` with `String.valueOf(int)`
 
 ### 2.16 What are the different scopes in Java?
 
@@ -592,12 +648,78 @@ short s = (short)i;
 
 ### 2.19 What are some operations you can perform on a List?
 
-- `add`, `remove`, `get`, `set`
-- `.indexOf()`, `.lastIndexOf()`
-- `sublist`
-- `sort`, `reverse`, `rotate`, `swap`
-- `replaceAll`, `fill`, `copy`
-- `indexOfSubList`, `lastIndexOfSublist`
+`List`
+
+- interface
+- implements collection interface
+- collection of elemnents of the same type
+- preserves the order in which elements are inserted
+- duplicate entries are allowed. - - - elements are accessed by their index, which begins with 0
+
+List interface includes operations
+for the following:
+
+#### 1. Positional access operations
+
+Manipulates elements based on their numerical position in the list
+
+- `get`
+- `set`
+- `add`
+- `addAll`
+- `remove`
+
+#### 2. Search operations
+
+Searches for a specified object in the list and returns its numerical position.
+
+- `.indexOf()` -`.lastIndexOf()`
+- `indexOfSubList`
+
+#### 3. Iteration operations
+
+`ListIterator`, which allows you to traverse the list in either direction, modify the list during iteration, and obtain the current position of the iterator.
+
+Methods:
+
+Inherited from `Iterator`
+
+- `hasNext()`
+- `next()` - moves cursor forward
+- `remove()`
+  Added methods:
+- `hasPrevious()`
+- `previous()` - moves cursor backward
+
+```java
+// iterating backwards through a  List
+for (ListIterator<Type> it = list.listIterator(list.size()); it.hasPrevious(); ) {
+    Type t = it.previous();
+    ...
+}
+```
+
+Arguments
+
+The List interface has two forms of the listIterator method.
+
+- no arguments: returns a ListIterator positioned at the beginning of the list
+- with an int argument: returns a ListIterator positioned at the specified index.
+
+The index refers to the element that would be returned by an initial call to next. An initial call to previous would return the element whose index was index-1. In a list of length n, there are n+1 valid values for index, from 0 to n, inclusive.
+
+Cursor
+
+- Intuitively speaking, the `cursor` is always between two elements — the one that would be returned by a call to previous and the one that would be returned by a call to next
+- Calls to next and previous can be intermixed, but you have to be a bit careful. The first call to previous returns the same element as the last call to next. Similarly, the first call to next after a sequence of calls to previous returns the same element as the last call to previous.
+
+#### 4. Range-view operations
+
+Returns a List view of the portion of this list whose indices range from fromIndex, inclusive, to toIndex, exclusive.
+
+The returned List is backed up by the List on which subList was called, so changes in the former are reflected in the latter.
+
+- `sublist(int fromIndex, int toIndex)`
 
 ## WK 3
 
