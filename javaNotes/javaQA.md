@@ -857,31 +857,111 @@ Interfaces have these advantages over class:
 - `hashCode()`
 - `toString()`
 
+#### `toString()`
+
+The `toString()` method is automatically called if you print an Object. Usually, this is overridden to provide human-readable output. Otherwise, you will print out fully.qualified.ClassName@memoryAddress
+
+#### `equals(Object o)`
+
+The `equals(Object o)` method compares two Objects. The == operator also compares objects, but only the memory address (i.e. will return true if and only if the variables refer to the exact same object in memory). By default, and unless you explicitly override it, the equals method simply calls the == operator.
+
 In Object class `equals()` is true if we compare the same instance, for value objects we may want to compare based on property values.
 
 - two instances of _Person_ with same name and birthday should be different
 - we may want to two instances of _Money_ with same ammount and currancy be the same, in this case we have to change both the `equals()` and `hashCode()` methods
 
+#### `hashCode()`
+
+The `hashCode()` method returns a hash code - a number that puts instances of a class into a finite number of categories.
+
+There are a few rules that the method follows:
+
+- You are expected to override hashCode() if you override equals()
+- The result of hashCode() should not change in a program
+- if .equals() returns true, the hash codes should be equal
+- if .equals() returns false, the hash codes do not have to be distinct. However, doing so will help the performance of hash tables.
+
+#### `.finalize()` _DEPRECIATED_
+
+Finally, the `.finalize()` method is called by the garbage collector when it determines there are no more references to the object. It can be overriden to perform cleanup activities before garbage collection, although it has been deprecated in newer versions of Java.
+
 ### 3.10 What state and behavior would you define in a parent class but not a subclass?
+
+Example:
+Animal:
+age, name, abstract makeNoise, sleep
 
 ### 3.11 What state and behavior would you define in a subclass but not in the parent class?
 
-### 3.12 What are the SOLID design principles and are they important?
+Example
+Animal:
+age, name, abstract makeNose, sleep
+Dog: growl
 
-- `Single Responsibility Principle (SRP)`: A class should have only one purpose, focusing on a single responsibility or task.
-- `Open-Closed Principle (OCP)`: Software entities should be open for extension but closed for modification, enabling flexibility and avoiding modification of existing code.
-- `Liskov Substitution Principle (LSP)`: Objects of a superclass should be replaceable with objects of their subclasses without effecting the consistency of the program's behavior.
-- `Interface Segregation Principle (ISP)`: Clients should not be forced to depend on interfaces they do not use, emphasizing specific interfaces tailored to clients' needs and reducing unnecessary dependencies.
-- `Dependency Inversion Principle (DIP)`: High-level modules should not depend on low-level modules; both should depend on abstractions, promoting loose coupling and dependency inversion through abstractions.
+### 3.12 What are the SOLID design principles and why are they important?
+
+- SRP - Single Responsibility Principle
+- OCP - Open Closed Principle
+- LSP - Liskov Substitution Principle
+- ISP - Interface Segregation Principle
+- DIP - Dependency Inversion Principle
+
+#### `Single Responsibility Principle (SRP)`
+
+- A class should have only one purpose, focusing on a single responsibility or task.
+- EXAMPLE: pulling data from a server, manipulating and storing it in a database is not single responsibility
+
+#### `Open-Closed Principle (OCP)`:
+
+- Software entities should be open for extension but closed for modification
+- you should be able to **add new functionality
+  to a system without modifying its existing** code
+- we use `abstract classes` and `interfaces` to achieve the `Open Close Principle`
+- EXAMPLE: have an abstract area method in a shape class, that can be implemented differentle in triangles and squares, rather than if statements in shape class that have to be modified any time a new shape is introduced
+
+#### `Liskov Substitution Principle (LSP)`
+
+- Objects of a superclass should be replaceable with objects of their subclasses
+- any instance of a base class should be able to be replaced by an instance of a subclass without affecting the correctness of the program
+- This means that, given that class B is a subclass of class A, we should be able to pass an object of class B to any method that expects an object of class A and the method should not give any weird output in that case.
+- This is the expected behavior, because when we use inheritance we assume that the child class inherits everything that the superclass has. The child class extends the behavior but never narrows it down.
+- EXAMPLE:
+
+#### `Interface Segregation Principle (ISP)`
+
+- is about separating interfaces, many client-specific interfaces are better than one general-purpose interface
+- Clients should not be forced to depend on interfaces they do not use
+- EXAMPLE vehicle interface with opendoors() method and Bike class implementing vehicle interface and mock implement opendoors() method
+
+#### `Dependency Inversion Principle (DIP)`
+
+- our classes should depend upon interfaces or abstract classes instead of concrete classes and functions
+- if the `OCP (Open Closed Principle)` is the goal of `OO` architecture, `DIP (Dependency Inversion Principle)` is the primary mechanism to achive it
 
 ### 3.13 What is Maven? Why would we use it?
 
 `Maven` is a tool that can be used for building and managing any Java-based project.
 
-- A build automation and dependency management tool for Java. Maven project configuration and dependencies are handled via the `Project Object Model`, defined in the `pom.xml` file.
-- A testing framework
-- A logging library which allows for multiple logging thresholds
-- A library of tools for adding functionality to a Java application
+We use it as Maven helps in:
+
+- Simplifying the build process
+- Adding jars and dependencies
+- Documenting project information with change logs and reports
+- Integration with source control systems (Git)
+
+Maven project configuration and dependencies are handled via the `Project Object Model`, defined in the `pom.xml` file. This file contains information about the project, is used to build the project, includes project dependencies and plugins.
+
+Some important tags within the pom.xml file include:
+
+- `<project>` - this is the root tag of the file
+- `<modelVersion>` - defining which version of the page object model to be used
+- `<name>` - name of the project
+- `<properties>` - project-specific settings
+- `<dependencies>` - this is where you put your Java dependencies you want to use. Each one needs a `<dependency>`, which has:
+  - `<groupId>`
+  - `<artifactId>`
+  - `<version>`
+- `<plugins>` - for 3rd party plugins that work with Maven
 
 ### 3.14 What is the SDLC? Why is it important?
 
