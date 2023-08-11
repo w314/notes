@@ -1020,13 +1020,13 @@ Stages of SDLC:
 - There is an organizational learning curve cost
 - True agile execution with a continuous deployment pipeline has many technical dependencies and engineering costs to establish
 
-### 67-3.16 What is test driven development?
+### 67 What is test driven development?
 
 The `TDD` process consists of writing unit tests first, **before** the implemented application code has been written.
 
 `Unit testing` is the testing of individual software components in isolation from the rest of the system.
 
-### 68-3.17 Why are unit tests important?
+### 68 Why are unit tests important?
 
 `Unit testing` is the testing of individual software components in isolation from the rest of the system. This is done by writing unit tests which execute the code we want to inspect.
 
@@ -1037,7 +1037,7 @@ The TDD process consists of writing unit tests first, before the implemented app
 
 When refactoring code, the unit tests give us confidence that we can change the source code without breaking existing functionality. This makes debugging much easier.
 
-### 69-3.18 How can JUnit annotations help with running our tests?
+### 69 How can JUnit annotations help with running our tests?
 
 `Annotations` are used to support, identify, and execute test method features.
 
@@ -1047,7 +1047,7 @@ When refactoring code, the unit tests give us confidence that we can change the 
 - `@AfterAll`
 - `@Test`
 
-### 70-3.19 What are the Maven build lifecycle phases?
+### 70 What are the Maven build lifecycle phases?
 
 When Maven builds your project, it goes through several steps called phases
 
@@ -1059,17 +1059,15 @@ When Maven builds your project, it goes through several steps called phases
 - `install` - install the package into the local repository, for use as a dependency in other projects locally
 - `deploy` - done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.
 
-### 71-3.20 Describe the POM.xml file and its importance.
+### 71 Describe the POM.xml file and its importance.
 
 `POM` - `Project Object Model`
 
-`Maven` identifies projects through project coordinates defined in the pom.xml file - these are:
+In `Maven` the project coordinates below together uniquely identify a specific version of a program:
 
 - `group-id`: company name for example: "com.revature"
 - `artifact-id`: project name
 - `version`: version number for example: "0.0.1-SNAPSHOT"
-
-Together, these uniquely identify a specific version of a program.
 
 #### Some other important tags within the `pom.xml` file include:
 
@@ -1111,13 +1109,11 @@ Here's an example:
 </project>
 ```
 
-## WK 4
-
-### 72-4.1 What is SQL and why would we use this language
+### 72 What is SQL and why would we use this language
 
 `Structured Query Language` (`SQL`) is the language used to administer SQL-based RDBM systems.
 
-### 73-4.2 What are the SQL sublanguages and their purpose?
+### 73 What are the SQL sublanguages and their purpose?
 
 - `DDL` Data Definition Language. Defines data structure
   - `CREATE`
@@ -1132,7 +1128,7 @@ Here's an example:
   - `INSERT`
   - `UPDATE`
   - `DELETE`
-- `DCL` Data Control Language - manage access permissons to database object
+- `DCL` Data Control Language - manage access permissions to database object
   - `GRANT`
   - `REVOKE`
 - `TCL` Transaction Control Language. Defines concurrent operation boundaries
@@ -1142,17 +1138,17 @@ Here's an example:
 - `DQL` Data Query Language. Search, filter, group, aggregate stored data
   - `SELECT`
 
-### 74-4.3 What is a RDBMS?
+### 74 What is a RDBMS?
 
 - An RDBMS is a data storage system based on a relational model
 - data that is related to a particular object is stored in tables with each entry being represented as a row
 - and each data point is a column in the row that is validated by a set of constraints
 
-### 75-4.4 Describe relational database tables.
+### 75 tables Describe relational database tables.
 
 In MySQL, a table stores and organizes data in columns and rows as defined during table creation.
 
-### 76-4.5 What are constraints and can you describe a few constraints?
+### 76 What are constraints and can you describe a few constraints?
 
 `Constraints` are used to define a database schema and are the backbone for defining `integrity constraints` of the schema. They help validate data beyond just a simple data type.
 
@@ -1182,11 +1178,11 @@ create table content_meta (
 );
 ```
 
-### 77-4.6 Why would I use the WHERE clause?
+### 77 where clause Why would I use the WHERE clause?
 
 FILTERING: The filtering clause of a select statement is a `WHERE` clauses that defines how selected rows are filtered from the table. `WHERE` clauses use logical operators to select records that meet specific conditions.
 
-### 78-4.7 What are some operators that can be used in SQL?
+### 78 sql operators What are some operators that can be used in SQL?
 
 - Arithmetic
 - Bitwise
@@ -1194,7 +1190,7 @@ FILTERING: The filtering clause of a select statement is a `WHERE` clauses that 
 - Compound
 - Logical
 
-### 79-4.8 What is the JDBC API and the benefits of using it?
+### What is the JDBC API and the benefits of using it?
 
 `JDBC` stands for `Java Database Connectivity`. It is a relatively low-level API used to write Java code that interacts with relational databases via SQL.
 
@@ -1228,7 +1224,7 @@ Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
 conn.setAutoCommit(false);
 
 // execute some SQL statements...
-con.commit();
+conn.commit();
 ```
 
 #### Execute SQL statements
@@ -1277,7 +1273,7 @@ while (rs.next()) {
 }
 ```
 
-### 80-4.9 What is the DAO Design Pattern and why should we use it?
+### 80 What is the DAO Design Pattern and why should we use it?
 
 The `DAO` (`Data Access Objects`) design pattern logically separates the code that accesses the database into Data Access Objects.
 
@@ -1341,15 +1337,13 @@ NYEmpls.forEach( e -> System.out.println(e));
 _Note: You will not be assessed over Callable Statements / Stored Procedures this week
 Note: You will not be assessed over the Persisting Data with JDBC topic_
 
-### 81-4.10 What information would you need in order to successfully connect to a database?
+### 81 What information would you need in order to successfully connect to a database?
 
 - URL (`JDBC String`)
 - username
 - password
 
-## WK 5
-
-### 82-5.1 What is the difference between a Simple and Prepared JDBC statement?
+### 82 statement vs. preparedStatement What is the difference between a Simple and Prepared JDBC statement?
 
 Once we have the `Connection object`, we can write our SQL and execute it.
 
@@ -1363,7 +1357,7 @@ String sql = "SELECT * FROM employees";
 ResultSet rs = stmt.executeQuery(sql);
 ```
 
-#### `Prepared Statment`
+#### `Prepared Statement`
 
 The `PreparedStatement interface` is used for executing pre-compiled SQL statements.
 
@@ -1379,7 +1373,7 @@ ResultSet rs = ps.executeQuery(sql);
 
 - Protects against `SQL injection` when user input is used by pre-compiling the SQL statement
 
-### 83-5.2 What is SQL Injection and how can we prevent it using the JDBC?
+### 83 What is SQL Injection and how can we prevent it using the JDBC?
 
 `SQL Injections` are the exploitation of programming weaknesses in SQL codes to gain access to a database, its resources, and applications.
 
@@ -1389,7 +1383,7 @@ This interface gives us the flexibility of specifying parameters with the ? symb
 
 It protects against SQL injection when user input is used by pre-compiling the SQL statement.
 
-### 84-5.3 What is a foreign key?
+### 84 What is a foreign key?
 
 A `FOREIGN KEY` is a field or collection of fields in a table that refers to the `PRIMARY KEY` of the other table.
 
@@ -1407,7 +1401,7 @@ ALTER TABLE employee ADD branch_id INT;
 ALTER TABLE employee ADD FOREIGN KEY (branch_id) REFERENCES Branch(branch_id);
 ```
 
-### 85-5.4 What is referential integrity?
+### 85 What is referential integrity?
 
 `REFERENTIAL INTEGRITY` is the relationship between tables.
 
@@ -1418,11 +1412,11 @@ Referential Integrity:
 - does not allow to deletion of a record in a table that contains the foreign key, to delete the record in the parent table, the corresponding record in the child table should be deleted first. to solve this issue `ON DELETE CASCADE` is used.
 - Other options are to set the foreign key to null or to its default value (only if the default value references an existing value in the primary-key table).
 
-### 86-5.5 What is normalization?
+### 86 What is normalization?
 
 `Normalization` is the process of organizing the data and the attributes of a database. it is performed to reduce the data redundancy.
 
-### 87-5.6 What is multiplicity?
+### 87 What is multiplicity?
 
 `Multiplicity` defines the relationship between two tables
 
@@ -1433,11 +1427,11 @@ Referential Integrity:
 
 There are 4 different multiplicity relationships
 
-### 88-5.7 Describe what a join is and explain the different types of joins we can create.
+### 88 Describe what a join is and explain the different types of joins we can create.
 
-### 89-5.8 What is the difference between a join and a set operation?
+### 89 What is the difference between a join and a set operation?
 
-### 90-5.9 What is a view and why is it useful?
+### 90 What is a view and why is it useful?
 
 In `MySQL`, a `View` is a virtual table based on the result-set of an SQL statement. A view consists of rows and columns, just like a common table. The view fields are fields from one or more real tables in the database.
 
@@ -1451,7 +1445,7 @@ Advantages:
 CREATE VIEW view_name AS SELECT column1, column2, ... FROM table_name WHERE condition;
 ```
 
-### 91-5.10 What is HTTP? Why is it important to know about?
+### 91 What is HTTP? Why is it important to know about?
 
 `HTTP` (`HyperText Transfer Protocol`) is a technique of transmitting data in a particular format, primarily between a server and a
 
@@ -1478,7 +1472,7 @@ A response contains:
 - Optional information to detail what happened with the request (called `headers` again)
 - For some methods, a body which contains some resource (ex. file to be downloaded)
 
-### 92-5.11 What are common HTTP verbs used when a client application is making a request?
+### 92 What are common HTTP verbs used when a client application is making a request?
 
 - GET
   - used to retrieve data from a server at the specified resource
@@ -1500,7 +1494,7 @@ A response contains:
 - PATCH
 - OPTIONS
 
-### 93-5.12 What are some common HTTP status codes that can be included in a response?
+### 93 What are some common HTTP status codes that can be included in a response?
 
 HTTP Status Codes whether a specific HTTP request has been successfully completed.
 
