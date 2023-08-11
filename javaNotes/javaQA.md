@@ -1,6 +1,4 @@
-## WK1
-
-### 1-1.1 What is the difference between assigning and declaring a variable?
+### 1 assign vs declare What is the difference between assigning and declaring a variable?
 
 #### Declare
 
@@ -26,16 +24,16 @@ variableName = value;
 - stores a value in the variable
 - only work as long as the new variable is of the same datatype
 
-### 2-1.2 What do a pair of opening and closing curly braces represent?
+### 2 {} What do a pair of opening and closing curly braces represent?
 
-### 3-1.3 What is the difference between source code and bytecode?
+### 3 source code vs bytecode What is the difference between source code and bytecode?
 
 - Compilation means to transform a program written in a high-level programming language from `source code` into `object code` / `bytecode`.
 - `.java` -> `.class`
 
-### 4-1.4 What is the difference in syntax between calling a method and creating a method?
+### 4 method call vs create syntax What is the difference in syntax between calling a method and creating a method?
 
-### 5-1.5 What is a method?
+### 5 What is a method?
 
 > Block of reusable code that can be invoked again and again.
 
@@ -70,9 +68,9 @@ int total = addNums(1, 2);
 
 ```
 
-### 6-1.6 What is a variable?
+### 6 What is a variable?
 
-> A `varibale` is a container for storing data.
+> A `variable` is a container for storing data.
 
 ```java
 dataType variableName = value;
@@ -87,7 +85,7 @@ Types:
 
 The `variable name` is the unique identifier used to reference that variable again.
 
-### 7-1.7 What is the difference between the JDM, JRE, and JVM?
+### 7 JDK-JRE-JVM What is the difference between the JDK, JRE, and JVM?
 
 `JDK` `Java Development Kit` contains `JRE` and development tools like compiler, debugger, documentation tools.
 
@@ -99,7 +97,7 @@ The `variable name` is the unique identifier used to reference that variable aga
 - `JRE` (`Java Runtime Environment`) contains all the runtime libraries that your code will be calling and using. The JRE contains the JVM within it.
 - `JDK` (`Java Development Kit`) provides developer tools like a compiler, debugger, documentation tools, and other command-line utilities. The JDK also has a JRE inside of it
 
-### 8-1.8 What is a conditional statement?
+### 8 What is a conditional statement?
 
 `Conditional statement` is a statement that uses a Boolean expressions and only executes the a block of statement if the Boolean expression returns `true`.
 
@@ -108,7 +106,7 @@ The `variable name` is the unique identifier used to reference that variable aga
 - while
 - do-while
 
-### 9-1.9 Explain the different kinds of loops you can create and use in a program.
+### 9 loops Explain the different kinds of loops you can create and use in a program.
 
 `Loops` are java statements that allow for the repeated execution of the same statement or block of statements.
 
@@ -141,7 +139,7 @@ do {
 
 ```
 
-### 10-1.10 Explain the main method.
+### 10 Explain the main method.
 
 ```java
 public class HelloWorld{
@@ -156,7 +154,7 @@ public class HelloWorld{
 - `void` is the "return type" of the method
 - the array of Strings defined in the method parameters are passed from the command line when the java command is run
 
-### 11-1.11 What is a primitive datatype? Please list a few and explain them.
+### 11 What is a primitive data type? Please list a few and explain them.
 
 - data types defined by the language
 - stores the value of the data
@@ -170,15 +168,15 @@ public class HelloWorld{
   - long 8 bytes numerical
   - double 8 bytes floating point
 
-### 12-1.12 What is the modulo operator? How is it useful?
+### 12 What is the modulo operator? How is it useful?
 
-### 13-1.13 What are shorthand assignment operators?
+### 13 What are shorthand assignment operators?
 
 Assgnment operators assign value to a variable.
 
 = += -= \*= /= %= &= ^=
 
-### 14-1.14 How do you use increment and decrement operators?
+### 14 How do you use increment and decrement operators?
 
 - postfix: changes the value after the entire expression is evaluated
 
@@ -194,9 +192,9 @@ int a = 5;
 int b = ++a; // b=6, a=6
 ```
 
-### 15-1.15 How can you iterate over an array?
+### 15 How can you iterate over an array?
 
-### 16-1.16 What is an array? Why is it useful?
+### 16 What is an array? Why is it useful?
 
 An `array` is a `contiguous block of memory` storing a group of `sequentially stored` elements of the same type.
 
@@ -212,7 +210,7 @@ int[] myArray = new int[5];
 int[] otherArray = {1, 2, 3};
 ```
 
-### 17-1.17 What is a stacktrace? How can you use it to debug your application?
+### 17 What is a stacktrace? How can you use it to debug your application?
 
 > `Stack trace` is a report of the active `stack frames` at a certain point in time during a thread's execution.
 
@@ -222,7 +220,7 @@ This data structure (stack) is divided into `frames`, which are data structures 
 
 When an exception / error gets thrown. A stack trace is displayed to the console.
 
-### 18-1.18 What is the Scanner class used for? Give an example of how you would use it.
+### 18 What is the Scanner class used for? Give an example of how you would use it.
 
 The `Scanner` class is used to get user input.
 
@@ -256,7 +254,7 @@ Methods:
 
 If you enter wrong input (e.g. text in a numerical input), you will get an exception/error message (like `InputMismatchException`).
 
-### 19-1.19 When would you use an if statement over a switch statement?
+### 19 if vs switch When would you use an if statement over a switch statement?
 
 - `switch` statement works with:
   - `byte`, `short`, `int`
@@ -264,9 +262,9 @@ If you enter wrong input (e.g. text in a numerical input), you will get an excep
   - `enum`
 - if the if statement is too long switch can be better
 
-### 20-1.20 When would you use a switch statement over an if statement?
+### 20 switch vs if When would you use a switch statement over an if statement?
 
-### 21-1.21 What is an operating system?
+### 21 What is an operating system?
 
 _Note: You will not be assessed on the different types of operating systems or on process management_
 
@@ -283,7 +281,7 @@ _Note: You will not be assessed on the different types of operating systems or o
   - `Scheduling` - in scheduling, the process manager takes the responsibility to remove the running process from the CPU and chooses another process based on a specific strategy.
   - `Memory Management` - the functionality of an operating system that handles and manages the primary memory. Processes move back and forth between the main memory and the disk during the execution.
 
-### 22-1.22 What does the term "full stack" mean?
+### 22 full stack What does the term "full stack" mean?
 
 > `Full stack` covers two separate development domains: the front end and the back end.
 
@@ -292,7 +290,7 @@ _Note: You will not be assessed on the different types of operating systems or o
   -Front end platforms are usually built with HTML, CSS, and JavaScript; however, they can also be made via pre-packaged code libraries or content management systems like WordPress.
 - Back end developers, in contrast, refine the software code that communicates with servers, databases, or other proprietary software that conveys information to front end interfaces.
 
-### 23-1.23 Which datatype represents text in Java?
+### 23 text data type Which datatype represents text in Java?
 
 Strings.
 
@@ -317,23 +315,23 @@ The String API consists of the following:
 - `replace(char old, char new)` -This returns a new string, generated by replacing every occurrence of old with new.
 - `trim()` -Returns the string that results from removing white space characters from the beginning and ending of the current string.
 
-### 24-1.24 How would you access the last value in an array if you do not know the size of the array?
+### 24 last array element How would you access the last value in an array if you do not know the size of the array?
 
-### 25-1.25 What steps would you take to debug your program if it crashed with an error message in the console?
+### 25 debug crash What steps would you take to debug your program if it crashed with an error message in the console?
 
-### 26-1.26 What steps would you take to debug your program if runs, but gives you the wrong results?
+### 26 debug wrong result What steps would you take to debug your program if runs, but gives you the wrong results?
 
-### 27-1.27 How would you describe the compilation process for Java?
+### 27 compilation process How would you describe the compilation process for Java?
 
 - 2 steps
   - compiler creates machine independent `bytecode`
   - `JVM` creates machine code
 
-### 28-1.28 Give me an example of why you would need to create a method other than the main method.
+### 28 why methods Give me an example of why you would need to create a method other than the main method.
 
 Calculate triangle area.
 
-### 29-1.29 Can you describe some of the basic entities of a Java program?
+### 29 entities of Java Can you describe some of the basic entities of a Java program?
 
 - classes
 - variables
@@ -345,7 +343,7 @@ Calculate triangle area.
 
 `Methods` are blocks of reusable code.
 
-### 30-1.30 What are some of the benefits of Java?
+### 30 benefits of Java What are some of the benefits of Java?
 
 - platform independent,
 - has a C-language inspired syntax
@@ -354,17 +352,15 @@ Calculate triangle area.
 - is supported by the Oracle corporation
 - has a rich open source community
 
-### 31-1.31 What is a flow control statement?
+### 31 What is a flow control statement?
 
 - `if` execute a statement or a block of statements only if some conditional test turns out to be true
 - `switch` execute one of several blocks of statements depending on the value of a variable of certain types
 - `loops`: allow for the repeated execution of the same statement or block of statements
 
-### 32-1.32 What is the modulo operator and why would we use it?
+### 32 What is the modulo operator and why would we use it?
 
-## WK 2
-
-### 33-2.1 What is a package and why would we use one?
+### 33 What is a package and why would we use one?
 
 - a `package` is a collection of classes, interfaces, and enums in a hierarchial manner.
 - why?
@@ -390,7 +386,7 @@ package com.revature.mypackage;
 import java.util.*;
 ```
 
-### 34-2.2 What is the difference between using an instance variable and a static variable?
+### 34 instance vs. static variable What is the difference between using an instance variable and a static variable?
 
 The static keyword in Java is mainly used for memory management. The static keyword in Java is used to share the same variable or method of a given class.
 
@@ -402,7 +398,7 @@ Instead, the variable belongs to the class itself.
 
 As a result, you can access the static variable without first creating a class instance.
 
-### 35-2.3 What is the difference between calling an instance method and a static method?
+### 35 instance vs. static method What is the difference between calling an instance method and a static method?
 
 A static method is a method of a class that isn’t associated with an instance of a class.
 
@@ -410,7 +406,7 @@ Instead, the method belongs to the class itself.
 
 As a result, you can access the static method without first creating a class instance.
 
-### 36-2.4 What are classes used for?
+### 36 What are classes used for?
 
 A class is a template used to instantiate objects.
 
@@ -418,7 +414,7 @@ A class used as the `type` for a `reference variable` determines what behaviors 
 
 We use classes to create a blueprint for objects.
 
-### 37-2.5 Describe what an object is.
+### 37 Describe what an object is.
 
 An object is an instance of a class in memory.
 
@@ -426,7 +422,7 @@ An object is an instance of a class in memory.
 
 - constructor declares how an object is to be instantiated and initialized from the class "blueprint".
 
-### 38-2.6 What is the role of garbage collection in Java?
+### 38 What is the role of garbage collection in Java?
 
 Garbage collection is the process of removing objects from the heap which have no references to them.
 
@@ -436,7 +432,7 @@ Garbage collection is run in the background by the JVM. There is no way we can e
 - Runtime.getRuntime().gc()
 - System.runFinalize()
 
-### 39-2.7 If I define a variable within a method, how can I access its value outside of the method?
+### 39 If I define a variable within a method, how can I access its value outside of the method?
 
 When a variable is declared in a Java program, it is attached to a specific scope within the program, which determines where the variable resides. The different scopes of a variable in Java are:
 
@@ -445,7 +441,7 @@ When a variable is declared in a Java program, it is attached to a specific scop
 - `Method scope` - Declared within a method block; only available within the method in which they are declared.
 - `Block scope` - Only exist within the specific control flow block (for, while, etc.)
 
-### 40-2.8 Describe the difference between the stack and the heap.
+### 40 stack vs. heap Describe the difference between the stack and the heap.
 
 To run an application in an optimal way, JVM divides memory into stack and heap memory. Whenever we declare new variables and objects, call a new method JVM designates memory to these operations from either Stack Memory or Heap Space.
 
@@ -518,7 +514,7 @@ To run an application in an optimal way, JVM divides memory into stack and heap 
 
 </table>
 
-### 41-2.9 What is a constructor and how is it different from a method?
+### 41 What is a constructor and how is it different from a method?
 
 A `constructor` is a special method that declares how an object is to be instantiated and initialized from the class "blueprint".
 
@@ -540,9 +536,9 @@ A `constructor` is a special method that declares how an object is to be instant
 - provide no functionality to object
 - automatically called at object creation when a class is instanceated
 
-### 42-2.10 What is the difference between an array and an ArrayList?
+### 42 array vs. ArrayList What is the difference between an array and an ArrayList?
 
-### 43-2.11 What is the difference between an Error and an Exception?
+### 43 Error vs. Exception What is the difference between an Error and an Exception?
 
 Both `Error` and `Exception` extend the `Throwable` class
 
@@ -575,7 +571,7 @@ Exceptions are the conditions that occur at runtime and may cause the terminatio
     - runtime errors
     - eg: `ArrayOutOfBounds`
 
-### 44-2.12 How would you handle an exception?
+### 44 handle exceptions How would you handle an exception?
 
 When risky code is written that has the possibility of throwing an exception, it can be dealt with in one of two ways:
 
@@ -584,7 +580,7 @@ When risky code is written that has the possibility of throwing an exception, it
 
 If the exception is not handled anywhere in the program, it will propagate up through the call stack until it is handled by the JVM which then terminates the program.
 
-### 45-2.13 What is the difference between a checked and an unchecked exception?
+### 45 checked vs. unchecked exception What is the difference between a checked and an unchecked exception?
 
 - Checked exception require mandatory handling:
 
@@ -595,7 +591,7 @@ If the exception is not handled anywhere in the program, it will propagate up th
 
 - Exception-handling is mandatory for any exception class that is not a subclass of either Error or RuntimeException.
 
-### 46-2.14 If you received text input from the user, how would you go about comparing it to a value, like "yes" or "no"?
+### 46 compare strings If you received text input from the user, how would you go about comparing it to a value, like "yes" or "no"?
 
 ```java
 String str1 = "yes";
@@ -603,7 +599,7 @@ String str2 = "no";
 boolean isSame = str1.equals(str2);
 ```
 
-### 47-2.15 What is explicit and implicit casting?
+### 47 casting What is explicit and implicit casting?
 
 `Casting` is the process of converting a data type to another data type.
 
@@ -632,23 +628,23 @@ short s = (short)i;
   - `String` to `int` with `Integer.parseInt(String)`
   - `int` to `String` with `String.valueOf(int)`
 
-### 48-2.16 What are the different scopes in Java?
+### 48 scopes What are the different scopes in Java?
 
 - Instance, or object, scope
 - Class, or static, scope
 - Method scope
 - Block scope
 
-### 49-2.17 What is autoboxing and unboxing?
+### 49 What is autoboxing and unboxing?
 
 - `Boxing` - the process of converting a primitive to its wrapper clas
 - `autoboxing` - Java feature which will automatically convert primitives to wrapper classes implicitly. In case when passing an `int` variable as parameter to a function requesting an `Integer`.
 - `Unboxing` is the reverse - converting a wrapper class to its primitive.
 - Wrapper classes have static helper methods like .parseX() and .valueOf() for explicit primitive conversion.
 
-### 50-2.18 If there was an error in the console when you tried to run your program, how would you debug?
+### 50 If there was an error in the console when you tried to run your program, how would you debug?
 
-### 51-2.19 What are some operations you can perform on a List?
+### 51 list operations What are some operations you can perform on a List?
 
 `List`
 
@@ -723,9 +719,7 @@ The returned List is backed up by the List on which subList was called, so chang
 
 - `sublist(int fromIndex, int toIndex)`
 
-## WK 3
-
-### 52-3.1 Describe inheritance and how would you use it in a project?
+### 52 Describe inheritance and how would you use it in a project?
 
 `Inheritance` is inheriting the common state and behavior of parent class (super class) by its derived class (sub class or child class).
 A sub class can inherit all non-private members from super class, by default.
@@ -750,7 +744,7 @@ class Dog extends Animal {
 }
 ```
 
-### 53-3.2 Describe abstraction and how would you use it in a project?
+### 53 Describe abstraction and how would you use it in a project?
 
 `Abstraction` is an OOP programming principle.
 
@@ -758,7 +752,7 @@ Through abstraction we hide underlying complexity through a simplified interface
 
 example: Shape class, getArea() method
 
-### 54-3.3 Describe polymorphism and how would you use it in a project?
+### 54 Describe polymorphism and how would you use it in a project?
 
 `polymorphism` means "taking on many forms". In OOP polymorphism provides the means to perform a single action in multiple different ways
 
@@ -809,7 +803,7 @@ method overloading - temperature converter working with both integers, doubles o
 
 method overriding - speak method implemented differently in Animal subspecies
 
-### 55-3.4 Describe encapsulation and how would you use it in a project?
+### 55 Describe encapsulation and how would you use it in a project?
 
 - `encapsulation` is a process of wrapping data and methods in a single unit.
 - it is an OOP principle
@@ -829,9 +823,9 @@ When encapsulating your code, certain conventions should be followed:
 EXAMPLE
 employee object, make slary private, setSalary checks valid salary number, getSalary check is user has access rights
 
-### 56-3.5 How is method overriding different from method overloading?
+### 56 How is method overriding different from method overloading?
 
-### 57-3.6 What are the four levels of access we can give to class members? How are they different from one another?
+### 57 access modifiers What are the four levels of access we can give to class members? How are they different from one another?
 
 - `access modifiers` set access level of methods, variables, classes and constructors
 
@@ -842,16 +836,16 @@ Types:
 - `protected`: within package + outside of package through inheritance
 - `private`: only within the class, a class (except a nested class) cannot be private
 
-### 58-3.7 What is the purpose of using getter and setter methods?
+### 58 What is the purpose of using getter and setter methods?
 
-### 59-3.8 Why would you use an interface over an abstract class?
+### 59 Why would you use an interface over an abstract class?
 
 Interfaces have these advantages over class:
 
 - Implementation details do not need to be provided in the interface.
 - A class can only extend one other class, but it can implement as many interfaces as needed.
 
-### 60-3.9 What methods are commonly overridden from the Object class and why?
+### 60 object methods to override What methods are commonly overridden from the Object class and why?
 
 - `equals()`
 - `hashCode()`
@@ -885,20 +879,20 @@ There are a few rules that the method follows:
 
 Finally, the `.finalize()` method is called by the garbage collector when it determines there are no more references to the object. It can be overriden to perform cleanup activities before garbage collection, although it has been deprecated in newer versions of Java.
 
-### 61-3.10 What state and behavior would you define in a parent class but not a subclass?
+### 61 What state and behavior would you define in a parent class but not a subclass?
 
 Example:
 Animal:
 age, name, abstract makeNoise, sleep
 
-### 62-3.11 What state and behavior would you define in a subclass but not in the parent class?
+### 62 What state and behavior would you define in a subclass but not in the parent class?
 
 Example
 Animal:
 age, name, abstract makeNose, sleep
 Dog: growl
 
-### 63-3.12 What are the SOLID design principles and why are they important?
+### 63 What are the SOLID design principles and why are they important?
 
 - SRP - Single Responsibility Principle
 - OCP - Open Closed Principle
@@ -938,7 +932,7 @@ Dog: growl
 - our classes should depend upon interfaces or abstract classes instead of concrete classes and functions
 - if the `OCP (Open Closed Principle)` is the goal of `OO` architecture, `DIP (Dependency Inversion Principle)` is the primary mechanism to achive it
 
-### 64-3.13 What is Maven? Why would we use it?
+### 64 What is Maven? Why would we use it?
 
 `Maven` is a tool that can be used for building and managing any Java-based project.
 
@@ -963,7 +957,7 @@ Some important tags within the pom.xml file include:
   - `<version>`
 - `<plugins>` - for 3rd party plugins that work with Maven
 
-### 65-3.14 What is the SDLC? Why is it important?
+### 65 What is the SDLC? Why is it important?
 
 The `Software Delevopment Life Cycle` (`SDLC`)
 is the application of **standard business practices** to building software applications.
@@ -985,7 +979,7 @@ Stages of SDLC:
 - `Deploy`
 - `Maintain`
 
-### 66-3.15 When would you use an Agile methodology versus Waterfall?
+### 66 agile vs. waterfall When would you use an Agile methodology versus Waterfall?
 
 - when i want to see results faster
 - when i want to be flexible
@@ -1387,7 +1381,13 @@ ResultSet rs = ps.executeQuery(sql);
 
 ### 83-5.2 What is SQL Injection and how can we prevent it using the JDBC?
 
-The exploitation of programming weaknesses in SQL codes to gain access to a database, its resources, and applications
+`SQL Injections` are the exploitation of programming weaknesses in SQL codes to gain access to a database, its resources, and applications.
+
+`PreparedStatement` can be used to prevent SQL injections.
+
+This interface gives us the flexibility of specifying parameters with the ? symbol.
+
+It protects against SQL injection when user input is used by pre-compiling the SQL statement.
 
 ### 84-5.3 What is a foreign key?
 
@@ -1408,6 +1408,15 @@ ALTER TABLE employee ADD FOREIGN KEY (branch_id) REFERENCES Branch(branch_id);
 ```
 
 ### 85-5.4 What is referential integrity?
+
+`REFERENTIAL INTEGRITY` is the relationship between tables.
+
+Referential Integrity:
+
+- the requirement that a foreign key cannot be defined unless its corresponding primary key exists is a referential integrity constraint
+- does not allow the addition of any record in a table that contains the foreign key unless the reference table contains a corresponding primary key.
+- does not allow to deletion of a record in a table that contains the foreign key, to delete the record in the parent table, the corresponding record in the child table should be deleted first. to solve this issue `ON DELETE CASCADE` is used.
+- Other options are to set the foreign key to null or to its default value (only if the default value references an existing value in the primary-key table).
 
 ### 86-5.5 What is normalization?
 
