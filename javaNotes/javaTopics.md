@@ -489,3 +489,174 @@ _You should be familiar with GET, POST, PUT, and DELETE_
 ### HTTP status codes
 
 _You need to know what each category of status represents as well as common status codes (200, 201, 400, 404, 500)_
+
+Week 6 Assessment
+
+### functional interfaces
+
+- Functional interfaces are interfaces that have only one abstract method.
+  This method is what lambdas are implementing when they are declared - the parameter types and return types of the lambda must match the functional interface method declaration.
+- The Java 8 JDK comes with many built-in functional interfaces: `forEach()` method of the `Iterable interface`
+
+```java
+interface MyFunctionalInt {
+  int doMath(int number);
+}
+
+public class Execute {
+  public static void main(String[] args) {
+    MyFunctionalInt doubleIt = n -> n * 2;
+    MyFunctionalInt subtractIt = n -> n - 2;
+    int result1 = doubleIt.doMath(2);
+    int result2 = subtractIt.doMath(8);
+    System.out.println(result1); // 4
+    System.out.println(result2); // 6
+    }
+}
+```
+
+### lambdas
+
+_Note: You will not be assessed over anonymous inner classes_
+
+Are expressions with the syntax:
+
+```java
+parameter(s) -> expression
+```
+
+- are used to implement the abstract method of a `functional interface`
+- they introduce some important aspects of `functional programming` to Java
+- are one of the biggest new features of Java 8
+
+### method references
+
+_Note: You will not be assessed over “Instance methods of an arbitrary object of a particular type”
+Note: You will not be assessed over the use of streams (The Stream API) this week_
+
+Method references are a special type of lambda expressions.
+
+There are four kinds of method references:
+
+- Static methods
+
+```java
+ContainingClass::staticMethodName
+```
+
+```java
+List<String> messages = Arrays.asList("hello", "revature" "associates!");
+// simple lambda expression
+messages.forEach(word -> StringUtils.capitalize(word));
+// method reference syntax
+messages.forEach(StringUtils::capitalize);
+```
+
+- Instance methods of particular objects
+
+```java
+ContainingObject::instanceMethodName
+```
+
+- Instance methods of an arbitrary object of a particular type
+
+```java
+ContainingType::methodName
+String::toString
+```
+
+- Constructor
+
+```java
+ClassName::new
+```
+
+### Javalin
+
+`Javalin` is a very lightweight `web framework` for Java 8 (and later) and Kotlin.
+
+- It supports modern features such as HTTP/2, WebSocket, and asynchronous requests.
+- Javalin is servlet-based, and its main goals are simplicity, a great developer experience, and first-class interoperability between Java and Kotlin.
+- Javalin never extends classes and rarely implements interfaces
+
+To use Javalin add it as a dependency to `POM.xml`:
+
+```xml
+<dependency>
+    <groupid>io.javalin</groupid>
+    <artifactid>javalin</artifactid>
+    <version>2.5.0</version>
+</dependency>
+```
+
+Javalin "Hello World":
+
+```java
+import io.javalin.Javalin;
+
+public static void main(String[] args) {
+    Javalin app = Javalin.create().start(7000);
+    app.get("/", ctx -> ctx.result("Hello World"));
+}
+```
+
+### Configuration
+
+_You will not be assessed over custom configuration, customer server, or custom jetty handlers_
+
+You need to be familiar with basic request/response methods that you can use with the context object like:
+
+- result()
+- json()
+- status()
+- body()
+
+_You do not need to know all the methods of the context object_
+
+_You do not need to know about Future objects_
+
+- Javalin runs on an embedded Jetty.
+- Javalin can be used to start and stop the server.
+- If you don’t need any custom configuration, you can quick-start a server in Javalin
+- You can customize the embedded server in Javalin
+- You can configure your embedded jetty-server and Javalin will attach it’s own handlers to the end of the chain.
+
+### JSON
+
+_ignore implementation, the second part of it is in JavaScript_
+
+### Introduction to REST
+
+_You will not be assessed over the example in the Implementation section (we will not cover Servlets)_
+
+### REST resources and url construction
+
+### Exposing and Consuming RESTful API endpoints
+
+_You will not be assessed over implementation code of steps 3 and 4 (Bennu Framework)_
+
+### Mockito
+
+#### Dependency Injection using @Mock, @InjectMock, and @openMocks
+
+NOTE: @openMocks is the syntax used in newer versions of Mockito and it replaces @initMocks. Both do the same thing.
+
+#### using when() and thenReturn()
+
+#### know what a Spy is conceptually
+
+#### using verify()
+
+### Logback
+
+#### Real World Application is supplementary
+
+#### Architecture
+
+#### Logging Levels
+
+#### Basic Configuration
+
+#### Creating and Using a Logger
+
+WK7

@@ -1,3 +1,5 @@
+wk1 1-32, wk2 33-51, wk3 52-71, wk4 72-81, wk5 82-93
+
 ### 1 assign vs declare What is the difference between assigning and declaring a variable?
 
 #### Declare
@@ -362,7 +364,7 @@ Calculate triangle area.
 
 ### 33 What is a package and why would we use one?
 
-- a `package` is a collection of classes, interfaces, and enums in a hierarchial manner.
+- a `package` is a collection of classes, interfaces, and enums in a hierarchical manner.
 - why?
 
   - keep your classes separate from the classes in the Java API
@@ -650,12 +652,17 @@ short s = (short)i;
 
 - interface
 - implements collection interface
-- collection of elemnents of the same type
+- collection of elements of the same type
 - preserves the order in which elements are inserted
-- duplicate entries are allowed. - - - elements are accessed by their index, which begins with 0
+- duplicate entries are allowed
+- elements are accessed by their index, which begins with 0
 
-List interface includes operations
-for the following:
+List interface includes operations:
+
+- positional access operations
+- search operations
+- iteration operations
+- range-view operations
 
 #### 1. Positional access operations
 
@@ -685,7 +692,9 @@ Inherited from `Iterator`
 - `hasNext()`
 - `next()` - moves cursor forward
 - `remove()`
-  Added methods:
+
+Added methods:
+
 - `hasPrevious()`
 - `previous()` - moves cursor backward
 
@@ -1074,7 +1083,6 @@ In `Maven` the project coordinates below together uniquely identify a specific v
 `<project>` - this is the root tag of the file
 
 - `<modelVersion>` - defining which version of the page object model to be used
-- `<name>` - name of the project
 - `<properties>` - project-specific settings
 - `<dependencies>`: this is where you put your Java dependencies you want to use. Each one needs a
   - `<dependency>` which has:
@@ -1086,26 +1094,31 @@ In `Maven` the project coordinates below together uniquely identify a specific v
 Here's an example:
 
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
+    <!-- project metadata-->
+    <groupId>org.revature</groupId>
+    <artifactId>PEPLabsChallenges</artifactId>
+    <version>0.1</version>
 
-  <groupId>com.revature.app</groupId>
-  <artifactId>my-app</artifactId>
-  <version>1</version>
+    <!-- maven allows us to change the version of java we'd like to use -->
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-artifact</artifactId>
-      <version>${mavenVersion}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-core</artifactId>
-      <version>${mavenVersion}</version>
-    </dependency>
-  </dependencies>
-
+    <!--
+        maven allows us to use external dependencies from mvn repository.
+    -->
+    <dependencies>
+        <!-- junit, our framework for writing unit tests.-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+        </dependency>
+    </dependencies>
 </project>
 ```
 
@@ -1190,34 +1203,50 @@ FILTERING: The filtering clause of a select statement is a `WHERE` clauses that 
 - Compound
 - Logical
 
-### What is the JDBC API and the benefits of using it?
+### 79 What is the JDBC API and the benefits of using it?
 
-`JDBC` stands for `Java Database Connectivity`. It is a relatively low-level API used to write Java code that interacts with relational databases via SQL.
+`Java Database Connectivity` (`JDBC`)
 
-Benefit: It is database agnostic. It uses database drivers which implement the interfaces defined in the JDBC API for the given database.
+- low-level API
+- interacts with relational databases via SQL
+- database agnostic
+- uses database drivers which implement the interfaces defined in the JDBC API for the given database
 
-In order to interact with a database, we need to do several things:
+How to use the `JDBC`
 
-#### Register the JDBC driver
+1. register connection - as a `dependency` except for Oracle
+2. open connection - need url, username & password
+3. execute sql statements - statement, preparedStatement,
 
-Many JDBC drivers are available through `Maven`'s central repository and can be added as a dependency in the `pom.xml` file. (Oracle is an exception.)
-
-#### Open a connection using
-
-- We can use the DriverManager class to get a Connection to the database, given that we have the JDBC URL, username, and password.
-- Generally these parameters should be stored in an external configuration file that can be loaded dynamically and changed without affecting the application code.
-  -JDBC String
-  The database `URL` is an address pointing to the database to be used, also known as the `JDBC String`. The format of this URL varies between database vendors, as shown in the table below:
-- It's always a good idea to close your resources - below the try-with-resources syntax is used to automatically close the Connection being created after the block ends.
+#### 1. Open a connection
 
 ```java
-try (Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD)) {
+// try-with-resources syntax
+try (
+  Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD)) {
   // more code goes here
 } catch (SQLException e) {}
 ```
 
-- Autocommit mode
-  By default, when a connection is created it is in auto-commit mode, so every SQL statement acts as a transaction and is committed immediately after execution. In order to manually group statements into a transaction, simply call:
+- use the DriverManager class to get a Connection
+- need URL, username, and password.
+- these parameters should be stored in an external configuration file
+- close your resources
+- try-with-resources syntax is used to automatically close the Connection being created after the block ends
+
+`JDBC String`
+
+- the database `URL`
+- the address pointing to the database to be used
+- the format of this URL varies between database vendors, in `MySQL`
+  - JDBC Driver: `com.mysql.jdbc.Driver`
+  - URL format: `jdbc:mysql://hostname/databaseName`
+
+`Autocommit mode`
+
+- default
+- every SQL statement acts as a transaction and is committed immediately after execution
+- to manually group statements into a transaction, simply call:
 
 ```java
 Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
@@ -1227,13 +1256,12 @@ conn.setAutoCommit(false);
 conn.commit();
 ```
 
-#### Execute SQL statements
+#### 2. Execute SQL statements
 
-The results that are returned in a `ResultSet` object.
+- use connection object to execute sql statements
+- results that are returned in a `ResultSet` object
 
 ##### Statement
-
-Once we have the Connection object, we can write our SQL and execute it:
 
 ```java
 Statement stmt = conn.createStatement();
@@ -1243,8 +1271,6 @@ ResultSet rs = stmt.executeQuery(sql);
 
 ##### PreparedStatement
 
-Alternatively, a `PreparedStatement` can be used. This interface gives us the flexibility of specifying parameters with the `?` symbol. It also **protects against SQL injection** when user input is used by pre-compiling the SQL statement.
-
 ```java
 PreparedStatement ps = conn.prepareStatement();
 String sql = "SELECT * FROM employees WHERE age > ? AND location = ?";
@@ -1253,16 +1279,17 @@ ps.setString(2, "New York");
 ResultSet rs = ps.executeQuery(sql);
 ```
 
-##### CallableStatement
+- pre-compiled SQL statement
+- protects against SQL injection
 
 > The Statement and PreparedStatement also have additional methods for sending SQL, including:
 
 - `.execute()` - for any kind of SQL statement, returns a boolean
 - `.executeUpdate()` - for DML statements, returns an int which is the number of rows affected
 
-#### Retreiving Results
+#### 3. Use ResultSet
 
-Results from an SQL query are returned as a `ResultSet``, which can be iterated over to extract the data:
+`ResultSet`is an object which represents a set of data returned from a database as a result of a query input. Can be iterated over.
 
 ```java
 List<Employee> empList = new ArrayList<>();
@@ -1277,25 +1304,22 @@ while (rs.next()) {
 
 The `DAO` (`Data Access Objects`) design pattern logically separates the code that accesses the database into Data Access Objects.
 
-- To use the DAO design pattern, define an interface which declares methods through which the database will be queried.
-- Then, concrete implementation classes can implement the interface and contain the data access logic to return the required data.
+1. DAO interface with methods to query the database
+2. db specific implementation classes implement our interface query the database and return the required data
 
-### Example
+EXAMPLE
 
-If we have an Employee table in our database we'd like to query, we would create a EmployeeDAO interface:
+1. DAO interface
 
 ```java
 public interface EmployeeDAO {
   // define some CRUD (Create, Read, Update, Delete) operations here
   public List<Employee> getAllEmployees();
-  public List<Employee> getEmployeesByLocation(String location);
-  public void updateEmployeeById(int id);
-  public void deleteEmployeeById(int id);
   public void addEmployee(Employee e);
 }
 ```
 
-This interface would be implemented for a specific database - e.g. Oracle:
+2. Oracle specific class implements DAO interface
 
 ```java
 public class EmployeeDAOImplOracle implements EmployeeDAO {
@@ -1304,35 +1328,31 @@ public class EmployeeDAOImplOracle implements EmployeeDAO {
     // JDBC code here...
 	return list;
   };
-  public List<Employee> getEmployeesByLocation(String location) {
-    List<Employee> list = new ArrayList<>();
-    // JDBC code here...
-	return list;
-  };
-  public void updateEmployeeById(int id) {
-    // JDBC code here...
-  };
-  public void deleteEmployeeById(int id) {
-    // JDBC code here...
-  };
   public void addEmployee(Employee e) {
     // JDBC code here...
   };
 }
 ```
 
-Now whenever we need to query the Employee table in the database, we have a simple, clean interface which abstracts the data access logic:
+3. Query DB through DAO
 
 ```java
+// query db trhough DAO
 EmployeeDAO dao = new EmployeeDAOImplOracle();
-List<Employee> allEmpls = dao.getAllEmployees();
-allEmpls.forEach( e -> System.out.println(e));
 
-List<Employee> NYEmpls = dao.getEmployeesByLocation("New York");
-NYEmpls.forEach( e -> System.out.println(e));
+List<Employee> allEmpls = dao.getAllEmployees();
+
+// use resultset
+List<Employee> empList = new ArrayList<>();
+while (allEmpls.next()) {
+  int id = rs.getInt("id");
+  String name = rs.getString("first_name");
+  empList.add(new Employee(id, name));
+}
+allEmpls.forEach( e -> System.out.println(e));
 ```
 
-### Using ResultSet
+Use the ResultSet
 
 _Note: You will not be assessed over Callable Statements / Stored Procedures this week
 Note: You will not be assessed over the Persisting Data with JDBC topic_
@@ -1342,6 +1362,42 @@ Note: You will not be assessed over the Persisting Data with JDBC topic_
 - URL (`JDBC String`)
 - username
 - password
+
+```java
+// try-with-resources syntax
+try (
+  Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD)) {
+  // more code goes here
+} catch (SQLException e) {}
+```
+
+- use the DriverManager class to get a Connection
+- need URL, username, and password.
+- these parameters should be stored in an external configuration file
+- close your resources
+- try-with-resources syntax is used to automatically close the Connection being created after the block ends
+
+`JDBC String`
+
+- the database `URL`
+- the address pointing to the database to be used
+- the format of this URL varies between database vendors, in `MySQL`
+  - JDBC Driver: `com.mysql.jdbc.Driver`
+  - URL format: `jdbc:mysql://hostname/databaseName`
+
+`Autocommit mode`
+
+- default
+- every SQL statement acts as a transaction and is committed immediately after execution
+- to manually group statements into a transaction, simply call:
+
+```java
+Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
+conn.setAutoCommit(false);
+
+// execute some SQL statements...
+conn.commit();
+```
 
 ### 82 statement vs. preparedStatement What is the difference between a Simple and Prepared JDBC statement?
 
@@ -1416,6 +1472,16 @@ Referential Integrity:
 
 `Normalization` is the process of organizing the data and the attributes of a database. it is performed to reduce the data redundancy.
 
+1. `1NF` First Normal Form
+
+- Each table cell should contain a single value.
+- Each record needs to be unique.
+
+2. `2NF` Second Normal Form
+
+- Be in 1NF
+- Single Column Primary Key that does not functionally dependant on any subset of candidate key relation
+
 ### 87 What is multiplicity?
 
 `Multiplicity` defines the relationship between two tables
@@ -1429,7 +1495,54 @@ There are 4 different multiplicity relationships
 
 ### 88 Describe what a join is and explain the different types of joins we can create.
 
+#### Inner
+
+`INNER JOIN` restricts records retrieval from Table1 and Table2 to those that satisfy the join requirement.
+
+#### Left
+
+`LEFT JOIN` returns all records from the left table, and the records that match the condition from the right table.
+
+#### Right
+
+`RIGHT JOIN` returns all records from the right table, and the records that match the condition from the left table.
+
+#### Cross
+
+`MySQL` `CROSS JOIN`, commonly knows as a `CARTESIAN JOIN`, returns all possible row combinations from each table.
+
+If no other condition is provided, the result set is obtained by multiplying each row of table1 with all rows in table2.
+
+If there is a relationship between two tables and we add a WHERE clause, then the CROSS JOIN will produce the same result as INNER JOIN.
+
+Real world application includes calculating all possibilities when launching a space rocket.
+
+#### Self
+
+`SELF JOIN` is an SQL statement which is used to intersect or join a table in the database to itself.
+
 ### 89 What is the difference between a join and a set operation?
+
+SET Operators are specific type of operators which are used to combine the result of two queries.
+
+#### UNION
+
+The `UNION` command is used to combine more than one SELECT query results into a single query contain rows from all the select queries.
+
+- The number of columns and data types in the SELECT statements must be the same in order for the UNION command to work.
+- `MySQL` uses the `DISTINCT` clause as the default when executing UNION
+
+#### UNION ALL
+
+The `UNION ALL` clause is used to display all even the duplicate rows in UNION query.
+
+#### INTERSECT
+
+The `INTERSECT` clause is used to display all records which are common between two tables.
+
+#### MINUS
+
+The `MINUS` clause ( also called as `EXCEPT` clause in some books) is used to display the records from table 1 while removing the records which are also present in table 2.
 
 ### 90 What is a view and why is it useful?
 
@@ -1513,3 +1626,180 @@ Common Status Codes:
 - 400 - Bad Request, client error
 - 404 - Not Found
 - 500 - Internal Server Error
+
+# WK 6
+
+## 94 What is a functional interface and why would we use one?
+
+`Functional interfaces` are interfaces that have only one `abstract method`.
+
+## 95 What is a lambda? Give an example of how we can use one.
+
+- expression
+- `forEach()`
+
+## 96 What is a method reference?
+
+Method references are a special type of lambda expressions.
+
+There are four kinds of method references:
+
+- Static methods
+
+```java
+ContainingClass::staticMethodName
+```
+
+```java
+List<String> messages = Arrays.asList("hello", "revature" "associates!");
+// simple lambda expression
+messages.forEach(word -> StringUtils.capitalize(word));
+// method reference syntax
+messages.forEach(StringUtils::capitalize);
+```
+
+- Instance methods of particular objects
+
+```java
+ContainingObject::instanceMethodName
+```
+
+- Instance methods of an arbitrary object of a particular type
+
+```java
+ContainingType::methodName
+String::toString
+```
+
+- Constructor
+
+```java
+ClassName::new
+```
+
+## 97 Describe Javalin.
+
+`Javalin` is a very lightweight `web framework` for Java 8 (and later) and Kotlin.
+
+- It supports modern features such as HTTP/2, WebSocket, and asynchronous requests.
+- Javalin is servlet-based, and its main goals are simplicity, a great developer experience, and first-class interoperability between Java and Kotlin.
+- Javalin never extends classes and rarely implements interfaces
+
+To use Javalin add it as a dependency to `POM.xml`:
+
+```xml
+<dependency>
+    <groupid>io.javalin</groupid>
+    <artifactid>javalin</artifactid>
+    <version>2.5.0</version>
+</dependency>
+```
+
+Javalin "Hello World":
+
+```java
+import io.javalin.Javalin;
+
+public static void main(String[] args) {
+    Javalin app = Javalin.create().start(7000);
+    app.get("/", ctx -> ctx.result("Hello World"));
+}
+```
+
+## 98 What is JSON? When would we work with JSON in our application?
+
+## 99 What is a handler?
+
+The before-, endpoint- and after-handlers require three parts:
+
+- A verb, one of: before, get, post, put, patch, delete, after (… head, options, trace, connect)
+- A path, ex: /, /hello-world, /hello/{name}
+- A handler implementation, ex ctx -> { ... }, MyClass implements Handler, etc
+  The Handler interface has a void return type. You use a method like ctx.result(result), ctx.json(obj), or ctx.future(future) to set the response which will be returned to the user.
+
+#### handler types:
+
+1.  `before-handlers`
+
+```java
+app.before(ctx -> {
+  // runs before all requests
+});
+app.before("/path/*", ctx -> {
+  // runs before request to /path/*
+});
+```
+
+2. `after-handlers`
+
+Run after every request (even if an exception occurred). You might know after-handlers as filters, interceptors, or middleware from other libraries.
+
+```java
+app.after(ctx -> {
+    // run after all requests
+});
+app.after("/path/*", ctx -> {
+    // runs after request to /path/*
+});
+```
+
+3.  `endpoint-handlers`
+
+    - the main handler type, and defines your API. You can add a GET handler to server data to a client, or a POST handler to receive some data. Common methods are supported directly on the Javalin class (GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS), uncommon operations (TRACE, CONNECT) are supported via Javalin#addHandler
+
+    - endpoint-handlers are matched in the order they are defined.
+
+- Handler paths can include path-parameters. These are available via ctx.pathParam("key"):
+
+```java
+app.get("/hello/{name}", ctx -> { // the {} syntax does not allow slashes ('/') as part of the parameter
+    ctx.result("Hello: " + ctx.pathParam("name"));
+});
+```
+
+- handler paths can also include wildcard parameters:
+
+```java
+app.get("/path/*", ctx -> { // will match anything starting with /path/
+    ctx.result("You are here because " + ctx.path() + " matches " + ctx.matchedPath());
+});
+```
+
+However, you cannot extract the value of a wildcard. Use a slash accepting path-parameter (`<param-name>`) if you need this behavior.
+
+#### `Context Object`
+
+The Context object provides you with everything you need to handle a http-request. It contains the underlying servlet-request and servlet-response, and a bunch of getters and setters.
+
+Request methods
+
+```java
+body() // request body as string
+```
+
+Response methods
+
+```java
+result("result") // set result stream to specified string (overwrites any previously set result)
+result(byteArray) // set result stream to specified byte array (overwrites any previously set result)
+result(inputStream) // set result stream to specified input stream (overwrites any previously set result)
+status(code)                            // set the response status code
+status()                                // get the response status code
+json(obj) // calls result(jsonString), and also sets content type to json
+```
+
+## 100 What is Mockito and why would we use it?
+
+## 101 What is logging and what are the benefits of it?
+
+## 102 logging levels Describe the different logging levels and how they should be used.
+
+## 103 What is REST and what are its key constraints?
+
+## 104 What is a mock?
+
+## 105 REST naming URL What are some best practices for naming resource URLs using REST?
+
+## 106 What is an endpoint?
+
+## 107 login configuration How would we configure logging in an application?
