@@ -1161,6 +1161,13 @@ Here's an example:
 
 In MySQL, a table stores and organizes data in columns and rows as defined during table creation.
 
+TABLE commands:
+
+- `CREATE TABLE`
+- `DROP TABLE`
+- `TRUNCATE TABLE`
+- `ALTER TABLE`
+
 ### 76 What are constraints and can you describe a few constraints?
 
 `Constraints` are used to define a database schema and are the backbone for defining `integrity constraints` of the schema. They help validate data beyond just a simple data type.
@@ -1193,15 +1200,25 @@ create table content_meta (
 
 ### 77 where clause Why would I use the WHERE clause?
 
-FILTERING: The filtering clause of a select statement is a `WHERE` clauses that defines how selected rows are filtered from the table. `WHERE` clauses use logical operators to select records that meet specific conditions.
+FILTERING: The filtering clause of a select statement is a `WHERE` clause that defines how selected rows are filtered from the table. `WHERE` clauses use logical operators to select records that meet specific conditions.
 
 ### 78 sql operators What are some operators that can be used in SQL?
 
-- Arithmetic
-- Bitwise
-- Comparison
-- Compound
+- Arithmetic (`+`, `-`, `*`,`/`,`%`)
+- Bitwise (`&`, `|`, `^`)
+- Comparison (`=`, `<`, `>`, `>=`, `<=`, `<>`)
+- Compound (`+=`, `-=`, ...)
 - Logical
+  - `ALL` - TRUE if all of the subquery values meet the condition
+  - `AND` - TRUE if all the conditions separated by AND is TRUE
+  - `ANY` - TRUE if any of the subquery values meet the condition
+  - `BETWEEN` - TRUE if the operand is within the range of comparisons
+  - `EXISTS` - TRUE if the subquery returns one or more records
+  - `IN` - TRUE if the operand is equal to one of a list of expressions
+  - `LIKE` - TRUE if the operand matches a pattern
+  - `NOT` - Displays a record if the condition(s) is NOT TRUE
+  - `OR` TRUE if any of the conditions separated by OR is TRUE
+  - `SOME` TRUE if any of the subquery values meet the condition
 
 ### 79 What is the JDBC API and the benefits of using it?
 
@@ -1325,8 +1342,17 @@ public interface EmployeeDAO {
 public class EmployeeDAOImplOracle implements EmployeeDAO {
   public List<Employee> getAllEmployees() {
     List<Employee> list = new ArrayList<>();
-    // JDBC code here...
-	return list;
+
+    // JDBC code here
+    Statement stmt = conn.createStatement();
+    String sql = "SELECT * FROM employees";
+    ResultSet rs = stmt.executeQuery(sql);
+    while (rs.next()) {
+      int id = rs.getInt("id");
+      String name = rs.getString("first_name");
+      list.add(new Employee(id, name));
+
+    return list;
   };
   public void addEmployee(Employee e) {
     // JDBC code here...
@@ -1337,22 +1363,11 @@ public class EmployeeDAOImplOracle implements EmployeeDAO {
 3. Query DB through DAO
 
 ```java
-// query db trhough DAO
 EmployeeDAO dao = new EmployeeDAOImplOracle();
 
 List<Employee> allEmpls = dao.getAllEmployees();
-
-// use resultset
-List<Employee> empList = new ArrayList<>();
-while (allEmpls.next()) {
-  int id = rs.getInt("id");
-  String name = rs.getString("first_name");
-  empList.add(new Employee(id, name));
-}
 allEmpls.forEach( e -> System.out.println(e));
 ```
-
-Use the ResultSet
 
 _Note: You will not be assessed over Callable Statements / Stored Procedures this week
 Note: You will not be assessed over the Persisting Data with JDBC topic_
@@ -1435,9 +1450,16 @@ ResultSet rs = ps.executeQuery(sql);
 
 `PreparedStatement` can be used to prevent SQL injections.
 
-This interface gives us the flexibility of specifying parameters with the ? symbol.
+```java
+PreparedStatement ps = conn.prepareStatement();
+String sql = "SELECT * FROM employees WHERE age > ? AND location = ?";
+ps.setInt(1, 40);
+ps.setString(2, "New York");
+ResultSet rs = ps.executeQuery(sql);
+```
 
-It protects against SQL injection when user input is used by pre-compiling the SQL statement.
+- specify parameters with the ? symbol
+- protects against SQL injection when user input is used by pre-compiling the SQL statement
 
 ### 84 What is a foreign key?
 
@@ -1486,12 +1508,19 @@ Referential Integrity:
 
 `Multiplicity` defines the relationship between two tables
 
-- one to one
-- one to many
-- many to one
-- many to many
-
 There are 4 different multiplicity relationships
+
+- one to one
+  - implementation: the table that references the other table must have a foreign key column to the referenced table. This column must have a UNIQUE constraint applied to it.
+  - example: student - backpack
+- one to many
+  - implementation: the "many" table would have a foreign key to the "one" table
+  - example: albums - songs
+- many to one
+  - same as one to many
+- many to many
+  - implementation: a third table needs to be created (called a junction table) that has a foreign key to both tables
+  - example: doctor -patient
 
 ### 88 Describe what a join is and explain the different types of joins we can create.
 
