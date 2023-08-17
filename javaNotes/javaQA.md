@@ -1154,8 +1154,8 @@ Here's an example:
 ### 74 What is a RDBMS?
 
 - An RDBMS is a data storage system based on a relational model
-- data that is related to a particular object is stored in tables with each entry being represented as a row
-- and each data point is a column in the row that is validated by a set of constraints
+- RDBMS manages data by storing them in tables.
+- uses Structured Query Language (SQL)
 
 ### 75 tables Describe relational database tables.
 
@@ -1678,80 +1678,18 @@ Common Status Codes:
 
 ## 94 What is a functional interface and why would we use one?
 
-`Functional interfaces` are interfaces that have only one `abstract method`.
+functional interfaces
 
 ## 95 What is a lambda? Give an example of how we can use one.
 
-- expression
-- `forEach()`
+lambda
 
 ## 96 What is a method reference?
 
-Method references are a special type of lambda expressions.
-
-There are four kinds of method references:
-
-- Static methods
-
-```java
-ContainingClass::staticMethodName
-```
-
-```java
-List<String> messages = Arrays.asList("hello", "revature" "associates!");
-// simple lambda expression
-messages.forEach(word -> StringUtils.capitalize(word));
-// method reference syntax
-messages.forEach(StringUtils::capitalize);
-```
-
-- Instance methods of particular objects
-
-```java
-ContainingObject::instanceMethodName
-```
-
-- Instance methods of an arbitrary object of a particular type
-
-```java
-ContainingType::methodName
-String::toString
-```
-
-- Constructor
-
-```java
-ClassName::new
-```
+method references
 
 ## 97 Describe Javalin.
-
-`Javalin` is a very lightweight `web framework` for Java 8 (and later) and Kotlin.
-
-- It supports modern features such as HTTP/2, WebSocket, and asynchronous requests.
-- Javalin is servlet-based, and its main goals are simplicity, a great developer experience, and first-class interoperability between Java and Kotlin.
-- Javalin never extends classes and rarely implements interfaces
-
-To use Javalin add it as a dependency to `POM.xml`:
-
-```xml
-<dependency>
-    <groupid>io.javalin</groupid>
-    <artifactid>javalin</artifactid>
-    <version>2.5.0</version>
-</dependency>
-```
-
-Javalin "Hello World":
-
-```java
-import io.javalin.Javalin;
-
-public static void main(String[] args) {
-    Javalin app = Javalin.create().start(7000);
-    app.get("/", ctx -> ctx.result("Hello World"));
-}
-```
+Javalin
 
 ## 98 What is JSON? When would we work with JSON in our application?
 

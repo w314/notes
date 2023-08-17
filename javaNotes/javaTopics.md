@@ -555,7 +555,7 @@ Common Status Codes:
 
 Week 6 Assessment
 
-### functional interfaces
+## functional interfaces
 
 - have only one abstract method.
 - are used with `lambda` expression (the parameter types and return types of the lambda must match the functional interface method declaration)
@@ -586,15 +586,21 @@ public class Execute {
 
 _Note: You will not be assessed over anonymous inner classes_
 
-Are expressions with the syntax:
+- are used to implement the abstract method of a `functional interface`
+- inside the `lambda` expression `this` refers to the enclosing class of the lambda expression
+- they introduce some important aspects of `functional programming` to Java
+
+syntax:
 
 ```java
-parameter(s) -> expression
+() -> 42;
+(int x, int y) -> x + y;
+(int x, int y) -> {
+  System.out.prinln("printing something");
+  return x + y;
+}
+myArray.forEach(n -> System.out.println(n));
 ```
-
-- are used to implement the abstract method of a `functional interface`
-- they introduce some important aspects of `functional programming` to Java
-- are one of the biggest new features of Java 8
 
 ### method references
 
@@ -605,11 +611,15 @@ Method references are a special type of lambda expressions.
 
 There are four kinds of method references:
 
-- Static methods
+- static methods
+- instance method of a particular object
+- instance method of a particular type
+- constructor
 
-```java
-ContainingClass::staticMethodName
-```
+1. Static methods
+
+- syntax: `ContainingClass::staticMethodName`
+- example: `StringUtils::capitalize`
 
 ```java
 List<String> messages = Arrays.asList("hello", "revature" "associates!");
@@ -619,32 +629,32 @@ messages.forEach(word -> StringUtils.capitalize(word));
 messages.forEach(StringUtils::capitalize);
 ```
 
-- Instance methods of particular objects
+2. instance methods of particular objects
 
-```java
-ContainingObject::instanceMethodName
-```
+- syntax: `ContainingObject::instanceMethodName`
+- example:
 
-- Instance methods of an arbitrary object of a particular type
+3. Instance methods of an arbitrary object of a particular type
 
-```java
-ContainingType::methodName
-String::toString
-```
+- syntax: `ContainingType::methodName`
+- example: `String::toString`
 
-- Constructor
+4. Constructor
 
-```java
-ClassName::new
-```
+- syntax: `ClassName::new`
 
-### Javalin
+## Javalin
 
 `Javalin` is a very lightweight `web framework` for Java 8 (and later) and Kotlin.
 
-- It supports modern features such as HTTP/2, WebSocket, and asynchronous requests.
-- Javalin is servlet-based, and its main goals are simplicity, a great developer experience, and first-class interoperability between Java and Kotlin.
-- Javalin never extends classes and rarely implements interfaces
+- It supports modern features such as:
+  - HTTP/2
+  - WebSocket
+  - asynchronous requests.
+- `servlet-based`
+- simple
+- has first-class interoperability between Java and `Kotlin`
+- never extends classes and rarely implements interfaces
 
 To use Javalin add it as a dependency to `POM.xml`:
 
