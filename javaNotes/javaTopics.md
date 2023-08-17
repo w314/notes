@@ -482,35 +482,102 @@ Views, which are a type of virtual tables.
 
 ### HTTP Introduction
 
+`HTTP` (`HyperText Transfer Protocol`) is a technique of transmitting data in a particular format, primarily between a server and a
+
+HTTP works by a client making a connection to a `server`, sending a `request`, and receiving a `response`
+
+The data tranmitted can be:
+
+- `hypertext` - A text documents that have the special ability to link to one another.
+- `hypermedia` - hypertext documents that have the ability to show multiple kinds of media
+
+A request contains:
+
+- the `method` being used
+- the `URL` where the target is
+- version of HTTP is being used
+- Optional information to help the server with the request (called `headers`)
+- For some methods, a `body` which contains some resources (ex.: files to be uploaded)
+
+A response contains:
+
+- version of HTTP is being used
+- status code reflecting the outcome of the request
+- status message which is shorthand and less descriptive than the status code
+- Optional information to detail what happened with the request (called `headers` again)
+- For some methods, a body which contains some resource (ex. file to be downloaded)
+
 ### HTTP verbs
 
 _You should be familiar with GET, POST, PUT, and DELETE_
+
+- GET
+  - used to retrieve data from a server at the specified resource
+  - does not modifying any resources
+  - safe and `idempotent` method
+- POST
+  - used to send data to the API server to create or update a resource
+  - the data sent to the server is stored in the request body of the HTTP request
+  - `non-idempotent`
+- PUT
+  - similar to POST, PUT requests are used to send data to the API to update or create a resource
+  - `idempotent`, calling the same PUT request multiple times will always produce the same result
+  - when a PUT request creates a resource the server will respond with a 201 (Created), and if the request modifies existing resource the server will return a 200 (OK) or 204 (No Content)
+- HEAD
+- DELETE
+
+  - deletes the resource at the specified URL
+
+- PATCH
+- OPTIONS
 
 ### HTTP status codes
 
 _You need to know what each category of status represents as well as common status codes (200, 201, 400, 404, 500)_
 
+HTTP Status Codes whether a specific HTTP request has been successfully completed.
+
+Responses are grouped in five classes:
+
+- Informational responses (100–199)
+- Successful responses (200–299)
+- Redirection messages (300–399)
+- Client error responses (400–499)
+- Server error responses (500–599)
+
+Common Status Codes:
+
+- 200 - OK, success
+- 201 - Created
+- 400 - Bad Request, client error
+- 404 - Not Found
+- 500 - Internal Server Error
+
 Week 6 Assessment
 
 ### functional interfaces
 
-- Functional interfaces are interfaces that have only one abstract method.
-  This method is what lambdas are implementing when they are declared - the parameter types and return types of the lambda must match the functional interface method declaration.
+- have only one abstract method.
+- are used with `lambda` expression (the parameter types and return types of the lambda must match the functional interface method declaration)
+- a way of introducing functional programming to Java
 - The Java 8 JDK comes with many built-in functional interfaces: `forEach()` method of the `Iterable interface`
 
+We can also use functional interfaces as types to which we can assign lambda functions, like so:
+
 ```java
+// declare functional interface
 interface MyFunctionalInt {
   int doMath(int number);
 }
 
 public class Execute {
   public static void main(String[] args) {
+    // use functional interface as types and assign lambda function to them
     MyFunctionalInt doubleIt = n -> n * 2;
     MyFunctionalInt subtractIt = n -> n - 2;
-    int result1 = doubleIt.doMath(2);
-    int result2 = subtractIt.doMath(8);
-    System.out.println(result1); // 4
-    System.out.println(result2); // 6
+
+    int result1 = doubleIt.doMath(2); // result1 = 4
+    int result2 = subtractIt.doMath(8); // result2 = 6
     }
 }
 ```

@@ -871,7 +871,7 @@ The `equals(Object o)` method compares two Objects. The == operator also compare
 In Object class `equals()` is true if we compare the same instance, for value objects we may want to compare based on property values.
 
 - two instances of _Person_ with same name and birthday should be different
-- we may want to two instances of _Money_ with same ammount and currancy be the same, in this case we have to change both the `equals()` and `hashCode()` methods
+- we may want to two instances of _Money_ with same amount and currency be the same, in this case we have to change both the `equals()` and `hashCode()` methods
 
 #### `hashCode()`
 
@@ -1465,8 +1465,8 @@ ResultSet rs = ps.executeQuery(sql);
 
 A `FOREIGN KEY` is a field or collection of fields in a table that refers to the `PRIMARY KEY` of the other table.
 
-- It is responsible for managing the relationship between the tables.
-- The table which contains the foreign key is called the `Child Table`, and the table whose primary key is being referred by the foreign key is called the `Parent Table`.
+- responsible for managing the relationship between the tables.
+- forms the bases of referential integrity
 
 ```sql
 CREATE TABLE Branch(
@@ -1492,17 +1492,32 @@ Referential Integrity:
 
 ### 86 What is normalization?
 
-`Normalization` is the process of organizing the data and the attributes of a database. it is performed to reduce the data redundancy.
+`Normalization` is the process of organizing the data and the attributes of a database.
+
+- reduce the duplication of data, - avoid data anomalies
+- ensure referential integrity
+- simplify data management
 
 1. `1NF` First Normal Form
 
 - Each table cell should contain a single value.
-- Each record needs to be unique.
+- Each record needs to be unique
+- violation example: hobbies with several values
+- solution add new rows with each value
 
 2. `2NF` Second Normal Form
 
 - Be in 1NF
-- Single Column Primary Key that does not functionally dependant on any subset of candidate key relation
+- Single Column Primary Key - that does not functionally dependant on any subset of candidate key relation
+- violation example: name and address identifies a record when two different people have the same name
+- solution: add a primary key column
+
+3. `3NF` Third Normal Form
+
+- in 2NF
+- all the attributes (e.g. database columns) are functionally dependent on solely the primary key (no transitive functional dependencies)
+- violation example: hospital database having a table of patients which included a column for the telephone number of their doctor. The phone number is dependent on the doctor, rather than the patient, thus would be better stored in a table of doctors
+- solution: create table for doctors and store phone number there
 
 ### 87 What is multiplicity?
 
@@ -1584,7 +1599,10 @@ Advantages:
 - Summarize data from various tables which can be used to generate documents and reports.
 
 ```sql
-CREATE VIEW view_name AS SELECT column1, column2, ... FROM table_name WHERE condition;
+CREATE VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
 ```
 
 ### 91 What is HTTP? Why is it important to know about?
