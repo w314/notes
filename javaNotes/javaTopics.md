@@ -694,15 +694,95 @@ _You do not need to know about Future objects_
 
 - Javalin runs on an embedded Jetty.
 - Javalin can be used to start and stop the server.
-- If you don’t need any custom configuration, you can quick-start a server in Javalin
+- do not need to have any custom configuration, you can just quick-start a server in Javalin
+- configuration is done through the `Javalin.create()` method
 - You can customize the embedded server in Javalin
 - You can configure your embedded jetty-server and Javalin will attach it’s own handlers to the end of the chain.
 
-### JSON
+### Handlers
+
+Javalin main handler types require 3 parts:
+
+- VERB (ex: `GET`, `POST`, `PUT`, `DELETE`)
+- PATH (ex: `/`, `/helloWorld`)
+- HANDLER IMPLEMENTATION (ex: `ctx -> ctx.result("Hello World");`)
+
+Main Javalin Handler Types:
+
+1.  `before-handlers`
+
+```java
+app.before(ctx -> {
+  // runs before all requests
+});
+app.before("/path/*", ctx -> {
+  // runs before request to /path/*
+});
+```
+
+2. `after-handlers`
+
+Run after every request (even if an exception occurred). You might know after-handlers as filters, interceptors, or middleware from other libraries.
+
+```java
+app.after(ctx -> {
+    // run after all requests
+});
+app.after("/path/*", ctx -> {
+    // runs after request to /path/*
+});
+```
+
+3.  `endpoint-handlers`
+
+- the main handler type, and defines your API. You can add a GET handler to server data to a client, or a POST handler to receive some data. Common methods are supported directly on the Javalin class (GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS), uncommon operations (TRACE, CONNECT) are supported via Javalin#addHandler
+
+- endpoint-handlers are matched in the order they are defined.
+
+- Handler paths can include path-parameters. These are available via ctx.pathParam("key"):
+
+```java
+app.get("/hello/{name}", ctx -> { // the {} syntax does not allow slashes ('/') as part of the parameter
+    ctx.result("Hello: " + ctx.pathParam("name"));
+});
+```
+
+- handler paths can also include wildcard parameters:
+
+```java
+app.get("/path/*", ctx -> { // will match anything starting with /path/
+    ctx.result("You are here because " + ctx.path() + " matches " + ctx.matchedPath());
+});
+```
+
+However, you cannot extract the value of a wildcard. Use a slash accepting path-parameter (`<param-name>`) if you need this behavior.
+
+The Handler interface has a void return type. You use a method like ctx.result(result), ctx.json(obj), or ctx.future(future) to set the response which will be returned to the user.
+
+### Context Object
+
+The Context object provides you with everything you need to handle a http-request. It contains the underlying servlet-request and servlet-response, and a bunch of getters and setters.
+
+Request methods
+
+```java
+body() // request body as string
+```
+
+Response methods
+
+- `result("result")` - set result stream to specified string (overwrites any previously set result)
+- `result(byteArray)` - set result stream to specified byte array (overwrites any previously set result)
+- `result(inputStream)` - set result stream to specified input stream (overwrites any previously set result)
+- `status(code)` - set the response status code
+- `status()` - get the response status code
+- `json(obj)` - calls result(jsonString), and also sets content type to json
+
+## JSON
 
 _ignore implementation, the second part of it is in JavaScript_
 
-### Introduction to REST
+## REST
 
 _You will not be assessed over the example in the Implementation section (we will not cover Servlets)_
 
