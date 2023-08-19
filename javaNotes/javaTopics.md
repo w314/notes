@@ -9,13 +9,14 @@ wk1
 - they allow you to install and run programs written for the operating system
 - every device (computer, tablet, phone) has an operating system
 - the hardware you choose affects what operating system(s) you can run (Windows on PC hardware, Mac OS X Apple, Linux on both)
-- they provide
 
-  - Process and `Process Management` (`process` is a program in execution)
-  - `Threads` - a thread as a flow of execution through the process code. The thread keeps track of all the instructions that need to be executed next in the program counter. Also, the thread contains system registers that hold the current working variables. Also, the thread's stack contains the execution history.
+Functions Operating Systems Provide
 
-  - `Scheduling` - in scheduling, the process manager takes the responsibility to remove the running process from the CPU and chooses another process based on a specific strategy.
-  - `Memory Management` - the functionality of an operating system that handles and manages the primary memory. Processes move back and forth between the main memory and the disk during the execution.
+- Process and `Process Management` (`process` is a program in execution)
+- `Threads` - a thread as a flow of execution through the process code. The thread keeps track of all the instructions that need to be executed next in the program counter. Also, the thread contains system registers that hold the current working variables. Also, the thread's stack contains the execution history.
+
+- `Scheduling` - in scheduling, the process manager takes the responsibility to remove the running process from the CPU and chooses another process based on a specific strategy.
+- `Memory Management` - the functionality of an operating system that handles and manages the primary memory. Processes move back and forth between the main memory and the disk during the execution.
 
 ## Java Programming Language
 
@@ -119,7 +120,7 @@ variableName = value;
   - long 8 bytes numerical
   - double 8 bytes floating point
 
-### Java Methods
+## Java Methods
 
 > What is a method?
 
@@ -268,8 +269,6 @@ Methods:
 
 If you enter wrong input (e.g. text in a numerical input), you will get an exception/error message (like `InputMismatchException`).
 
-### Basic Entities of a Java program
-
 ## String class
 
 > Which datatype represents text in Java?
@@ -300,12 +299,6 @@ The String API consists of the following:
 ### Using Operators
 
 _Note: You will not be assessed on bitwise or shift operators_
-
-### Control Flow
-
-#### Conditional Statements
-
-#### Loops
 
 ### Basic Debugging
 
