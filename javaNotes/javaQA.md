@@ -1,174 +1,30 @@
 wk1 1-32, wk2 33-51, wk3 52-71, wk4 72-81, wk5 82-93
 
-### 1 assign vs declare What is the difference between assigning and declaring a variable?
+## 1 operating system
 
-#### Declare
+## 2 Java compilation process
 
-- syntax:
+## X Java Entities
 
-```java
-datatype variableName;
-```
+## 3 Java variables
 
-- Java is a strongly-typed language which means that all variables in Java must define what type of data we can store into that variable.
-- This statement creates a place in memory for Java to store information of that specific datatype.
-- camelCase naming convention
-- We can refer to this named place in memory using the variable name. If we want to store a value in the variable
+## 4 Java data types
 
-#### Assign
+## 5 Java methods
 
-- syntax:
+## 6 Java main method
 
-```java
-variableName = value;
-```
+## x Java Conditionals
 
-- stores a value in the variable
-- only work as long as the new variable is of the same datatype
+## x Java Loops
 
-### 2 {} What do a pair of opening and closing curly braces represent?
+## x Scanner class
 
-### 3 source code vs bytecode What is the difference between source code and bytecode?
+## X Arrays
 
-- Compilation means to transform a program written in a high-level programming language from `source code` into `object code` / `bytecode`.
-- `.java` -> `.class`
+## X String Class
 
-### 4 method call vs create syntax What is the difference in syntax between calling a method and creating a method?
-
-### 5 What is a method?
-
-> Block of reusable code that can be invoked again and again.
-
-#### `Method Signature`
-
-All methods in a class are defined by:
-
-- their access modifier
-- any non-access modifiers
-- return type
-- method name
-- (optionally) a throws exception declaration
-
-Together, these form the `method signature`.
-
-#### Method Parameters
-
-Method parameters are variables passed inside of the parenthesis of the method which we are able to utilize inside of our method. These values are given to us from the entity that invokes the method.
-
-Anytime you can identify repetitive code in your application, abstracting that logic into a method is generally the best solution to keep your program manageable.
-
-```java
-int addNums(int n1, int n2) {
-  return n1 + n2;
-}
-
-// invoking the method
-addNums(1, 2);
-// storing method return value
-// method return value's type = variable type
-int total = addNums(1, 2);
-
-```
-
-### 6 What is a variable?
-
-> A `variable` is a container for storing data.
-
-```java
-dataType variableName = value;
-```
-
-Java is strongly typed meaning that when a variable is declared in Java, the type must be specified.
-
-Types:
-
-- primitive type - data types defined by the language itself
-- reference type - data types defined in the Java API or by a programmer
-
-The `variable name` is the unique identifier used to reference that variable again.
-
-### 7 JDK-JRE-JVM What is the difference between the JDK, JRE, and JVM?
-
-`JDK` `Java Development Kit` contains `JRE` and development tools like compiler, debugger, documentation tools.
-
-`JRE` (`Java Runtime Environment`) contains `JVM` and runtime libraries.
-
-`JVM` (`Java Virtual Machine`) runs compiled bytecode in a virtual environment that is same accross every platform. However you need JVM that is specific to the operating system. It uses `JIT` `Just In Time` compiler to turn that bytecode to machine code.
-
-- `JVM` (`Java Virtual Machine`) The JVM is a special program that knows how to execute the programs that you write in Java, Java programs are execute in the JVM. Each operating system has its own JVM.
-- `JRE` (`Java Runtime Environment`) contains all the runtime libraries that your code will be calling and using. The JRE contains the JVM within it.
-- `JDK` (`Java Development Kit`) provides developer tools like a compiler, debugger, documentation tools, and other command-line utilities. The JDK also has a JRE inside of it
-
-### 8 What is a conditional statement?
-
-`Conditional statement` is a statement that uses a Boolean expressions and only executes the a block of statement if the Boolean expression returns `true`.
-
-- if
-- switch
-- while
-- do-while
-
-### 9 loops Explain the different kinds of loops you can create and use in a program.
-
-`Loops` are java statements that allow for the repeated execution of the same statement or block of statements.
-
-```java
-// FOR loop
-for (int i = 1; i < 10; i++) {
-  System.out.println(i);
-}
-
-// ENHANCED FOR loop
-// for iterables
-int[] arr = [1, 2, 3];
-for(int n: arr) {
-  System.out.println(n);
-}
-
-
-// WHILE loop
-int i = 0;
-while (i < 3) {
-  System.out.println(i);
-  i++;
-}
-
-// DO WHILE loop
-int i = 4;
-do {
-  System.out.println(i);
-} while(i < 3);
-
-```
-
-### 10 Explain the main method.
-
-```java
-public class HelloWorld{
-  public static void main(String[] args) {
-    System.out.println("Hello, World!");
-  }
-}
-```
-
-- `public` is an access modifier
-- `static` is a non-access modifier
-- `void` is the "return type" of the method
-- the array of Strings defined in the method parameters are passed from the command line when the java command is run
-
-### 11 What is a primitive data type? Please list a few and explain them.
-
-- data types defined by the language
-- stores the value of the data
-- types
-  - boolean 1 bit true or false
-  - byte 1 byte numerical
-  - char 2 bytes 1 character
-  - short 2 bytes numerical
-  - int 4 bytes numerical
-  - float 4 bytes floating point
-  - long 8 bytes numerical
-  - double 8 bytes floating point
+EDIT BELOW
 
 ### 12 What is the modulo operator? How is it useful?
 
@@ -194,24 +50,6 @@ int a = 5;
 int b = ++a; // b=6, a=6
 ```
 
-### 15 How can you iterate over an array?
-
-### 16 What is an array? Why is it useful?
-
-An `array` is a `contiguous block of memory` storing a group of `sequentially stored` elements of the same type.
-
-- fixed size and cannot be resized after declaration
-- items in an array are referenced via their index in square bracket notation, which begins with 0 for the first element
-- ave a length property specifying the length of the array
-
-```java
-// would be filled with the default value of integer: 0
-int[] myArray = new int[5];
-
-// OR
-int[] otherArray = {1, 2, 3};
-```
-
 ### 17 What is a stacktrace? How can you use it to debug your application?
 
 > `Stack trace` is a report of the active `stack frames` at a certain point in time during a thread's execution.
@@ -222,143 +60,9 @@ This data structure (stack) is divided into `frames`, which are data structures 
 
 When an exception / error gets thrown. A stack trace is displayed to the console.
 
-### 18 What is the Scanner class used for? Give an example of how you would use it.
-
-The `Scanner` class is used to get user input.
-
-- found in the `java.util` package
-
-```java
-import java.util.Scanner;
-
-class Main {
-  public static void main(String[] args) {
-    // create Scanner object
-    Scanner myScanner = new Scanner();
-    // prompt user for input
-    System.out.println("Enter username:");
-    // read and store user input
-    String userName = myScanner.nextLine();
-  }
-}
-```
-
-Methods:
-
-- `nextBoolean()` Reads a boolean value from the user
-- `nextByte()` Reads a byte value from the user
-- `nextDouble()` Reads a double value from the user
-- `nextFloat()` Reads a float value from the user
-- `nextInt()` Reads a int value from the user
-- `nextLine()` Reads a String value from the user
-- `nextLong()` Reads a long value from the user
-- `nextShort()` Reads a short value from the user
-
-If you enter wrong input (e.g. text in a numerical input), you will get an exception/error message (like `InputMismatchException`).
-
-### 19 if vs switch When would you use an if statement over a switch statement?
-
-- `switch` statement works with:
-  - `byte`, `short`, `int`
-  - `char`, `String`
-  - `enum`
-- if the if statement is too long switch can be better
-
-### 20 switch vs if When would you use a switch statement over an if statement?
-
-### 21 What is an operating system?
-
-_Note: You will not be assessed on the different types of operating systems or on process management_
-
-- a software that communicates with the hardware and allows other programs to run
-- it is comprised of system software, or the fundamental files your computer needs to boot up and function
-- they allow you to install and run programs written for the operating system
-- every device (computer, tablet, phone) has an operating system
-- the hardware you choose affects what operating system(s) you can run (Windows on PC hardware, Mac OS X Apple, Linux on both)
-- they provide
-
-  - Process and `Process Management` (`process` is a program in execution)
-  - `Threads` - a thread as a flow of execution through the process code. The thread keeps track of all the instructions that need to be executed next in the program counter. Also, the thread contains system registers that hold the current working variables. Also, the thread's stack contains the execution history.
-
-  - `Scheduling` - in scheduling, the process manager takes the responsibility to remove the running process from the CPU and chooses another process based on a specific strategy.
-  - `Memory Management` - the functionality of an operating system that handles and manages the primary memory. Processes move back and forth between the main memory and the disk during the execution.
-
-### 22 full stack What does the term "full stack" mean?
-
-> `Full stack` covers two separate development domains: the front end and the back end.
-
-- The `front end` includes everything that a client, or site viewer, can see and interact with.
-- The `back end` refers to all the servers, databases, and other internal architecture that drives the application; usually, the end-user never interacts with this realm directly.
-  -Front end platforms are usually built with HTML, CSS, and JavaScript; however, they can also be made via pre-packaged code libraries or content management systems like WordPress.
-- Back end developers, in contrast, refine the software code that communicates with servers, databases, or other proprietary software that conveys information to front end interfaces.
-
-### 23 text data type Which datatype represents text in Java?
-
-Strings.
-
-- are not a primitive data type but a reference type
-- a string variable holds a reference to an object created from the String class, not the value of the string itself
-- Strings are immutable, constant objectsm, this is accomplished by having internal, private and final fields and not implementing any "setter" methods which would alter the state of those fields.
-- Because Strings are immutable, all of the methods in the String class return a new String - the original is not modified.
-- When Strings are created they are placed in a special location within the `heap` called the `String Pool`.
-- When String literals are created, if there is an existing String that matches in the String Pool, the reference variable will point to the existing value.
-- Duplicates will not exist in the String Pool. This is important because Strings take up a lot of memory. Being able to reuse the same value throughout your application is advantageous.
-- One way to circumvent the above process is to use the new keyword along with the String constructor, which will explicitly create a new String object in memory, even if one already exists in the String Pool.
-
-The String API consists of the following:
-
-- `toUpperCase()` -Converts all the characters of a string to upper case.
-- `toLowerCase()`-Converts all the characters of a string to lower case
-- `charAt(int index)` -This returns the indexed character of a string, where the index of the initial character is 0
-- `concat(String s)` -This returns a new string consisting which has the old string + s
-- `equals(String s)` -Checks if two strings are equal
-- `equaIsIgnoreCase(String s)` -This is like equals(), but it ignores the case(Ex: ‘Hello’ and ‘hello’ are equal)
-- `length( )` -Returns the number of characters in the current string.
-- `replace(char old, char new)` -This returns a new string, generated by replacing every occurrence of old with new.
-- `trim()` -Returns the string that results from removing white space characters from the beginning and ending of the current string.
-
-### 24 last array element How would you access the last value in an array if you do not know the size of the array?
-
 ### 25 debug crash What steps would you take to debug your program if it crashed with an error message in the console?
 
 ### 26 debug wrong result What steps would you take to debug your program if runs, but gives you the wrong results?
-
-### 27 compilation process How would you describe the compilation process for Java?
-
-- 2 steps
-  - compiler creates machine independent `bytecode`
-  - `JVM` creates machine code
-
-### 28 why methods Give me an example of why you would need to create a method other than the main method.
-
-Calculate triangle area.
-
-### 29 entities of Java Can you describe some of the basic entities of a Java program?
-
-- classes
-- variables
-- methods
-
-`Classes` are blueprints for creating objects in Java. Classes can have variables and methods within them to represent state and behavior.
-
-`Variables` are containers to store data.
-
-`Methods` are blocks of reusable code.
-
-### 30 benefits of Java What are some of the benefits of Java?
-
-- platform independent,
-- has a C-language inspired syntax
-- provides automatic memory management
-- has an extensive built-in runtime library
-- is supported by the Oracle corporation
-- has a rich open source community
-
-### 31 What is a flow control statement?
-
-- `if` execute a statement or a block of statements only if some conditional test turns out to be true
-- `switch` execute one of several blocks of statements depending on the value of a variable of certain types
-- `loops`: allow for the repeated execution of the same statement or block of statements
 
 ### 32 What is the modulo operator and why would we use it?
 
@@ -1689,89 +1393,16 @@ lambda
 method references
 
 ## 97 Describe Javalin.
+
 Javalin
 
 ## 98 What is JSON? When would we work with JSON in our application?
 
+JSON
+
 ## 99 What is a handler?
 
-The before-, endpoint- and after-handlers require three parts:
-
-- A verb, one of: before, get, post, put, patch, delete, after (… head, options, trace, connect)
-- A path, ex: /, /hello-world, /hello/{name}
-- A handler implementation, ex ctx -> { ... }, MyClass implements Handler, etc
-  The Handler interface has a void return type. You use a method like ctx.result(result), ctx.json(obj), or ctx.future(future) to set the response which will be returned to the user.
-
-#### handler types:
-
-1.  `before-handlers`
-
-```java
-app.before(ctx -> {
-  // runs before all requests
-});
-app.before("/path/*", ctx -> {
-  // runs before request to /path/*
-});
-```
-
-2. `after-handlers`
-
-Run after every request (even if an exception occurred). You might know after-handlers as filters, interceptors, or middleware from other libraries.
-
-```java
-app.after(ctx -> {
-    // run after all requests
-});
-app.after("/path/*", ctx -> {
-    // runs after request to /path/*
-});
-```
-
-3.  `endpoint-handlers`
-
-    - the main handler type, and defines your API. You can add a GET handler to server data to a client, or a POST handler to receive some data. Common methods are supported directly on the Javalin class (GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS), uncommon operations (TRACE, CONNECT) are supported via Javalin#addHandler
-
-    - endpoint-handlers are matched in the order they are defined.
-
-- Handler paths can include path-parameters. These are available via ctx.pathParam("key"):
-
-```java
-app.get("/hello/{name}", ctx -> { // the {} syntax does not allow slashes ('/') as part of the parameter
-    ctx.result("Hello: " + ctx.pathParam("name"));
-});
-```
-
-- handler paths can also include wildcard parameters:
-
-```java
-app.get("/path/*", ctx -> { // will match anything starting with /path/
-    ctx.result("You are here because " + ctx.path() + " matches " + ctx.matchedPath());
-});
-```
-
-However, you cannot extract the value of a wildcard. Use a slash accepting path-parameter (`<param-name>`) if you need this behavior.
-
-#### `Context Object`
-
-The Context object provides you with everything you need to handle a http-request. It contains the underlying servlet-request and servlet-response, and a bunch of getters and setters.
-
-Request methods
-
-```java
-body() // request body as string
-```
-
-Response methods
-
-```java
-result("result") // set result stream to specified string (overwrites any previously set result)
-result(byteArray) // set result stream to specified byte array (overwrites any previously set result)
-result(inputStream) // set result stream to specified input stream (overwrites any previously set result)
-status(code)                            // set the response status code
-status()                                // get the response status code
-json(obj) // calls result(jsonString), and also sets content type to json
-```
+handler
 
 ## 100 What is Mockito and why would we use it?
 
