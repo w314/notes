@@ -1045,7 +1045,15 @@ _You do not need to know about Future objects_
 ### Handlers
 
 - respond to client requests
-- made up of three parts: verb, path, implementation
+- Javalin has three main handler types:
+  - before-handlers
+  - endpoint-handlers
+  - after-handlers
+- The before-, endpoint- and after-handlers require three parts:
+  - `verb`, one of: before, get, post, put, patch, delete, after (… head, options, trace, connect)
+  - `path`, ex: /, /hello-world, /hello/{name}
+  - handler implementation, ex ctx -> { ... }
+- The Handler interface has a void return type. You use a method like ctx.result(result), ctx.json(obj), or ctx.future(future) to set the response which will be returned to the user.
 
 #### Main Javalin Handler Types:
 
@@ -1101,17 +1109,27 @@ The Handler interface has a void return type. You use a method like ctx.result(r
 
 ### Javalin Context Object
 
-- this object contains request and response information and functionality
-- getting info from request: pathParam() or bodyAsClass()
-- sending info to the client: result() or json()
+- contains request and response information and functionality
+- getting info from request: `pathParam()` or `bodyAsClass()`
+- sending info to the client: `result()` or `json()`
 
-Request methods
+#### Request methods
+
+Getting information from requests
 
 ```java
 body() // request body as string
 ```
 
-Response methods
+If we include `Jackson` as a dependency, we can parse JSON request bodies automatically into our model classes. For instance:
+
+```java
+app.post("/") { ctx ->
+  User user = ctx.bodyAsClass(User.class);
+}
+```
+
+#### Response methods
 
 - `result("result")` - set result stream to specified string (overwrites any previously set result)
 - `result(byteArray)` - set result stream to specified byte array (overwrites any previously set result)
@@ -1166,7 +1184,6 @@ DEFINITION:
 - information provided is a representation of the state of a given resource
 - representation is usually JSON
 - all communication done via REST API uses only HTTP requests
-- uses less bandwidth then `SOAP` (`Simple Access Protocol`)
 - In HTTP there are five methods that are commonly used in a REST-based Architecture: POST, GET, PUT, PATCH, and DELETE. These correspond to create, read, update, and delete (or CRUD) operations respectively.
 
 `REST` vs.<br>
@@ -1232,26 +1249,19 @@ The constraint of a uniform interface is partially addressed by the combination 
 - single resources are represented by a name or id
 - send appropriate response code back
 
-Some examples of a resource are:
-
-Users of the system User Accounts, Network Devices etc., and their resource URIs can be designed as below:
-
-http://api.example.com/device-management/managed-devices
-http://api.example.com/device-management/managed-devices/{device-id}
-http://api.example.com/user-management/users
-http://api.example.com/user-management/users/{id}
-
 resource archetypes categories:
 
 - document
 - collection
 - store
 - controller
-  Put a resource into one archetype and then use its naming convention consistently.
+
+Put a resource into one archetype and then use its naming convention consistently.
 
 For uniformity’s sake, resist the temptation to design resources that are hybrids of more than one archetype.
 
-document
+#### document
+
 A document resource is a singular concept that is akin to an object instance or database record.
 
 In REST, you can view it as a single resource inside resource collection. A document’s state representation typically includes both fields with values and links to other related resources.
@@ -1261,7 +1271,9 @@ Use “singular” name to denote document resource archetype.
 http://api.example.com/device-management/managed-devices/{device-id}
 http://api.example.com/user-management/users/{id}
 http://api.example.com/user-management/users/admin
-collection
+
+#### collection
+
 A collection resource is a server-managed directory of resources.
 
 Clients may propose new resources to be added to a collection. However, it is up to the collection resource to choose to create a new resource or not.
@@ -1273,7 +1285,9 @@ Use the “plural” name to denote the collection resource archetype.
 http://api.example.com/device-management/managed-devices
 http://api.example.com/user-management/users
 http://api.example.com/user-management/users/{id}/accounts
-store
+
+#### store
+
 A store is a client-managed resource repository. A store resource lets an API client put resources in, get them back out, and decide when to delete them.
 
 A store never generates new URIs. Instead, each stored resource has a URI. The URI was chosen by a client when the resource initially put it into the store.
@@ -1281,29 +1295,34 @@ A store never generates new URIs. Instead, each stored resource has a URI. The U
 Use “plural” name to denote store resource archetype.
 
 http://api.example.com/song-management/users/{id}/playlists
-controller
+
+#### controller
+
 A controller resource models a procedural concept. Controller resources are like executable functions, with parameters and return values, inputs, and outputs.
 
 Use “verb” to denote controller archetype.
 
 http://api.example.com/cart-management/users/{id}/cart/checkout http://api.example.com/song-management/users/{id}/playlist/play
+
 Consistency is the key
 Use consistent resource naming conventions and URI formatting for minimum ambiguity and maximum readability and maintainability. You may implement the below design hints to achieve consistency:
 
-Use forward slash (/) to indicate hierarchical relationships
-The forward-slash (/) character is used in the path portion of the URI to indicate a hierarchical relationship between resources. e.g.
+- Use forward slash (/) to indicate hierarchical relationships
+  The forward-slash (/) character is used in the path portion of the URI to indicate a hierarchical relationship between resources. e.g.
 
 http://api.example.com/device-management
 http://api.example.com/device-management/managed-devices
 http://api.example.com/device-management/managed-devices/{id}
 http://api.example.com/device-management/managed-devices/{id}/scripts
 http://api.example.com/device-management/managed-devices/{id}/scripts/{id}
-Do not use trailing forward slash (/) in URIs
-As the last character within a URI’s path, a forward slash (/) adds no semantic value and may confuse. It’s better to drop it from the URI.
+
+- Do not use trailing forward slash (/) in URIs
+  As the last character within a URI’s path, a forward slash (/) adds no semantic value and may confuse. It’s better to drop it from the URI.
 
 http://api.example.com/device-management/managed-devices/ http://api.example.com/device-management/managed-devices /_This is much better version_/
-Use hyphens (-) to improve the readability of URIs
-To make your URIs easy for people to scan and interpret, use the hyphen (-) character to improve the readability of names in long path segments.
+
+- Use hyphens (-) to improve the readability of URIs
+  To make your URIs easy for people to scan and interpret, use the hyphen (-) character to improve the readability of names in long path segments.
 
 http://api.example.com/device-management/managed-devices/
 http://api.example.com/device-management/managed-devices /_This is much better version_/
@@ -1315,24 +1334,19 @@ To avoid this confusion, use hyphens (-) instead of underscores ( \_ ).
 http://api.example.com/inventory-management/managed-entities/{id}/install-script-location //More readable
 
 http://api.example.com/inventory-management/managedEntities/{id}/installScriptLocation //Less readable
-Use lowercase letters in URIs
-When convenient, lowercase letters should be consistently preferred in URI paths.
 
-http://api.example.org/my-folder/my-doc //1
-HTTP://API.EXAMPLE.ORG/my-folder/my-doc //2
-http://api.example.org/My-Folder/my-doc //3
-In the above examples, 1 and 2 are the same but 3 is not as it uses My-Folder in capital letters.
+- Use lowercase letters in URIs
 
-Do not use file extensions
-File extensions look bad and do not add any advantage. Removing them decreases the length of URIs as well. No reason to keep them.
+- do not use file extensions
 
 Apart from the above reason, if you want to highlight the media type of API using file extension, then you should rely on the media type, as communicated through the Content-Type header, to determine how to process the body’s content.
 
 http://api.example.com/device-management/managed-devices.xml /_Do not use it_/
 
 http://api.example.com/device-management/managed-devices /_This is correct URI_/
-Use query component to filter URI collection
-Often, you will encounter requirements where you will need a collection of resources sorted, filtered, or limited based on some specific resource attribute.
+
+- Use query component to filter URI collection
+  Often, you will encounter requirements where you will need a collection of resources sorted, filtered, or limited based on some specific resource attribute.
 
 For this requirement, do not create new APIs – instead, enable sorting, filtering, and pagination capabilities in resource collection API and pass the input parameters as query parameters. e.g.
 
@@ -1348,6 +1362,7 @@ _You will not be assessed over implementation code of steps 3 and 4 (Bennu Frame
 ## Logging
 
 > What is logging and what are the benefits of it?
+>
 > Logging is keeping a log of events that occur form an application.
 
 ### Logback
@@ -1414,22 +1429,7 @@ What are logging levels good for?
 
 ##### Add dependency to `pom.xml`
 
-`Logback` uses the Simple Logging Facade for Java (`SLF4J`) as its native interface, so we set up both of them as dependencies in `pom.xml`.
-
-```xml
-<dependency>
-    <groupId>ch.qos.logback</groupId>
-    <artifactId>logback-core</artifactId>
-    <version>1.2.6</version>
-</dependency>
-
-<dependency>
-    <groupId>org.slf4j</groupId>
-    <artifactId>slf4j-api</artifactId>
-    <version>1.7.30</version>
-    <scope>test</scope>
-</dependency>
-```
+`Logback` uses the Simple Logging Facade for Java (`SLF4J`).
 
 `Classpath`
 Logback also requires logback-classic.jar on the classpath for runtime.
@@ -1489,7 +1489,14 @@ public class Example {
 
 ### Mockito
 
-- mocking framework used for unit tests
+Mocking framework used for unit tests
+
+A mock object is a dummy implementation for an interface or a class.
+
+Mockito records the interaction with mock and allows you to check if the mock object was used correct, e.g. if a certain method has been called on the mock. This allows you to implement behavior testing instead of only testing the result of method calls.
+
+Mockito:
+
 - uses annotations to identify its functionality, similar to JUnit
 - `mock`: replacement object - behavior is stubbed unless we request real behavior
 - `spy`: replacement object - behavior is real unless we request it is stubbed

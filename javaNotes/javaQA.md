@@ -1418,9 +1418,9 @@ handler
 
 ## x Logging
 
-## 100 What is Mockito and why would we use it?
+## x What is Mockito and why would we use it?
 
-## 104 What is a mock?
+## x What is a mock?
 
 EDIT BELOW
 
