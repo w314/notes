@@ -974,26 +974,38 @@ messages.forEach(StringUtils::capitalize);
 
 ## Javalin
 
-`Javalin` is a very lightweight `web framework` for Java 8 (and later) and Kotlin.
-
+- lightweight web framework forJava 8+ and `Kotlin`
+- a web framework's role is to make web development easier
+- not opinionated: you can structure your project how you want
+- provides a Context object for working with requests and responses
 - It supports modern features such as:
   - HTTP/2
   - WebSocket
   - asynchronous requests.
 - `servlet-based`
-- simple
 - has first-class interoperability between Java and `Kotlin`
 - never extends classes and rarely implements interfaces
+
+### How to use Javalin
+
+1. install Javalin as a dependency
+2. create a Javalin object
+3. create endpoints
+
+#### Install Javalin as a dependency
 
 To use Javalin add it as a dependency to `POM.xml`:
 
 ```xml
-<dependency>
-    <groupid>io.javalin</groupid>
-    <artifactid>javalin</artifactid>
-    <version>2.5.0</version>
-</dependency>
+ <!-- https://mvnrepository.com/artifact/io.javalin/javalin -->
+  <dependency>
+    <groupId>io.javalin</groupId>
+    <artifactId>javalin</artifactId>
+    <version>5.5.0</version>
+  </dependency>
 ```
+
+#### Create Javalin App
 
 Javalin "Hello World":
 
@@ -1001,8 +1013,10 @@ Javalin "Hello World":
 import io.javalin.Javalin;
 
 public static void main(String[] args) {
-    Javalin app = Javalin.create().start(7000);
-    app.get("/", ctx -> ctx.result("Hello World"));
+  // create a Javalin object
+  Javalin app = Javalin.create().start(7000);
+  // create endpoint
+  app.get("/", ctx -> ctx.result("Hello World"));
 }
 ```
 
@@ -1030,13 +1044,10 @@ _You do not need to know about Future objects_
 
 ### Handlers
 
-Javalin main handler types require 3 parts:
+- respond to client requests
+- made up of three parts: verb, path, implementation
 
-- VERB (ex: `GET`, `POST`, `PUT`, `DELETE`)
-- PATH (ex: `/`, `/helloWorld`)
-- HANDLER IMPLEMENTATION (ex: `ctx -> ctx.result("Hello World");`)
-
-Main Javalin Handler Types:
+#### Main Javalin Handler Types:
 
 1.  `before-handlers`
 
@@ -1088,9 +1099,11 @@ However, you cannot extract the value of a wildcard. Use a slash accepting path-
 
 The Handler interface has a void return type. You use a method like ctx.result(result), ctx.json(obj), or ctx.future(future) to set the response which will be returned to the user.
 
-### Context Object
+### Javalin Context Object
 
-The Context object provides you with everything you need to handle a http-request. It contains the underlying servlet-request and servlet-response, and a bunch of getters and setters.
+- this object contains request and response information and functionality
+- getting info from request: pathParam() or bodyAsClass()
+- sending info to the client: result() or json()
 
 Request methods
 
@@ -1143,18 +1156,45 @@ Applications of JSON:
 
 _You will not be assessed over the example in the Implementation section (we will not cover Servlets)_
 
-- `REST` (`Representational State Transfer`) is an architectural style for creating web services
+DEFINITION:
+
+> Representational State Transfer (REST) is an architectural style that defines a set of constraints to be used for creating web services.
+
+- Representational State Transfer
+- architecture for exposing information and functionality between software or devices
 - used to fetch or give some information from a web service
+- information provided is a representation of the state of a given resource
+- representation is usually JSON
 - all communication done via REST API uses only HTTP requests
 - uses less bandwidth then `SOAP` (`Simple Access Protocol`)
-- REST API is a way of accessing web services in a simple and flexible way without having any processing.
 - In HTTP there are five methods that are commonly used in a REST-based Architecture: POST, GET, PUT, PATCH, and DELETE. These correspond to create, read, update, and delete (or CRUD) operations respectively.
+
+`REST` vs.<br>
+`SOAP` (`Simple Access Protocol`) and <br>
+`RPC` (`Remote Procedure Call`)
+
+- REST uses less bandwidth than SOAP
+- SOAP can only return `xml`, REST can return json, xml, yaml and more
+- in REST users are not required to know procedure names or spedific parameters in a specific order like in RPC
+
+### Is RESTful API right for the application
+
+There are some key `constraints` to think about when considering whether a RESTful API is the right type of API for your needs:
+
+- `Client-Server`: This constraint operates on the concept that the client and the server should be separate from each other and allowed to evolve individually.
+- `Stateless`: REST APIs are stateless, meaning that calls can be made independently of one another, and each call contains all of the data necessary to complete itself successfully.
+- `Cache`: Because a stateless API can increase request overhead by handling large loads of incoming and outbound calls, a REST API should be designed to encourage the storage of cacheable data.
+- `Uniform Interface`: The key to the decoupling client from server is having a uniform interface that allows independent evolution of the application without having the application’s services, or models and actions, tightly coupled to the API layer itself.
+- `Layered System`: REST APIs have different layers of their architecture working together to build a hierarchy that helps create a more scalable and modular application.
+- `Code on Demand`: Code on Demand allows for code or applets to be transmitted via the API for use within the application.
 
 ### REST resources and url construction
 
-- In REST, the primary data representation is called resource.
-- The key abstraction of information in REST is a resource. Any information that can be named can be a resource
-- Having a consistent and robust REST resource naming strategy – will prove one of the best design decisions in the long term.
+#### REST Resource
+
+- entity or data that API can provide info about
+- can be identified by a URL
+- can allow actions to be performed on it (GET, POST, PUT, DELETE)
 
 Singleton and Collection Resources
 A resource can be a singleton or a collection.
@@ -1170,16 +1210,29 @@ For example, sub-collection resource “accounts” of a particular “customer�
 
 Similarly, a singleton resource “account” inside the sub-collection resource “accounts” can be identified as follows: “/customers/{customerId}/accounts/{accountId}“.
 
-URI
-REST APIs use Uniform Resource Identifiers (URIs) to address resources. REST API designers should create URIs that convey a REST API’s resource model to the potential clients of the API. When resources are named well, an API is intuitive and easy to use. If done poorly, that same API can be challenging to use and understand.
+### URI
+
+`REST API`s use Uniform Resource Identifiers (`URI`s) to address resources.
 
 The constraint of a uniform interface is partially addressed by the combination of URIs and HTTP verbs and using them in line with the standards and conventions.
 
-Below are a few tips to get you going when creating the resource URIs for your new API.
+# Constraints (principles)
 
-Best Practices
-Best Practices
-Use nouns to represent resources RESTful URI should refer to a resource that is a thing (noun) instead of referring to an action (verb) because nouns have properties that verbs do not have – similarly, resources have attributes. Some examples of a resource are:
+- client/server relationship: separate components interacting through an interface
+- uniform interface: use of resources, self-descriptive messages
+- stateless: each message contains all info needed
+- HATEOS / Hypertext as the engine of application state (make API discoverable in state through links!)
+- layered system: application itself is ideally in layers interacting through interfaces
+- cachable: responses should specify if info is cachable or not.
+
+### Best Practices
+
+- use nouns for resources (users, posts, etc) not verbs
+- use plurals for resources that are collections
+- single resources are represented by a name or id
+- send appropriate response code back
+
+Some examples of a resource are:
 
 Users of the system User Accounts, Network Devices etc., and their resource URIs can be designed as below:
 
@@ -1187,7 +1240,14 @@ http://api.example.com/device-management/managed-devices
 http://api.example.com/device-management/managed-devices/{device-id}
 http://api.example.com/user-management/users
 http://api.example.com/user-management/users/{id}
-For more clarity, let’s divide the resource archetypes into four categories (document, collection, store, and controller). Then it would be best if you always targeted to put a resource into one archetype and then use its naming convention consistently.
+
+resource archetypes categories:
+
+- document
+- collection
+- store
+- controller
+  Put a resource into one archetype and then use its naming convention consistently.
 
 For uniformity’s sake, resist the temptation to design resources that are hybrids of more than one archetype.
 
