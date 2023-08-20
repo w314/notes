@@ -252,6 +252,7 @@ class Main {
     System.out.println("Enter username:");
     // read and store user input
     String userName = myScanner.nextLine();
+    myScanner.close();
   }
 }
 ```
@@ -881,14 +882,26 @@ Common Status Codes:
 
 Week 6 Assessment
 
-## functional interfaces
+## functional programming in Java
 
-- have only one abstract method.
+- `functional programming` uses functions to solve problems
+- specifying what you want to happen to get results, not how you want it to happen
+- (use predefined functions and rely heavily on chaining function calls, not on creating structure, like classes where we define the "how")
+
+---
+
+# Key Concept
+
+- wherever we have a functional interface reference variable / parameter, we have a position where we can use a lambda (or method reference)
+- functional interfaces enable functional programming in Java
+
+### functional interfaces
+
+- interfaces that have only one abstract method
 - are used with `lambda` expression (the parameter types and return types of the lambda must match the functional interface method declaration)
 - a way of introducing functional programming to Java
-- The Java 8 JDK comes with many built-in functional interfaces: `forEach()` method of the `Iterable interface`
-
-We can also use functional interfaces as types to which we can assign lambda functions, like so:
+- The [Java 8 JDK comes with many built-in functional interfaces](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html): `forEach()` method of the `Iterable interface`
+- We can also use functional interfaces as types to which we can assign lambda functions, like so:
 
 ```java
 // declare functional interface
@@ -910,13 +923,12 @@ public class Execute {
 
 ### lambdas
 
-_Note: You will not be assessed over anonymous inner classes_
-
-- are used to implement the abstract method of a `functional interface`
+- short lived, in-line implementation of a `functional interface`
+- a lot of the syntax for creating a lambda can be omitted for conciseness
 - inside the `lambda` expression `this` refers to the enclosing class of the lambda expression
 - they introduce some important aspects of `functional programming` to Java
 
-syntax:
+Syntax:
 
 ```java
 () -> 42;
@@ -930,44 +942,35 @@ myArray.forEach(n -> System.out.println(n));
 
 ### method references
 
-_Note: You will not be assessed over “Instance methods of an arbitrary object of a particular type”
-Note: You will not be assessed over the use of streams (The Stream API) this week_
+- lambda with even shorter syntax
+- can be used if all you need to perform is a method call quickly
+- 4 types:
+  - static methods
+  - instance method of a particular object
+  - instance method of a particular type
+  - constructor
 
-Method references are a special type of lambda expressions.
-
-There are four kinds of method references:
-
-- static methods
-- instance method of a particular object
-- instance method of a particular type
-- constructor
-
-1. Static methods
-
-- syntax: `ContainingClass::staticMethodName`
-- example: `StringUtils::capitalize`
+Syntax
 
 ```java
+// 1. Static methods
+// ContainingClass::staticMethodName
 List<String> messages = Arrays.asList("hello", "revature" "associates!");
 // simple lambda expression
 messages.forEach(word -> StringUtils.capitalize(word));
 // method reference syntax
 messages.forEach(StringUtils::capitalize);
+
+// 2. instance methods of particular objects
+// ContainingObject::instanceMethodName
+
+// 3. Instance methods of an arbitrary object of a particular type
+// syntax: `ContainingType::methodName`
+// example: `String::toString`
+
+// 4. Constructor
+// syntax: `ClassName::new`
 ```
-
-2. instance methods of particular objects
-
-- syntax: `ContainingObject::instanceMethodName`
-- example:
-
-3. Instance methods of an arbitrary object of a particular type
-
-- syntax: `ContainingType::methodName`
-- example: `String::toString`
-
-4. Constructor
-
-- syntax: `ClassName::new`
 
 ## Javalin
 
@@ -1282,28 +1285,180 @@ http://api.example.com/device-management/managed-devices?region=USA&brand=XYZ&so
 
 _You will not be assessed over implementation code of steps 3 and 4 (Bennu Framework)_
 
-### Mockito
+## Logging
 
-#### Dependency Injection using @Mock, @InjectMock, and @openMocks
-
-NOTE: @openMocks is the syntax used in newer versions of Mockito and it replaces @initMocks. Both do the same thing.
-
-#### using when() and thenReturn()
-
-#### know what a Spy is conceptually
-
-#### using verify()
+> What is logging and what are the benefits of it?
+> Logging is keeping a log of events that occur form an application.
 
 ### Logback
 
-#### Real World Application is supplementary
+- `Logback` is one of the most widely used logging frameworks in the Java Community.(It's a replacement for its predecessor, Log4j.)
+- Logback offers:
+  - faster implementation
+  - more options for configuration
+  - more flexibility in archiving old log files
+  - smaller memory footprint
 
-#### Architecture
+Resons to prefer `Logback` over `Log4j`:
 
-#### Logging Levels
+- small and speedy: components are faster and have a smaller memroy footprint
+- much better tested framework
+- automatically reloads configuration files
+- gracefully recovers from I/O errors (no need to restart app after server fail, just to get logging to work again)
+- automatic removel of old log archives
+- automatic compression of archived log files
 
-#### Basic Configuration
+### Logback Architecture
 
-#### Creating and Using a Logger
+The `Logback architecture` is comprised of three classes:
+
+- `Logger` - object that allows you to create logs
+- `Appender` - represents the destination of a log
+- `Layout` - controls log message formatting
+
+### How to use a Logger
+
+> How would we configure logging in an application?
+
+1. configure logger
+2. use logger objects in classes you want to use logging
+3. use the logger object's logging level method
+
+### Logging Levels
+
+> Describe the different logging levels and how they should be used.
+
+- TRACE - most fine-grained information
+- DEBUG - should be used for information that may be needed for diagnosing issues and troubleshooting
+- INFO - standard log level
+- WARN - indicates that something unexpected happened, but the code can continue the work
+- ERROR - hould be used when the application hits an issue preventing one or more functionalities from properly functioning
+
+Setting level at a certain level gives all level on and above that level.
+
+What are logging levels good for?
+
+- filtering
+- allow you to configure your logging process so that it behaves differently according to each level:
+  - Granularity. It might make sense to decrease or increase the granularity of logging according to the level.
+  - Target. You might want level X entries to be logged to files, and level Y entries to be logged to a database.
+  - Retention policy. This is linked to granularity. If a certain level has a higher granularity, it might make sense to delete the log entries in that level more frequently, for example, to save disk space.
+
+#### Setup & Configuration
+
+- if no configuration is given, default logger can be used
+- default logger uses debug logging level
+- to configure create `logback.xml` file under `main/resources`
+- create appenders
+- create loggers and assign them appenders
+
+##### Add dependency to `pom.xml`
+
+`Logback` uses the Simple Logging Facade for Java (`SLF4J`) as its native interface, so we set up both of them as dependencies in `pom.xml`.
+
+```xml
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-core</artifactId>
+    <version>1.2.6</version>
+</dependency>
+
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
+    <version>1.7.30</version>
+    <scope>test</scope>
+</dependency>
+```
+
+`Classpath`
+Logback also requires logback-classic.jar on the classpath for runtime.
+
+We'll add this to `pom.xml` as a test dependency:
+
+```xml
+<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-classic</artifactId>
+    <version>1.4.11</version>
+    <scope>test</scope>
+</dependency>
+```
+
+##### Add `logback.xml` configuration file
+
+We'll create a text file named `logback.xml` and put it somewhere in our classpath:
+
+```xml
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <root level="debug">
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>
+```
+
+#### Use Logger
+
+```java
+package main;
+
+public class Example {
+
+    // create logger object
+    private static final Logger logger = LoggerFactory.getLogger(Example.class);
+
+    // use logging methods
+    public static void main(String[] args) {
+        logger.info("Example log from {}", Example.class.getSimpleName());
+    }
+}
+```
+
+## Mockito
+
+> What is Mockito and why would we use it?
+
+> What is a mock?
+
+### Mockito
+
+- mocking framework used for unit tests
+- uses annotations to identify its functionality, similar to JUnit
+- `mock`: replacement object - behavior is stubbed unless we request real behavior
+- `spy`: replacement object - behavior is real unless we request it is stubbed
+- from the docs: "Real spies should be used carefully and occasionally, for example when dealing with legacy code."
+- `stub`: replacement behavior
+
+### Creating Mocks
+
+Dependency Injection using @Mock, @InjectMock, and @openMocks
+
+_NOTE: @openMocks is the syntax used in newer versions of Mockito and it replaces @initMocks. Both do the same thing._
+
+- `@InjectMocks` is used on the object being tested to specify what to inject with a mock
+- `@Mock` to specify what should be mocked
+- `MockitoAnnotations.openMocks()` is used to perform the injection
+- Mockito will use any constructors available in the real object for injection, otherwise it will try using setters, and then finally it will try using fields
+
+### Stubbing
+
+- when() is used to target an invocation
+- thenReturn() or thenThrow() is used to return dummy results / throw exceptions
+- if a mock's method isn't stubbed, it will return default values (null, empty collection, 0, false, etc)
+- doThrow(), doAnswer(), doNothing(), doCallRealMethod() are used with void methods (https://www.baeldung.com/mockito-void-methods)
+
+### Verify
+
+- a mock will remember all method invocations on it for verification
+- `times(x)` is used to verify a behavior was invoked x many times
+- `never()` is used to verify a behavior was not invoked
+- `atMostOnce()`, `atLeastOnce()`, `atMost(x)`, `atLeast(x)`
 
 WK7

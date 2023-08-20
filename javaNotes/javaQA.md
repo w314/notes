@@ -752,6 +752,18 @@ When refactoring code, the unit tests give us confidence that we can change the 
 
 ### 69 How can JUnit annotations help with running our tests?
 
+To use Junit add it as a dependency to `pom.xml`
+
+```xml
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
+				<version>5.10.0-M1</version>
+				<scope>test</scope>
+			</dependency>
+
+```
+
 `Annotations` are used to support, identify, and execute test method features.
 
 - `@BeforeAll`
@@ -1404,11 +1416,11 @@ JSON
 
 handler
 
+## x Logging
+
+EDIT BELOW
+
 ## 100 What is Mockito and why would we use it?
-
-## 101 What is logging and what are the benefits of it?
-
-## 102 logging levels Describe the different logging levels and how they should be used.
 
 ## 103 What is REST and what are its key constraints?
 
@@ -1417,5 +1429,3 @@ handler
 ## 105 REST naming URL What are some best practices for naming resource URLs using REST?
 
 ## 106 What is an endpoint?
-
-## 107 login configuration How would we configure logging in an application?
