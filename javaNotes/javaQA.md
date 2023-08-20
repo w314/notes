@@ -1418,13 +1418,13 @@ handler
 
 ## x Logging
 
-EDIT BELOW
-
 ## 100 What is Mockito and why would we use it?
 
-## 103 What is REST and what are its key constraints?
-
 ## 104 What is a mock?
+
+EDIT BELOW
+
+## 103 What is REST and what are its key constraints?
 
 ## 105 REST naming URL What are some best practices for naming resource URLs using REST?
 
