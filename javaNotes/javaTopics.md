@@ -1529,3 +1529,46 @@ _NOTE: @openMocks is the syntax used in newer versions of Mockito and it replace
 - `atMostOnce()`, `atLeastOnce()`, `atMost(x)`, `atLeast(x)`
 
 WK7
+
+## Generics
+
+### creating a class that uses generics
+
+### using a generic class
+
+### type parameter naming conventions
+
+## Stacks
+
+## Queues
+
+## Collection Hierarchy
+
+## Sets
+
+## Maps
+
+## Linked List
+
+## Using Iterators
+
+## common UNIX commands
+
+ls
+pwd
+mv
+rm
+mkdir
+cat
+grep
+cp
+
+## source control management
+
+## Git
+
+### Understand how to push to repo
+
+### Understand how to use branches
+
+### Understand how to merge
