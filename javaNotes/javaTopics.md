@@ -1542,13 +1542,13 @@ WK7
 - you can specify more than one type variable as a parameter
 - use the type variables throughout the class
 - `bounded types`: requirement that type must be subtype or of same type as specified type
-  - ex: ClassName<T extends SuperType>
+  - ex: `ClassName<T extends SuperType>`
   - supertype can be a class or interface
 
 ### using a generic class
 
 - generic type invocation: when using the parameterized class, replace the type param name with the actual type you want to use
-- ex: ArrayList<String> stringList;
+- ex: `ArrayList<String> stringList`
 - raw type: if you do not specify a type, the Object type will be used
 
 ### type parameter naming conventions
@@ -1587,10 +1587,10 @@ The `Iterable` interface defines a data structure which can be directly traverse
 
 - additionally has operations that use indexes
 - can iterate backwards
-- nextIndex()
-- previousIndex()
-- previous()
-- hasPrevious()
+- `.nextIndex()`
+- `.previousIndex()`
+- `.previous()`
+- `.hasPrevious()`
 
 ### `Iterable`
 
@@ -1611,7 +1611,7 @@ for (String name : names) {
 ### 2. using an `Iterator`
 
 ```java
-Iterator<Integer> `Iterator` = Arrays.asList(1, 2, 3, 4, 5).iterator();
+Iterator<Integer> iterator = Arrays.asList(1, 2, 3, 4, 5).iterator();
 while (iterator.hasNext()) {
     System.out.println(iterator.next());
 }
@@ -1620,7 +1620,7 @@ while (iterator.hasNext()) {
 ### 3. using `.forEach()`
 
 ```java
-Iterator<Integer> `Iterator` = Arrays.asList(1, 2, 3, 4, 5).iterator();
+Iterator<Integer> iterator = Arrays.asList(1, 2, 3, 4, 5).iterator();
 iterator.forEachRemaining(System.out::println);
 ```
 
@@ -1634,7 +1634,7 @@ for (Integer i: (Iterable<Integer>) () -> iterator) {
 
 ## Collection API
 
-- Assessment: Not PriorityQueue or Vector. Know how to work with Collections and yes, knowing the difference between a linked list and arraylist is useful.\*
+_Assessment: Not PriorityQueue or Vector. Know how to work with Collections and yes, knowing the difference between a linked list and arraylist is useful._
 
 > What is a Collection?
 
@@ -1650,7 +1650,7 @@ A `collection` is a single object which acts as a container for other objects.
 - `Set`: defines set-specific behaviors
 - `List`: defines list-specific behaviors
 - `Queue`: defines queue-specific behaviors
-- `Map`: does not implement the Collection or Iterabel interfaces, but is part of the collection framework.
+- `Map`: does not implement the Collection or Iterable interfaces, but is part of the collection framework.
 
 ## Queue
 
