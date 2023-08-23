@@ -1674,6 +1674,21 @@ A `collection` is a single object which acts as a container for other objects.
 
 ## Sets
 
+- collection that does not contain duplicates
+- this interface provides set operations (union, intersection, difference)
+
+### Implementations
+
+- HashSet: insertion order not guaranteed
+- LinkedHashSet: maintains insertion order
+- TreeSet: elements are sorted
+
+### Useful Methods
+
+- addAll() - (union) adds elements from one set to the other, no duplicates
+- retainAll() - (intersection) retains only common elements between two sets
+- removeAll() - (difference) removes all elements from first set that are contained in second set
+
 ## Maps
 
 - each entry in a map is a key-value pair
@@ -1685,7 +1700,7 @@ A `collection` is a single object which acts as a container for other objects.
   - `Map`
   - `SortedMap`
 
-# Implementations
+### Implementations
 
 - `HashMap`
   - does NOT maintain order of insertion
@@ -1698,6 +1713,9 @@ A `collection` is a single object which acts as a container for other objects.
   - maintains insertion order
 - `TreeMap`
   - entries are sorted by keys
+  - keys are stored in a Sorted Tree structure
+  - slow insertion/retreival
+  - cannot contain null keys
 
 ### Useful Methods
 
@@ -1717,26 +1735,24 @@ A `collection` is a single object which acts as a container for other objects.
   - `.keySet()` method to iterate over keys
   - `.values()` method return a `Collection` that can be iterated over
 
-### Classes Implementing for Map
+## ArrayList Class
 
-#### `HashMap`
+- implements the `List` interface
+- a data structure which contains an array within it, but can resize dynamically.
+- Once it reaches maximum capacity, an ArrayList will increase its size by 50% by copying its elements to a new (internal) array.
+- Traversal is fast (constant time) because elements can be randomly accessed via index, just like an array.
+- Insertion or removal of elements is slow, however (linear time, since there is a risk of having to resize the underlying array)
+- ArrayList is a parameterized type
+- cannot use primitives, must use their wrapper classes
+- better for storing and accessing data
 
-#### `TreeMap`
+## LinkedList Class
 
-- keys are stored in a Sorted Tree structure
-- keys are always sorted
-- slow insertion/retreival
-- cannot contain null keys
-
-#### `LinkedHashMap`
-
-- maintains insertion order
-
-## Linked List
-
-- doubly-linked list implementation
-- implements List and Deque interfaces
-- can work with both ends and indexes
+- implements both the `List` and `Dequeue` interfaces
+- the data structure is composed of nodes internally, each with a reference to the previous node and the next node - i.e. a doubly-linked list.
+- insertion or removal of elements is fast
+- traversal is slow for an arbitrary index
+- better for manipulating data (vs. storing and accessing)
 
 ### Linked List Methods
 
@@ -1748,18 +1764,95 @@ A `collection` is a single object which acts as a container for other objects.
 - get() (uses index)
 - listIterator()
 
+## ArrayList vs. LinkedList
+
+- When the rate of addition or removal rate is more than the read scenarios, then use a LinkedList. On the other hand, when the frequency of the read scenarios is more than the addition or removal rate, then ArrayList takes precedence over LinkedList.
+- Since the elements of an ArrayList are stored more compact as compared to a LinkedList; therefore, the ArrayList is more cache-friendly as compared to the LinkedList. Thus, chances for the cache miss are less in an ArrayList as compared to a LinkedList. Generally, it is considered that a LinkedList is poor in cache-locality.
+- Memory overhead in the LinkedList is more as compared to the ArrayList. It is because, in a LinkedList, we have two extra links (next and previous) as it is required to store the address of the previous and the next nodes, and these links consume extra space. Such links are not present in an ArrayList.
+- ArrayList in the multithreading environment does not provide thread safety. This is because ArrayList is not synchronized.
+
 ## common UNIX commands
 
 > What are some common Linux commands? Why are they useful?
 
+```shell
+#  list directory content
 ls
+
+# change directory
+cd
+
+# display current working directory path
 pwd
+
+# create directory
+mkdir
+
+# create empty file
+touch
+
+# echo redirected to file with > will create new file
+echo "New file content" > new_file.txt
+
+# view file
+cat filename
+
+# create new file
+cat > newfile
+
+# copy sourcefile content to destionation file
+cat sourcefile > destinationfile
+
+# search string in file
+grep mystring myfile
+
+# compare 2 files, output lines that are different
+diff file1 file2
+
+# move file1 to directory1
+mv file1 directory1
+# prompt if we would overwrite a file
+mv - i file1 directory1
+# do not move if we would overwrite a file
+mv -n file1 directory1
+# only move if the source file is newer than destination file
+mv -u file1 directory1
+# create backup of overwritten destination file with same name 1 added to end
+mv -b file1 directory1
+
+# rename file1 to file2
+mv file1 file2
+
+# copy file1 to file2
+cp file1 file2
+# flags
+# interactive, warn before overwriting
+-i
+# create backup of destination file
+-b
+# use force: delete destination file if cannot be opened
+-f
+# recursive, copy directory with all subdirectories
+-r
+# preserve characteristics: times of last modification, etc
+-p
+
+# delete file
+rm file1
+# delete directory with all files and subdirectories
+rm -r directory1
+# force deletion flag
+-f
+
+
+
 mv
 rm
-mkdir
+
 cat
 grep
 cp
+```
 
 ## source control management
 
@@ -1805,8 +1898,53 @@ Two types of Git repositories, based on user permissions:
   - Software development teams use bare repositories to share changes made by team members.
   - Individual users aren't allowed to modify or create new versions of the repository.
 - Non-Bare Repositories
+
   - With non-bare repositories, users can modify the existing repository and create new versions.
   - By default, the cloning process creates a non-bare repository.
+
+  > What are some common operations you would be performing when using Git?
+
+- Understand how to push to repo
+- Understand how to use branches
+- Understand how to merge
+
+```shell
+# initialize repository
+git init
+
+# clone repository
+git clone [url] [directory]
+
+# get status of git repository
+git status
+
+# stage all files in directory
+git add .
+
+# commit changes
+git commit -m 'commit message'
+
+# push code to remote repository
+git push
+
+# create new branch
+git branch new-branch
+
+# move to new branch
+git checkout new-branch
+
+# shortcut to create and move to new branch
+get checkout -b new-branch
+
+# pull data from remote repository
+git pull
+
+# merge branch to master
+#  1. move to master first
+git checkout master
+#  2. merge new branch
+git merge new-branch
+```
 
 ### Git Bash
 
@@ -1815,11 +1953,3 @@ Two types of Git repositories, based on user permissions:
 - `shell` is a terminal application used to interface with an operating system through written commands.
 - `Bash` is a popular default shell on Linux and macOS.
   Git Bash is
-
-> What are some common operations you would be performing when using Git?
-
-### Understand how to push to repo
-
-### Understand how to use branches
-
-### Understand how to merge
