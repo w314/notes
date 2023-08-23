@@ -1532,27 +1532,225 @@ WK7
 
 ## Generics
 
+- enables classes to be parameterized so they can be re-used with different types as input, like methods
+- alternative is using Object as type of state, which would require casting and could lead to runtime issues
+- generics add stability to your code by making more of your bugs detectable at compile time
+
 ### creating a class that uses generics
+
+- add a generic type declaration to your class, ex `ClassName<T>`
+- you can specify more than one type variable as a parameter
+- use the type variables throughout the class
+- `bounded types`: requirement that type must be subtype or of same type as specified type
+  - ex: ClassName<T extends SuperType>
+  - supertype can be a class or interface
 
 ### using a generic class
 
+- generic type invocation: when using the parameterized class, replace the type param name with the actual type you want to use
+- ex: ArrayList<String> stringList;
+- raw type: if you do not specify a type, the Object type will be used
+
 ### type parameter naming conventions
 
-## Stacks
+Type params are single, uppercase letters.
 
-## Queues
+- E: Element
+- K: Key
+- N: Number
+- T: Generic Data Type
+- V: Value
+- S,U,V etc: 2nd, 3rd, 4th for multiple generic data types
 
-## Collection Hierarchy
+## Iterators
+
+- objects that allow you to traverse a Collection
+- are used "behind the scenes" in enhanced for loops
+
+The `Iterable` interface defines a data structure which can be directly traversed using the `.iterator()` method, which returns an `Iterator`.
+
+- Any class that implements the Iterable interface needs to override the `iterator()` method
+- Any class implementing the Iterator interface needs to override the `hasNext()` and `next()` methods provided by the Iterator interface.
+- The Iterator instance stores the iteration state. That means it provides utility methods to get the current element, check if the next element exists, and move forward to the next element if present. In other words, an Iterator remembers the current position in a collection and returns the next item in sequence if present. The Iterable, on the other hand, doesn’t maintain any such iteration state
+- The contract for Iterable is that it should produce a new instance of an Iterator every time the iterator() method is called. This is because the Iterator instance maintains the iteration state, and things won’t work as if the implementation returns the same Iterator twice.
+- For an Iterable, we can move forward only in the forward direction, but some of the Iterator subinterface like ListIterator allows us to move back and forth over a List.
+- Also, Iterable doesn’t provide any method to modify its elements, nor can we modify them using the for-each loop. But Iterator allows removing elements from the underlying collection during the iteration with the remove() method.
+
+### Iterator Methods:
+
+- `.hasNext()` - returns true if the iteration has more elements
+- `.next()` - returns the next element in the iteration.
+- `.remove()` - removes element from underlying collection (can only be called on modifiable Collections!)
+- you cannot modify using Collection methods during iteration!
+
+### List Iterator
+
+- additionally has operations that use indexes
+- can iterate backwards
+- nextIndex()
+- previousIndex()
+- previous()
+- hasPrevious()
+
+### `Iterable`
+
+An Iterable represents a collection that can be traversed.
+
+To traverse an iterable:
+
+#### 1. `Enhanced For Loop`
+
+```java
+Set<String> names = new ArrayList<>();
+
+for (String name : names) {
+  System.out.println(name);
+}
+```
+
+### 2. using an `Iterator`
+
+```java
+Iterator<Integer> `Iterator` = Arrays.asList(1, 2, 3, 4, 5).iterator();
+while (iterator.hasNext()) {
+    System.out.println(iterator.next());
+}
+```
+
+### 3. using `.forEach()`
+
+```java
+Iterator<Integer> `Iterator` = Arrays.asList(1, 2, 3, 4, 5).iterator();
+iterator.forEachRemaining(System.out::println);
+```
+
+### 4. using `lambda`
+
+```java
+for (Integer i: (Iterable<Integer>) () -> iterator) {
+    System.out.println(i);
+}
+```
+
+## Collection API
+
+- Assessment: Not PriorityQueue or Vector. Know how to work with Collections and yes, knowing the difference between a linked list and arraylist is useful.\*
+
+> What is a Collection?
+
+A `collection` is a single object which acts as a container for other objects.
+
+> What is the Collection API?
+> Java has the Collection API that implements common data structures
+
+### Important Interfaces
+
+- `Iterable`: requires that subtypes must be iterable so it can be traversed using a for-each loop
+- `Collection`: defines common behavior that all subtypes should have (add, remove, contains, etc)
+- `Set`: defines set-specific behaviors
+- `List`: defines list-specific behaviors
+- `Queue`: defines queue-specific behaviors
+- `Map`: does not implement the Collection or Iterabel interfaces, but is part of the collection framework.
+
+## Queue
+
+- FIFO: add to end/tail, remove from beginning/head
+- Java has an interface that represents this data structure
+- operations unique to queues:
+  - `offer`: attempt and adds, if you are able to
+  - `peek`: attempt to get head, if there is one
+  - `poll`: attempt and remove, if you are able to
+- using add(), remove(), and element() would throw exceptions
+
+## Stack
+
+- LIFO: add to end/top, remove from end/top
+- Java has a legacy class that represents this data structure
+- Java recommends the Deque type instead
+- stack operations:
+  - `push`: add to top
+  - `peek`: view top
+  - `pop`: remove top
 
 ## Sets
 
 ## Maps
 
+- each entry in a map is a key-value pair
+- specifies two generic type parameters
+- keys are unique
+- part of the `Collections Framework`
+- does NOT implement `Collections interface`
+- there are 2 interfaces for implementing `Map` in Java:
+  - `Map`
+  - `SortedMap`
+
+# Implementations
+
+- `HashMap`
+  - does NOT maintain order of insertion
+  - fast insertion/retreival
+  - permits 1 null key and null values
+  - `HashTable`:
+    - older, thread safe implementation of `HashMap`
+    - does not allow null keys or null values
+- `LinkedHashMap`
+  - maintains insertion order
+- `TreeMap`
+  - entries are sorted by keys
+
+### Useful Methods
+
+- put()
+- get()
+- remove()
+- entrySet()
+- keySet()
+- values()
+
+### Iterating over map
+
+- does NOT implement the `Iterable interface`
+- therefore cannot be iterated over directly
+- use instead
+  - `.entrySet()` method to iterate over `Map.Entry`
+  - `.keySet()` method to iterate over keys
+  - `.values()` method return a `Collection` that can be iterated over
+
+### Classes Implementing for Map
+
+#### `HashMap`
+
+#### `TreeMap`
+
+- keys are stored in a Sorted Tree structure
+- keys are always sorted
+- slow insertion/retreival
+- cannot contain null keys
+
+#### `LinkedHashMap`
+
+- maintains insertion order
+
 ## Linked List
 
-## Using Iterators
+- doubly-linked list implementation
+- implements List and Deque interfaces
+- can work with both ends and indexes
+
+### Linked List Methods
+
+- addFirst()
+- addLast()
+- getFirst()
+- getLast()
+- indexOf()
+- get() (uses index)
+- listIterator()
 
 ## common UNIX commands
+
+> What are some common Linux commands? Why are they useful?
 
 ls
 pwd
@@ -1565,7 +1763,60 @@ cp
 
 ## source control management
 
+> What is source control management? Why is it useful?
+
+`Version control` = Revision control = `Source Control Management` (`SCM`), is a process to manage a collection of source code and its changes.
+
+- manage and keep track of all your source code
+- all your changes are being stored in a repository.
+- there are 2 types of Version Control Systems
+  - the Centralized Version Control System (CVCS)
+  - Distributed (DVCS).
+
+The concept of `CVCS` is that it works on a Client-Server relationship. The repository is located in one place and provides access to many clients.
+
+On the contrary, in `DVCS`, every user has a local copy of the repository in addition to the central repo on the server-side.
+
 ## Git
+
+- you have the entire history of the project right there on your local disk
+
+> What are the main states that your files can reside in when using Git?
+
+Git has three main `states` that your files can reside in:
+
+- `modified` - you have changed the file but have not committed it to your database yet
+- `staged` - you have marked a modified file in its current version to go into your next commit snapshot.
+- `committed` - the data is safely stored in your local database
+
+> What are the main sections of a Git project?
+
+The three main `sections` of a Git project:
+
+- the `working tree` (or `working directory`, as in the diagram below) is a single checkout of one version of the project, downloaded to your local machine. The working tree is the set of all files and folders a developer can add, edit, rename and delete during application development. These files are pulled out of the compressed database in the Git directory and placed on disk for you to use or modify.
+- the `staging area` is a file, generally contained in your Git directory, that stores information about what will go into your next commit. Its technical name in Git parlance is the `“index”`, but the phrase “staging area” works just as well. (See diagram below)
+- `Git directory`(a.k.a. `repository folder`) is where Git stores the metadata and object database for your project. This is the most important part of Git, and it is what is copied when you clone a repository from another computer
+  - stores the history of all changes made to the files in a Git project
+  - name of directory: `.git`
+
+Two types of Git repositories, based on user permissions:
+
+- Bare Repositories
+  - Software development teams use bare repositories to share changes made by team members.
+  - Individual users aren't allowed to modify or create new versions of the repository.
+- Non-Bare Repositories
+  - With non-bare repositories, users can modify the existing repository and create new versions.
+  - By default, the cloning process creates a non-bare repository.
+
+### Git Bash
+
+- Git Bash is an application for Microsoft Windows environments which provides an emulation layer for a Git command line experience. A package that installs Bash, some common bash utilities, and Git on a Windows operating system.
+- `Bash` is an acronym for `Bourne Again Shell`
+- `shell` is a terminal application used to interface with an operating system through written commands.
+- `Bash` is a popular default shell on Linux and macOS.
+  Git Bash is
+
+> What are some common operations you would be performing when using Git?
 
 ### Understand how to push to repo
 

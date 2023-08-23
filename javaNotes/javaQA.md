@@ -1436,9 +1436,9 @@ What is a Collection?
 What is the Collection API?
 What are the major differences between a List, Queue, Set, and Map?
 What is the difference between a Stack and a Queue?
+Describe a linked list.
+What are some common Linux commands? Why are they useful?
 What is source control management? Why is it useful?
 What are the main states that your files can reside in when using Git?
 What are the main sections of a Git project?
-What are some common Linux commands? Why are they useful?
 What are some common operations you would be performing when using Git?
-Describe a linked list.
