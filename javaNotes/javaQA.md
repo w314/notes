@@ -34,9 +34,9 @@ sql: 1-25
 
 ### 16 What is TCL?
 
-Work on below
-
 ### 22 What is a transaction?
+
+Work on below
 
 ### 17 What is the difference between an aggregate and a scalar function?
 
