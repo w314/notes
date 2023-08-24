@@ -115,10 +115,41 @@ ALTER TABLE users ADD CONSTRAIN name NOT NULL;
 - `UPDATE`
 - `DELETE`
 
-#### `DCL` Data Control Language - manage access permissions to database object
+#### DCL - Data Control Language
 
-- `GRANT`
-- `REVOKE`
+> What is DCL?
+
+The `Data Control Language` (`DCL`) of SQL is used to control rights, and permissions of users on database objects.
+
+The DBA (DataBase Administrator) would be responsible to setup user (application) access prior to the user attempting to login to the database.
+
+- `GRANT` - grant privilege
+- `REVOKE` - remove privilege
+
+##### Privileges
+
+A database can have numerous privileges which can be permitted to users. Most common ones:
+
+- `Select` - allows select statements on tables
+- `Insert` - allows insert statements on tables
+- `Delete` - allows delete statements on tables
+- `Update` - allows update statements on tables
+- `Index` - allows creating indexes on tables
+- `Create` - allows create table statements
+- `Alter` - allows alter table statements
+- `Drop` - allows drop table statements
+- `All` - allow all permissions except grant
+- `Grant` - allows grant statements
+
+##### Sytax
+
+```sql
+GRANT <privileges> ON <object> TO <user>;
+-- GRANT all CRUD ablities to user
+GRANT SELECT, INSERT, UPDATE, DELETE ON employees TO 'john';
+
+REVOKE <privileges> ON <object> FROM <user>;
+```
 
 #### `TCL` Transaction Control Language. Defines concurrent operation boundaries
 
