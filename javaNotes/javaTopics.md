@@ -48,6 +48,25 @@ TABLE commands:
 - `TRUNCATE TABLE`
 - `ALTER TABLE`
 
+### View
+
+> What is a view and why is it useful?
+
+In `MySQL`, a `View` is a virtual table based on the result-set of an SQL statement. A view consists of rows and columns, just like a common table. The view fields are fields from one or more real tables in the database.
+
+Advantages:
+
+- Structure data in a way that users or classes of users find natural or intuitive.
+- Restrict access to the data in such a way that a user can see and manipulate exactly what they need.
+- Summarize data from various tables which can be used to generate documents and reports.
+
+```sql
+CREATE VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+```
+
 ### Sublanguage Overview
 
 #### `DDL` - `Data Definition Language`
@@ -392,6 +411,61 @@ SELECT [ALL | DISTINCT]
 </tr>
 </tbody>
 </table>
+
+### Joins
+
+> Describe what a join is and explain the different types of joins we can create.
+
+#### Inner
+
+`INNER JOIN` restricts records retrieval from Table1 and Table2 to those that satisfy the join requirement.
+
+#### Left
+
+`LEFT JOIN` returns all records from the left table, and the records that match the condition from the right table.
+
+#### Right
+
+`RIGHT JOIN` returns all records from the right table, and the records that match the condition from the left table.
+
+#### Cross
+
+`MySQL` `CROSS JOIN`, commonly knows as a `CARTESIAN JOIN`, returns all possible row combinations from each table.
+
+If no other condition is provided, the result set is obtained by multiplying each row of table1 with all rows in table2.
+
+If there is a relationship between two tables and we add a WHERE clause, then the CROSS JOIN will produce the same result as INNER JOIN.
+
+Real world application includes calculating all possibilities when launching a space rocket.
+
+#### Self
+
+`SELF JOIN` is an SQL statement which is used to intersect or join a table in the database to itself.
+
+### Set Operations
+
+> What is the difference between a join and a set operation?
+
+SET Operators are specific type of operators which are used to combine the result of two queries.
+
+#### UNION
+
+The `UNION` command is used to combine more than one SELECT query results into a single query contain rows from all the select queries.
+
+- The number of columns and data types in the SELECT statements must be the same in order for the UNION command to work.
+- `MySQL` uses the `DISTINCT` clause as the default when executing UNION
+
+#### UNION ALL
+
+The `UNION ALL` clause is used to display all even the duplicate rows in UNION query.
+
+#### INTERSECT
+
+The `INTERSECT` clause is used to display all records which are common between two tables.
+
+#### MINUS
+
+The `MINUS` clause ( also called as `EXCEPT` clause in some books) is used to display the records from table 1 while removing the records which are also present in table 2.
 
 ## Operating System
 

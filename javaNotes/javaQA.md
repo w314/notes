@@ -1,109 +1,62 @@
-wk1 1-32, wk2 33-51, wk3 52-71,
-wk4 72-81, wk5 82-93
+sql: 1-25
 
 ## SQL
 
-### 74 What is a RDBMS?
+### 1 What is a RDBMS?
 
-### 1 What is SQL and why would we use this language
+### 2 What is SQL and why would we use this language
 
-### 73 What are the SQL sublanguages and their purpose?
+### 3 What are the SQL sublanguages and their purpose?
 
-### 75 tables Describe relational database tables.
+### 4 tables Describe relational database tables.
 
-### 76 What are constraints and can you describe a few constraints?
+### 5 What are constraints and can you describe a few constraints?
 
-### 77 Why would I use the WHERE clause?
+### 6 Why would I use the WHERE clause?
 
-### 78 What are some operators that can be used in SQL?
+### 7 What are some operators that can be used in SQL?
 
-### 84 What is a foreign key?
+### 8 What is a foreign key?
 
-### 85 What is referential integrity?
+### 9 What is referential integrity?
 
-### 86 What is normalization?
+### 10 What is normalization?
 
-### 87 What is multiplicity?
+### 11 What is multiplicity?
 
-### 88 Describe what a join is and explain the different types of joins we can create.
+### 12 Describe what a join is and explain the different types of joins we can create.
 
-#### Inner
+### 13 What is the difference between a join and a set operation?
 
-`INNER JOIN` restricts records retrieval from Table1 and Table2 to those that satisfy the join requirement.
+### 14 What is a view and why is it useful?
 
-#### Left
+### 15 What is DCL?
 
-`LEFT JOIN` returns all records from the left table, and the records that match the condition from the right table.
+### 16 What is TCL?
 
-#### Right
+### 17 What is the difference between an aggregate and a scalar function?
 
-`RIGHT JOIN` returns all records from the right table, and the records that match the condition from the left table.
+### 18 What is the GROUP BY clause used for?
 
-#### Cross
+### 19 What is the ORDER BY clause used for?
 
-`MySQL` `CROSS JOIN`, commonly knows as a `CARTESIAN JOIN`, returns all possible row combinations from each table.
+### 20 What is a stored procedure in SQL?
 
-If no other condition is provided, the result set is obtained by multiplying each row of table1 with all rows in table2.
+### 21 What is a trigger in SQL?
 
-If there is a relationship between two tables and we add a WHERE clause, then the CROSS JOIN will produce the same result as INNER JOIN.
+### 22 What is a transaction?
 
-Real world application includes calculating all possibilities when launching a space rocket.
+### 23 What are the properties of a transaction?
 
-#### Self
+### 24 What is a function in SQL?
 
-`SELF JOIN` is an SQL statement which is used to intersect or join a table in the database to itself.
+### 25 What is an index in SQL?
 
-### 89 What is the difference between a join and a set operation?
+<hr>
+<hr>
+<hr>
 
-SET Operators are specific type of operators which are used to combine the result of two queries.
-
-#### UNION
-
-The `UNION` command is used to combine more than one SELECT query results into a single query contain rows from all the select queries.
-
-- The number of columns and data types in the SELECT statements must be the same in order for the UNION command to work.
-- `MySQL` uses the `DISTINCT` clause as the default when executing UNION
-
-#### UNION ALL
-
-The `UNION ALL` clause is used to display all even the duplicate rows in UNION query.
-
-#### INTERSECT
-
-The `INTERSECT` clause is used to display all records which are common between two tables.
-
-#### MINUS
-
-The `MINUS` clause ( also called as `EXCEPT` clause in some books) is used to display the records from table 1 while removing the records which are also present in table 2.
-
-### 90 What is a view and why is it useful?
-
-In `MySQL`, a `View` is a virtual table based on the result-set of an SQL statement. A view consists of rows and columns, just like a common table. The view fields are fields from one or more real tables in the database.
-
-Advantages:
-
-- Structure data in a way that users or classes of users find natural or intuitive.
-- Restrict access to the data in such a way that a user can see and manipulate exactly what they need.
-- Summarize data from various tables which can be used to generate documents and reports.
-
-```sql
-CREATE VIEW view_name AS
-SELECT column1, column2, ...
-FROM table_name
-WHERE condition;
-```
-
-What is DCL?
-What is TCL?
-What is the difference between an aggregate and a scalar function?
-What is the GROUP BY clause used for?
-What is the ORDER BY clause used for?
-What is a stored procedure in SQL?
-What is a trigger in SQL?
-What is a transaction?
-What are the properties of a transaction?
-What is a function in SQL?
-What is an index in SQL?
+# EDIT BELOW
 
 ## 1 operating system
 
