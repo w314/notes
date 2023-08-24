@@ -42,11 +42,11 @@ sql: 1-25
 
 ### 24 What is a function in SQL?
 
-Work on below
-
 ### 18 What is the GROUP BY clause used for?
 
 ### 19 What is the ORDER BY clause used for?
+
+Work on below
 
 ### 20 What is a stored procedure in SQL?
 

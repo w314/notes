@@ -210,10 +210,6 @@ COMMIT; --statement4
   Transactions help with Durability in a few ways: data modifications that take place within a successful transaction may be safely considered to be stored in the database regardless of whatever else may occur. As each transaction is completed, a row is entered in the database transaction log. Thus, in the event of a system failure that requires the database to be restored from a backup you can use this transaction log to get the database back to the state it was in after a successful transaction.
   The ACID property of DBMS plays a vital role in maintaining the consistency and availability of data in the database
 
-## SQL `DQL` Data Query Language. Search, filter, group, aggregate stored data
-
-- `SELECT`
-
 ### Schema
 
 - A database schema defines the structure of a database. Database schema is declared using a formal language, for RDBMS the language is SQL.
@@ -226,7 +222,7 @@ COMMIT; --statement4
   - views
 - In and RDBMS table the schema defines the columns, their data types, and constraints.
 
-### Normalization
+## Normalization
 
 > What is normalization?
 
@@ -420,10 +416,11 @@ UPDATE permissions set categoryId=1;
 DELETE FROM roles where name='VIEWER';
 ```
 
-### DQL
+## SQL DQL
 
-- `Data Query Language`
-- `SELECT` query
+`DQL`the `Data Query Language` is used to search, filter, group and aggregate stored data
+
+- `SELECT`
 
 ```sql
 SELECT [ALL | DISTINCT]
@@ -441,21 +438,43 @@ SELECT [ALL | DISTINCT]
 
 ### Clauses
 
+#### `WHERE` Clause
+
 > Why would I use the WHERE clause?
 
-- FILTERING: The filtering clause of a select statement is a `WHERE` clauses that defines how selected rows are filtered from the table. WHERE` clauses use **logical operators** to select records that meet specific conditions.
-  - `AND` true if both boolean expresions evaluate to true
-  - `IN` true if the operand is included in a list of expressions
-  - `NOT` Reverses the value of any boolean expression
-  - `OR` true if either or both boolean expressions is true
-  - `LIKE` true if the operand matches a pattern
-    - `%`` (percent) match any string of zero or more characters
-    - `_` (underscore) match any single character
-  - `BETWEEN` true if the operand falls within a range
-    Where Logical operators
-- `GROUP BY` groups rows that have the same values into summary rows. Often used with aggregate functions like `COUNT`, `MAX`, `MIN`.
+The `WHERE` clause is not only used in `SELECT` statements, it is also used in `UPDATE`, `DELETE` as well
+
+FILTERING: The filtering clause of a select statement is a `WHERE` clauses that defines how selected rows are filtered from the table. WHERE` clauses use **logical operators** to select records that meet specific conditions.
+
+- `AND` true if both boolean expresions evaluate to true
+- `IN` true if the operand is included in a list of expressions
+- `NOT` Reverses the value of any boolean expression
+- `OR` true if either or both boolean expressions is true
+- `LIKE` true if the operand matches a pattern
+  - `%`` (percent) match any string of zero or more characters
+  - `_` (underscore) match any single character
+- `BETWEEN` true if the operand falls within a range
+  Where Logical operators
+
+#### `GROUP BY` Clause
+
+> What is the GROUP BY clause used for?-
+
+- used to group data based on the exact value in a specific field
+- groups rows that have the same values into summary rows
+- have to be used with aggregate functions like `COUNT`, `MAX`, `MIN`.
 - `HAVING` is used to filter out groups that meet a condition.
-- `ORDER BY` clause is used to sort the returned records by a specified column. The records can be ordered either `ASC` (ascending) or `DESC` (descending). Ascending order is default if not specified.
+
+#### `ORDER BY` Clause
+
+> What is the ORDER BY clause used for?
+
+- `ORDER BY` clause is used to sort the returned records by a specified column
+- The records can be ordered either `ASC` (ascending) or `DESC` (descending).
+- Ascending order is default if not specified.
+
+### Other Clauses
+
 - `LIMIT` clause restricts number of records returned from the select statement.
 - `OFFSET` clause specifies from which record position to start counting from. This is often used in conjunction with the `LIMIT` clause. NOTE: Some SQL implementations use the `SKIP` keyword instead of offset
 
@@ -490,7 +509,7 @@ SELECT [ALL | DISTINCT]
 </tbody>
 </table>
 
-### Joins
+## SQL Joins
 
 > Describe what a join is and explain the different types of joins we can create.
 
@@ -520,7 +539,7 @@ Real world application includes calculating all possibilities when launching a s
 
 `SELF JOIN` is an SQL statement which is used to intersect or join a table in the database to itself.
 
-### Set Operations
+## SQL Set Operations
 
 > What is the difference between a join and a set operation?
 
@@ -548,6 +567,10 @@ The `MINUS` clause ( also called as `EXCEPT` clause in some books) is used to di
 ## SQL Functions
 
 > What is a function in SQL?
+
+- A function in MySQL is a set of statements you can call by name.
+- Stored functions are very similar to stored procedures, except that a function returns a value to the environment in which it is called.
+- User functions can be used as part of a SQL expression..
 
 > What is the difference between an aggregate and a scalar function?
 
@@ -596,4 +619,56 @@ SELECT ROUND (1560.44444, 2) AS Round_Value;
 
 SELECT FORMAT (1234.1234, 2) AS Format_Number;
 -- returns: 1234.12
+```
+
+### Stored MySQL Functions
+
+Characteristics of a function include:
+
+- Functions are separate block that is mainly used for calculation purpose.
+- Function with DML commands can be called from other MySQL blocks, but function without DML commands can be directly called in SELECT query.
+- The values can be passed into the function or fetched from the procedure through the parameters.
+- These parameters should be included in the calling statements.
+- A function uses RETURN command to return the value or raise the exception, i.e. return is mandatory in functions.
+- As it will always return the value, in calling statements it always accompanies with assignment operator to populate the variables.
+
+#### Syntax
+
+```sql
+-- FUNCTION CREATION
+CREATE FUNCTION function_name [ (parameter datatype [, parameter datatype]) ] RETURNS return_datatype
+
+BEGIN
+
+declaration_section
+
+executable_section
+
+END;
+
+-- FUNCTION EXECUTION
+SELECT function_name(parameters);
+
+-- FUNCTION DELETION
+DROP FUNCTION [ IF EXISTS ] function_name;
+```
+
+#### Example
+
+```sql
+-- create
+CREATE FUNCTION get_balance(acc_no INT) RETURNS INT BEGIN
+
+  SELECT order_total
+  INTO acc_bal
+  FROM orders
+  WHERE customer_id = acc_no;
+  RETURN(acc_bal);
+END;
+
+-- execute
+SELECT get_balance(101);
+
+-- delete
+DROP FUNCTION IF EXISTS get_balance;
 ```
