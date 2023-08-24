@@ -36,9 +36,13 @@ sql: 1-25
 
 ### 22 What is a transaction?
 
-Work on below
-
 ### 17 What is the difference between an aggregate and a scalar function?
+
+### 23 What are the properties of a transaction?
+
+### 24 What is a function in SQL?
+
+Work on below
 
 ### 18 What is the GROUP BY clause used for?
 
@@ -47,10 +51,6 @@ Work on below
 ### 20 What is a stored procedure in SQL?
 
 ### 21 What is a trigger in SQL?
-
-### 23 What are the properties of a transaction?
-
-### 24 What is a function in SQL?
 
 ### 25 What is an index in SQL?
 

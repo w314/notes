@@ -151,7 +151,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON employees TO 'john';
 REVOKE <privileges> ON <object> FROM <user>;
 ```
 
-#### TCL - Transaction Control Language
+## SQL TCL - Transaction Control Language
 
 > What is TCL?
 
@@ -162,7 +162,7 @@ TCL commands help the user manage the transactions that take place in a database
 - to make the changes permanent, we use TCL commands
 - TCL commands are used to ensure the transaction satisfies all the ACID properties
 
-##### Transaction
+### Transaction
 
 > What is a transaction?
 
@@ -171,7 +171,7 @@ TCL commands help the user manage the transactions that take place in a database
 - In MySQL, transactions are SQL statements that are grouped under a single unit, the statements in a transaction will then be executed one by one
 - there are only two outputs for a transaction, success or failure, if all the statements are executed successfully the transaction is successful, even if a single statement fails, the entire transaction fails.
 
-##### TCL Commands
+### TCL Commands
 
 - `START` - notifies MySQL that the statements after Start should be cosidered as a single unit.
 - `COMMIT` - used to save the data permanently
@@ -196,7 +196,9 @@ UPDATE bankaccounts SET funds=funds+100 WHERE account_no='ACC2'; --statement3
 COMMIT; --statement4
 ```
 
-##### Transaction Properties (`ACID`)
+### Transaction Properties (`ACID`)
+
+> What are the properties of a transaction?
 
 - `Atomicity` - is combining all statements into a single unit. A transaction is considered to be atomic if it cannot be further broken down into individual operations and, all of the operations that occur within a transaction either succeed or fail as a single unit. If a single operation fails during a transaction, then everything is considered to have failed and must be rolled back.
 
@@ -208,7 +210,7 @@ COMMIT; --statement4
   Transactions help with Durability in a few ways: data modifications that take place within a successful transaction may be safely considered to be stored in the database regardless of whatever else may occur. As each transaction is completed, a row is entered in the database transaction log. Thus, in the event of a system failure that requires the database to be restored from a backup you can use this transaction log to get the database back to the state it was in after a successful transaction.
   The ACID property of DBMS plays a vital role in maintaining the consistency and availability of data in the database
 
-#### `DQL` Data Query Language. Search, filter, group, aggregate stored data
+## SQL `DQL` Data Query Language. Search, filter, group, aggregate stored data
 
 - `SELECT`
 
@@ -543,4 +545,55 @@ The `INTERSECT` clause is used to display all records which are common between t
 
 The `MINUS` clause ( also called as `EXCEPT` clause in some books) is used to display the records from table 1 while removing the records which are also present in table 2.
 
+## SQL Functions
+
+> What is a function in SQL?
+
+> What is the difference between an aggregate and a scalar function?
+
+- A scalar function is a function that operates on scalar values. It takes one (or more) input values as arguments directly and returns a value.
+- An aggregate function is a function that operates on aggregate data. It takes a complete set of data as input and returns a value that is computed from all the values in the set.
+
 ### Aggregate Functions
+
+- MySQL aggregate functions retrieve a single value after performing a calculation on a set of values.
+- In general, aggregate functions ignore null values.
+- Often, aggregate functions are accompanied by the GROUP BY clause of the SELECT statement.
+
+Most important aggregate functions:
+
+- `count()` - Returns the number of rows, including rows with NULL values in a group.
+- `sum()` - Returns the total summed values in a set. -`average()` - Returns the average value of an expression.
+- `min()` - Returns the minimum (lowest) value in a set.
+- `max()` - Returns the maximum (highest) value in a set.
+
+```sql
+SELECT MIN(salary) FROM employee;
+```
+
+### Scalar Functions
+
+Scalar functions are pre-defined functions in SQL, and whatever be the input provided to the scalar functions, the output returned by these functions will always be a single value.
+
+Most important scalar functions:
+
+- `UCASE()` - Converts the value of a field to uppercase.
+- `LCASE()` - Converts the value of a field to lowercase.
+- `MID(string, start, end)` - returns substring
+- `LENGTH()` - Returns the length of the value in a text field.
+- `ROUND(NumericalValue, Decimals)`
+- `NOW()` - Returns the current system date and time.
+- `FORMAT(Value, Decimal)`
+
+```sql
+SELECT MID ("Hello World", 4, 8) AS Substring;
+-- returns:"lo World"
+
+SELECT ROUND (NumericValue, Decimals);
+
+SELECT ROUND (1560.44444, 2) AS Round_Value;
+-- returns: 1560.44
+
+SELECT FORMAT (1234.1234, 2) AS Format_Number;
+-- returns: 1234.12
+```
