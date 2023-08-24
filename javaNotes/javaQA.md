@@ -15,23 +15,7 @@ wk4 72-81, wk5 82-93
 
 ### 77 Why would I use the WHERE clause?
 
-### 78 sql operators What are some operators that can be used in SQL?
-
-- Arithmetic (`+`, `-`, `*`,`/`,`%`)
-- Bitwise (`&`, `|`, `^`)
-- Comparison (`=`, `<`, `>`, `>=`, `<=`, `<>`)
-- Compound (`+=`, `-=`, ...)
-- Logical
-  - `ALL` - TRUE if all of the subquery values meet the condition
-  - `AND` - TRUE if all the conditions separated by AND is TRUE
-  - `ANY` - TRUE if any of the subquery values meet the condition
-  - `BETWEEN` - TRUE if the operand is within the range of comparisons
-  - `EXISTS` - TRUE if the subquery returns one or more records
-  - `IN` - TRUE if the operand is equal to one of a list of expressions
-  - `LIKE` - TRUE if the operand matches a pattern
-  - `NOT` - Displays a record if the condition(s) is NOT TRUE
-  - `OR` TRUE if any of the conditions separated by OR is TRUE
-  - `SOME` TRUE if any of the subquery values meet the condition
+### 78 What are some operators that can be used in SQL?
 
 ### 84 What is a foreign key?
 

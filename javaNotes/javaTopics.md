@@ -149,6 +149,26 @@ ALTER TABLE users ADD CONSTRAIN name NOT NULL;
   - Time
   - Timestamp
 
+### SQL Operators
+
+> What are some operators that can be used in SQL?
+
+- Arithmetic (`+`, `-`, `*`,`/`,`%`)
+- Bitwise (`&`, `|`, `^`)
+- Comparison (`=`, `<`, `>`, `>=`, `<=`, `<>`)
+- Compound (`+=`, `-=`, ...)
+- Logical
+  - `ALL` - TRUE if all of the subquery values meet the condition
+  - `AND` - TRUE if all the conditions separated by AND is TRUE
+  - `ANY` - TRUE if any of the subquery values meet the condition
+  - `BETWEEN` - TRUE if the operand is within the range of comparisons
+  - `EXISTS` - TRUE if the subquery returns one or more records
+  - `IN` - TRUE if the operand is equal to one of a list of expressions
+  - `LIKE` - TRUE if the operand matches a pattern
+  - `NOT` - Displays a record if the condition(s) is NOT TRUE
+  - `OR` TRUE if any of the conditions separated by OR is TRUE
+  - `SOME` TRUE if any of the subquery values meet the condition
+
 ### Constraints
 
 > What are constraints and can you describe a few constraints?
@@ -179,6 +199,39 @@ create table content_meta (
     index (content_type)
 );
 ```
+
+### Foreign Key
+
+> What is a foreign key?
+
+A `FOREIGN KEY` is a field or collection of fields in a table that refers to the `PRIMARY KEY` of the other table.
+
+- responsible for managing the relationship between the tables.
+- forms the bases of referential integrity
+
+```sql
+CREATE TABLE Branch(
+    branch_id INT PRIMARY KEY,
+    branch_name VARCHAR(20)
+     );
+-- Add branch_id as foreign key for employee table
+
+ALTER TABLE employee ADD branch_id INT;
+ALTER TABLE employee ADD FOREIGN KEY (branch_id) REFERENCES Branch(branch_id);
+```
+
+### Referential Integrity
+
+> What is referential integrity?
+
+`REFERENTIAL INTEGRITY` is the relationship between tables.
+
+Referential Integrity:
+
+- the requirement that a foreign key cannot be defined unless its corresponding primary key exists is a referential integrity constraint
+- does not allow the addition of any record in a table that contains the foreign key unless the reference table contains a corresponding primary key.
+- does not allow to deletion of a record in a table that contains the foreign key, to delete the record in the parent table, the corresponding record in the child table should be deleted first. to solve this issue `ON DELETE CASCADE` is used.
+- Other options are to set the foreign key to null or to its default value (only if the default value references an existing value in the primary-key table).
 
 ### Basic Queries
 
