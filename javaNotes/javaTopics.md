@@ -151,11 +151,34 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON employees TO 'john';
 REVOKE <privileges> ON <object> FROM <user>;
 ```
 
-#### `TCL` Transaction Control Language. Defines concurrent operation boundaries
+#### TCL - Transaction Control Language
 
-- `COMMIT`
-- `ROLLBACK`
-- `SAVEPOINT`
+> What is TCL?
+
+TCL commands help the user manage the transactions that take place in a database.
+
+- a `transaction` is a set of SQL statements that are executed on the data stored in DBMS
+- Whenever we perform any of the DDL command like -INSERT, DELETE or UPDATE, these can be rollback if the data is not stored permanently
+- to make the changes permanent, we use TCL commands
+- TCL commands are used to ensure the transaction satisfies all the ACID properties
+
+##### TCL Commands
+
+- `COMMIT` - used to save the data permanently
+- `ROLLBACK` - used to get the data or restore the data to the last savepoint or last committed state
+- `SAVEPOINT` - used to save the data at a particular point temporarily
+
+##### Example
+
+```sql
+START TRANSACTION;
+INSERT INTO bankaccounts VALUES("ACC3", 10000);
+SAVEPOINT sv;
+INSERT INTO bankaccounts VALUES("ACC4", 900000);
+ROLLBACK TO sv;
+INSERT INTO bankaccounts VALUES("ACC4", 90000);
+COMMIT;
+```
 
 #### `DQL` Data Query Language. Search, filter, group, aggregate stored data
 

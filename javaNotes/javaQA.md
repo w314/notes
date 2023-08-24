@@ -34,6 +34,10 @@ sql: 1-25
 
 ### 16 What is TCL?
 
+Work on below
+
+### 22 What is a transaction?
+
 ### 17 What is the difference between an aggregate and a scalar function?
 
 ### 18 What is the GROUP BY clause used for?
@@ -43,8 +47,6 @@ sql: 1-25
 ### 20 What is a stored procedure in SQL?
 
 ### 21 What is a trigger in SQL?
-
-### 22 What is a transaction?
 
 ### 23 What are the properties of a transaction?
 
