@@ -1,4 +1,259 @@
-wk1 1-32, wk2 33-51, wk3 52-71, wk4 72-81, wk5 82-93
+wk1 1-32, wk2 33-51, wk3 52-71,
+wk4 72-81, wk5 82-93
+
+## SQL
+
+### 1 What is SQL and why would we use this language
+
+### 73 What are the SQL sublanguages and their purpose?
+
+- `DDL` Data Definition Language. Defines data structure
+  - `CREATE`
+  - `ALTER`
+  - `DROP`
+  - `TRUNCATE`
+  - `RENAME`
+  - COMMENT:
+    - single line `--`
+    - multi-line `/**/`
+- `DML` Data Manipulation Language
+  - `INSERT`
+  - `UPDATE`
+  - `DELETE`
+- `DCL` Data Control Language - manage access permissions to database object
+  - `GRANT`
+  - `REVOKE`
+- `TCL` Transaction Control Language. Defines concurrent operation boundaries
+  - `COMMIT`
+  - `ROLLBACK`
+  - `SAVEPOINT`
+- `DQL` Data Query Language. Search, filter, group, aggregate stored data
+  - `SELECT`
+
+### 74 What is a RDBMS?
+
+- An RDBMS is a data storage system based on a relational model
+- RDBMS manages data by storing them in tables.
+- uses Structured Query Language (SQL)
+
+### 75 tables Describe relational database tables.
+
+In MySQL, a table stores and organizes data in columns and rows as defined during table creation.
+
+TABLE commands:
+
+- `CREATE TABLE`
+- `DROP TABLE`
+- `TRUNCATE TABLE`
+- `ALTER TABLE`
+
+### 76 What are constraints and can you describe a few constraints?
+
+`Constraints` are used to define a database schema and are the backbone for defining `integrity constraints` of the schema. They help validate data beyond just a simple data type.
+
+- `NOT NULL` Ensures that a column's value is not null.
+- `UNIQUE` Ensures that a column's value is unique in the table. (Can have one `NULL` value.)
+- `PRIMARY KEY` Combines unique and not null. Uniquely identifies each row.
+- `FOREIGN KEY` Links to a row in another table. Prevents the destruction of those links.
+- `DEFAULT` Specifies a value for a column, if one is not given.
+- `CHECK`
+  - helps us to get only those values that are valid for the condition and our requirements.
+  - ``
+- `CREATE INDEX` Create a sorted index of the column for faster searching.
+
+```sql
+create table content_meta (
+	id int auto_increment primary key,
+    content_type int not null,
+    url varchar(500) not null unique,
+    uploader int not null,
+    size_in_bytes bigint default 1,
+    uploaded_at timestamp default now(),
+    constraint url_scheme_check check(instr(url, 'http://') > 0),
+    constraint size_check check(size_in_bytes > 0), check(size_in_bytes < 10000000),
+    foreign key(content_type) references content_type(id),
+    foreign key(uploader) references users(id),
+    index (content_type)
+);
+```
+
+### 77 where clause Why would I use the WHERE clause?
+
+FILTERING: The filtering clause of a select statement is a `WHERE` clause that defines how selected rows are filtered from the table. `WHERE` clauses use logical operators to select records that meet specific conditions.
+
+### 78 sql operators What are some operators that can be used in SQL?
+
+- Arithmetic (`+`, `-`, `*`,`/`,`%`)
+- Bitwise (`&`, `|`, `^`)
+- Comparison (`=`, `<`, `>`, `>=`, `<=`, `<>`)
+- Compound (`+=`, `-=`, ...)
+- Logical
+  - `ALL` - TRUE if all of the subquery values meet the condition
+  - `AND` - TRUE if all the conditions separated by AND is TRUE
+  - `ANY` - TRUE if any of the subquery values meet the condition
+  - `BETWEEN` - TRUE if the operand is within the range of comparisons
+  - `EXISTS` - TRUE if the subquery returns one or more records
+  - `IN` - TRUE if the operand is equal to one of a list of expressions
+  - `LIKE` - TRUE if the operand matches a pattern
+  - `NOT` - Displays a record if the condition(s) is NOT TRUE
+  - `OR` TRUE if any of the conditions separated by OR is TRUE
+  - `SOME` TRUE if any of the subquery values meet the condition
+
+### 84 What is a foreign key?
+
+A `FOREIGN KEY` is a field or collection of fields in a table that refers to the `PRIMARY KEY` of the other table.
+
+- responsible for managing the relationship between the tables.
+- forms the bases of referential integrity
+
+```sql
+CREATE TABLE Branch(
+    branch_id INT PRIMARY KEY,
+    branch_name VARCHAR(20)
+     );
+-- Add branch_id as foreign key for employee table
+
+ALTER TABLE employee ADD branch_id INT;
+ALTER TABLE employee ADD FOREIGN KEY (branch_id) REFERENCES Branch(branch_id);
+```
+
+### 85 What is referential integrity?
+
+`REFERENTIAL INTEGRITY` is the relationship between tables.
+
+Referential Integrity:
+
+- the requirement that a foreign key cannot be defined unless its corresponding primary key exists is a referential integrity constraint
+- does not allow the addition of any record in a table that contains the foreign key unless the reference table contains a corresponding primary key.
+- does not allow to deletion of a record in a table that contains the foreign key, to delete the record in the parent table, the corresponding record in the child table should be deleted first. to solve this issue `ON DELETE CASCADE` is used.
+- Other options are to set the foreign key to null or to its default value (only if the default value references an existing value in the primary-key table).
+
+### 86 What is normalization?
+
+`Normalization` is the process of organizing the data and the attributes of a database.
+
+- reduce the duplication of data, - avoid data anomalies
+- ensure referential integrity
+- simplify data management
+
+1. `1NF` First Normal Form
+
+- Each table cell should contain a single value.
+- Each record needs to be unique
+- violation example: hobbies with several values
+- solution add new rows with each value
+
+2. `2NF` Second Normal Form
+
+- Be in 1NF
+- Single Column Primary Key - that does not functionally dependant on any subset of candidate key relation
+- violation example: name and address identifies a record when two different people have the same name
+- solution: add a primary key column
+
+3. `3NF` Third Normal Form
+
+- in 2NF
+- all the attributes (e.g. database columns) are functionally dependent on solely the primary key (no transitive functional dependencies)
+- violation example: hospital database having a table of patients which included a column for the telephone number of their doctor. The phone number is dependent on the doctor, rather than the patient, thus would be better stored in a table of doctors
+- solution: create table for doctors and store phone number there
+
+### 87 What is multiplicity?
+
+`Multiplicity` defines the relationship between two tables
+
+There are 4 different multiplicity relationships
+
+- one to one
+  - implementation: the table that references the other table must have a foreign key column to the referenced table. This column must have a UNIQUE constraint applied to it.
+  - example: student - backpack
+- one to many
+  - implementation: the "many" table would have a foreign key to the "one" table
+  - example: albums - songs
+- many to one
+  - same as one to many
+- many to many
+  - implementation: a third table needs to be created (called a junction table) that has a foreign key to both tables
+  - example: doctor -patient
+
+### 88 Describe what a join is and explain the different types of joins we can create.
+
+#### Inner
+
+`INNER JOIN` restricts records retrieval from Table1 and Table2 to those that satisfy the join requirement.
+
+#### Left
+
+`LEFT JOIN` returns all records from the left table, and the records that match the condition from the right table.
+
+#### Right
+
+`RIGHT JOIN` returns all records from the right table, and the records that match the condition from the left table.
+
+#### Cross
+
+`MySQL` `CROSS JOIN`, commonly knows as a `CARTESIAN JOIN`, returns all possible row combinations from each table.
+
+If no other condition is provided, the result set is obtained by multiplying each row of table1 with all rows in table2.
+
+If there is a relationship between two tables and we add a WHERE clause, then the CROSS JOIN will produce the same result as INNER JOIN.
+
+Real world application includes calculating all possibilities when launching a space rocket.
+
+#### Self
+
+`SELF JOIN` is an SQL statement which is used to intersect or join a table in the database to itself.
+
+### 89 What is the difference between a join and a set operation?
+
+SET Operators are specific type of operators which are used to combine the result of two queries.
+
+#### UNION
+
+The `UNION` command is used to combine more than one SELECT query results into a single query contain rows from all the select queries.
+
+- The number of columns and data types in the SELECT statements must be the same in order for the UNION command to work.
+- `MySQL` uses the `DISTINCT` clause as the default when executing UNION
+
+#### UNION ALL
+
+The `UNION ALL` clause is used to display all even the duplicate rows in UNION query.
+
+#### INTERSECT
+
+The `INTERSECT` clause is used to display all records which are common between two tables.
+
+#### MINUS
+
+The `MINUS` clause ( also called as `EXCEPT` clause in some books) is used to display the records from table 1 while removing the records which are also present in table 2.
+
+### 90 What is a view and why is it useful?
+
+In `MySQL`, a `View` is a virtual table based on the result-set of an SQL statement. A view consists of rows and columns, just like a common table. The view fields are fields from one or more real tables in the database.
+
+Advantages:
+
+- Structure data in a way that users or classes of users find natural or intuitive.
+- Restrict access to the data in such a way that a user can see and manipulate exactly what they need.
+- Summarize data from various tables which can be used to generate documents and reports.
+
+```sql
+CREATE VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+```
+
+What is DCL?
+What is TCL?
+What is the difference between an aggregate and a scalar function?
+What is the GROUP BY clause used for?
+What is the ORDER BY clause used for?
+What is a stored procedure in SQL?
+What is a trigger in SQL?
+What is a transaction?
+What are the properties of a transaction?
+What is a function in SQL?
+What is an index in SQL?
 
 ## 1 operating system
 
@@ -838,103 +1093,7 @@ Here's an example:
 </project>
 ```
 
-### 72 What is SQL and why would we use this language
-
-`Structured Query Language` (`SQL`) is the language used to administer SQL-based RDBM systems.
-
-### 73 What are the SQL sublanguages and their purpose?
-
-- `DDL` Data Definition Language. Defines data structure
-  - `CREATE`
-  - `ALTER`
-  - `DROP`
-  - `TRUNCATE`
-  - `RENAME`
-  - COMMENT:
-    - single line `--`
-    - multi-line `/**/`
-- `DML` Data Manipulation Language
-  - `INSERT`
-  - `UPDATE`
-  - `DELETE`
-- `DCL` Data Control Language - manage access permissions to database object
-  - `GRANT`
-  - `REVOKE`
-- `TCL` Transaction Control Language. Defines concurrent operation boundaries
-  - `COMMIT`
-  - `ROLLBACK`
-  - `SAVEPOINT`
-- `DQL` Data Query Language. Search, filter, group, aggregate stored data
-  - `SELECT`
-
-### 74 What is a RDBMS?
-
-- An RDBMS is a data storage system based on a relational model
-- RDBMS manages data by storing them in tables.
-- uses Structured Query Language (SQL)
-
-### 75 tables Describe relational database tables.
-
-In MySQL, a table stores and organizes data in columns and rows as defined during table creation.
-
-TABLE commands:
-
-- `CREATE TABLE`
-- `DROP TABLE`
-- `TRUNCATE TABLE`
-- `ALTER TABLE`
-
-### 76 What are constraints and can you describe a few constraints?
-
-`Constraints` are used to define a database schema and are the backbone for defining `integrity constraints` of the schema. They help validate data beyond just a simple data type.
-
-- `NOT NULL` Ensures that a column's value is not null.
-- `UNIQUE` Ensures that a column's value is unique in the table. (Can have one `NULL` value.)
-- `PRIMARY KEY` Combines unique and not null. Uniquely identifies each row.
-- `FOREIGN KEY` Links to a row in another table. Prevents the destruction of those links.
-- `DEFAULT` Specifies a value for a column, if one is not given.
-- `CHECK`
-  - helps us to get only those values that are valid for the condition and our requirements.
-  - ``
-- `CREATE INDEX` Create a sorted index of the column for faster searching.
-
-```sql
-create table content_meta (
-	id int auto_increment primary key,
-    content_type int not null,
-    url varchar(500) not null unique,
-    uploader int not null,
-    size_in_bytes bigint default 1,
-    uploaded_at timestamp default now(),
-    constraint url_scheme_check check(instr(url, 'http://') > 0),
-    constraint size_check check(size_in_bytes > 0), check(size_in_bytes < 10000000),
-    foreign key(content_type) references content_type(id),
-    foreign key(uploader) references users(id),
-    index (content_type)
-);
-```
-
-### 77 where clause Why would I use the WHERE clause?
-
-FILTERING: The filtering clause of a select statement is a `WHERE` clause that defines how selected rows are filtered from the table. `WHERE` clauses use logical operators to select records that meet specific conditions.
-
-### 78 sql operators What are some operators that can be used in SQL?
-
-- Arithmetic (`+`, `-`, `*`,`/`,`%`)
-- Bitwise (`&`, `|`, `^`)
-- Comparison (`=`, `<`, `>`, `>=`, `<=`, `<>`)
-- Compound (`+=`, `-=`, ...)
-- Logical
-  - `ALL` - TRUE if all of the subquery values meet the condition
-  - `AND` - TRUE if all the conditions separated by AND is TRUE
-  - `ANY` - TRUE if any of the subquery values meet the condition
-  - `BETWEEN` - TRUE if the operand is within the range of comparisons
-  - `EXISTS` - TRUE if the subquery returns one or more records
-  - `IN` - TRUE if the operand is equal to one of a list of expressions
-  - `LIKE` - TRUE if the operand matches a pattern
-  - `NOT` - Displays a record if the condition(s) is NOT TRUE
-  - `OR` TRUE if any of the conditions separated by OR is TRUE
-  - `SOME` TRUE if any of the subquery values meet the condition
+## Using a Database in Java
 
 ### 79 What is the JDBC API and the benefits of using it?
 
@@ -1177,149 +1336,7 @@ ResultSet rs = ps.executeQuery(sql);
 - specify parameters with the ? symbol
 - protects against SQL injection when user input is used by pre-compiling the SQL statement
 
-### 84 What is a foreign key?
-
-A `FOREIGN KEY` is a field or collection of fields in a table that refers to the `PRIMARY KEY` of the other table.
-
-- responsible for managing the relationship between the tables.
-- forms the bases of referential integrity
-
-```sql
-CREATE TABLE Branch(
-    branch_id INT PRIMARY KEY,
-    branch_name VARCHAR(20)
-     );
--- Add branch_id as foreign key for employee table
-
-ALTER TABLE employee ADD branch_id INT;
-ALTER TABLE employee ADD FOREIGN KEY (branch_id) REFERENCES Branch(branch_id);
-```
-
-### 85 What is referential integrity?
-
-`REFERENTIAL INTEGRITY` is the relationship between tables.
-
-Referential Integrity:
-
-- the requirement that a foreign key cannot be defined unless its corresponding primary key exists is a referential integrity constraint
-- does not allow the addition of any record in a table that contains the foreign key unless the reference table contains a corresponding primary key.
-- does not allow to deletion of a record in a table that contains the foreign key, to delete the record in the parent table, the corresponding record in the child table should be deleted first. to solve this issue `ON DELETE CASCADE` is used.
-- Other options are to set the foreign key to null or to its default value (only if the default value references an existing value in the primary-key table).
-
-### 86 What is normalization?
-
-`Normalization` is the process of organizing the data and the attributes of a database.
-
-- reduce the duplication of data, - avoid data anomalies
-- ensure referential integrity
-- simplify data management
-
-1. `1NF` First Normal Form
-
-- Each table cell should contain a single value.
-- Each record needs to be unique
-- violation example: hobbies with several values
-- solution add new rows with each value
-
-2. `2NF` Second Normal Form
-
-- Be in 1NF
-- Single Column Primary Key - that does not functionally dependant on any subset of candidate key relation
-- violation example: name and address identifies a record when two different people have the same name
-- solution: add a primary key column
-
-3. `3NF` Third Normal Form
-
-- in 2NF
-- all the attributes (e.g. database columns) are functionally dependent on solely the primary key (no transitive functional dependencies)
-- violation example: hospital database having a table of patients which included a column for the telephone number of their doctor. The phone number is dependent on the doctor, rather than the patient, thus would be better stored in a table of doctors
-- solution: create table for doctors and store phone number there
-
-### 87 What is multiplicity?
-
-`Multiplicity` defines the relationship between two tables
-
-There are 4 different multiplicity relationships
-
-- one to one
-  - implementation: the table that references the other table must have a foreign key column to the referenced table. This column must have a UNIQUE constraint applied to it.
-  - example: student - backpack
-- one to many
-  - implementation: the "many" table would have a foreign key to the "one" table
-  - example: albums - songs
-- many to one
-  - same as one to many
-- many to many
-  - implementation: a third table needs to be created (called a junction table) that has a foreign key to both tables
-  - example: doctor -patient
-
-### 88 Describe what a join is and explain the different types of joins we can create.
-
-#### Inner
-
-`INNER JOIN` restricts records retrieval from Table1 and Table2 to those that satisfy the join requirement.
-
-#### Left
-
-`LEFT JOIN` returns all records from the left table, and the records that match the condition from the right table.
-
-#### Right
-
-`RIGHT JOIN` returns all records from the right table, and the records that match the condition from the left table.
-
-#### Cross
-
-`MySQL` `CROSS JOIN`, commonly knows as a `CARTESIAN JOIN`, returns all possible row combinations from each table.
-
-If no other condition is provided, the result set is obtained by multiplying each row of table1 with all rows in table2.
-
-If there is a relationship between two tables and we add a WHERE clause, then the CROSS JOIN will produce the same result as INNER JOIN.
-
-Real world application includes calculating all possibilities when launching a space rocket.
-
-#### Self
-
-`SELF JOIN` is an SQL statement which is used to intersect or join a table in the database to itself.
-
-### 89 What is the difference between a join and a set operation?
-
-SET Operators are specific type of operators which are used to combine the result of two queries.
-
-#### UNION
-
-The `UNION` command is used to combine more than one SELECT query results into a single query contain rows from all the select queries.
-
-- The number of columns and data types in the SELECT statements must be the same in order for the UNION command to work.
-- `MySQL` uses the `DISTINCT` clause as the default when executing UNION
-
-#### UNION ALL
-
-The `UNION ALL` clause is used to display all even the duplicate rows in UNION query.
-
-#### INTERSECT
-
-The `INTERSECT` clause is used to display all records which are common between two tables.
-
-#### MINUS
-
-The `MINUS` clause ( also called as `EXCEPT` clause in some books) is used to display the records from table 1 while removing the records which are also present in table 2.
-
-### 90 What is a view and why is it useful?
-
-In `MySQL`, a `View` is a virtual table based on the result-set of an SQL statement. A view consists of rows and columns, just like a common table. The view fields are fields from one or more real tables in the database.
-
-Advantages:
-
-- Structure data in a way that users or classes of users find natural or intuitive.
-- Restrict access to the data in such a way that a user can see and manipulate exactly what they need.
-- Summarize data from various tables which can be used to generate documents and reports.
-
-```sql
-CREATE VIEW view_name AS
-SELECT column1, column2, ...
-FROM table_name
-WHERE condition;
-```
+## HTTP
 
 ### 91 What is HTTP? Why is it important to know about?
 
@@ -1442,3 +1459,38 @@ What is source control management? Why is it useful?
 What are the main states that your files can reside in when using Git?
 What are the main sections of a Git project?
 What are some common operations you would be performing when using Git?
+
+wk8
+
+What is DCL?
+What is TCL?
+What is the difference between an aggregate and a scalar function?
+What is the GROUP BY clause used for?
+What is the ORDER BY clause used for?
+What is a stored procedure in SQL?
+What is a trigger in SQL?
+What is a transaction?
+What are the properties of a transaction?
+What is a function in SQL?
+What is an index in SQL?
+
+What is an algorithm?
+How would you describe time complexity?
+What is the Factory design pattern?
+What is the Singleton design pattern?
+What is the difference between linear search and binary search?
+What is the difference between Bubble Sort and Merge Sort?
+
+wk9
+What is the Optional class?
+What is the Stream API and what is it used for?
+What is the Reflection API and what is it used for?
+What is a thread?
+How can we implement multithreading in Java?
+What are some states a thread can be in?
+What is synchronization?
+What is the difference between deadlock and livelock?
+Describe the Producer Consumer problem.
+What are intermediate stream operations?
+What are terminal stream operations?
+How can we create a thread?
