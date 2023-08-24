@@ -19,79 +19,11 @@ wk4 72-81, wk5 82-93
 
 ### 84 What is a foreign key?
 
-A `FOREIGN KEY` is a field or collection of fields in a table that refers to the `PRIMARY KEY` of the other table.
-
-- responsible for managing the relationship between the tables.
-- forms the bases of referential integrity
-
-```sql
-CREATE TABLE Branch(
-    branch_id INT PRIMARY KEY,
-    branch_name VARCHAR(20)
-     );
--- Add branch_id as foreign key for employee table
-
-ALTER TABLE employee ADD branch_id INT;
-ALTER TABLE employee ADD FOREIGN KEY (branch_id) REFERENCES Branch(branch_id);
-```
-
 ### 85 What is referential integrity?
-
-`REFERENTIAL INTEGRITY` is the relationship between tables.
-
-Referential Integrity:
-
-- the requirement that a foreign key cannot be defined unless its corresponding primary key exists is a referential integrity constraint
-- does not allow the addition of any record in a table that contains the foreign key unless the reference table contains a corresponding primary key.
-- does not allow to deletion of a record in a table that contains the foreign key, to delete the record in the parent table, the corresponding record in the child table should be deleted first. to solve this issue `ON DELETE CASCADE` is used.
-- Other options are to set the foreign key to null or to its default value (only if the default value references an existing value in the primary-key table).
 
 ### 86 What is normalization?
 
-`Normalization` is the process of organizing the data and the attributes of a database.
-
-- reduce the duplication of data, - avoid data anomalies
-- ensure referential integrity
-- simplify data management
-
-1. `1NF` First Normal Form
-
-- Each table cell should contain a single value.
-- Each record needs to be unique
-- violation example: hobbies with several values
-- solution add new rows with each value
-
-2. `2NF` Second Normal Form
-
-- Be in 1NF
-- Single Column Primary Key - that does not functionally dependant on any subset of candidate key relation
-- violation example: name and address identifies a record when two different people have the same name
-- solution: add a primary key column
-
-3. `3NF` Third Normal Form
-
-- in 2NF
-- all the attributes (e.g. database columns) are functionally dependent on solely the primary key (no transitive functional dependencies)
-- violation example: hospital database having a table of patients which included a column for the telephone number of their doctor. The phone number is dependent on the doctor, rather than the patient, thus would be better stored in a table of doctors
-- solution: create table for doctors and store phone number there
-
 ### 87 What is multiplicity?
-
-`Multiplicity` defines the relationship between two tables
-
-There are 4 different multiplicity relationships
-
-- one to one
-  - implementation: the table that references the other table must have a foreign key column to the referenced table. This column must have a UNIQUE constraint applied to it.
-  - example: student - backpack
-- one to many
-  - implementation: the "many" table would have a foreign key to the "one" table
-  - example: albums - songs
-- many to one
-  - same as one to many
-- many to many
-  - implementation: a third table needs to be created (called a junction table) that has a foreign key to both tables
-  - example: doctor -patient
 
 ### 88 Describe what a join is and explain the different types of joins we can create.
 

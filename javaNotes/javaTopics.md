@@ -123,6 +123,57 @@ ALTER TABLE users ADD CONSTRAIN name NOT NULL;
   - views
 - In and RDBMS table the schema defines the columns, their data types, and constraints.
 
+### Normalization
+
+> What is normalization?
+
+`Normalization` is the process of organizing the data and the attributes of a database.
+
+- reduce the duplication of data, - avoid data anomalies
+- ensure referential integrity
+- simplify data management
+
+1. `1NF` First Normal Form
+
+- Each table cell should contain a single value.
+- Each record needs to be unique
+- violation example: hobbies with several values
+- solution add new rows with each value
+
+2. `2NF` Second Normal Form
+
+- Be in 1NF
+- Single Column Primary Key - that does not functionally dependant on any subset of candidate key relation
+- violation example: name and address identifies a record when two different people have the same name
+- solution: add a primary key column
+
+3. `3NF` Third Normal Form
+
+- in 2NF
+- all the attributes (e.g. database columns) are functionally dependent on solely the primary key (no transitive functional dependencies)
+- violation example: hospital database having a table of patients which included a column for the telephone number of their doctor. The phone number is dependent on the doctor, rather than the patient, thus would be better stored in a table of doctors
+- solution: create table for doctors and store phone number there
+
+### Multiplicity
+
+> What is multiplicity?
+
+`Multiplicity` defines the relationship between two tables
+
+There are 4 different multiplicity relationships
+
+- one to one
+  - implementation: the table that references the other table must have a foreign key column to the referenced table. This column must have a UNIQUE constraint applied to it.
+  - example: student - backpack
+- one to many
+  - implementation: the "many" table would have a foreign key to the "one" table
+  - example: albums - songs
+- many to one
+  - same as one to many
+- many to many
+  - implementation: a third table needs to be created (called a junction table) that has a foreign key to both tables
+  - example: doctor -patient
+
 ### SQL Datatypes
 
 - Character types
