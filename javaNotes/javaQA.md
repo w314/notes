@@ -3,83 +3,17 @@ wk4 72-81, wk5 82-93
 
 ## SQL
 
+### 74 What is a RDBMS?
+
 ### 1 What is SQL and why would we use this language
 
 ### 73 What are the SQL sublanguages and their purpose?
 
-- `DDL` Data Definition Language. Defines data structure
-  - `CREATE`
-  - `ALTER`
-  - `DROP`
-  - `TRUNCATE`
-  - `RENAME`
-  - COMMENT:
-    - single line `--`
-    - multi-line `/**/`
-- `DML` Data Manipulation Language
-  - `INSERT`
-  - `UPDATE`
-  - `DELETE`
-- `DCL` Data Control Language - manage access permissions to database object
-  - `GRANT`
-  - `REVOKE`
-- `TCL` Transaction Control Language. Defines concurrent operation boundaries
-  - `COMMIT`
-  - `ROLLBACK`
-  - `SAVEPOINT`
-- `DQL` Data Query Language. Search, filter, group, aggregate stored data
-  - `SELECT`
-
-### 74 What is a RDBMS?
-
-- An RDBMS is a data storage system based on a relational model
-- RDBMS manages data by storing them in tables.
-- uses Structured Query Language (SQL)
-
 ### 75 tables Describe relational database tables.
-
-In MySQL, a table stores and organizes data in columns and rows as defined during table creation.
-
-TABLE commands:
-
-- `CREATE TABLE`
-- `DROP TABLE`
-- `TRUNCATE TABLE`
-- `ALTER TABLE`
 
 ### 76 What are constraints and can you describe a few constraints?
 
-`Constraints` are used to define a database schema and are the backbone for defining `integrity constraints` of the schema. They help validate data beyond just a simple data type.
-
-- `NOT NULL` Ensures that a column's value is not null.
-- `UNIQUE` Ensures that a column's value is unique in the table. (Can have one `NULL` value.)
-- `PRIMARY KEY` Combines unique and not null. Uniquely identifies each row.
-- `FOREIGN KEY` Links to a row in another table. Prevents the destruction of those links.
-- `DEFAULT` Specifies a value for a column, if one is not given.
-- `CHECK`
-  - helps us to get only those values that are valid for the condition and our requirements.
-  - ``
-- `CREATE INDEX` Create a sorted index of the column for faster searching.
-
-```sql
-create table content_meta (
-	id int auto_increment primary key,
-    content_type int not null,
-    url varchar(500) not null unique,
-    uploader int not null,
-    size_in_bytes bigint default 1,
-    uploaded_at timestamp default now(),
-    constraint url_scheme_check check(instr(url, 'http://') > 0),
-    constraint size_check check(size_in_bytes > 0), check(size_in_bytes < 10000000),
-    foreign key(content_type) references content_type(id),
-    foreign key(uploader) references users(id),
-    index (content_type)
-);
-```
-
-### 77 where clause Why would I use the WHERE clause?
-
-FILTERING: The filtering clause of a select statement is a `WHERE` clause that defines how selected rows are filtered from the table. `WHERE` clauses use logical operators to select records that meet specific conditions.
+### 77 Why would I use the WHERE clause?
 
 ### 78 sql operators What are some operators that can be used in SQL?
 
