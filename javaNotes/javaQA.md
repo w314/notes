@@ -62,92 +62,11 @@ Work on below
 
 ### 28 What information would you need in order to successfully connect to a database?
 
-- URL (`JDBC String`)
-- username
-- password
+### 29 What is the difference between a Simple and Prepared JDBC statement?
 
-```java
-// try-with-resources syntax
-try (
-  Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD)) {
-  // more code goes here
-} catch (SQLException e) {}
-```
+### 30 What is SQL Injection and how can we prevent it using the JDBC?
 
-- use the DriverManager class to get a Connection
-- need URL, username, and password.
-- these parameters should be stored in an external configuration file
-- close your resources
-- try-with-resources syntax is used to automatically close the Connection being created after the block ends
-
-`JDBC String`
-
-- the database `URL`
-- the address pointing to the database to be used
-- the format of this URL varies between database vendors, in `MySQL`
-  - JDBC Driver: `com.mysql.jdbc.Driver`
-  - URL format: `jdbc:mysql://hostname/databaseName`
-
-`Autocommit mode`
-
-- default
-- every SQL statement acts as a transaction and is committed immediately after execution
-- to manually group statements into a transaction, simply call:
-
-```java
-Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
-conn.setAutoCommit(false);
-
-// execute some SQL statements...
-conn.commit();
-```
-
-### 82 statement vs. preparedStatement What is the difference between a Simple and Prepared JDBC statement?
-
-Once we have the `Connection object`, we can write our SQL and execute it.
-
-#### `Statement`
-
-The `Statement interface` is used for executing static SQL statements.
-
-```java
-Statement stmt = conn.createStatement();
-String sql = "SELECT * FROM employees";
-ResultSet rs = stmt.executeQuery(sql);
-```
-
-#### `Prepared Statement`
-
-The `PreparedStatement interface` is used for executing pre-compiled SQL statements.
-
-```java
-PreparedStatement ps = conn.prepareStatement();
-String sql = "SELECT * FROM employees WHERE age > ? AND location = ?";
-ps.setInt(1, 40);
-ps.setString(2, "New York");
-ResultSet rs = ps.executeQuery(sql);
-```
-
-- This interface gives us the flexibility of specifying parameters with the `?`symbol.
-
-- Protects against `SQL injection` when user input is used by pre-compiling the SQL statement
-
-### 83 What is SQL Injection and how can we prevent it using the JDBC?
-
-`SQL Injections` are the exploitation of programming weaknesses in SQL codes to gain access to a database, its resources, and applications.
-
-`PreparedStatement` can be used to prevent SQL injections.
-
-```java
-PreparedStatement ps = conn.prepareStatement();
-String sql = "SELECT * FROM employees WHERE age > ? AND location = ?";
-ps.setInt(1, 40);
-ps.setString(2, "New York");
-ResultSet rs = ps.executeQuery(sql);
-```
-
-- specify parameters with the ? symbol
-- protects against SQL injection when user input is used by pre-compiling the SQL statement
+# WORK ON THOSE BELOW
 
 ## HTTP
 

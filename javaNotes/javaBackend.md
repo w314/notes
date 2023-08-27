@@ -105,6 +105,15 @@ The Statement and PreparedStatement also have additional methods for sending SQL
 
 - Protects against `SQL injection` when user input is used by pre-compiling the SQL statement
 
+> What is SQL Injection and how can we prevent it using the JDBC?
+
+`SQL Injections` are the exploitation of programming weaknesses in SQL codes to gain access to a database, its resources, and applications.
+
+`PreparedStatement` can be used to prevent SQL injections.
+
+- specify parameters with the ? symbol
+- protects against SQL injection when user input is used by pre-compiling the SQL statement
+
 #### Additional methods to send `SQL`
 
 The `Statement` and `PreparedStatement` also have additional methods for sending SQL, including:
