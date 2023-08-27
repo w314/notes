@@ -54,6 +54,212 @@ Work on below
 
 ### 25 What is an index in SQL?
 
+## JAVA BACKEND
+
+### 26 What is the JDBC API and the benefits of using it?
+
+### 27 What is the DAO Design Pattern and why should we use it?
+
+### 28 What information would you need in order to successfully connect to a database?
+
+- URL (`JDBC String`)
+- username
+- password
+
+```java
+// try-with-resources syntax
+try (
+  Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD)) {
+  // more code goes here
+} catch (SQLException e) {}
+```
+
+- use the DriverManager class to get a Connection
+- need URL, username, and password.
+- these parameters should be stored in an external configuration file
+- close your resources
+- try-with-resources syntax is used to automatically close the Connection being created after the block ends
+
+`JDBC String`
+
+- the database `URL`
+- the address pointing to the database to be used
+- the format of this URL varies between database vendors, in `MySQL`
+  - JDBC Driver: `com.mysql.jdbc.Driver`
+  - URL format: `jdbc:mysql://hostname/databaseName`
+
+`Autocommit mode`
+
+- default
+- every SQL statement acts as a transaction and is committed immediately after execution
+- to manually group statements into a transaction, simply call:
+
+```java
+Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
+conn.setAutoCommit(false);
+
+// execute some SQL statements...
+conn.commit();
+```
+
+### 82 statement vs. preparedStatement What is the difference between a Simple and Prepared JDBC statement?
+
+Once we have the `Connection object`, we can write our SQL and execute it.
+
+#### `Statement`
+
+The `Statement interface` is used for executing static SQL statements.
+
+```java
+Statement stmt = conn.createStatement();
+String sql = "SELECT * FROM employees";
+ResultSet rs = stmt.executeQuery(sql);
+```
+
+#### `Prepared Statement`
+
+The `PreparedStatement interface` is used for executing pre-compiled SQL statements.
+
+```java
+PreparedStatement ps = conn.prepareStatement();
+String sql = "SELECT * FROM employees WHERE age > ? AND location = ?";
+ps.setInt(1, 40);
+ps.setString(2, "New York");
+ResultSet rs = ps.executeQuery(sql);
+```
+
+- This interface gives us the flexibility of specifying parameters with the `?`symbol.
+
+- Protects against `SQL injection` when user input is used by pre-compiling the SQL statement
+
+### 83 What is SQL Injection and how can we prevent it using the JDBC?
+
+`SQL Injections` are the exploitation of programming weaknesses in SQL codes to gain access to a database, its resources, and applications.
+
+`PreparedStatement` can be used to prevent SQL injections.
+
+```java
+PreparedStatement ps = conn.prepareStatement();
+String sql = "SELECT * FROM employees WHERE age > ? AND location = ?";
+ps.setInt(1, 40);
+ps.setString(2, "New York");
+ResultSet rs = ps.executeQuery(sql);
+```
+
+- specify parameters with the ? symbol
+- protects against SQL injection when user input is used by pre-compiling the SQL statement
+
+## HTTP
+
+### 91 What is HTTP? Why is it important to know about?
+
+`HTTP` (`HyperText Transfer Protocol`) is a technique of transmitting data in a particular format, primarily between a server and a
+
+HTTP works by a client making a connection to a `server`, sending a `request`, and receiving a `response`
+
+The data tranmitted can be:
+
+- `hypertext` - A text documents that have the special ability to link to one another.
+- `hypermedia` - hypertext documents that have the ability to show multiple kinds of media
+
+A request contains:
+
+- the `method` being used
+- the `URL` where the target is
+- version of HTTP is being used
+- Optional information to help the server with the request (called `headers`)
+- For some methods, a `body` which contains some resources (ex.: files to be uploaded)
+
+A response contains:
+
+- version of HTTP is being used
+- status code reflecting the outcome of the request
+- status message which is shorthand and less descriptive than the status code
+- Optional information to detail what happened with the request (called `headers` again)
+- For some methods, a body which contains some resource (ex. file to be downloaded)
+
+### 92 What are common HTTP verbs used when a client application is making a request?
+
+- GET
+  - used to retrieve data from a server at the specified resource
+  - does not modifying any resources
+  - safe and `idempotent` method
+- POST
+  - used to send data to the API server to create or update a resource
+  - the data sent to the server is stored in the request body of the HTTP request
+  - `non-idempotent`
+- PUT
+  - similar to POST, PUT requests are used to send data to the API to update or create a resource
+  - `idempotent`, calling the same PUT request multiple times will always produce the same result
+  - when a PUT request creates a resource the server will respond with a 201 (Created), and if the request modifies existing resource the server will return a 200 (OK) or 204 (No Content)
+- HEAD
+- DELETE
+
+  - deletes the resource at the specified URL
+
+- PATCH
+- OPTIONS
+
+### 93 What are some common HTTP status codes that can be included in a response?
+
+HTTP Status Codes whether a specific HTTP request has been successfully completed.
+
+Responses are grouped in five classes:
+
+- Informational responses (100–199)
+- Successful responses (200–299)
+- Redirection messages (300–399)
+- Client error responses (400–499)
+- Server error responses (500–599)
+
+Common Status Codes:
+
+- 200 - OK, success
+- 201 - Created
+- 400 - Bad Request, client error
+- 404 - Not Found
+- 500 - Internal Server Error
+
+# WK 6
+
+## 94 What is a functional interface and why would we use one?
+
+functional interfaces
+
+## 95 What is a lambda? Give an example of how we can use one.
+
+lambda
+
+## 96 What is a method reference?
+
+method references
+
+## 97 Describe Javalin.
+
+Javalin
+
+## 98 What is JSON? When would we work with JSON in our application?
+
+JSON
+
+## 99 What is a handler?
+
+handler
+
+## x Logging
+
+## x What is Mockito and why would we use it?
+
+## x What is a mock?
+
+EDIT BELOW
+
+## 103 What is REST and what are its key constraints?
+
+## 105 REST naming URL What are some best practices for naming resource URLs using REST?
+
+## 106 What is an endpoint?
+
 <hr>
 <hr>
 <hr>
@@ -897,360 +1103,6 @@ Here's an example:
     </dependencies>
 </project>
 ```
-
-## Using a Database in Java
-
-### 79 What is the JDBC API and the benefits of using it?
-
-`Java Database Connectivity` (`JDBC`)
-
-- low-level API
-- interacts with relational databases via SQL
-- database agnostic
-- uses database drivers which implement the interfaces defined in the JDBC API for the given database
-
-How to use the `JDBC`
-
-1. register connection - as a `dependency` except for Oracle
-2. open connection - need url, username & password
-3. execute sql statements - statement, preparedStatement,
-
-#### 1. Open a connection
-
-```java
-// try-with-resources syntax
-try (
-  Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD)) {
-  // more code goes here
-} catch (SQLException e) {}
-```
-
-- use the DriverManager class to get a Connection
-- need URL, username, and password.
-- these parameters should be stored in an external configuration file
-- close your resources
-- try-with-resources syntax is used to automatically close the Connection being created after the block ends
-
-`JDBC String`
-
-- the database `URL`
-- the address pointing to the database to be used
-- the format of this URL varies between database vendors, in `MySQL`
-  - JDBC Driver: `com.mysql.jdbc.Driver`
-  - URL format: `jdbc:mysql://hostname/databaseName`
-
-`Autocommit mode`
-
-- default
-- every SQL statement acts as a transaction and is committed immediately after execution
-- to manually group statements into a transaction, simply call:
-
-```java
-Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
-conn.setAutoCommit(false);
-
-// execute some SQL statements...
-conn.commit();
-```
-
-#### 2. Execute SQL statements
-
-- use connection object to execute sql statements
-- results that are returned in a `ResultSet` object
-
-##### Statement
-
-```java
-Statement stmt = conn.createStatement();
-String sql = "SELECT * FROM employees";
-ResultSet rs = stmt.executeQuery(sql);
-```
-
-##### PreparedStatement
-
-```java
-PreparedStatement ps = conn.prepareStatement();
-String sql = "SELECT * FROM employees WHERE age > ? AND location = ?";
-ps.setInt(1, 40);
-ps.setString(2, "New York");
-ResultSet rs = ps.executeQuery(sql);
-```
-
-- pre-compiled SQL statement
-- protects against SQL injection
-
-> The Statement and PreparedStatement also have additional methods for sending SQL, including:
-
-- `.execute()` - for any kind of SQL statement, returns a boolean
-- `.executeUpdate()` - for DML statements, returns an int which is the number of rows affected
-
-#### 3. Use ResultSet
-
-`ResultSet`is an object which represents a set of data returned from a database as a result of a query input. Can be iterated over.
-
-```java
-List<Employee> empList = new ArrayList<>();
-while (rs.next()) {
-  int id = rs.getInt("id");
-  String name = rs.getString("first_name");
-  empList.add(new Employee(id, name));
-}
-```
-
-### 80 What is the DAO Design Pattern and why should we use it?
-
-The `DAO` (`Data Access Objects`) design pattern logically separates the code that accesses the database into Data Access Objects.
-
-1. DAO interface with methods to query the database
-2. db specific implementation classes implement our interface query the database and return the required data
-
-EXAMPLE
-
-1. DAO interface
-
-```java
-public interface EmployeeDAO {
-  // define some CRUD (Create, Read, Update, Delete) operations here
-  public List<Employee> getAllEmployees();
-  public void addEmployee(Employee e);
-}
-```
-
-2. Oracle specific class implements DAO interface
-
-```java
-public class EmployeeDAOImplOracle implements EmployeeDAO {
-  public List<Employee> getAllEmployees() {
-    List<Employee> list = new ArrayList<>();
-
-    // JDBC code here
-    Statement stmt = conn.createStatement();
-    String sql = "SELECT * FROM employees";
-    ResultSet rs = stmt.executeQuery(sql);
-    while (rs.next()) {
-      int id = rs.getInt("id");
-      String name = rs.getString("first_name");
-      list.add(new Employee(id, name));
-
-    return list;
-  };
-  public void addEmployee(Employee e) {
-    // JDBC code here...
-  };
-}
-```
-
-3. Query DB through DAO
-
-```java
-EmployeeDAO dao = new EmployeeDAOImplOracle();
-
-List<Employee> allEmpls = dao.getAllEmployees();
-allEmpls.forEach( e -> System.out.println(e));
-```
-
-_Note: You will not be assessed over Callable Statements / Stored Procedures this week
-Note: You will not be assessed over the Persisting Data with JDBC topic_
-
-### 81 What information would you need in order to successfully connect to a database?
-
-- URL (`JDBC String`)
-- username
-- password
-
-```java
-// try-with-resources syntax
-try (
-  Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD)) {
-  // more code goes here
-} catch (SQLException e) {}
-```
-
-- use the DriverManager class to get a Connection
-- need URL, username, and password.
-- these parameters should be stored in an external configuration file
-- close your resources
-- try-with-resources syntax is used to automatically close the Connection being created after the block ends
-
-`JDBC String`
-
-- the database `URL`
-- the address pointing to the database to be used
-- the format of this URL varies between database vendors, in `MySQL`
-  - JDBC Driver: `com.mysql.jdbc.Driver`
-  - URL format: `jdbc:mysql://hostname/databaseName`
-
-`Autocommit mode`
-
-- default
-- every SQL statement acts as a transaction and is committed immediately after execution
-- to manually group statements into a transaction, simply call:
-
-```java
-Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
-conn.setAutoCommit(false);
-
-// execute some SQL statements...
-conn.commit();
-```
-
-### 82 statement vs. preparedStatement What is the difference between a Simple and Prepared JDBC statement?
-
-Once we have the `Connection object`, we can write our SQL and execute it.
-
-#### `Statement`
-
-The `Statement interface` is used for executing static SQL statements.
-
-```java
-Statement stmt = conn.createStatement();
-String sql = "SELECT * FROM employees";
-ResultSet rs = stmt.executeQuery(sql);
-```
-
-#### `Prepared Statement`
-
-The `PreparedStatement interface` is used for executing pre-compiled SQL statements.
-
-```java
-PreparedStatement ps = conn.prepareStatement();
-String sql = "SELECT * FROM employees WHERE age > ? AND location = ?";
-ps.setInt(1, 40);
-ps.setString(2, "New York");
-ResultSet rs = ps.executeQuery(sql);
-```
-
-- This interface gives us the flexibility of specifying parameters with the `?`symbol.
-
-- Protects against `SQL injection` when user input is used by pre-compiling the SQL statement
-
-### 83 What is SQL Injection and how can we prevent it using the JDBC?
-
-`SQL Injections` are the exploitation of programming weaknesses in SQL codes to gain access to a database, its resources, and applications.
-
-`PreparedStatement` can be used to prevent SQL injections.
-
-```java
-PreparedStatement ps = conn.prepareStatement();
-String sql = "SELECT * FROM employees WHERE age > ? AND location = ?";
-ps.setInt(1, 40);
-ps.setString(2, "New York");
-ResultSet rs = ps.executeQuery(sql);
-```
-
-- specify parameters with the ? symbol
-- protects against SQL injection when user input is used by pre-compiling the SQL statement
-
-## HTTP
-
-### 91 What is HTTP? Why is it important to know about?
-
-`HTTP` (`HyperText Transfer Protocol`) is a technique of transmitting data in a particular format, primarily between a server and a
-
-HTTP works by a client making a connection to a `server`, sending a `request`, and receiving a `response`
-
-The data tranmitted can be:
-
-- `hypertext` - A text documents that have the special ability to link to one another.
-- `hypermedia` - hypertext documents that have the ability to show multiple kinds of media
-
-A request contains:
-
-- the `method` being used
-- the `URL` where the target is
-- version of HTTP is being used
-- Optional information to help the server with the request (called `headers`)
-- For some methods, a `body` which contains some resources (ex.: files to be uploaded)
-
-A response contains:
-
-- version of HTTP is being used
-- status code reflecting the outcome of the request
-- status message which is shorthand and less descriptive than the status code
-- Optional information to detail what happened with the request (called `headers` again)
-- For some methods, a body which contains some resource (ex. file to be downloaded)
-
-### 92 What are common HTTP verbs used when a client application is making a request?
-
-- GET
-  - used to retrieve data from a server at the specified resource
-  - does not modifying any resources
-  - safe and `idempotent` method
-- POST
-  - used to send data to the API server to create or update a resource
-  - the data sent to the server is stored in the request body of the HTTP request
-  - `non-idempotent`
-- PUT
-  - similar to POST, PUT requests are used to send data to the API to update or create a resource
-  - `idempotent`, calling the same PUT request multiple times will always produce the same result
-  - when a PUT request creates a resource the server will respond with a 201 (Created), and if the request modifies existing resource the server will return a 200 (OK) or 204 (No Content)
-- HEAD
-- DELETE
-
-  - deletes the resource at the specified URL
-
-- PATCH
-- OPTIONS
-
-### 93 What are some common HTTP status codes that can be included in a response?
-
-HTTP Status Codes whether a specific HTTP request has been successfully completed.
-
-Responses are grouped in five classes:
-
-- Informational responses (100–199)
-- Successful responses (200–299)
-- Redirection messages (300–399)
-- Client error responses (400–499)
-- Server error responses (500–599)
-
-Common Status Codes:
-
-- 200 - OK, success
-- 201 - Created
-- 400 - Bad Request, client error
-- 404 - Not Found
-- 500 - Internal Server Error
-
-# WK 6
-
-## 94 What is a functional interface and why would we use one?
-
-functional interfaces
-
-## 95 What is a lambda? Give an example of how we can use one.
-
-lambda
-
-## 96 What is a method reference?
-
-method references
-
-## 97 Describe Javalin.
-
-Javalin
-
-## 98 What is JSON? When would we work with JSON in our application?
-
-JSON
-
-## 99 What is a handler?
-
-handler
-
-## x Logging
-
-## x What is Mockito and why would we use it?
-
-## x What is a mock?
-
-EDIT BELOW
-
-## 103 What is REST and what are its key constraints?
-
-## 105 REST naming URL What are some best practices for naming resource URLs using REST?
-
-## 106 What is an endpoint?
 
 wk7
 
