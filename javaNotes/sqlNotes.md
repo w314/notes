@@ -350,6 +350,12 @@ create table content_meta (
 );
 ```
 
+### Composite Key
+
+`Composite Key` is combining two or more keys in a table to create a primary key to uniquly identify a record.
+
+It is also known as `Compound Key`, where each attribute creating a key is a `foreign key`.
+
 ### Foreign Key
 
 > What is a foreign key?
