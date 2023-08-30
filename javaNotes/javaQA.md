@@ -66,6 +66,12 @@ Work on below
 
 ### 30 What is SQL Injection and how can we prevent it using the JDBC?
 
+### 31 Describe Javalin.
+
+
+## 32 What is a handler?
+
+
 # WORK ON THOSE BELOW
 
 ## HTTP
@@ -153,17 +159,10 @@ lambda
 
 method references
 
-## 97 Describe Javalin.
 
-Javalin
 
 ## 98 What is JSON? When would we work with JSON in our application?
 
-JSON
-
-## 99 What is a handler?
-
-handler
 
 ## x Logging
 
