@@ -1,5 +1,7 @@
 sql: 1-25
 
+Összesen 146 kérdés van
+
 ## SQL
 
 ### 1 What is a RDBMS?
