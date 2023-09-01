@@ -84,6 +84,20 @@ sql: 1-25
 
 ### 39 What are some common HTTP status codes that can be included in a response?
 
+### 40 What is an algorithm?
+
+### 41 How would you describe time complexity?
+
+### 42 What is the difference between linear search and binary search?
+
+### 43 What is the difference between Bubble Sort and Merge Sort?
+
+### 42 What is the Factory design pattern?
+
+### 43 What is the Singleton design pattern?
+
+process below:
+
 ## Java
 
 ### XX What is Maven? Why would we use it?
@@ -863,13 +877,6 @@ What is a transaction?
 What are the properties of a transaction?
 What is a function in SQL?
 What is an index in SQL?
-
-What is an algorithm?
-How would you describe time complexity?
-What is the Factory design pattern?
-What is the Singleton design pattern?
-What is the difference between linear search and binary search?
-What is the difference between Bubble Sort and Merge Sort?
 
 wk9
 What is the Optional class?
