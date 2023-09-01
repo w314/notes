@@ -1,10 +1,4 @@
-## SQL
-
-> What is SQL and why would we use this language
-
-`Structured Query Language` (`SQL`) is the language used to administer SQL-based RDBM systems.
-
-## Database
+## Database Intro
 
 A `database` is a SYSTEM of SOFTWARE and CAPABILITIES that make validating, storing, searching, filtering, aggregating, grouping, and administering data possible.
 
@@ -12,10 +6,6 @@ A `database` is a SYSTEM of SOFTWARE and CAPABILITIES that make validating, stor
 
 - `SQL`
 - `NoSQL`
-
-#### SQL Database
-
-SQL databases are a type of RDBMS which use the standard Structured Query Language to administer the data. Data in a SQL database are stored in objects called tables. Tables provide the relational information for the data stored in the database.
 
 ### RDBMS
 
@@ -29,11 +19,27 @@ An RDBMS is a data storage system based on a relational model
 - RDBMS manages data by storing them in tables.
 - uses Structured Query Language (SQL)
 
-### SQL Overview
+### SQL Database
 
-Structured Query Language is the language used to administer SQL-based RDBM systems.
+> What is SQL and why would we use this language
 
-### Table
+`Structured Query Language` (`SQL`) is the language used to administer SQL-based RDBM systems.
+
+SQL databases are a type of RDBMS which use the standard Structured Query Language to administer the data. Data in a SQL database are stored in objects called tables. Tables provide the relational information for the data stored in the database.
+
+### Schema
+
+- A database schema defines the structure of a database. Database schema is declared using a formal language, for RDBMS the language is SQL.
+- An RDBMS schema can include objects like:
+  - tables
+  - triggers
+  - functions
+  - procedures
+  - indexes
+  - views
+- In and RDBMS table the schema defines the columns, their data types, and constraints.
+
+#### Table
 
 > Describe relational database tables.
 
@@ -48,7 +54,7 @@ TABLE commands:
 - `TRUNCATE TABLE`
 - `ALTER TABLE`
 
-### View
+#### View
 
 > What is a view and why is it useful?
 
@@ -66,258 +72,6 @@ SELECT column1, column2, ...
 FROM table_name
 WHERE condition;
 ```
-
-### Sublanguage Overview
-
-#### `DDL` - `Data Definition Language`
-
-`DDL` sublanguage of SQL is utilized to create and manage the structure of a database.
-
-- `CREATE`
-  <br>The CREATE command is used to create objects on the server.
-  - Database
-  - Table
-  - Index
-  - Trigger
-  - Function
-  - Stored Procedure
-  - View
-- `DROP`
-  <br>The DROP command is used to remove objects from the server. Any object created using the CREATE command can be dropped using the DROP command.
-- `ALTER`
-  <br>The ALTER command is used to change some characteristics of an object.
-  - ADD / DROP columns
-  - ADD / DROP constrains
-  - Modify column data types
-  - Modify column constrains
-- `RENAME`
-  <br>The RENAME command is used to rename objects
-- `TRUNCATE`
-  <br>The TRUNCATE command is used to remove all data from a table along with all space allocated for the records. Unlike DROP truncate will preserve the structure of the table.
-
-```sql
--- create database
-CREATE DATABASE IF NOT EXISTS mydb;
--- select database for current use
-USE mydb;
--- create table
-CREATE TABLE IF NOT EXISTS users (
-  id INT SERIAL PRIMARY KEY,
-  name VARCHAR(30)
-);
--- alter table
-ALTER TABLE users ADD CONSTRAIN name NOT NULL;
-```
-
-#### `DML` Data Manipulation Language
-
-- `INSERT`
-- `UPDATE`
-- `DELETE`
-
-#### DCL - Data Control Language
-
-> What is DCL?
-
-The `Data Control Language` (`DCL`) of SQL is used to control rights, and permissions of users on database objects.
-
-The DBA (DataBase Administrator) would be responsible to setup user (application) access prior to the user attempting to login to the database.
-
-- `GRANT` - grant privilege
-- `REVOKE` - remove privilege
-
-##### Privileges
-
-A database can have numerous privileges which can be permitted to users. Most common ones:
-
-- `Select` - allows select statements on tables
-- `Insert` - allows insert statements on tables
-- `Delete` - allows delete statements on tables
-- `Update` - allows update statements on tables
-- `Index` - allows creating indexes on tables
-- `Create` - allows create table statements
-- `Alter` - allows alter table statements
-- `Drop` - allows drop table statements
-- `All` - allow all permissions except grant
-- `Grant` - allows grant statements
-
-##### Sytax
-
-```sql
-GRANT <privileges> ON <object> TO <user>;
--- GRANT all CRUD ablities to user
-GRANT SELECT, INSERT, UPDATE, DELETE ON employees TO 'john';
-
-REVOKE <privileges> ON <object> FROM <user>;
-```
-
-## SQL TCL - Transaction Control Language
-
-> What is TCL?
-
-TCL commands help the user manage the transactions that take place in a database.
-
-- a `transaction` is a set of SQL statements that are executed on the data stored in DBMS
-- Whenever we perform any of the DDL command like -INSERT, DELETE or UPDATE, these can be rollback if the data is not stored permanently
-- to make the changes permanent, we use TCL commands
-- TCL commands are used to ensure the transaction satisfies all the ACID properties
-
-### Transaction
-
-> What is a transaction?
-
-- In SQL transaction is grouping of statements into a single unit.
-- A transaction satisfies all the ACID properties.
-- In MySQL, transactions are SQL statements that are grouped under a single unit, the statements in a transaction will then be executed one by one
-- there are only two outputs for a transaction, success or failure, if all the statements are executed successfully the transaction is successful, even if a single statement fails, the entire transaction fails.
-
-### TCL Commands
-
-- `START` - notifies MySQL that the statements after Start should be cosidered as a single unit.
-- `COMMIT` - used to save the data permanently
-- `ROLLBACK` - used to get the data or restore the data to the last savepoint or last committed state
-- `SAVEPOINT` - used to save the data at a particular point temporarily
-
-##### Example
-
-```sql
-START TRANSACTION;
-INSERT INTO bankaccounts VALUES("ACC3", 10000);
-SAVEPOINT sv;
-INSERT INTO bankaccounts VALUES("ACC4", 900000);
-ROLLBACK TO sv;
-INSERT INTO bankaccounts VALUES("ACC4", 90000);
-COMMIT;
-
--- BANK TRANSER TRANSACTION
-START TRANSACTION or BEGIN; --statement1
-UPDATE bankaccounts SET funds=funds-100 WHERE account_no='ACC1'; --statement2
-UPDATE bankaccounts SET funds=funds+100 WHERE account_no='ACC2'; --statement3
-COMMIT; --statement4
-```
-
-### Transaction Properties (`ACID`)
-
-> What are the properties of a transaction?
-
-- `Atomicity` - is combining all statements into a single unit. A transaction is considered to be atomic if it cannot be further broken down into individual operations and, all of the operations that occur within a transaction either succeed or fail as a single unit. If a single operation fails during a transaction, then everything is considered to have failed and must be rolled back.
-
-- `Consistency` : One of the advantages of using a transaction is that, even if the transaction is a success or a failure, the database is consistent and the data integrity is maintained.
-  All inconsistent data is removed, and all transactions that might cause inconsistency are aborted and an error is created or transcribed into an error log. Example: Consider two bank accounts ACC1 and ACC2 with funds of 10000$ and 9000, which is is total of 19000, after a transaction of transferring 50$ from ACC2 to ACC1 the funds in ACC1 is 10050$ and ACC2 are 8950$, which means the totals funds in AC1 and ACC2 adds up to 19000, So the funds in ACC1 and ACC2 are consistent before and after the Transaction.
-- `Isolation`: Every transaction is isolated from other transactions. Therefore, a transaction shouldn't affect other transactions running at the same time. Stated another way, data modifications made by one transaction should be isolated from the data modifications made by other transactions. So, while a transaction can see data in the state it was in before another concurrent transaction modified it, as well as after the second transaction has completed, it cannot see any intermediate states. Example: Consider that the user A withdraws $100 and user B withdraws $250 from user ACC1 account, which has a balance of $1,000. Since both A and B draw from ACC1 account, one of the users is required to wait until the other user transaction is completed, avoiding inconsistent data.
-
-- `Durability`:
-  Transactions help with Durability in a few ways: data modifications that take place within a successful transaction may be safely considered to be stored in the database regardless of whatever else may occur. As each transaction is completed, a row is entered in the database transaction log. Thus, in the event of a system failure that requires the database to be restored from a backup you can use this transaction log to get the database back to the state it was in after a successful transaction.
-  The ACID property of DBMS plays a vital role in maintaining the consistency and availability of data in the database
-
-### Schema
-
-- A database schema defines the structure of a database. Database schema is declared using a formal language, for RDBMS the language is SQL.
-- An RDBMS schema can include objects like:
-  - tables
-  - triggers
-  - functions
-  - procedures
-  - indexes
-  - views
-- In and RDBMS table the schema defines the columns, their data types, and constraints.
-
-## Normalization
-
-> What is normalization?
-
-`Normalization` is the process of organizing the data and the attributes of a database.
-
-- reduce the duplication of data, - avoid data anomalies
-- ensure referential integrity
-- simplify data management
-
-1. `1NF` First Normal Form
-
-- Each table cell should contain a single value.
-- Each record needs to be unique
-- violation example: hobbies with several values
-- solution add new rows with each value
-
-2. `2NF` Second Normal Form
-
-- Be in 1NF
-- Single Column Primary Key - that does not functionally dependant on any subset of candidate key relation
-- violation example: name and address identifies a record when two different people have the same name
-- solution: add a primary key column
-
-3. `3NF` Third Normal Form
-
-- in 2NF
-- all the attributes (e.g. database columns) are functionally dependent on solely the primary key (no transitive functional dependencies)
-- violation example: hospital database having a table of patients which included a column for the telephone number of their doctor. The phone number is dependent on the doctor, rather than the patient, thus would be better stored in a table of doctors
-- solution: create table for doctors and store phone number there
-
-### Multiplicity
-
-> What is multiplicity?
-
-`Multiplicity` defines the relationship between two tables
-
-There are 4 different multiplicity relationships
-
-- one to one
-  - implementation: the table that references the other table must have a foreign key column to the referenced table. This column must have a UNIQUE constraint applied to it.
-  - example: student - backpack
-- one to many
-  - implementation: the "many" table would have a foreign key to the "one" table
-  - example: albums - songs
-- many to one
-  - same as one to many
-- many to many
-  - implementation: a third table needs to be created (called a junction table) that has a foreign key to both tables
-  - example: doctor -patient
-
-### SQL Datatypes
-
-- Character types
-  - Fixed-length
-  - Variable-length
-- Numeric types
-
-  - Decimal
-
-    - Decimal types are used to store exact fractional number values like money.
-    - Types: decimal, float, double
-    - The decimal data types decimal, float, double have a syntax that includes `type(p,s)`. In the syntax 'p' is the precision that represents the number of significant digits, 's' is the scale that represents the number of digits after the decimal point.
-
-    ```sql
-     annual_income decimal(10, 2)
-    <!-- nnual_income will have a maximum of 10 digits with 8 before the decimal and 2 after it, with a max value of 99,999,999.99 -->
-    ```
-
-  - Integer
-  - Floating point
-
-- Temporal types
-  - Date
-  - Time
-  - Timestamp
-
-### SQL Operators
-
-> What are some operators that can be used in SQL?
-
-- Arithmetic (`+`, `-`, `*`,`/`,`%`)
-- Bitwise (`&`, `|`, `^`)
-- Comparison (`=`, `<`, `>`, `>=`, `<=`, `<>`)
-- Compound (`+=`, `-=`, ...)
-- Logical
-  - `ALL` - TRUE if all of the subquery values meet the condition
-  - `AND` - TRUE if all the conditions separated by AND is TRUE
-  - `ANY` - TRUE if any of the subquery values meet the condition
-  - `BETWEEN` - TRUE if the operand is within the range of comparisons
-  - `EXISTS` - TRUE if the subquery returns one or more records
-  - `IN` - TRUE if the operand is equal to one of a list of expressions
-  - `LIKE` - TRUE if the operand matches a pattern
-  - `NOT` - Displays a record if the condition(s) is NOT TRUE
-  - `OR` TRUE if any of the conditions separated by OR is TRUE
-  - `SOME` TRUE if any of the subquery values meet the condition
 
 ### Constraints
 
@@ -388,6 +142,254 @@ Referential Integrity:
 - does not allow the addition of any record in a table that contains the foreign key unless the reference table contains a corresponding primary key.
 - does not allow to deletion of a record in a table that contains the foreign key, to delete the record in the parent table, the corresponding record in the child table should be deleted first. to solve this issue `ON DELETE CASCADE` is used.
 - Other options are to set the foreign key to null or to its default value (only if the default value references an existing value in the primary-key table).
+
+### Normalization
+
+> What is normalization?
+
+`Normalization` is the process of organizing the data and the attributes of a database.
+
+- reduce the duplication of data, - avoid data anomalies
+- ensure referential integrity
+- simplify data management
+
+1. `1NF` First Normal Form
+
+- Each table cell should contain a single value.
+- Each record needs to be unique
+- violation example: hobbies with several values
+- solution add new rows with each value
+
+2. `2NF` Second Normal Form
+
+- Be in 1NF
+- Single Column Primary Key - that does not functionally dependant on any subset of candidate key relation
+- violation example: name and address identifies a record when two different people have the same name
+- solution: add a primary key column
+
+3. `3NF` Third Normal Form
+
+- in 2NF
+- all the attributes (e.g. database columns) are functionally dependent on solely the primary key (no transitive functional dependencies)
+- violation example: hospital database having a table of patients which included a column for the telephone number of their doctor. The phone number is dependent on the doctor, rather than the patient, thus would be better stored in a table of doctors
+- solution: create table for doctors and store phone number there
+
+### Multiplicity
+
+> What is multiplicity?
+
+`Multiplicity` defines the relationship between two tables
+
+There are 4 different multiplicity relationships
+
+- one to one
+  - implementation: the table that references the other table must have a foreign key column to the referenced table. This column must have a UNIQUE constraint applied to it.
+  - example: student - backpack
+- one to many
+  - implementation: the "many" table would have a foreign key to the "one" table
+  - example: albums - songs
+- many to one
+  - same as one to many
+- many to many
+  - implementation: a third table needs to be created (called a junction table) that has a foreign key to both tables
+  - example: doctor -patient
+
+## SQL Language Intro
+
+### SQL Datatypes
+
+- Character types
+  - Fixed-length
+  - Variable-length
+- Numeric types
+
+  - Decimal
+
+    - Decimal types are used to store exact fractional number values like money.
+    - Types: decimal, float, double
+    - The decimal data types decimal, float, double have a syntax that includes `type(p,s)`. In the syntax 'p' is the precision that represents the number of significant digits, 's' is the scale that represents the number of digits after the decimal point.
+
+    ```sql
+     annual_income decimal(10, 2)
+    <!-- nnual_income will have a maximum of 10 digits with 8 before the decimal and 2 after it, with a max value of 99,999,999.99 -->
+    ```
+
+  - Integer
+  - Floating point
+
+- Temporal types
+  - Date
+  - Time
+  - Timestamp
+
+### SQL Operators
+
+> What are some operators that can be used in SQL?
+
+- Arithmetic (`+`, `-`, `*`,`/`,`%`)
+- Bitwise (`&`, `|`, `^`)
+- Comparison (`=`, `<`, `>`, `>=`, `<=`, `<>`)
+- Compound (`+=`, `-=`, ...)
+- Logical
+  - `ALL` - TRUE if all of the subquery values meet the condition
+  - `AND` - TRUE if all the conditions separated by AND is TRUE
+  - `ANY` - TRUE if any of the subquery values meet the condition
+  - `BETWEEN` - TRUE if the operand is within the range of comparisons
+  - `EXISTS` - TRUE if the subquery returns one or more records
+  - `IN` - TRUE if the operand is equal to one of a list of expressions
+  - `LIKE` - TRUE if the operand matches a pattern
+  - `NOT` - Displays a record if the condition(s) is NOT TRUE
+  - `OR` TRUE if any of the conditions separated by OR is TRUE
+  - `SOME` TRUE if any of the subquery values meet the condition
+
+### SQL Sublanguages
+
+- DDL - Data Definition Language
+- DML - Data Management Language
+- DCL
+- TTL
+- DQL
+
+## SQL `DDL` - `Data Definition Language`
+
+`DDL` sublanguage of SQL is utilized to create and manage the structure of a database.
+
+- `CREATE`
+  <br>The CREATE command is used to create objects on the server.
+  - Database
+  - Table
+  - Index
+  - Trigger
+  - Function
+  - Stored Procedure
+  - View
+- `DROP`
+  <br>The DROP command is used to remove objects from the server. Any object created using the CREATE command can be dropped using the DROP command.
+- `ALTER`
+  <br>The ALTER command is used to change some characteristics of an object.
+  - ADD / DROP columns
+  - ADD / DROP constrains
+  - Modify column data types
+  - Modify column constrains
+- `RENAME`
+  <br>The RENAME command is used to rename objects
+- `TRUNCATE`
+  <br>The TRUNCATE command is used to remove all data from a table along with all space allocated for the records. Unlike DROP truncate will preserve the structure of the table.
+
+```sql
+-- create database
+CREATE DATABASE IF NOT EXISTS mydb;
+-- select database for current use
+USE mydb;
+-- create table
+CREATE TABLE IF NOT EXISTS users (
+  id INT SERIAL PRIMARY KEY,
+  name VARCHAR(30)
+);
+-- alter table
+ALTER TABLE users ADD CONSTRAIN name NOT NULL;
+```
+
+## SQL `DML` Data Manipulation Language
+
+- `INSERT`
+- `UPDATE`
+- `DELETE`
+
+## DCL - Data Control Language
+
+> What is DCL?
+
+The `Data Control Language` (`DCL`) of SQL is used to control rights, and permissions of users on database objects.
+
+The DBA (DataBase Administrator) would be responsible to setup user (application) access prior to the user attempting to login to the database.
+
+- `GRANT` - grant privilege
+- `REVOKE` - remove privilege
+
+### Privileges
+
+A database can have numerous privileges which can be permitted to users. Most common ones:
+
+- `Select` - allows select statements on tables
+- `Insert` - allows insert statements on tables
+- `Delete` - allows delete statements on tables
+- `Update` - allows update statements on tables
+- `Index` - allows creating indexes on tables
+- `Create` - allows create table statements
+- `Alter` - allows alter table statements
+- `Drop` - allows drop table statements
+- `All` - allow all permissions except grant
+- `Grant` - allows grant statements
+
+### Syntax
+
+```sql
+GRANT <privileges> ON <object> TO <user>;
+-- GRANT all CRUD ablities to user
+GRANT SELECT, INSERT, UPDATE, DELETE ON employees TO 'john';
+
+REVOKE <privileges> ON <object> FROM <user>;
+```
+
+## SQL TCL - Transaction Control Language
+
+> What is TCL?
+
+TCL commands help the user manage the transactions that take place in a database.
+
+- a `transaction` is a set of SQL statements that are executed on the data stored in DBMS
+- Whenever we perform any of the DDL command like -INSERT, DELETE or UPDATE, these can be rollback if the data is not stored permanently
+- to make the changes permanent, we use TCL commands
+- TCL commands are used to ensure the transaction satisfies all the ACID properties
+
+### SQL Transaction
+
+> What is a transaction?
+
+- In SQL transaction is grouping of statements into a single unit.
+- A transaction satisfies all the ACID properties.
+- In MySQL, transactions are SQL statements that are grouped under a single unit, the statements in a transaction will then be executed one by one
+- there are only two outputs for a transaction, success or failure, if all the statements are executed successfully the transaction is successful, even if a single statement fails, the entire transaction fails.
+
+### TCL Commands
+
+- `START` - notifies MySQL that the statements after Start should be cosidered as a single unit.
+- `COMMIT` - used to save the data permanently
+- `ROLLBACK` - used to get the data or restore the data to the last savepoint or last committed state
+- `SAVEPOINT` - used to save the data at a particular point temporarily
+
+### Example
+
+```sql
+START TRANSACTION;
+INSERT INTO bankaccounts VALUES("ACC3", 10000);
+SAVEPOINT sv;
+INSERT INTO bankaccounts VALUES("ACC4", 900000);
+ROLLBACK TO sv;
+INSERT INTO bankaccounts VALUES("ACC4", 90000);
+COMMIT;
+
+-- BANK TRANSER TRANSACTION
+START TRANSACTION or BEGIN; --statement1
+UPDATE bankaccounts SET funds=funds-100 WHERE account_no='ACC1'; --statement2
+UPDATE bankaccounts SET funds=funds+100 WHERE account_no='ACC2'; --statement3
+COMMIT; --statement4
+```
+
+### Transaction Properties (`ACID`)
+
+> What are the properties of a transaction?
+
+- `Atomicity` - is combining all statements into a single unit. A transaction is considered to be atomic if it cannot be further broken down into individual operations and, all of the operations that occur within a transaction either succeed or fail as a single unit. If a single operation fails during a transaction, then everything is considered to have failed and must be rolled back.
+
+- `Consistency` : One of the advantages of using a transaction is that, even if the transaction is a success or a failure, the database is consistent and the data integrity is maintained.
+  All inconsistent data is removed, and all transactions that might cause inconsistency are aborted and an error is created or transcribed into an error log. Example: Consider two bank accounts ACC1 and ACC2 with funds of 10000$ and 9000, which is is total of 19000, after a transaction of transferring 50$ from ACC2 to ACC1 the funds in ACC1 is 10050$ and ACC2 are 8950$, which means the totals funds in AC1 and ACC2 adds up to 19000, So the funds in ACC1 and ACC2 are consistent before and after the Transaction.
+- `Isolation`: Every transaction is isolated from other transactions. Therefore, a transaction shouldn't affect other transactions running at the same time. Stated another way, data modifications made by one transaction should be isolated from the data modifications made by other transactions. So, while a transaction can see data in the state it was in before another concurrent transaction modified it, as well as after the second transaction has completed, it cannot see any intermediate states. Example: Consider that the user A withdraws $100 and user B withdraws $250 from user ACC1 account, which has a balance of $1,000. Since both A and B draw from ACC1 account, one of the users is required to wait until the other user transaction is completed, avoiding inconsistent data.
+
+- `Durability`:
+  Transactions help with Durability in a few ways: data modifications that take place within a successful transaction may be safely considered to be stored in the database regardless of whatever else may occur. As each transaction is completed, a row is entered in the database transaction log. Thus, in the event of a system failure that requires the database to be restored from a backup you can use this transaction log to get the database back to the state it was in after a successful transaction.
+  The ACID property of DBMS plays a vital role in maintaining the consistency and availability of data in the database
 
 ### Basic Queries
 
