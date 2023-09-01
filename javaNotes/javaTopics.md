@@ -1,21 +1,3 @@
-## Operating System
-
-> What is an operating system?
-
-- a software that communicates with the hardware and allows other programs to run
-- it is comprised of system software, or the fundamental files your computer needs to boot up and function
-- they allow you to install and run programs written for the operating system
-- every device (computer, tablet, phone) has an operating system
-- the hardware you choose affects what operating system(s) you can run (Windows on PC hardware, Mac OS X Apple, Linux on both)
-
-Functions Operating Systems Provide
-
-- Process and `Process Management` (`process` is a program in execution)
-- `Threads` - a thread as a flow of execution through the process code. The thread keeps track of all the instructions that need to be executed next in the program counter. Also, the thread contains system registers that hold the current working variables. Also, the thread's stack contains the execution history.
-
-- `Scheduling` - in scheduling, the process manager takes the responsibility to remove the running process from the CPU and chooses another process based on a specific strategy.
-- `Memory Management` - the functionality of an operating system that handles and manages the primary memory. Processes move back and forth between the main memory and the disk during the execution.
-
 ## Java Programming Language
 
 > Java What are some of the benefits of Java?
@@ -322,83 +304,6 @@ int[] otherArray = {1, 2, 3};
 > How can you iterate over an array?
 
 > How would you access the last value in an array if you do not know the size of the array?
-
-## Using Database in Java
-
-### HTTP Introduction
-
-`HTTP` (`HyperText Transfer Protocol`) is a technique of transmitting data in a particular format, primarily between a server and a
-
-HTTP works by a client making a connection to a `server`, sending a `request`, and receiving a `response`
-
-The data tranmitted can be:
-
-- `hypertext` - A text documents that have the special ability to link to one another.
-- `hypermedia` - hypertext documents that have the ability to show multiple kinds of media
-
-A request contains:
-
-- the `method` being used
-- the `URL` where the target is
-- version of HTTP is being used
-- Optional information to help the server with the request (called `headers`)
-- For some methods, a `body` which contains some resources (ex.: files to be uploaded)
-
-A response contains:
-
-- version of HTTP is being used
-- status code reflecting the outcome of the request
-- status message which is shorthand and less descriptive than the status code
-- Optional information to detail what happened with the request (called `headers` again)
-- For some methods, a body which contains some resource (ex. file to be downloaded)
-
-### HTTP verbs
-
-_You should be familiar with GET, POST, PUT, and DELETE_
-
-- GET
-  - used to retrieve data from a server at the specified resource
-  - does not modifying any resources
-  - safe and `idempotent` method
-- POST
-  - used to send data to the API server to create or update a resource
-  - the data sent to the server is stored in the request body of the HTTP request
-  - `non-idempotent`
-- PUT
-  - similar to POST, PUT requests are used to send data to the API to update or create a resource
-  - `idempotent`, calling the same PUT request multiple times will always produce the same result
-  - when a PUT request creates a resource the server will respond with a 201 (Created), and if the request modifies existing resource the server will return a 200 (OK) or 204 (No Content)
-- HEAD
-- DELETE
-
-  - deletes the resource at the specified URL
-
-- PATCH
-- OPTIONS
-
-### HTTP status codes
-
-_You need to know what each category of status represents as well as common status codes (200, 201, 400, 404, 500)_
-
-HTTP Status Codes whether a specific HTTP request has been successfully completed.
-
-Responses are grouped in five classes:
-
-- Informational responses (100–199)
-- Successful responses (200–299)
-- Redirection messages (300–399)
-- Client error responses (400–499)
-- Server error responses (500–599)
-
-Common Status Codes:
-
-- 200 - OK, success
-- 201 - Created
-- 400 - Bad Request, client error
-- 404 - Not Found
-- 500 - Internal Server Error
-
-Week 6 Assessment
 
 ## functional programming in Java
 
@@ -1318,36 +1223,6 @@ git merge new-branch
 - `Bash` is an acronym for `Bourne Again Shell`
 - `shell` is a terminal application used to interface with an operating system through written commands.
 - `Bash` is a popular default shell on Linux and macOS.
-
-wk8
-
-Week 8 Assessment
-
-## MORE SQL
-
-### DCL
-
-### TCL
-
-### Transactions
-
-Transaction properties
-
-### aggregate functions
-
-### scalar functions
-
-### GROUP BY
-
-### Functions
-
-### Stored Procedures
-
-### Triggers
-
-### Sequences
-
-### Indexes
 
 ## Algorithm
 

@@ -75,6 +75,8 @@ WHERE condition;
 
 #### Index
 
+> What is an index in SQL?
+
 - a database structure that improves the performance of queries on a table
 - created on one or more columns and stores sorted copy of data in those columns
 - when a query is executed on columns, database can use index for finding data quickly
@@ -711,6 +713,8 @@ DROP FUNCTION IF EXISTS get_balance;
 
 ### Triggers
 
+> What is a trigger in SQL?
+
 - database object that activates when a particular event occurs on the table it is associated with
 - events are DML (insert, delete, update)
 - triggers can activate before or after the event
@@ -719,6 +723,8 @@ DROP FUNCTION IF EXISTS get_balance;
 - A transaction cannot be committed or rolled back inside a trigger.
 
 ### Stored Procedures
+
+> What is a stored procedure in SQL?
 
 - callable block of code that takes in parameters
 - does not use a return statement
