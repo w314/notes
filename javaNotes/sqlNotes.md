@@ -73,6 +73,12 @@ FROM table_name
 WHERE condition;
 ```
 
+#### Index
+
+- a database structure that improves the performance of queries on a table
+- created on one or more columns and stores sorted copy of data in those columns
+- when a query is executed on columns, database can use index for finding data quickly
+
 ### Constraints
 
 > What are constraints and can you describe a few constraints?
@@ -347,14 +353,18 @@ TCL commands help the user manage the transactions that take place in a database
 
 > What is a transaction?
 
-- In SQL transaction is grouping of statements into a single unit.
-- A transaction satisfies all the ACID properties.
-- In MySQL, transactions are SQL statements that are grouped under a single unit, the statements in a transaction will then be executed one by one
+- transaction: one or more DQL or DML operations performed on a database as a single unit
+- DDL can be included, but cannot be rolled back. Don't use DDL in a transaction mixed with other statements
+- desirable transaction properties:
+  - **A**TOMICITY: either all statements succeed or they all fail
+  - **C**ONSISTENTENCY: transactions keep data in a consistent state
+  - **I**SOLATION: ability of transactions to not interfere with one another (isolation level can be changed)
+  - **D**URABILITY: transactions are logged, saved to long-term memory, and are recoverable
 - there are only two outputs for a transaction, success or failure, if all the statements are executed successfully the transaction is successful, even if a single statement fails, the entire transaction fails.
 
 ### TCL Commands
 
-- `START` - notifies MySQL that the statements after Start should be cosidered as a single unit.
+- `START TRANSACTION` - notifies MySQL that the statements after Start should be cosidered as a single unit.
 - `COMMIT` - used to save the data permanently
 - `ROLLBACK` - used to get the data or restore the data to the last savepoint or last committed state
 - `SAVEPOINT` - used to save the data at a particular point temporarily
@@ -391,22 +401,12 @@ COMMIT; --statement4
   Transactions help with Durability in a few ways: data modifications that take place within a successful transaction may be safely considered to be stored in the database regardless of whatever else may occur. As each transaction is completed, a row is entered in the database transaction log. Thus, in the event of a system failure that requires the database to be restored from a backup you can use this transaction log to get the database back to the state it was in after a successful transaction.
   The ACID property of DBMS plays a vital role in maintaining the consistency and availability of data in the database
 
-### Basic Queries
+#### Transaction Isolation Levels (Supplementary)
 
-### Aliases
-
-Aliases is used to give a temporary name to a table or a column in a table for the intention to support a specific query.
-
-```sql
-SELECT column_name AS alias_name FROM table_name;
-```
-
-Advantages:
-
-- It provides a very useful feature that allows us to achieve complex tasks quickly.
-- It makes column or table name more readable.
-- It allows us to combine two or more columns
-- It makes the table more user-friendly.
+- read uncommitted: transactions can read uncommitted changes made by others (dirty reads)
+- read committed: selecting same data multiple times in a transaction and not getting the same information (nonrepeatable read) as other transactions commit modifications
+- repeatable read: uses data in its state at the start of a transaction, prevents nonrepeatable read / updates to the data being read
+- serializable: ensures, while a transaction is reading data, thatno data is removed or deleted that can cause a difference (phantom reads)
 
 ### DML
 
@@ -423,6 +423,37 @@ UPDATE permissions set categoryId=1;
 
 DELETE FROM roles where name='VIEWER';
 ```
+
+### DROP vs TRUNCATE vs DELETE
+
+<table>
+<thead><td>DELETE</td><td>TRUNCATE</td><td>DROP</td></thead>
+<tbody>
+<tr>
+<td>DML</td><td>DDL</td><td>DDL</td>
+</tr>
+<tr>
+<td>WHERE clause can be used to filter and delete one or more rows</td>
+<td>WHERE clause cannot be used</td>
+<td>WHERE clause cannot be used</td>
+</tr>
+<tr>
+<td>It is executed using <strong>row lock</strong>, and each row in the table is locked for deletion</td>
+<td>It is executed using <strong>table lock</strong>, where whole table is locked while removing the records</td>
+<td>It removes a table form the database</td>
+</tr>
+<tr>
+<td>It maintains the log, so it is slower than TRUNCATE</td>
+<td>Least amount of logging needed so it is faster in performace</td>
+<td>It maintains the log, so it is slower than TRUNCATE</td>
+</tr>
+<tr>
+<td>It can roll back the deleted data before committing it</td>
+<td>It cannot be rolled back</td>
+<td>It cannot be rolled back</td>
+</tr>
+</tbody>
+</table>
 
 ## SQL DQL
 
@@ -486,36 +517,20 @@ FILTERING: The filtering clause of a select statement is a `WHERE` clauses that 
 - `LIMIT` clause restricts number of records returned from the select statement.
 - `OFFSET` clause specifies from which record position to start counting from. This is often used in conjunction with the `LIMIT` clause. NOTE: Some SQL implementations use the `SKIP` keyword instead of offset
 
-### DROP vs TRUNCATE vs DELETE
+### Aliases
 
-<table>
-<thead><td>DELETE</td><td>TRUNCATE</td><td>DROP</td></thead>
-<tbody>
-<tr>
-<td>DML</td><td>DDL</td><td>DDL</td>
-</tr>
-<tr>
-<td>WHERE clause can be used to filter and delete one or more rows</td>
-<td>WHERE clause cannot be used</td>
-<td>WHERE clause cannot be used</td>
-</tr>
-<tr>
-<td>It is executed using <strong>row lock</strong>, and each row in the table is locked for deletion</td>
-<td>It is executed using <strong>table lock</strong>, where whole table is locked while removing the records</td>
-<td>It removes a table form the database</td>
-</tr>
-<tr>
-<td>It maintains the log, so it is slower than TRUNCATE</td>
-<td>Least amount of logging needed so it is faster in performace</td>
-<td>It maintains the log, so it is slower than TRUNCATE</td>
-</tr>
-<tr>
-<td>It can roll back the deleted data before committing it</td>
-<td>It cannot be rolled back</td>
-<td>It cannot be rolled back</td>
-</tr>
-</tbody>
-</table>
+Aliases is used to give a temporary name to a table or a column in a table for the intention to support a specific query.
+
+```sql
+SELECT column_name AS alias_name FROM table_name;
+```
+
+Advantages:
+
+- It provides a very useful feature that allows us to achieve complex tasks quickly.
+- It makes column or table name more readable.
+- It allows us to combine two or more columns
+- It makes the table more user-friendly.
 
 ## SQL Joins
 
@@ -572,24 +587,35 @@ The `INTERSECT` clause is used to display all records which are common between t
 
 The `MINUS` clause ( also called as `EXCEPT` clause in some books) is used to display the records from table 1 while removing the records which are also present in table 2.
 
-## SQL Functions
+## SQL Functions & Procedures
 
 > What is a function in SQL?
 
-- A function in MySQL is a set of statements you can call by name.
+- callable block of code that takes in zero or more parameters and returns a value
+- mainly used to perform and return calculations
+- can be used as part of a SQL expression (since it returns a value)
+- can include DQL and DML (and DDL but not used often in function)
+- some are built-in and we can create our own
+- to use a function / get its value, select from it: `select count(*)...`
 - Stored functions are very similar to stored procedures, except that a function returns a value to the environment in which it is called.
-- User functions can be used as part of a SQL expression..
 
 > What is the difference between an aggregate and a scalar function?
 
 - A scalar function is a function that operates on scalar values. It takes one (or more) input values as arguments directly and returns a value.
 - An aggregate function is a function that operates on aggregate data. It takes a complete set of data as input and returns a value that is computed from all the values in the set.
 
+### Parameters
+
+- IN: input parameter. default (and only) type for functions. works like Java parameters (value is used but modifications do not modify original value/variable itself)
+- OUT: value from procedure is passed to caller. user defined variable needed.
+- INOUT: caller passes in value and CAN be modified by procedure and modification is reflected outside of procedure. user defined variable needed.
+
 ### Aggregate Functions
 
+- functions that return one value from one or more records
 - MySQL aggregate functions retrieve a single value after performing a calculation on a set of values.
 - In general, aggregate functions ignore null values.
-- Often, aggregate functions are accompanied by the GROUP BY clause of the SELECT statement.
+- `GROUP BY` and `HAVING` are used with aggregate functions, they group records based on the column values
 
 Most important aggregate functions:
 
@@ -603,6 +629,8 @@ SELECT MIN(salary) FROM employee;
 ```
 
 ### Scalar Functions
+
+Functions that return a value for every record.
 
 Scalar functions are pre-defined functions in SQL, and whatever be the input provided to the scalar functions, the output returned by these functions will always be a single value.
 
@@ -680,3 +708,29 @@ SELECT get_balance(101);
 -- delete
 DROP FUNCTION IF EXISTS get_balance;
 ```
+
+### Triggers
+
+- database object that activates when a particular event occurs on the table it is associated with
+- events are DML (insert, delete, update)
+- triggers can activate before or after the event
+- The key difference between a `trigger` and `procedure` is that a trigger is _called automatically_ when a data modification occurs in a table. A stored procedure must be invoked directly.
+- Triggers have no chance of recieving parameters.
+- A transaction cannot be committed or rolled back inside a trigger.
+
+### Stored Procedures
+
+- callable block of code that takes in parameters
+- does not use a return statement
+- can include DQL and DML (and DDL but not used often in function)
+- can contain TCL
+
+### Sequence (Not Creatable in MySQL)
+
+- database object that generates a series of integer values
+- starting value must be positive
+- increment can be custom
+
+### Flow Control Statements (Supplementary)
+
+- https://dev.mysql.com/doc/refman/8.0/en/flow-control-statements.html
