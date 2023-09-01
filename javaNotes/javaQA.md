@@ -96,7 +96,33 @@ sql: 1-25
 
 ### 43 What is the Singleton design pattern?
 
-process below:
+## Advanced Java Concepts
+
+### 44 What is the Optional class?
+
+### 45 What is the Stream API and what is it used for?
+
+### 46 What is the Reflection API and what is it used for?
+
+### 47 What is a thread?
+
+### 48 How can we implement multithreading in Java?
+
+### 49 What are some states a thread can be in?
+
+### 50 What is synchronization?
+
+### 51 What is the difference between deadlock and livelock?
+
+### 52 Describe the Producer Consumer problem.
+
+### 53 What are intermediate stream operations?
+
+### 54 What are terminal stream operations?
+
+### 55 How can we create a thread?
+
+process below
 
 ## Java
 
@@ -877,17 +903,3 @@ What is a transaction?
 What are the properties of a transaction?
 What is a function in SQL?
 What is an index in SQL?
-
-wk9
-What is the Optional class?
-What is the Stream API and what is it used for?
-What is the Reflection API and what is it used for?
-What is a thread?
-How can we implement multithreading in Java?
-What are some states a thread can be in?
-What is synchronization?
-What is the difference between deadlock and livelock?
-Describe the Producer Consumer problem.
-What are intermediate stream operations?
-What are terminal stream operations?
-How can we create a thread?
