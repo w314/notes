@@ -27,6 +27,396 @@ Some important tags within the pom.xml file include:
   - `<version>`
 - `<plugins>` - for 3rd party plugins that work with Maven
 
+## JSON
+
+_ignore implementation, the second part of it is in JavaScript_
+
+- `JSON` (`JavaScript Object Notation`) is a lightweight data-interchange format.
+- JSON Object is a set of key and value pair enclosed within curly braces
+- a key is a string enclosed in quotation marks
+- a value can be a:
+  - string
+  - number
+  - boolean expression
+  - array, or object
+- `parse()` is a commonly used method or function name used to read JSON strings in a variety of programming
+  languages.
+
+JSON object syntax:
+
+```javascript
+let Book = {
+  id: 110,
+  language: "Python",
+  author: ["John", "Ben"],
+};
+```
+
+Applications of JSON:
+
+- transmit data between the server and web application
+- helps transmit and serialize all types of structured data
+- allows us to perform asynchronous data calls without the need to do a page refresh
+- Web services and Restful APIs use the JSON format to get public data.
+
+## REST
+
+_You will not be assessed over the example in the Implementation section (we will not cover Servlets)_
+
+DEFINITION:
+
+> Representational State Transfer (REST) is an architectural style that defines a set of constraints to be used for creating web services.
+
+- Representational State Transfer
+- architecture for exposing information and functionality between software or devices
+- used to fetch or give some information from a web service
+- information provided is a representation of the state of a given resource
+- representation is usually JSON
+- all communication done via REST API uses only HTTP requests
+- In HTTP there are five methods that are commonly used in a REST-based Architecture: POST, GET, PUT, PATCH, and DELETE. These correspond to create, read, update, and delete (or CRUD) operations respectively.
+
+`REST` vs.<br>
+`SOAP` (`Simple Access Protocol`) and <br>
+`RPC` (`Remote Procedure Call`)
+
+- REST uses less bandwidth than SOAP
+- SOAP can only return `xml`, REST can return json, xml, yaml and more
+- in REST users are not required to know procedure names or spedific parameters in a specific order like in RPC
+
+### Is RESTful API right for the application
+
+There are some key `constraints` to think about when considering whether a RESTful API is the right type of API for your needs:
+
+- `Client-Server`: This constraint operates on the concept that the client and the server should be separate from each other and allowed to evolve individually.
+- `Stateless`: REST APIs are stateless, meaning that calls can be made independently of one another, and each call contains all of the data necessary to complete itself successfully.
+- `Cache`: Because a stateless API can increase request overhead by handling large loads of incoming and outbound calls, a REST API should be designed to encourage the storage of cacheable data.
+- `Uniform Interface`: The key to the decoupling client from server is having a uniform interface that allows independent evolution of the application without having the application’s services, or models and actions, tightly coupled to the API layer itself.
+- `Layered System`: REST APIs have different layers of their architecture working together to build a hierarchy that helps create a more scalable and modular application.
+- `Code on Demand`: Code on Demand allows for code or applets to be transmitted via the API for use within the application.
+
+### REST resources and url construction
+
+#### REST Resource
+
+- entity or data that API can provide info about
+- can be identified by a URL
+- can allow actions to be performed on it (GET, POST, PUT, DELETE)
+
+Singleton and Collection Resources
+A resource can be a singleton or a collection.
+
+For example, “customers” is a collection resource and “customer” is a singleton resource (in a banking domain).
+
+We can identify “customers” collection resource using the URI “/customers“. We can identify a single “customer” resource using the URI “/customers/{customerId}“.
+
+Collection and Sub-collection Resources
+A resource may contain sub-collection resources also.
+
+For example, sub-collection resource “accounts” of a particular “customer” can be identified using the URN “/customers/{customerId}/accounts” (in a banking domain).
+
+Similarly, a singleton resource “account” inside the sub-collection resource “accounts” can be identified as follows: “/customers/{customerId}/accounts/{accountId}“.
+
+### URI
+
+`REST API`s use Uniform Resource Identifiers (`URI`s) to address resources.
+
+The constraint of a uniform interface is partially addressed by the combination of URIs and HTTP verbs and using them in line with the standards and conventions.
+
+# Constraints (principles)
+
+- client/server relationship: separate components interacting through an interface
+- uniform interface: use of resources, self-descriptive messages
+- stateless: each message contains all info needed
+- HATEOS / Hypertext as the engine of application state (make API discoverable in state through links!)
+- layered system: application itself is ideally in layers interacting through interfaces
+- cachable: responses should specify if info is cachable or not.
+
+### Best Practices
+
+- use nouns for resources (users, posts, etc) not verbs
+- use plurals for resources that are collections
+- single resources are represented by a name or id
+- send appropriate response code back
+
+resource archetypes categories:
+
+- document
+- collection
+- store
+- controller
+
+Put a resource into one archetype and then use its naming convention consistently.
+
+For uniformity’s sake, resist the temptation to design resources that are hybrids of more than one archetype.
+
+#### document
+
+A document resource is a singular concept that is akin to an object instance or database record.
+
+In REST, you can view it as a single resource inside resource collection. A document’s state representation typically includes both fields with values and links to other related resources.
+
+Use “singular” name to denote document resource archetype.
+
+http://api.example.com/device-management/managed-devices/{device-id}
+http://api.example.com/user-management/users/{id}
+http://api.example.com/user-management/users/admin
+
+#### collection
+
+A collection resource is a server-managed directory of resources.
+
+Clients may propose new resources to be added to a collection. However, it is up to the collection resource to choose to create a new resource or not.
+
+A collection resource chooses what it wants to contain and also decides the URIs of each contained resource.
+
+Use the “plural” name to denote the collection resource archetype.
+
+http://api.example.com/device-management/managed-devices
+http://api.example.com/user-management/users
+http://api.example.com/user-management/users/{id}/accounts
+
+#### store
+
+A store is a client-managed resource repository. A store resource lets an API client put resources in, get them back out, and decide when to delete them.
+
+A store never generates new URIs. Instead, each stored resource has a URI. The URI was chosen by a client when the resource initially put it into the store.
+
+Use “plural” name to denote store resource archetype.
+
+http://api.example.com/song-management/users/{id}/playlists
+
+#### controller
+
+A controller resource models a procedural concept. Controller resources are like executable functions, with parameters and return values, inputs, and outputs.
+
+Use “verb” to denote controller archetype.
+
+http://api.example.com/cart-management/users/{id}/cart/checkout http://api.example.com/song-management/users/{id}/playlist/play
+
+Consistency is the key
+Use consistent resource naming conventions and URI formatting for minimum ambiguity and maximum readability and maintainability. You may implement the below design hints to achieve consistency:
+
+- Use forward slash (/) to indicate hierarchical relationships
+  The forward-slash (/) character is used in the path portion of the URI to indicate a hierarchical relationship between resources. e.g.
+
+http://api.example.com/device-management
+http://api.example.com/device-management/managed-devices
+http://api.example.com/device-management/managed-devices/{id}
+http://api.example.com/device-management/managed-devices/{id}/scripts
+http://api.example.com/device-management/managed-devices/{id}/scripts/{id}
+
+- Do not use trailing forward slash (/) in URIs
+  As the last character within a URI’s path, a forward slash (/) adds no semantic value and may confuse. It’s better to drop it from the URI.
+
+http://api.example.com/device-management/managed-devices/ http://api.example.com/device-management/managed-devices /_This is much better version_/
+
+- Use hyphens (-) to improve the readability of URIs
+  To make your URIs easy for people to scan and interpret, use the hyphen (-) character to improve the readability of names in long path segments.
+
+http://api.example.com/device-management/managed-devices/
+http://api.example.com/device-management/managed-devices /_This is much better version_/
+Do not use underscores ( _ )
+It’s possible to use an underscore in place of a hyphen to be used as a separator – But depending on the application’s font, it is possible that the underscore (_) character can either get partially obscured or completely hidden in some browsers or screens.
+
+To avoid this confusion, use hyphens (-) instead of underscores ( \_ ).
+
+http://api.example.com/inventory-management/managed-entities/{id}/install-script-location //More readable
+
+http://api.example.com/inventory-management/managedEntities/{id}/installScriptLocation //Less readable
+
+- Use lowercase letters in URIs
+
+- do not use file extensions
+
+Apart from the above reason, if you want to highlight the media type of API using file extension, then you should rely on the media type, as communicated through the Content-Type header, to determine how to process the body’s content.
+
+http://api.example.com/device-management/managed-devices.xml /_Do not use it_/
+
+http://api.example.com/device-management/managed-devices /_This is correct URI_/
+
+- Use query component to filter URI collection
+  Often, you will encounter requirements where you will need a collection of resources sorted, filtered, or limited based on some specific resource attribute.
+
+For this requirement, do not create new APIs – instead, enable sorting, filtering, and pagination capabilities in resource collection API and pass the input parameters as query parameters. e.g.
+
+http://api.example.com/device-management/managed-devices
+http://api.example.com/device-management/managed-devices?region=USA
+http://api.example.com/device-management/managed-devices?region=USA&brand=XYZ
+http://api.example.com/device-management/managed-devices?region=USA&brand=XYZ&sort=installation-date
+
+### Exposing and Consuming RESTful API endpoints
+
+_You will not be assessed over implementation code of steps 3 and 4 (Bennu Framework)_
+
+## Logging
+
+> What is logging and what are the benefits of it?
+>
+> Logging is keeping a log of events that occur form an application.
+
+### Logback
+
+- `Logback` is one of the most widely used logging frameworks in the Java Community.(It's a replacement for its predecessor, Log4j.)
+- Logback offers:
+  - faster implementation
+  - more options for configuration
+  - more flexibility in archiving old log files
+  - smaller memory footprint
+
+Resons to prefer `Logback` over `Log4j`:
+
+- small and speedy: components are faster and have a smaller memroy footprint
+- much better tested framework
+- automatically reloads configuration files
+- gracefully recovers from I/O errors (no need to restart app after server fail, just to get logging to work again)
+- automatic removel of old log archives
+- automatic compression of archived log files
+
+### Logback Architecture
+
+The `Logback architecture` is comprised of three classes:
+
+- `Logger` - object that allows you to create logs
+- `Appender` - represents the destination of a log
+- `Layout` - controls log message formatting
+
+### How to use a Logger
+
+> How would we configure logging in an application?
+
+1. configure logger
+2. use logger objects in classes you want to use logging
+3. use the logger object's logging level method
+
+### Logging Levels
+
+> Describe the different logging levels and how they should be used.
+
+- TRACE - most fine-grained information
+- DEBUG - should be used for information that may be needed for diagnosing issues and troubleshooting
+- INFO - standard log level
+- WARN - indicates that something unexpected happened, but the code can continue the work
+- ERROR - hould be used when the application hits an issue preventing one or more functionalities from properly functioning
+
+Setting level at a certain level gives all level on and above that level.
+
+What are logging levels good for?
+
+- filtering
+- allow you to configure your logging process so that it behaves differently according to each level:
+  - Granularity. It might make sense to decrease or increase the granularity of logging according to the level.
+  - Target. You might want level X entries to be logged to files, and level Y entries to be logged to a database.
+  - Retention policy. This is linked to granularity. If a certain level has a higher granularity, it might make sense to delete the log entries in that level more frequently, for example, to save disk space.
+
+#### Setup & Configuration
+
+- if no configuration is given, default logger can be used
+- default logger uses debug logging level
+- to configure create `logback.xml` file under `main/resources`
+- create appenders
+- create loggers and assign them appenders
+
+##### Add dependency to `pom.xml`
+
+`Logback` uses the Simple Logging Facade for Java (`SLF4J`).
+
+`Classpath`
+Logback also requires logback-classic.jar on the classpath for runtime.
+
+We'll add this to `pom.xml` as a test dependency:
+
+```xml
+<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-classic</artifactId>
+    <version>1.4.11</version>
+    <scope>test</scope>
+</dependency>
+```
+
+##### Add `logback.xml` configuration file
+
+We'll create a text file named `logback.xml` and put it somewhere in our classpath:
+
+```xml
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <root level="debug">
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>
+```
+
+#### Use Logger
+
+```java
+package main;
+
+public class Example {
+
+    // create logger object
+    private static final Logger logger = LoggerFactory.getLogger(Example.class);
+
+    // use logging methods
+    public static void main(String[] args) {
+        logger.info("Example log from {}", Example.class.getSimpleName());
+    }
+}
+```
+
+## Mockito
+
+> What is Mockito and why would we use it?
+
+> What is a mock?
+
+### Mockito
+
+Mocking framework used for unit tests
+
+A mock object is a dummy implementation for an interface or a class.
+
+Mockito records the interaction with mock and allows you to check if the mock object was used correct, e.g. if a certain method has been called on the mock. This allows you to implement behavior testing instead of only testing the result of method calls.
+
+Mockito:
+
+- uses annotations to identify its functionality, similar to JUnit
+- `mock`: replacement object - behavior is stubbed unless we request real behavior
+- `spy`: replacement object - behavior is real unless we request it is stubbed
+- from the docs: "Real spies should be used carefully and occasionally, for example when dealing with legacy code."
+- `stub`: replacement behavior
+
+### Creating Mocks
+
+Dependency Injection using @Mock, @InjectMock, and @openMocks
+
+_NOTE: @openMocks is the syntax used in newer versions of Mockito and it replaces @initMocks. Both do the same thing._
+
+- `@InjectMocks` is used on the object being tested to specify what to inject with a mock
+- `@Mock` to specify what should be mocked
+- `MockitoAnnotations.openMocks()` is used to perform the injection
+- Mockito will use any constructors available in the real object for injection, otherwise it will try using setters, and then finally it will try using fields
+
+### Stubbing
+
+- when() is used to target an invocation
+- thenReturn() or thenThrow() is used to return dummy results / throw exceptions
+- if a mock's method isn't stubbed, it will return default values (null, empty collection, 0, false, etc)
+- doThrow(), doAnswer(), doNothing(), doCallRealMethod() are used with void methods (https://www.baeldung.com/mockito-void-methods)
+
+### Verify
+
+- a mock will remember all method invocations on it for verification
+- `times(x)` is used to verify a behavior was invoked x many times
+- `never()` is used to verify a behavior was not invoked
+- `atMostOnce()`, `atLeastOnce()`, `atMost(x)`, `atLeast(x)`
+
 ## Java Backend Model
 
 - Models - representing database tables
