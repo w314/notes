@@ -92,6 +92,261 @@ messages.forEach(StringUtils::capitalize);
 // syntax: `ClassName::new`
 ```
 
+## Generics
+
+- enables classes to be parameterized so they can be re-used with different types as input, like methods
+- alternative is using Object as type of state, which would require casting and could lead to runtime issues
+- generics add stability to your code by making more of your bugs detectable at compile time
+
+### creating a class that uses generics
+
+- add a generic type declaration to your class, ex `ClassName<T>`
+- you can specify more than one type variable as a parameter
+- use the type variables throughout the class
+- `bounded types`: requirement that type must be subtype or of same type as specified type
+  - ex: `ClassName<T extends SuperType>`
+  - supertype can be a class or interface
+
+### using a generic class
+
+- generic type invocation: when using the parameterized class, replace the type param name with the actual type you want to use
+- ex: `ArrayList<String> stringList`
+- raw type: if you do not specify a type, the Object type will be used
+
+### type parameter naming conventions
+
+Type params are single, uppercase letters.
+
+- E: Element
+- K: Key
+- N: Number
+- T: Generic Data Type
+- V: Value
+- S,U,V etc: 2nd, 3rd, 4th for multiple generic data types
+
+## Iterators
+
+- objects that allow you to traverse a Collection
+- are used "behind the scenes" in enhanced for loops
+
+The `Iterable` interface defines a data structure which can be directly traversed using the `.iterator()` method, which returns an `Iterator`.
+
+- Any class that implements the Iterable interface needs to override the `iterator()` method
+- Any class implementing the Iterator interface needs to override the `hasNext()` and `next()` methods provided by the Iterator interface.
+- The Iterator instance stores the iteration state. That means it provides utility methods to get the current element, check if the next element exists, and move forward to the next element if present. In other words, an Iterator remembers the current position in a collection and returns the next item in sequence if present. The Iterable, on the other hand, doesn’t maintain any such iteration state
+- The contract for Iterable is that it should produce a new instance of an Iterator every time the iterator() method is called. This is because the Iterator instance maintains the iteration state, and things won’t work as if the implementation returns the same Iterator twice.
+- For an Iterable, we can move forward only in the forward direction, but some of the Iterator subinterface like ListIterator allows us to move back and forth over a List.
+- Also, Iterable doesn’t provide any method to modify its elements, nor can we modify them using the for-each loop. But Iterator allows removing elements from the underlying collection during the iteration with the remove() method.
+
+### Iterator Methods:
+
+- `.hasNext()` - returns true if the iteration has more elements
+- `.next()` - returns the next element in the iteration.
+- `.remove()` - removes element from underlying collection (can only be called on modifiable Collections!)
+- you cannot modify using Collection methods during iteration!
+
+### List Iterator
+
+- additionally has operations that use indexes
+- can iterate backwards
+- `.nextIndex()`
+- `.previousIndex()`
+- `.previous()`
+- `.hasPrevious()`
+
+### `Iterable`
+
+An Iterable represents a collection that can be traversed.
+
+To traverse an iterable:
+
+#### 1. `Enhanced For Loop`
+
+```java
+Set<String> names = new ArrayList<>();
+
+for (String name : names) {
+  System.out.println(name);
+}
+```
+
+### 2. using an `Iterator`
+
+```java
+Iterator<Integer> iterator = Arrays.asList(1, 2, 3, 4, 5).iterator();
+while (iterator.hasNext()) {
+    System.out.println(iterator.next());
+}
+```
+
+### 3. using `.forEach()`
+
+```java
+Iterator<Integer> iterator = Arrays.asList(1, 2, 3, 4, 5).iterator();
+iterator.forEachRemaining(System.out::println);
+```
+
+### 4. using `lambda`
+
+```java
+for (Integer i: (Iterable<Integer>) () -> iterator) {
+    System.out.println(i);
+}
+```
+
+## Collection API
+
+_Assessment: Not PriorityQueue or Vector. Know how to work with Collections and yes, knowing the difference between a linked list and arraylist is useful._
+
+> What is a Collection?
+
+A `collection` is a single object which acts as a container for other objects.
+
+> What is the Collection API?
+> Java has the Collection API that implements common data structures
+
+### Important Interfaces
+
+- `Iterable`: requires that subtypes must be iterable so it can be traversed using a for-each loop
+- `Collection`: defines common behavior that all subtypes should have (add, remove, contains, etc)
+- `Set`: defines set-specific behaviors
+- `List`: defines list-specific behaviors
+- `Queue`: defines queue-specific behaviors
+- `Deque`: extends `Queue` supports double-ended queue
+- `Map`: does not implement the Collection or Iterable interfaces, but is part of the collection framework.
+
+## Queue
+
+- FIFO: add to end/tail, remove from beginning/head
+- Java has an interface that represents this data structure
+- operations unique to queues:
+  - `offer`: attempt and adds, if you are able to
+  - `peek`: attempt to get head, if there is one
+  - `poll`: attempt and remove, if you are able to
+- using add(), remove(), and element() would throw exceptions
+
+### Queue implementations
+
+- `LinkedList`
+- `ArrayDeque`
+  - resizable array implementation of `Deque`interface
+- `PriorityQueue`
+  - elements are ordered by priority based on their natural ordering (or a Comparator)
+- `ArrayBlockingQueue`
+  - array-backed
+  - implements `BlockingQueue` interface
+  - supports operations that wait on the queue to contain an element or for space to become available in the queue
+  - Solution to the producer-consumer problem, where a producer thread inputs elements into the array while a consumer thread removes them for processing
+
+## Stack
+
+- LIFO: add to end/top, remove from end/top
+- Java has a legacy class that represents this data structure
+- Java recommends the Deque type instead
+- stack operations:
+  - `push`: add to top
+  - `peek`: view top
+  - `pop`: remove top
+
+## Sets
+
+- collection that does not contain duplicates
+- this interface provides set operations (union, intersection, difference)
+
+### Implementations
+
+- HashSet: insertion order not guaranteed
+- LinkedHashSet: maintains insertion order
+- TreeSet: elements are sorted
+
+### Useful Methods
+
+- addAll() - (union) adds elements from one set to the other, no duplicates
+- retainAll() - (intersection) retains only common elements between two sets
+- removeAll() - (difference) removes all elements from first set that are contained in second set
+
+## Maps
+
+- each entry in a map is a key-value pair
+- specifies two generic type parameters
+- keys are unique
+- part of the `Collections Framework`
+- does NOT implement `Collections interface`
+- there are 2 interfaces for implementing `Map` in Java:
+  - `Map`
+  - `SortedMap`
+
+### Implementations
+
+- `HashMap`
+  - does NOT maintain order of insertion
+  - fast insertion/retreival
+  - permits 1 null key and null values
+  - `HashTable`:
+    - older, thread safe implementation of `HashMap`
+    - does not allow null keys or null values
+- `LinkedHashMap`
+  - maintains insertion order
+- `TreeMap`
+  - entries are sorted by keys
+  - keys are stored in a Sorted Tree structure
+  - slow insertion/retreival
+  - cannot contain null keys
+
+### Useful Methods
+
+- put()
+- get()
+- remove()
+- entrySet()
+- keySet()
+- values()
+
+### Iterating over map
+
+- does NOT implement the `Iterable interface`
+- therefore cannot be iterated over directly
+- use instead
+  - `.entrySet()` method to iterate over `Map.Entry`
+  - `.keySet()` method to iterate over keys
+  - `.values()` method return a `Collection` that can be iterated over
+
+## ArrayList Class
+
+- implements the `List` interface
+- a data structure which contains an array within it, but can resize dynamically.
+- Once it reaches maximum capacity, an ArrayList will increase its size by 50% by copying its elements to a new (internal) array.
+- Traversal is fast (constant time) because elements can be randomly accessed via index, just like an array.
+- Insertion or removal of elements is slow, however (linear time, since there is a risk of having to resize the underlying array)
+- ArrayList is a parameterized type
+- cannot use primitives, must use their wrapper classes
+- better for storing and accessing data
+
+## LinkedList Class
+
+- implements both the `List` and `Dequeue` interfaces
+- the data structure is composed of nodes internally, each with a reference to the previous node and the next node - i.e. a doubly-linked list.
+- insertion or removal of elements is fast
+- traversal is slow for an arbitrary index
+- better for manipulating data (vs. storing and accessing)
+
+### Linked List Methods
+
+- addFirst()
+- addLast()
+- getFirst()
+- getLast()
+- indexOf()
+- get() (uses index)
+- listIterator()
+
+## ArrayList vs. LinkedList
+
+- When the rate of addition or removal rate is more than the read scenarios, then use a LinkedList. On the other hand, when the frequency of the read scenarios is more than the addition or removal rate, then ArrayList takes precedence over LinkedList.
+- Since the elements of an ArrayList are stored more compact as compared to a LinkedList; therefore, the ArrayList is more cache-friendly as compared to the LinkedList. Thus, chances for the cache miss are less in an ArrayList as compared to a LinkedList. Generally, it is considered that a LinkedList is poor in cache-locality.
+- Memory overhead in the LinkedList is more as compared to the ArrayList. It is because, in a LinkedList, we have two extra links (next and previous) as it is required to store the address of the previous and the next nodes, and these links consume extra space. Such links are not present in an ArrayList.
+- ArrayList in the multithreading environment does not provide thread safety. This is because ArrayList is not synchronized.
+
 ## Optionals
 
 _Know using Optional.of(), Optional.empty(), Optional.ofNullable(), and isPresent() and get(), orElse()_
