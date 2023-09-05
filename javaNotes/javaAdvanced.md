@@ -1,3 +1,97 @@
+## Functional Programming in Java
+
+- `functional programming` uses functions to solve problems
+- specifying what you want to happen to get results, not how you want it to happen
+- (use predefined functions and rely heavily on chaining function calls, not on creating structure, like classes where we define the "how")
+
+Key Concept
+
+- wherever we have a functional interface reference variable / parameter, we have a position where we can use a lambda (or method reference)
+- functional interfaces enable functional programming in Java
+
+### functional interfaces
+
+> What is a functional interface and why would we use one?
+
+- interfaces that have only one abstract method
+- are used with `lambda` expression (the parameter types and return types of the lambda must match the functional interface method declaration)
+- a way of introducing functional programming to Java
+- The [Java 8 JDK comes with many built-in functional interfaces](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html): `forEach()` method of the `Iterable interface`
+- We can also use functional interfaces as types to which we can assign lambda functions, like so:
+
+```java
+// declare functional interface
+interface MyFunctionalInt {
+  int doMath(int number);
+}
+
+public class Execute {
+  public static void main(String[] args) {
+    // use functional interface as types and assign lambda function to them
+    MyFunctionalInt doubleIt = n -> n * 2;
+    MyFunctionalInt subtractIt = n -> n - 2;
+
+    int result1 = doubleIt.doMath(2); // result1 = 4
+    int result2 = subtractIt.doMath(8); // result2 = 6
+    }
+}
+```
+
+### lambdas
+
+> What is a lambda? Give an example of how we can use one.
+
+- short lived, in-line implementation of a `functional interface`
+- a lot of the syntax for creating a lambda can be omitted for conciseness
+- inside the `lambda` expression `this` refers to the enclosing class of the lambda expression
+- they introduce some important aspects of `functional programming` to Java
+
+Syntax:
+
+```java
+() -> 42;
+(int x, int y) -> x + y;
+(int x, int y) -> {
+  System.out.prinln("printing something");
+  return x + y;
+}
+myArray.forEach(n -> System.out.println(n));
+```
+
+### method references
+
+> What is a method reference?
+
+- lambda with even shorter syntax
+- can be used if all you need to perform is a method call quickly
+- 4 types:
+  - static methods
+  - instance method of a particular object
+  - instance method of a particular type
+  - constructor
+
+Syntax
+
+```java
+// 1. Static methods
+// ContainingClass::staticMethodName
+List<String> messages = Arrays.asList("hello", "revature" "associates!");
+// simple lambda expression
+messages.forEach(word -> StringUtils.capitalize(word));
+// method reference syntax
+messages.forEach(StringUtils::capitalize);
+
+// 2. instance methods of particular objects
+// ContainingObject::instanceMethodName
+
+// 3. Instance methods of an arbitrary object of a particular type
+// syntax: `ContainingType::methodName`
+// example: `String::toString`
+
+// 4. Constructor
+// syntax: `ClassName::new`
+```
+
 ## Optionals
 
 _Know using Optional.of(), Optional.empty(), Optional.ofNullable(), and isPresent() and get(), orElse()_

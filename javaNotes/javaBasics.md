@@ -1,3 +1,310 @@
+## Java Programming Language
+
+> Java What are some of the benefits of Java?
+
+- platform independent,
+- has a C-language inspired syntax
+- provides automatic memory management
+- has an extensive built-in runtime library
+- is supported by the Oracle corporation
+- has a rich open source community
+
+## Java Compilation Process
+
+> What is the difference between source code and bytecode?
+
+- Compilation means to transform a program written in a high-level programming language from `source code` into `object code` / `bytecode`.
+- `.java` -> `.class`
+
+> How would you describe the compilation process for Java?
+
+2 steps compilation process:
+
+- compiler creates machine independent `bytecode`
+- `JVM` creates machine code
+
+> What is the difference between the JDK, JRE, and JVM?
+
+`JDK` `Java Development Kit` contains `JRE` and development tools like compiler, debugger, documentation tools.
+
+`JRE` (`Java Runtime Environment`) contains `JVM` and runtime libraries.
+
+`JVM` (`Java Virtual Machine`) runs compiled bytecode in a virtual environment that is same accross every platform. However you need JVM that is specific to the operating system. It uses `JIT` `Just In Time` compiler to turn that bytecode to machine code.
+
+## Java Entities
+
+> Can you describe some of the basic entities of a Java program?
+
+- classes
+- variables
+- methods
+
+`Classes` are blueprints for creating objects in Java. Classes can have variables and methods within them to represent state and behavior.
+
+`Variables` are containers to store data.
+
+`Methods` are blocks of reusable code.
+
+## Java Variables
+
+> What is a variable?
+
+A `variable` is a container for storing data.
+
+```java
+dataType variableName = value;
+```
+
+Java is strongly typed meaning that when a variable is declared in Java, the type must be specified.
+
+Variable Types:
+
+- primitive type - data types defined by the language itself
+- reference type - data types defined in the Java API or by a programmer
+
+The `variable name` is the unique identifier used to reference that variable again.
+
+> What is the difference between assigning and declaring a variable?
+
+DECLARE a variable
+
+```java
+datatype variableName;
+```
+
+- Java is a strongly-typed language which means that all variables in Java must define what type of data we can store into that variable.
+- This statement creates a place in memory for Java to store information of that specific datatype.
+- camelCase naming convention
+- We can refer to this named place in memory using the variable name. If we want to store a value in the variable
+
+ASSIGN a value to a variable
+
+```java
+variableName = value;
+```
+
+- stores a value in the variable
+- only work as long as the new variable is of the same datatype
+
+> What is a primitive data type? Please list a few and explain them.
+
+- data types defined by the language
+- stores the value of the data
+- types
+  - boolean 1 bit true or false
+  - byte 1 byte numerical
+  - char 2 bytes 1 character
+  - short 2 bytes numerical
+  - int 4 bytes numerical
+  - float 4 bytes floating point
+  - long 8 bytes numerical
+  - double 8 bytes floating point
+
+## Java Methods
+
+> What is a method?
+
+A `method` is a block of reusable code that can be invoked again and again.
+
+> What is the difference in syntax between calling a method and creating a method?
+
+`Method Signature`
+
+All methods in a class are defined by:
+
+- their access modifier
+- any non-access modifiers
+- return type
+- method name
+- (optionally) a throws exception declaration
+
+Together, these form the `method signature`.
+
+`Method Parameters`
+
+- Method parameters are variables passed inside of the parenthesis of the method which we are able to utilize inside of our method. These values are given to us from the entity that invokes the method.
+
+```java
+// METHOD CREATION SYNTAX
+int addNums(int n1, int n2) {
+  return n1 + n2;
+}
+
+// METHOD CALL SYNTAX
+addNums(1, 2);
+// storing method return value
+// method return value's type = variable type
+int total = addNums(1, 2);
+
+```
+
+> Explain the main method.
+
+```java
+public class HelloWorld{
+  public static void main(String[] args) {
+    System.out.println("Hello, World!");
+  }
+}
+```
+
+- `public` is an access modifier
+- `static` is a non-access modifier
+- `void` is the "return type" of the method
+- `String[] args` array of Strings defined in the method parameters are passed from the command line when the java command is run
+
+## Java Conditional Statements
+
+Conditional statements are flow control statments.
+
+> What is a conditional statement?
+
+`Conditional statement` is a statement that uses a Boolean expressions and only executes the a block of statement if the Boolean expression returns `true`.
+
+- `if` - execute a statement or a block of statements only if some conditional test turns out to be true
+- `switch` - execute one of several blocks of statements depending on the value of a variable of certain types
+- while
+- do-while
+
+> When would you use an if statement over a switch statement?
+
+- `switch` statement works with:
+  - `byte`, `short`, `int`
+  - `char`, `String`
+  - `enum`
+- if the if statement is too long switch can be better
+
+## Java Loops
+
+Loops are flow control statments.
+
+> Explain the different kinds of loops you can create and use in a program.
+
+`Loops` are java statements that allow for the repeated execution of the same statement or block of statements.
+
+```java
+// FOR loop
+for (int i = 1; i < 10; i++) {
+  System.out.println(i);
+}
+
+// ENHANCED FOR loop
+// for iterables
+int[] arr = [1, 2, 3];
+for(int n: arr) {
+  System.out.println(n);
+}
+
+
+// WHILE loop
+int i = 0;
+while (i < 3) {
+  System.out.println(i);
+  i++;
+}
+
+// DO WHILE loop
+int i = 4;
+do {
+  System.out.println(i);
+} while(i < 3);
+
+```
+
+## print statements
+
+## Scanner class
+
+> What is the Scanner class used for? Give an example of how you would use it.
+
+The `Scanner` class is used to get user input.
+
+- found in the `java.util` package
+
+```java
+import java.util.Scanner;
+
+class Main {
+  public static void main(String[] args) {
+    // create Scanner object
+    Scanner myScanner = new Scanner();
+    // prompt user for input
+    System.out.println("Enter username:");
+    // read and store user input
+    String userName = myScanner.nextLine();
+    myScanner.close();
+  }
+}
+```
+
+Methods:
+
+- `nextBoolean()` Reads a boolean value from the user
+- `nextByte()` Reads a byte value from the user
+- `nextDouble()` Reads a double value from the user
+- `nextFloat()` Reads a float value from the user
+- `nextInt()` Reads a int value from the user
+- `nextLine()` Reads a String value from the user
+- `nextLong()` Reads a long value from the user
+- `nextShort()` Reads a short value from the user
+
+If you enter wrong input (e.g. text in a numerical input), you will get an exception/error message (like `InputMismatchException`).
+
+## String class
+
+> Which datatype represents text in Java?
+
+Strings.
+
+- are not a primitive data type but a reference type
+- a string variable holds a reference to an object created from the String class, not the value of the string itself
+- Strings are immutable, constant objectsm, this is accomplished by having internal, private and final fields and not implementing any "setter" methods which would alter the state of those fields.
+- Because Strings are immutable, all of the methods in the String class return a new String - the original is not modified.
+- When Strings are created they are placed in a special location within the `heap` called the `String Pool`.
+- When String literals are created, if there is an existing String that matches in the String Pool, the reference variable will point to the existing value.
+- Duplicates will not exist in the String Pool. This is important because Strings take up a lot of memory. Being able to reuse the same value throughout your application is advantageous.
+- One way to circumvent the above process is to use the new keyword along with the String constructor, which will explicitly create a new String object in memory, even if one already exists in the String Pool.
+
+The String API consists of the following:
+
+- `toUpperCase()` -Converts all the characters of a string to upper case.
+- `toLowerCase()`-Converts all the characters of a string to lower case
+- `charAt(int index)` -This returns the indexed character of a string, where the index of the initial character is 0
+- `concat(String s)` -This returns a new string consisting which has the old string + s
+- `equals(String s)` -Checks if two strings are equal
+- `equaIsIgnoreCase(String s)` -This is like equals(), but it ignores the case(Ex: ‘Hello’ and ‘hello’ are equal)
+- `length( )` -Returns the number of characters in the current string.
+- `replace(char old, char new)` -This returns a new string, generated by replacing every occurrence of old with new.
+- `trim()` -Returns the string that results from removing white space characters from the beginning and ending of the current string.
+
+### Using Operators
+
+_Note: You will not be assessed on bitwise or shift operators_
+
+### Basic Debugging
+
+### Reading a Stacktrace
+
+## Java Arrays
+
+> What is an array? Why is it useful?
+
+An `array` is a `contiguous block of memory` storing a group of `sequentially stored` elements of the same type. Provies fast data access.
+
+- fixed size and cannot be resized after declaration
+- items in an array are referenced via their index in square bracket notation, which begins with 0 for the first element
+- ave a length property specifying the length of the array
+
+```java
+int[] myArray = new int[5];
+// OR
+int[] otherArray = {1, 2, 3};
+```
+
+> How can you iterate over an array?
+
+> How would you access the last value in an array if you do not know the size of the array?
+
 ### 12 What is the modulo operator? How is it useful?
 
 ### 13 What are shorthand assignment operators?

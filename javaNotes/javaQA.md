@@ -200,6 +200,16 @@ sql: 1-25
 
 ### 92 What state and behavior would you define in a subclass but not in the parent class?
 
+# WILL NEED RENUMBERING
+
+## Advanced Java MORE
+
+## 93 What is a functional interface and why would we use one?
+
+## 94 What is a lambda? Give an example of how we can use one.
+
+## 95 What is a method reference?
+
 process below
 
 ## Java
@@ -212,18 +222,6 @@ XXXXXXXXXXXXXXXXXXXXXXXx
 # WORK ON THOSE BELOW
 
 # WK 6
-
-## 94 What is a functional interface and why would we use one?
-
-functional interfaces
-
-## 95 What is a lambda? Give an example of how we can use one.
-
-lambda
-
-## 96 What is a method reference?
-
-method references
 
 ## 98 What is JSON? When would we work with JSON in our application?
 
