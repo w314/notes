@@ -241,11 +241,19 @@ public static void main(String[] args) {
 
 ## Multithreading
 
+Multithreading extends the idea of multitasking into applications where you can subdivide operations in a single application into individual, parallel threads.
+
+- Each thread can have its own task that it performs.
+- The OS divides processing time not just with applications, but between threads.
+- Multi-core processors can actually run multiple different processes and threads concurrently, enabling true parallelization.
+- In Java, multithreading is achieved via the `Thread class` and/or the `Runnable interface`.
+
 > What is a thread?
 
-A thread is a subset of a process that is also an independent sequence of execution, but threads of the main process run in the same memory space, managed independently by a scheduler. So, we can think of a thread as a "path of execution", but they can access the same objects in memory.
+A thread is a subset of a process that is also an independent sequence of execution, but threads of the main process run in the same memory space, managed independently by a scheduler.
 
-Every thread that is created in a program is given its own call stack, where it stores local variables references. However, all threads share the same heap, where the objects live in memory. Thus, two threads could have separate variable references on two different stacks that still point to the same object in the heap.
+- Every thread that is created in a program is given its own call stack, where it stores local variables references.
+- However, all threads share the same heap, where the objects live in memory.
 
 ### Concurrency
 
@@ -310,6 +318,8 @@ Priorities signify which order threads are to be run. The Thread class contains 
 
 > How can we create a thread?
 
+###### 1. Creating a class that extends `Thread class`
+
 - create a class that `extends Thread`
 - implement the `run()` method
 - instantiate your class
@@ -335,7 +345,95 @@ public class ThreadDemo {
 }
 ```
 
+###### 2. Using Runnable Interface
+
+Pass a lambda expression as the Runnable type required in the Thread constructor
+
+```java
+public class ThreadLambda {
+  public static main(String[] args) {
+    // passing lambda expression to Thread constructor
+    Thread willRun = new Thread(() -> {
+	  System.out.println("Running!");
+	});
+	willRun.start();
+  }
+}
+```
+
 > How can we implement multithreading in Java?
+
+#### Example
+
+`Employee.java`
+
+```java
+public class Employee extends Thread {
+
+	@Override
+	public void run() {
+
+		for(int i = 0; i < 10; i++) {
+			System.out.println(Thread.currentThread().getName() + " is working...");
+
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+
+				/*
+				 * InterruptedException is thrown when the Employee's interrupt()
+				 * method is called. We will break out if this occurs.
+				 */
+				e.printStackTrace();
+				break;
+			}
+		}
+	}
+}
+```
+
+`ThreadDriver.java`
+
+```java
+
+public class ThreadDriver {
+
+	public static void main(String[] args) {
+
+		Employee emp1 = new Employee(); // Thread state: NEW
+		emp1.setPriority(1);
+//		emp1.run();	// does not actually create a new thread
+		emp1.start(); // Thread state: RUNNING
+
+		Employee emp2 = new Employee();
+		emp2.setPriority(2);
+		emp2.start();
+
+		/*
+		 * join() method
+		 *
+		 * Using join(), we tell our thread to wait until the specified thread completes
+		 * its execution. There are overloaded versions of the join() method, which allows
+		 * us to specify the time for which you want to wait for the specified thread to
+		 * terminate.
+		 */
+		try {
+			emp1.join(); // Waiting for emp1 to finish its execution
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		// Display the priority of threads. The default priority is 5.
+		System.out.println(emp1.getPriority());
+		System.out.println(emp2.getPriority());
+
+		// Check to see if a given thread is alive or dead
+		System.out.println(emp1.isAlive());
+		System.out.println(emp2.isAlive());
+
+
+	}
+}
+```
 
 ### Runnable interface
 
@@ -343,12 +441,36 @@ public class ThreadDemo {
 
 To create a class that implements the Runnable functional interface
 
-- implement the run() method
-- pass an instance of your class to a Thread constructor
-- call the start() method on the thread
+- create a class the implements the `Runnable interface`
+- implement the `run()` method
+- pass an instance of your class to a `Thread constructor`
+- call the `start()` method on the thread
+
+```java
+// create a class the implements the `Runnable interface`
+public class MyRunnable implements Runnable {
+  // implement the `run()` method
+  @Override
+  public void run() {
+    System.out.println("Inside the MyRunnable class");
+  }
+}
+```
 
 Because Runnable is a functional interface, we can use a lambda expression to define thread behavior inline instead of implementing the interface in a separate class.
+
 We pass a lambda expression as the Runnable type required in the Thread constructor.
+
+```java
+public class ThreadLambda {
+  public static main(String[] args) {
+    Thread willRun = new Thread(() -> {
+	  System.out.println("Running!");
+	});
+	willRun.start();
+  }
+}
+```
 
 ### important class members
 
@@ -356,7 +478,40 @@ We pass a lambda expression as the Runnable type required in the Thread construc
 
 > What are some states a thread can be in?
 
-## Synchronization
+At any given time, a thread can be in one of these states:
+
+- `New`: newly created thread that has not started executing
+- `Runnable`: either running or ready for execution but waiting for its resource allocation
+- `Blocked`: waiting to acquire a monitor lock to enter or re-enter a synchronized block/method
+- `Waiting`: waiting for some other thread to perform an action without any time limit
+- `Timed_Waiting`: waiting for some other thread to perform a specific action for a specified time period
+- `Terminated`: has completed its execution
+
+#### Runable State
+
+- a thread might actually be running
+- or it might be ready to run at any instant of time
+- it is the responsibility of the thread scheduler to give the thread, time to run
+
+A multi-threaded program allocates a fixed amount of time to each individual thread.
+
+- each and every thread runs for a short while and then pauses
+- and relinquishes the CPU to another thread so that other threads can get a chance to run.
+- When this happens, all such threads that are ready to run, waiting for the CPU and the currently running thread lie in a runnable state.
+
+#### Timed Waiting State
+
+A thread lies in a timed waiting state when it calls a method with a time-out parameter. A thread lies in this state until the timeout is completed or until a notification is received. For example, when a thread calls sleep or a conditional wait, it is moved to a timed waiting state.
+
+### Thread Class vs Runnable Interface
+
+- If we extend the Thread class, our class cannot extend any other class because Java doesn’t support multiple inheritance. But, if we implement the Runnable interface, our class can still extend other base classes.
+- We can achieve basic functionality of a thread by extending Thread class because it provides some inbuilt methods like `yield()`, `interrupt()` etc. that are not available in Runnable interface.
+- Using runnable will give you an object that can be shared amongst multiple threads.
+
+##
+
+Synchronization
 
 _Know the following concepts at a high level:_
 
@@ -365,6 +520,21 @@ _Know the following concepts at a high level:_
 - Producer-Consumer Problem
 
 > What is synchronization?
+
+Synchronization is the capability to control the access of multiple threads to any shared resource.
+
+- In a multithreaded environment, a race condition occurs when 2 or more threads attempt to access the same resource.
+- Using the `synchronized` keyword on a piece of logic enforces that only one thread can access the resource at any given time.
+- synchronized blocks or methods can be created using the keyword.
+- Also, one way a class can be "thread-safe" is if all of its methods are synchronized.
+
+Syntax:
+
+```java
+synchronized(objectidentifier) {
+   // Access shared variables and other shared resources
+}
+```
 
 > What is the difference between deadlock and livelock?
 
