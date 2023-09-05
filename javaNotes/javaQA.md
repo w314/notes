@@ -1,6 +1,95 @@
-sql: 1-25
+java basic: 1-30
+java intermeidate 31-49
+oop + software dvelopment concepts: 50-70
 
 Összesen 146 kérdés van
+
+## Java Basics
+
+### 1 What is the difference between source code and bytecode?
+
+2 What is a primitive datatype? Please list a few and explain them.
+3 What is a variable?
+4 What is the difference between assigning and declaring a variable?
+5 What is a conditional statement?
+6 What steps would you take to debug your program if runs, but gives you the wrong results?
+7 What is the Scanner class used for? Give an example of how you would use it.
+8 What is a method?
+9 How would you access the last value in an array if you do not know the size of the array?
+10 Explain the main method.
+11 When would you use an if statement over a switch statement?
+12 What is the modulo operator and why would we use it?
+13 What steps would you take to debug your program if it crashed with an error message in the console?
+14 How do you use increment and decrement operators?
+15 How can you iterate over an array?
+16 What do a pair of opening and closing curly braces represent?
+17 When would you use a switch statement over an if statement?
+18 What is a flow control statement?
+19 What are some of the benefits of Java?
+20 What is the modulo operator? How is it useful?
+21 How would you describe the compilation process for Java?
+22 What is an array? Why is it useful?
+23 What is the difference between the JDM, JRE, and JVM?
+24 Which datatype represents text in Java?
+25 What are shorthand assignment operators?
+26 Give me an example of why you would need to create a method other than the main method.
+27 What is a stacktrace? How can you use it to debug your application?
+28 Can you describe some of the basic entities of a Java program?
+29 What is the difference in syntax between calling a method and creating a method?
+30 Explain the different kinds of loops you can create and use in a program.
+
+## Java INTERMEDIATE
+
+31 What is a package and why would we use one?
+32 What is the difference between using an instance variable and a static variable?
+33 What is the difference between calling an instance method and a static method?
+34 What are classes used for?
+35 Describe what an object is.
+36 What is the role of garbage collection in Java?
+37 If I define a variable within a method, how can I access its value outside of the method?
+38 Describe the difference between the stack and the heap.
+39 What is a constructor and how is it different from a method?
+40 What is the difference between an array and an ArrayList?
+41 What is the difference between an Error and an Exception?
+42 How would you handle an exception?
+43 What is the difference between a checked and an unchecked exception?
+44 If you received text input from the user, how would you go about comparing it to a value, like "yes" or "no"?
+45 What is explicit and implicit casting?
+46 What are the different scopes in Java?
+47 What is autoboxing and unboxing?
+48 If there was an error in the console when you tried to run your program, how would you debug?
+49 What are some operations you can perform on a List?
+
+## CS CONCCEPTS
+
+50 What is an operating system?
+
+51 Describe inheritance and how would you use it in a project?
+52 Desribe abstraction and how would you use it in a project?
+53 Describe polymorphism and how would you use it in a project?
+54 Describe encapsulation and how would you use it in a project?
+55 How is method overriding different from method overloading?
+56 What are the four levels of access we can give to class members? How are they different from one another?
+57 What is the purpose of using getter and setter methods?
+58 Why would you use an interface over an abstract class?
+59 What methods are commonly overridden from the Object class and why?
+60 What state and behavior would you define in a parent class but not a subclass?
+61 What state and behavior would you define in a subclass but not in the parent class?
+62 What are the SOLID design principles and are they important?
+63 What is Maven? Why would we use it?
+64 What is the SDLC? Why is it important?
+65 When would you use an Agile methodology versus Waterfall?
+66 What is test driven development?
+67 Why are unit tests important?
+68 How can JUnit annotations help with running our tests?
+69 What are the Maven build lifecycle phases?
+70 Describe the POM.xml file and its importance.
+
+## JAVA BACKEND
+
+71 What does the term "full stack" mean?
+
+# REDO BELOW
 
 ## SQL
 
@@ -286,21 +375,3 @@ XXXXXXXXXXXXXXXXXXXXXXXx
 ## X Arrays
 
 ## X String Class
-
-EDIT BELOW
-
-wk7
-
-wk8
-
-What is DCL?
-What is TCL?
-What is the difference between an aggregate and a scalar function?
-What is the GROUP BY clause used for?
-What is the ORDER BY clause used for?
-What is a stored procedure in SQL?
-What is a trigger in SQL?
-What is a transaction?
-What are the properties of a transaction?
-What is a function in SQL?
-What is an index in SQL?
