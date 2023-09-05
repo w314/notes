@@ -236,6 +236,28 @@ sql: 1-25
 
 ### 107 Describe the POM.xml file and its importance.
 
+## Advanced Java MORE
+
+### 108 What is a Collection?
+
+### 109 What is the Collection API?
+
+### 110 What are the major differences between a List, Queue, Set, and Map?
+
+### 111 What is the difference between a Stack and a Queue?
+
+### 112 Describe a linked list.
+
+### 113 What are some common Linux commands? Why are they useful?
+
+### 114 What is source control management? Why is it useful?
+
+### 115 What are the main states that your files can reside in when using Git?
+
+### 116 What are the main sections of a Git project?
+
+### 117 What are some common operations you would be performing when using Git?
+
 <hr>
 XXXXXXXXXXXXXXXXXXXXXXXx
 <hr>
@@ -268,17 +290,6 @@ XXXXXXXXXXXXXXXXXXXXXXXx
 EDIT BELOW
 
 wk7
-
-What is a Collection?
-What is the Collection API?
-What are the major differences between a List, Queue, Set, and Map?
-What is the difference between a Stack and a Queue?
-Describe a linked list.
-What are some common Linux commands? Why are they useful?
-What is source control management? Why is it useful?
-What are the main states that your files can reside in when using Git?
-What are the main sections of a Git project?
-What are some common operations you would be performing when using Git?
 
 wk8
 
