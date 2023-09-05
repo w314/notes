@@ -232,6 +232,10 @@ sql: 1-25
 
 ### 105 How can JUnit annotations help with running our tests?
 
+### 106 What are the Maven build lifecycle phases?
+
+### 107 Describe the POM.xml file and its importance.
+
 <hr>
 XXXXXXXXXXXXXXXXXXXXXXXx
 <hr>
@@ -262,72 +266,6 @@ XXXXXXXXXXXXXXXXXXXXXXXx
 ## X String Class
 
 EDIT BELOW
-
-### 70 What are the Maven build lifecycle phases?
-
-When Maven builds your project, it goes through several steps called phases
-
-- `validate`: validate the project is correct and all necessary information is available
-- `compile`: compile the source code of the project
-- `test`: test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed
-- `package`: take the compiled code and package it in its distributable format, such as a JAR.
-- `verify` - run any checks on results of integration tests to ensure quality criteria are met
-- `install` - install the package into the local repository, for use as a dependency in other projects locally
-- `deploy` - done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.
-
-### 71 Describe the POM.xml file and its importance.
-
-`POM` - `Project Object Model`
-
-In `Maven` the project coordinates below together uniquely identify a specific version of a program:
-
-- `group-id`: company name for example: "com.revature"
-- `artifact-id`: project name
-- `version`: version number for example: "0.0.1-SNAPSHOT"
-
-#### Some other important tags within the `pom.xml` file include:
-
-`<project>` - this is the root tag of the file
-
-- `<modelVersion>` - defining which version of the page object model to be used
-- `<properties>` - project-specific settings
-- `<dependencies>`: this is where you put your Java dependencies you want to use. Each one needs a
-  - `<dependency>` which has:
-    - `<groupId>`
-    - `<artifactId>`
-    - `<version>`
-- `<plugins>` for 3rd party plugins that work with Maven
-
-Here's an example:
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<project>
-    <modelVersion>4.0.0</modelVersion>
-    <!-- project metadata-->
-    <groupId>org.revature</groupId>
-    <artifactId>PEPLabsChallenges</artifactId>
-    <version>0.1</version>
-
-    <!-- maven allows us to change the version of java we'd like to use -->
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-    </properties>
-
-    <!--
-        maven allows us to use external dependencies from mvn repository.
-    -->
-    <dependencies>
-        <!-- junit, our framework for writing unit tests.-->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-        </dependency>
-    </dependencies>
-</project>
-```
 
 wk7
 
