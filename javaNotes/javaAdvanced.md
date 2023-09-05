@@ -509,9 +509,7 @@ A thread lies in a timed waiting state when it calls a method with a time-out pa
 - We can achieve basic functionality of a thread by extending Thread class because it provides some inbuilt methods like `yield()`, `interrupt()` etc. that are not available in Runnable interface.
 - Using runnable will give you an object that can be shared amongst multiple threads.
 
-##
-
-Synchronization
+## Synchronization
 
 _Know the following concepts at a high level:_
 
@@ -526,18 +524,142 @@ Synchronization is the capability to control the access of multiple threads to a
 - In a multithreaded environment, a race condition occurs when 2 or more threads attempt to access the same resource.
 - Using the `synchronized` keyword on a piece of logic enforces that only one thread can access the resource at any given time.
 - synchronized blocks or methods can be created using the keyword.
-- Also, one way a class can be "thread-safe" is if all of its methods are synchronized.
+- Also, one way a class can be "`thread-safe`" is if all of its methods are synchronized.
 
-Syntax:
+### Synchronized block
+
+- Multi-threaded programs may often come to a situation where multiple threads try to access the same resources and finally produce erroneous and unforeseen results.
+
+- So it needs to be made sure by some synchronization method that only one thread can access the resource at a given point in time. - - - Java provides a way of creating threads and synchronizing their tasks using synchronized blocks.
+- Synchronized blocks in Java are marked with the synchronized keyword.
+- A synchronized block in Java is synchronized on some object.
 
 ```java
-synchronized(objectidentifier) {
-   // Access shared variables and other shared resources
+// Only one thread can execute at a time.
+// sync_object is a reference to an object
+// whose lock associates with the monitor.
+// The code is said to be synchronized on
+// the monitor object
+synchronized(sync_object)
+{
+   // Access shared variables and other
+   // shared resources
 }
 ```
 
+- All synchronized blocks synchronize on the same object can only have one thread executing inside them at a time.
+- All other threads attempting to enter the synchronized block are blocked until the thread inside the synchronized block exits the block.
+
+#### monitors
+
+This synchronization is implemented in Java with a concept called monitors.
+
+- Only one thread can own a monitor at a given time.
+- When a thread acquires a `lock`, it is said to have entered the monitor.
+- All other threads attempting to enter the locked monitor will be suspended until the first thread exits the monitor.
+
+### Deadlock
+
+Deadlock occurs when one thread is waiting on a resource held by another thread, which is waiting on a resource the first has.
+
+In this scenario, execution of both threads is blocked and the program is stuck indefinitely.
+
+Though it is not possible to completely get rid of the deadlock problem, we can take precautions to avoid such deadlock conditions:
+
+- By avoiding Nested Locks
+- By avoiding unnecessary locks
+
+#### Nested Locks
+
+Nested locks mean we try to provide access to resources to multiple threads.
+
+If we have already assigned one lock to a thread then we should avoid giving it to the another thread
+
+#### Avoiding Unecessary Locks
+
+We should also avoid giving locks to members or threads which do not need it. We should only provide the lock to the important threads and avoid using unnecessary locks.
+
+If we provide an unnecessary lock to a thread that does not really need it, then it may cause a condition of deadlock.
+
+#### Deadlock Example
+
+There are two threads t1 and t2. Both threads are running concurrently (simultaneously). During execution, thread t1 is waiting for data that is locked by thread t2 and t2 is waiting for data that is locked by thread t1.
+
+In this case, none of the threads will unlock the lock because of not completing their execution process. This situation is called deadlock.
+
+When thread deadlock occurs in a program, the further execution of program will stop. Therefore, thread deadlock is a drawback in a program. We should take care to avoid deadlock while coding.
+
+#### Solve Current Deadlock
+
+- to get the PID of the process, we type `jps` command and then we get the PID of the running process.
+- to get the thread dump we will write the `jcmd PID Thread.dump` command to detect the deadlock. We can also get this dump file in a text file.
+
+### Livelock
+
 > What is the difference between deadlock and livelock?
+
+Livelock is concurrency problem and is similar to deadlock.
+
+- In livelock, two or more threads keep on transferring states between one another instead of waiting infinitely as we saw in the deadlock example.
+- Consequently, the threads are not able to perform their respective tasks.
+- In a livelock condition thread are NOT blocked.
+
+#### Livelock Example
+
+A simple example of livelock would be two people who meet face-to-face in a corridor, and both of them move aside to let the other pass. They end up moving from side to side without making any progress as they move the same way at the time. Here, they never cross each other.
 
 ### Producer-Consumer Problem
 
 > Producer-Consumer Problem
+
+The Producer-Consumer problem is a classic example of a multi-process synchronization problem.
+
+- Here, we have a fixed-size buffer and two classes of threads - producers and consumers.
+  - Producers produces the data to the queue
+  - Consumers consume the data from the queue.
+  - Both producer and consumer shares the same fixed-size buffer as a queue.
+- The producer should produce data only when the queue is not full.
+  - If the queue is full, then the producer shouldn't be allowed to put any data into the queue.
+- The consumer should consume data only when the queue is not empty.
+  - If the queue is empty, then the consumer shouldn't be allowed to take any data from the queue.
+
+We can solve the Producer-Consumer problem by using wait() & notify()methods to communicate between producer and consumer threads
+
+- The `wait()` method to pause the producer or consumer thread depending on the queue size.
+- The `notify()` method sends a notification to the waiting thread.
+
+Producer thread will keep on producing data for Consumer to consume.
+
+- It will use wait() method when Queue is full and use notify() method to send notification to Consumer thread once data is added to the queue.
+
+```java
+public synchronized void produce() {
+	while (queue.size() == MAX_SIZE) {
+		//Queue is full, Producer thread waiting for consumer to take data from the queue
+		wait();
+	}
+	/* When queue has space, Producer produces the data and adds them into the queue.
+	*  After that, Producer sends the notification to the Consumer.
+	*/
+	//producing data
+	queue.add(data);
+	notify();
+}
+```
+
+Consumer thread will consume the data form the queue. It will also use wait() method to wait if queue is empty. It will also use notify() method to send notification to producer thread after consuming data from the queue.
+
+```java
+public synchronized String consume() {
+	while (messages.isEmpty()) {
+		//Queue is empty, Consumer thread waiting for producer to put data to the queue
+		wait();
+	}
+		/* When queue has data, Consumer consumes the data and removes it from the queue.
+		*  After that, Consumer sends the notification to the Producer.
+		*/
+		//consuming data
+		queue.remove(data);
+		notify()
+}
+```
