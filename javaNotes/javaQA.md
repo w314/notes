@@ -214,40 +214,30 @@ sql: 1-25
 
 ### 96 What is Maven? Why would we use it?
 
-process below
+### 97 What is JSON? When would we work with JSON in our application?
 
-## Java
+### 98 What is Mockito and why would we use it?
 
-### XX What is Maven? Why would we use it?
+### 99 What is a mock?
+
+### 100 What is REST and what are its key constraints?
+
+### 101 REST naming URL What are some best practices for naming resource URLs using REST?
+
+### 102 What is an endpoint?
+
+### 103 What is test driven development?
+
+### 104 Why are unit tests important?
+
+### 105 How can JUnit annotations help with running our tests?
 
 <hr>
 XXXXXXXXXXXXXXXXXXXXXXXx
 <hr>
 # WORK ON THOSE BELOW
 
-# WK 6
-
-## 98 What is JSON? When would we work with JSON in our application?
-
 ## x Logging
-
-## x What is Mockito and why would we use it?
-
-## x What is a mock?
-
-EDIT BELOW
-
-## 103 What is REST and what are its key constraints?
-
-## 105 REST naming URL What are some best practices for naming resource URLs using REST?
-
-## 106 What is an endpoint?
-
-<hr>
-<hr>
-<hr>
-
-# EDIT BELOW
 
 ## 2 Java compilation process
 
@@ -272,45 +262,6 @@ EDIT BELOW
 ## X String Class
 
 EDIT BELOW
-
-### 67 What is test driven development?
-
-The `TDD` process consists of writing unit tests first, **before** the implemented application code has been written.
-
-`Unit testing` is the testing of individual software components in isolation from the rest of the system.
-
-### 68 Why are unit tests important?
-
-`Unit testing` is the testing of individual software components in isolation from the rest of the system. This is done by writing unit tests which execute the code we want to inspect.
-
-When developing software, it is important to ensure that most if not all of the code being written is tested to verify the functionality of the code.
-
-One way to ensure this is to follow a process called test-driven development, or TDD.
-The TDD process consists of writing unit tests first, before the implemented application code has been written. Then, the implemented application code can be written to make the test pass and the process can be completed for each piece of functionality required.
-
-When refactoring code, the unit tests give us confidence that we can change the source code without breaking existing functionality. This makes debugging much easier.
-
-### 69 How can JUnit annotations help with running our tests?
-
-To use Junit add it as a dependency to `pom.xml`
-
-```xml
-			<dependency>
-				<groupId>org.junit.jupiter</groupId>
-				<artifactId>junit-jupiter-api</artifactId>
-				<version>5.10.0-M1</version>
-				<scope>test</scope>
-			</dependency>
-
-```
-
-`Annotations` are used to support, identify, and execute test method features.
-
-- `@BeforeAll`
-- `@BeforeEach`
-- `@AfterEach`
-- `@AfterAll`
-- `@Test`
 
 ### 70 What are the Maven build lifecycle phases?
 
