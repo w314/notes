@@ -354,7 +354,7 @@ _Everything else is supplementary_
 
 > What is the Optional class?
 
-It is a container object used to hold a value which could be non-null or null, and provides easy ways of handling either case
+It is a container/wrapper object used to hold a value which could be non-null or null, and provides easy ways of handling either case
 
 - The purpose of the class is to provide a type-level solution for representing optional values instead of null references.
 
@@ -362,7 +362,8 @@ It is a container object used to hold a value which could be non-null or null, a
 - By using Optional, we can specify alternate values to return or alternate code to run.
 
 - do not use Optionals as method parameters
-- The intent of Java when releasing Optional was to use it as a return type, thus indicating that a method could return an empty value
+- The intent of Java when releasing Optional was to use it as a return type, thus indicating that a method could return an empty value, but they can also be used where null is likely to cause errors
+
 - using Optional in a serializable class will result in a `NotSerializableException`
 
 ### Creating Optional Objects
@@ -427,6 +428,8 @@ boolean optHasValue = opt.isEmpty();
 
 - as of Java 11
 
+#### Using Optionals
+
 ##### `.ifPresent()`
 
 ```java
@@ -440,7 +443,7 @@ Optional<String> opt = Optional.of("bobek");
 opt.ifPresent(name -> System.out.println(name.length()));
 ```
 
-### Retrieve value form Optional object
+#### Retrieve value form Optional object
 
 #### `.orElse()`
 
@@ -451,16 +454,36 @@ String nullName = null;
 String name = Optional.ofNullable(nullName).orElse("john");
 ```
 
+#### `.orElseThrow()`
+
+The orElseThrow() method throws an exception when the wrapped value is not present:
+
+Java 10 introduced a simplified no-arg version of orElseThrow() method. In case of an empty Optional it throws a `NoSuchElementException`.
+
+```java
+@Test(expected = NoSuchElementException.class)
+public void whenNoArgOrElseThrowWorks_thenCorrect() {
+    String nullName = null;
+
+    // you can give the exception to throw as an argument
+    String name = Optional.ofNullable(nullName).orElseThrow(
+      IllegalArgumentException::new);
+
+    // or use no arguments
+    String name = Optional.ofNullable(nullName).orElseThrow();
+}
+```
+
 #### `.get()`
 
 `.get()` can only return a value if the wrapped object is not null; otherwise, it throws a `NoSuchElementException`:
+
+Therefore, this approach works against the objectives of Optional and **will probably be deprecated** in a future release.
 
 ```java
 Optional<String> opt = Optional.of("baeldung");
 String name = opt.get();
 ```
-
-Therefore, this approach works against the objectives of Optional and will probably be deprecated in a future release.
 
 ## Reflection API
 
@@ -615,7 +638,6 @@ Multithreading extends the idea of multitasking into applications where you can 
 - Each thread can have its own task that it performs.
 - The OS divides processing time not just with applications, but between threads.
 - Multi-core processors can actually run multiple different processes and threads concurrently, enabling true parallelization.
-- In Java, multithreading is achieved via the `Thread class` and/or the `Runnable interface`.
 
 > What is a thread?
 
@@ -788,7 +810,7 @@ public class ThreadDriver {
 
 `java.lang.Runnable` is an interface that is to be implemented by a class whose instances are intended to be executed by a thread.
 
-To create a class that implements the Runnable functional interface
+To create a thread using the Runnable interface
 
 - create a class the implements the `Runnable interface`
 - implement the `run()` method
@@ -829,18 +851,18 @@ public class ThreadLambda {
 
 At any given time, a thread can be in one of these states:
 
-- `New`: newly created thread that has not started executing
-- `Runnable`: either running or ready for execution but waiting for its resource allocation
-- `Blocked`: waiting to acquire a monitor lock to enter or re-enter a synchronized block/method
-- `Waiting`: waiting for some other thread to perform an action without any time limit
-- `Timed_Waiting`: waiting for some other thread to perform a specific action for a specified time period
-- `Terminated`: has completed its execution
+- `New` : newly created thread that has not started executing
+- `Runnable` : either running or ready for execution but waiting for its resource allocation
+- `Blocked` : waiting to acquire a `monitor lock` to enter or re-enter a `synchronized` block/method
+- `Waiting` : waiting for some other thread to perform an action without any time limit
+- `Timed_Waiting` : waiting for some other thread to perform a specific action for a specified time period
+- `Terminated` : has completed its execution
 
 #### Runable State
 
 - a thread might actually be running
 - or it might be ready to run at any instant of time
-- it is the responsibility of the thread scheduler to give the thread, time to run
+- it is the responsibility of the thread `scheduler` to give the thread, time to run
 
 A multi-threaded program allocates a fixed amount of time to each individual thread.
 
