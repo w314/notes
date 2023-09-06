@@ -490,19 +490,35 @@ String name = opt.get();
 _How to use Class class and related classes in reflect package to find and work with class members_
 
 > What is the Reflection API and what is it used for?
-> Reflection is a feature in the Java programming language. It allows an executing Java program to examine or "introspect" upon itself, and manipulate internal properties of the program. For example, it's possible for a Java class to obtain the names of all its members and display them.
 
-- The ability to examine and manipulate a Java class from within itself simply doesn't exist in other programming languages
-- One tangible use of reflection is in JavaBeans, where software components can be manipulated visually via a builder tool. The tool uses reflection to obtain the properties of Java components (classes) as they are dynamically loaded.
+`Reflection` is a feature in the Java programming language. It allows an executing Java program to examine or "introspect" upon itself, and manipulate internal properties of the program. For example, it's possible for a Java class to obtain the names of all its members and display them.
 
-### Steps to use Reflection
+- includes the reflect package and the `Class` class (which is in the lang package)
+- reflection allows programmatic access to information about a class itself and its members
+- used by debuggers, interpreters, frameworks, etc
+
+### Class class
+
+- instances of this class represent classes or interfaces themselves
+- getFields() / getDeclaredFields() / getField() / getDeclaredField()
+- getMethods() / getDeclaredMethods() / getMethod() / getDeclaredMethod()
+- getConstructors() / getDeclaredConstructors() / getConstructor() / getDeclaredConstructor()
+- and much more information can be obtained a well
+
+### Method, Field, Constructor Classes
+
+- getModifiers(), getParameterTypes() getParameterCount(), and more
+- get(), getType(), set(), and more
+
+### Steps to use Reflection API
 
 The reflection classes, such as Method, are found in `java.lang.reflect`. There are three steps that must be followed to use these classes.:
 
 ##### 1. obtain a java.lang.Class object for the class that you want to manipulate
 
-- java.lang.Class is used to represent classes and interfaces in a running Java program.
-  Retrieve references to classes with:
+`java.lang.Class` is used to represent classes and interfaces in a running Java program.
+Retrieve references to classes with:
+
 - `Object.getClass()` method
 - `obj.class`
 - `Class.forName()` method
@@ -528,18 +544,18 @@ System.out.println(m[0].toString());
 
 ### Reflection API Usage
 
-#### Get Information About Class
+- Get Information About Class
 
-- `.isInstance()`
-- `.getDeclaredMethods()`
-- `.getDeclaredConstructors()`
-- `.getDeclaredFields()`
+  - `.isInstance()`
+  - `.getDeclaredMethods()`
+  - `.getDeclaredConstructors()`
+  - `.getDeclaredFields()`
 
-#### Invoke a method by name
+- Invoke a method by name
 
-#### Change values of fields
-
-#### Creating and manipulating arrays
+- Change values of fields
+- Create new objects (by using a class's contructor)
+- Create and manipulating arrays
 
 ## Stream API
 
@@ -547,14 +563,24 @@ System.out.println(m[0].toString());
 
 The Stream API is a functional-style way of defining operations on a stream of elements.
 
+- the Stream API allows you to create pipelines, or sequences of aggregate operations, on streams of data.
+- `Stream` : sequence of data
+- Streams do not STORE the data (like collections), they move the elements through the pipeline
+- Streams do not manipulate the original source of data
+- functional programming - useful for completing a series complex tasks on the data to get a result
+
 - Streams are an abstraction which allow defining operations which do not modify the source data and are lazily executed.
-- Streams do not store data, they simply define operations like filtering, mapping, or reducing, and can be combined with other operations and then executed.
 - Some built-in Streams are located in the java.util.stream package.
 - Streams are divided into intermediate and terminal operations.
   - Intermediate streams return a new stream and are always lazy - they don't actually execute until a terminal operation is called.
   - Terminal operations trigger the execution of the stream pipeline, which allows efficiency by perfoming all operations in a single pass over the data.
 - Finally, reduction operations take a sequence of elements and combine them into a single result.
-  - Stream classes have the reduce() and collect() methods for this purpose, with many built-in operations defined in the Collectors class.
+  - Stream classes have the `.reduce()` and `.collect()` methods for this purpose, with many built-in operations defined in the `Collectors` class.
+
+### Pipelines
+
+- require a source of data, like a collection
+- can contain zero or more intermediate operations
 
 ### terminal vs intermediate operations
 
@@ -564,19 +590,29 @@ In the Java Stream API, intermediate operations are operations which are lazily 
 
 > What are terminal stream operations?
 
-### reduction operations
-
-### common terminal operations
-
-- collect()
-- reduce()
-- forEach()
-
 ### common intermediate operations
 
+- produce a new stream
 - filter()
 - map()
 - sorted()
+
+### common terminal operations
+
+Produces a non-stream value OR no value at all
+
+- forEach()
+- reduction operations
+
+#### reduction operations
+
+A type of `terminal operation` that produce a single result.
+
+- reduce()
+- max()
+- min()
+- average()
+- collect() uses the help of the Collectors class for a more specific return value
 
 ### Example
 
