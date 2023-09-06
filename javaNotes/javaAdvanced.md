@@ -588,23 +588,7 @@ public static void main(String[] args) {
 
 ```
 
-## Multithreading
-
-Multithreading extends the idea of multitasking into applications where you can subdivide operations in a single application into individual, parallel threads.
-
-- Each thread can have its own task that it performs.
-- The OS divides processing time not just with applications, but between threads.
-- Multi-core processors can actually run multiple different processes and threads concurrently, enabling true parallelization.
-- In Java, multithreading is achieved via the `Thread class` and/or the `Runnable interface`.
-
-> What is a thread?
-
-A thread is a subset of a process that is also an independent sequence of execution, but threads of the main process run in the same memory space, managed independently by a scheduler.
-
-- Every thread that is created in a program is given its own call stack, where it stores local variables references.
-- However, all threads share the same heap, where the objects live in memory.
-
-### Concurrency
+## Concurrency
 
 `Concurrency` refers to breaking up a task or piece of computation into different parts that can be executed independently, out of order, or in partial order without affecting the final outcome.
 
@@ -623,6 +607,22 @@ Most computers these days have multiple cores or CPUs, which means that calculat
 - a browser that starts rendering a web page while it is still downloading the rest of page.
 - Airplane ticket reservation system where multiple customers accessing the server.
 - Multiple bank account holders accessing their accounts simultaneously on the bankSA server.
+
+### Multithreading
+
+Multithreading extends the idea of multitasking into applications where you can subdivide operations in a single application into individual, parallel threads.
+
+- Each thread can have its own task that it performs.
+- The OS divides processing time not just with applications, but between threads.
+- Multi-core processors can actually run multiple different processes and threads concurrently, enabling true parallelization.
+- In Java, multithreading is achieved via the `Thread class` and/or the `Runnable interface`.
+
+> What is a thread?
+
+A thread is a subset of a process that is also an independent sequence of execution, but threads of the main process run in the same memory space, managed independently by a `scheduler`.
+
+- Every thread that is created in a program is given its own call stack, where it stores local variables references.
+- However, all threads share the same heap, where the objects live in memory.
 
 ### Multithreading in Java
 
@@ -879,7 +879,8 @@ Synchronization is the capability to control the access of multiple threads to a
 
 - Multi-threaded programs may often come to a situation where multiple threads try to access the same resources and finally produce erroneous and unforeseen results.
 
-- So it needs to be made sure by some synchronization method that only one thread can access the resource at a given point in time. - - - Java provides a way of creating threads and synchronizing their tasks using synchronized blocks.
+- So it needs to be made sure by some synchronization method that only one thread can access the resource at a given point in time.
+- Java provides a way of creating threads and synchronizing their tasks using synchronized blocks.
 - Synchronized blocks in Java are marked with the synchronized keyword.
 - A synchronized block in Java is synchronized on some object.
 
@@ -916,7 +917,7 @@ In this scenario, execution of both threads is blocked and the program is stuck 
 Though it is not possible to completely get rid of the deadlock problem, we can take precautions to avoid such deadlock conditions:
 
 - By avoiding Nested Locks
-- By avoiding unnecessary locks
+- By avoiding Unnecessary Locks
 
 #### Nested Locks
 
@@ -972,7 +973,7 @@ The Producer-Consumer problem is a classic example of a multi-process synchroniz
 - The consumer should consume data only when the queue is not empty.
   - If the queue is empty, then the consumer shouldn't be allowed to take any data from the queue.
 
-We can solve the Producer-Consumer problem by using wait() & notify()methods to communicate between producer and consumer threads
+We can solve the Producer-Consumer problem by using `wait()` & `notify()` methods to communicate between producer and consumer threads
 
 - The `wait()` method to pause the producer or consumer thread depending on the queue size.
 - The `notify()` method sends a notification to the waiting thread.
