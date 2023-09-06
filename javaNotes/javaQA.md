@@ -7,7 +7,7 @@ wk5: 82-93
 wk6: 94-107
 wk7: 108-117
 wk8: 118-134
-wk9:
+wk9: 135-146
 
 WK1
 
@@ -292,3 +292,29 @@ WK8
 133 What is an index in SQL?
 
 134 What is the difference between Bubble Sort and Merge Sort?
+
+WK9
+
+135 What is the Optional class?
+
+136 What is the Stream API and what is it used for?
+
+137 What is the Reflection API and what is it used for?
+
+138 What is a thread?
+
+139 How can we implement multithreading in Java?
+
+140 What are some states a thread can be in?
+
+141 What is synchronization?
+
+142 What is the difference between deadlock and livelock?
+
+143 Describe the Producer Consumer problem.
+
+144 What are intermediate stream operations?
+
+145 What are terminal stream operations?
+
+146 How can we create a thread?
