@@ -5,8 +5,8 @@ wk3: 52-71
 wk4: 72-81
 wk5: 82-93
 wk6: 94-107
-wk7:
-wk8:
+wk7: 108-117
+wk8: 118-134
 wk9:
 
 WK1
@@ -236,3 +236,59 @@ WK6
 107 How would we configure logging in an application?
 
 WK 7
+
+108 What is a Collection?
+
+109 What is the Collection API?
+
+110 What are the major differences between a List, Queue, Set, and Map?
+
+111 What is the difference between a Stack and a Queue?
+
+112 What is source control management? Why is it useful?
+
+113 What are the main states that your files can reside in when using Git?
+
+114 What are the main sections of a Git project?
+
+115 What are some common Linux commands? Why are they useful?
+
+116 What are some common operations you would be performing when using Git?
+
+117 Describe a linked list.
+
+WK8
+
+118 What is DCL?
+
+119 What is TCL?
+
+120 What is the difference between an aggregate and a scalar function?
+
+121 What is the GROUP BY clause used for?
+
+122 What is the ORDER BY clause used for?
+
+123 What is a stored procedure in SQL?
+
+124 What is a trigger in SQL?
+
+125 What is an algorithm?
+
+126 How would you describe time complexity?
+
+127 What is the Factory design pattern?
+
+128 What is the Singleton design pattern?
+
+129 What is the difference between linear search and binary search?
+
+130 What is a transaction?
+
+131 What are the properties of a transaction?
+
+132 What is a function in SQL?
+
+133 What is an index in SQL?
+
+134 What is the difference between Bubble Sort and Merge Sort?
