@@ -1,377 +1,238 @@
-java basic: 1-30
-java intermeidate 31-49
-oop + software dvelopment concepts: 50-70
-
 Összesen 146 kérdés van
+wk1: 1-32
+wk2: 33-51
+wk3: 52-71
+wk4: 72-81
+wk5: 82-93
+wk6: 94-107
+wk7:
+wk8:
+wk9:
 
-## Java Basics
+WK1
 
-### 1 What is the difference between source code and bytecode?
+1 What is the difference between source code and bytecode?
 
 2 What is a primitive datatype? Please list a few and explain them.
+
 3 What is a variable?
+
 4 What is the difference between assigning and declaring a variable?
+
 5 What is a conditional statement?
+
 6 What steps would you take to debug your program if runs, but gives you the wrong results?
+
 7 What is the Scanner class used for? Give an example of how you would use it.
+
 8 What is a method?
+
 9 How would you access the last value in an array if you do not know the size of the array?
+
 10 Explain the main method.
+
 11 When would you use an if statement over a switch statement?
+
 12 What is the modulo operator and why would we use it?
+
 13 What steps would you take to debug your program if it crashed with an error message in the console?
+
 14 How do you use increment and decrement operators?
+
 15 How can you iterate over an array?
+
 16 What do a pair of opening and closing curly braces represent?
+
 17 When would you use a switch statement over an if statement?
+
 18 What is a flow control statement?
+
 19 What are some of the benefits of Java?
+
 20 What is the modulo operator? How is it useful?
+
 21 How would you describe the compilation process for Java?
+
 22 What is an array? Why is it useful?
+
 23 What is the difference between the JDM, JRE, and JVM?
+
 24 Which datatype represents text in Java?
+
 25 What are shorthand assignment operators?
+
 26 Give me an example of why you would need to create a method other than the main method.
+
 27 What is a stacktrace? How can you use it to debug your application?
+
 28 Can you describe some of the basic entities of a Java program?
+
 29 What is the difference in syntax between calling a method and creating a method?
+
 30 Explain the different kinds of loops you can create and use in a program.
 
-## Java INTERMEDIATE
+31 What does the term "full stack" mean?
 
-31 What is a package and why would we use one?
-32 What is the difference between using an instance variable and a static variable?
-33 What is the difference between calling an instance method and a static method?
-34 What are classes used for?
-35 Describe what an object is.
-36 What is the role of garbage collection in Java?
-37 If I define a variable within a method, how can I access its value outside of the method?
-38 Describe the difference between the stack and the heap.
-39 What is a constructor and how is it different from a method?
-40 What is the difference between an array and an ArrayList?
-41 What is the difference between an Error and an Exception?
-42 How would you handle an exception?
-43 What is the difference between a checked and an unchecked exception?
-44 If you received text input from the user, how would you go about comparing it to a value, like "yes" or "no"?
-45 What is explicit and implicit casting?
-46 What are the different scopes in Java?
-47 What is autoboxing and unboxing?
-48 If there was an error in the console when you tried to run your program, how would you debug?
-49 What are some operations you can perform on a List?
+32 What is an operating system?
 
-## CS CONCCEPTS
+WK 2
 
-50 What is an operating system?
+33 What is a package and why would we use one?
 
-51 Describe inheritance and how would you use it in a project?
-52 Desribe abstraction and how would you use it in a project?
-53 Describe polymorphism and how would you use it in a project?
-54 Describe encapsulation and how would you use it in a project?
-55 How is method overriding different from method overloading?
-56 What are the four levels of access we can give to class members? How are they different from one another?
-57 What is the purpose of using getter and setter methods?
-58 Why would you use an interface over an abstract class?
-59 What methods are commonly overridden from the Object class and why?
-60 What state and behavior would you define in a parent class but not a subclass?
-61 What state and behavior would you define in a subclass but not in the parent class?
-62 What are the SOLID design principles and are they important?
-63 What is Maven? Why would we use it?
-64 What is the SDLC? Why is it important?
-65 When would you use an Agile methodology versus Waterfall?
-66 What is test driven development?
-67 Why are unit tests important?
-68 How can JUnit annotations help with running our tests?
-69 What are the Maven build lifecycle phases?
-70 Describe the POM.xml file and its importance.
+34 What is the difference between using an instance variable and a static variable?
 
-## JAVA BACKEND
+35 What is the difference between calling an instance method and a static method?
 
-71 What does the term "full stack" mean?
+36 What are classes used for?
 
-# REDO BELOW
+37 Describe what an object is.
 
-## SQL
+38 What is the role of garbage collection in Java?
 
-### 1 What is a RDBMS?
+39 If I define a variable within a method, how can I access its value outside of the method?
 
-### 2 What is SQL and why would we use this language
+40 Describe the difference between the stack and the heap.
 
-### 3 What are the SQL sublanguages and their purpose?
+41 What is a constructor and how is it different from a method?
 
-### 4 tables Describe relational database tables.
+42 What is the difference between an array and an ArrayList?
 
-### 5 What are constraints and can you describe a few constraints?
+43 What is the difference between an Error and an Exception?
 
-### 6 Why would I use the WHERE clause?
+44 How would you handle an exception?
 
-### 7 What are some operators that can be used in SQL?
+45 What is the difference between a checked and an unchecked exception?
 
-### 8 What is a foreign key?
+46 If you received text input from the user, how would you go about comparing it to a value, like "yes" or "no"?
 
-### 9 What is referential integrity?
+47 What is explicit and implicit casting?
 
-### 10 What is normalization?
+48 What are the different scopes in Java?
 
-### 11 What is multiplicity?
+49 What is autoboxing and unboxing?
 
-### 12 Describe what a join is and explain the different types of joins we can create.
+50 If there was an error in the console when you tried to run your program, how would you debug?
 
-### 13 What is the difference between a join and a set operation?
+51 What are some operations you can perform on a List?
 
-### 14 What is a view and why is it useful?
+WK3
 
-### 15 What is DCL?
+52 Describe inheritance and how would you use it in a project?
 
-### 16 What is TCL?
+53 Desribe abstraction and how would you use it in a project?
 
-### 22 What is a transaction?
+54 Describe polymorphism and how would you use it in a project?
 
-### 17 What is the difference between an aggregate and a scalar function?
+55 Describe encapsulation and how would you use it in a project?
 
-### 23 What are the properties of a transaction?
+56 How is method overriding different from method overloading?
 
-### 24 What is a function in SQL?
+57 What are the four levels of access we can give to class members? How are they different from one another?
 
-### 18 What is the GROUP BY clause used for?
+58 What is the purpose of using getter and setter methods?
 
-### 19 What is the ORDER BY clause used for?
+59 Why would you use an interface over an abstract class?
 
-### 20 What is a stored procedure in SQL?
+60 What methods are commonly overridden from the Object class and why?
 
-### 21 What is a trigger in SQL?
+61 What state and behavior would you define in a parent class but not a subclass?
 
-### 25 What is an index in SQL?
+62 What state and behavior would you define in a subclass but not in the parent class?
 
-## JAVA BACKEND
+63 What are the SOLID design principles and are they important?
 
-### 26 What is the JDBC API and the benefits of using it?
+64 What is Maven? Why would we use it?
 
-### 27 What is the DAO Design Pattern and why should we use it?
+65 What is the SDLC? Why is it important?
 
-### 28 What information would you need in order to successfully connect to a database?
+66 When would you use an Agile methodology versus Waterfall?
 
-### 29 What is the difference between a Simple and Prepared JDBC statement?
+67 What is test driven development?
 
-### 30 What is SQL Injection and how can we prevent it using the JDBC?
+68 Why are unit tests important?
 
-### 31 Describe Javalin.
+69 How can JUnit annotations help with running our tests?
 
-### 32 What is a handler?
+70 What are the Maven build lifecycle phases?
 
-## General CS
+71 Describe the POM.xml file and its importance.
 
-### 33 ?????? operating system
+WK4
 
-### 34 What are the SOLID design principles and why are they important?
+72 What is SQL and why would we use this language?
 
-### 35 What is the SDLC? Why is it important?
+73 What are the SQL sublanguages and their purpose?
 
-### 36 agile vs. waterfall When would you use an Agile methodology versus Waterfall?
+74 What is a RDBMS?
 
-### 37 What is HTTP? Why is it important to know about?
+75 Describe relational database tables.
 
-### 38 What are common HTTP verbs used when a client application is making a request?
+76 What are constraints and can you describe a few constraints?
 
-### 39 What are some common HTTP status codes that can be included in a response?
+77 Why would I use the WHERE clause?
 
-### 40 What is an algorithm?
+78 What are some operators that can be used in SQL?
 
-### 41 How would you describe time complexity?
+79 What is the JDBC API and the benefits of using it?
 
-### 42 What is the difference between linear search and binary search?
+80 What is the DAO Design Pattern and why should we use it?
 
-### 43 What is the difference between Bubble Sort and Merge Sort?
+81 What information would you need in order to successfully connect to a database?
 
-### 42 What is the Factory design pattern?
+WK5
 
-### 43 What is the Singleton design pattern?
+82 What is the difference between a Simple and Prepared JDBC statement?
 
-## Advanced Java Concepts
+83 What is SQL Injection and how can we prevent it using the JDBC?
 
-### 44 What is the Optional class?
+84 What is a foreign key?
 
-### 45 What is the Stream API and what is it used for?
+85 What is referential integrity?
 
-### 46 What is the Reflection API and what is it used for?
+86 What is normalization?
 
-### 47 What is a thread?
+87 What is multiplicity?
 
-### 48 How can we implement multithreading in Java?
+88 Describe what a join is and explain the different types of joins we can create.
 
-### 49 What are some states a thread can be in?
+89 What is the difference between a join and a set operation?
 
-### 50 What is synchronization?
+90 What is a view and why is it useful?
 
-### 51 What is the difference between deadlock and livelock?
+91 What is HTTP? Why is it important to know about?
 
-### 52 Describe the Producer Consumer problem.
+92 What are common HTTP verbs used when a client application is making a request?
 
-### 53 What are intermediate stream operations?
+93 What are some common HTTP status codes that can be included in a response?
 
-### 54 What are terminal stream operations?
+WK6
 
-### 55 How can we create a thread?
+94 What is a functional interface and why would we use one?
 
-## Java Basics
+95 What is a lambda? Give an example of how we can use one.
 
-### 56 What is the modulo operator? How is it useful?
+96 What is a method reference?
 
-### 57 What are shorthand assignment operators?
+97 Describe Javalin.
 
-### 58 How do you use increment and decrement operators?
+98 What is JSON? When would we work with JSON in our application?
 
-### 59 What is a stacktrace? How can you use it to debug your application?
+99 What is a handler?
 
-### 60 What steps would you take to debug your program if it crashed with an error message in the console?
+100 What is Mockito and why would we use it?
 
-### 61 What steps would you take to debug your program if runs, but gives you the wrong results?
+101 What is logging and what are the benefits of it?
 
-### 62 What is the modulo operator and why would we use it?
+102 Describe the different logging levels and how they should be used.
 
-### 63 What is a package and why would we use one?
+103 What is REST and what are its key constraints?
 
-### 64 What is the difference between using an instance variable and a static variable?
+104 What is a mock?
 
-### 65 What is the difference between calling an instance method and a static method?
+105 What are some best practices for naming resource URLs using REST?
 
-### 66 What are classes used for?
+106 What is an endpoint?
 
-### 67 Describe what an object is.
+107 How would we configure logging in an application?
 
-### 68 What is the role of garbage collection in Java?
-
-### 69 If I define a variable within a method, how can I access its value outside of the method?
-
-### 70 Describe the difference between the stack and the heap.
-
-### 71 What is a constructor and how is it different from a method?
-
-### 72 What is the difference between an array and an ArrayList?
-
-### 73 What is the difference between an Error and an Exception?
-
-### 74 How would you handle an exception?
-
-### 75 What is the difference between a checked and an unchecked exception?
-
-### 76 If you received text input from the user, how would you go about comparing it to a value, like "yes" or "no"?
-
-### 77 casting What is explicit and implicit casting?
-
-### 78 What are the different scopes in Java?
-
-### 79 What is autoboxing and unboxing?
-
-### 80 If there was an error in the console when you tried to run your program, how would you debug?
-
-### 81 What are some operations you can perform on a List?
-
-### 82 Describe inheritance and how would you use it in a project?
-
-### 83 Describe abstraction and how would you use it in a project?
-
-### 84 Describe polymorphism and how would you use it in a project?
-
-### 85 Describe encapsulation and how would you use it in a project?
-
-### 86 How is method overriding different from method overloading?
-
-### 87 What are the four levels of access we can give to class members? How are they different from one another?
-
-### 88 What is the purpose of using getter and setter methods?
-
-### 89 Why would you use an interface over an abstract class?
-
-### 90 What methods are commonly overridden from the Object class and why?
-
-### 91 What state and behavior would you define in a parent class but not a subclass?
-
-### 92 What state and behavior would you define in a subclass but not in the parent class?
-
-# WILL NEED RENUMBERING
-
-## Advanced Java MORE
-
-## 93 What is a functional interface and why would we use one?
-
-## 94 What is a lambda? Give an example of how we can use one.
-
-## 95 What is a method reference?
-
-## Java Backend MORE
-
-### 96 What is Maven? Why would we use it?
-
-### 97 What is JSON? When would we work with JSON in our application?
-
-### 98 What is Mockito and why would we use it?
-
-### 99 What is a mock?
-
-### 100 What is REST and what are its key constraints?
-
-### 101 REST naming URL What are some best practices for naming resource URLs using REST?
-
-### 102 What is an endpoint?
-
-### 103 What is test driven development?
-
-### 104 Why are unit tests important?
-
-### 105 How can JUnit annotations help with running our tests?
-
-### 106 What are the Maven build lifecycle phases?
-
-### 107 Describe the POM.xml file and its importance.
-
-## Advanced Java MORE
-
-### 108 What is a Collection?
-
-### 109 What is the Collection API?
-
-### 110 What are the major differences between a List, Queue, Set, and Map?
-
-### 111 What is the difference between a Stack and a Queue?
-
-### 112 Describe a linked list.
-
-### 113 What are some common Linux commands? Why are they useful?
-
-### 114 What is source control management? Why is it useful?
-
-### 115 What are the main states that your files can reside in when using Git?
-
-### 116 What are the main sections of a Git project?
-
-### 117 What are some common operations you would be performing when using Git?
-
-<hr>
-XXXXXXXXXXXXXXXXXXXXXXXx
-<hr>
-# WORK ON THOSE BELOW
-
-## x Logging
-
-## 2 Java compilation process
-
-## X Java Entities
-
-## 3 Java variables
-
-## 4 Java data types
-
-## 5 Java methods
-
-## 6 Java main method
-
-## x Java Conditionals
-
-## x Java Loops
-
-## x Scanner class
-
-## X Arrays
-
-## X String Class
+WK 7

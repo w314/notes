@@ -227,11 +227,16 @@ import java.util.Scanner;
 class Main {
   public static void main(String[] args) {
     // create Scanner object
-    Scanner myScanner = new Scanner();
+    Scanner myScanner = new Scanner(System.in);
+
     // prompt user for input
     System.out.println("Enter username:");
+
     // read and store user input
-    String userName = myScanner.nextLine();
+    int userAge = myScanner.nextInt();
+    // consume hidden newLine character
+    myScanner.nextLine();
+
     myScanner.close();
   }
 }
@@ -244,7 +249,9 @@ Methods:
 - `nextDouble()` Reads a double value from the user
 - `nextFloat()` Reads a float value from the user
 - `nextInt()` Reads a int value from the user
-- `nextLine()` Reads a String value from the user
+- `nextLine()`
+  - Reads a String value from the user
+  - OR used to consume hidden newline character
 - `nextLong()` Reads a long value from the user
 - `nextShort()` Reads a short value from the user
 
