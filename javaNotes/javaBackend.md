@@ -320,6 +320,12 @@ REST vs. SOAP vs. RPC
 
 ### REST resources and URL construction
 
+#### URI
+
+`REST API`s use **U**niform **R**esource **I**dentifiers (`URI`s) to address resources.
+
+The constraint of a `Uniform Interface` is partially addressed by the combination of URIs and HTTP verbs and using them in line with the standards and conventions.
+
 #### REST Resource
 
 - entity or data that API can provide info about
@@ -333,6 +339,45 @@ REST vs. SOAP vs. RPC
 - “customers” is a collection resource and “customer” is a singleton resource
   We can identify “customers” collection resource using the URI “/customers“. We can identify a single “customer” resource using the URI “/customers/{customerId}“.
 
+##### resource archetypes categories:
+
+- document
+- collection
+- store
+- controller
+
+###### document
+
+A document resource is a singular concept that is akin to an object instance or database record.
+
+In REST, you can view it as a single resource inside resource collection.
+
+A document’s state representation typically includes both fields with values and links to other related resources.
+
+Use “singular” name to denote document resource archetype.
+
+Examples:
+
+- `http://api.example.com/device-management/managed-devices/{device-id}`
+- `http://api.example.com/user-management/users/{id}`
+- `http://api.example.com/user-management/users/admin`
+
+###### collection
+
+A collection resource is a server-managed directory of resources.
+
+Clients may propose new resources to be added to a collection. However, it is up to the collection resource to choose to create a new resource or not.
+
+A collection resource chooses what it wants to contain and also decides the URIs of each contained resource.
+
+Use the “plural” name to denote the collection resource archetype.
+
+Examples
+
+- `http://api.example.com/device-management/managed-devices`
+- `http://api.example.com/user-management/users`
+- `http://api.example.com/user-management/users/{id}/accounts`
+
 Collection and Sub-collection Resources
 A resource may contain sub-collection resources also.
 
@@ -340,34 +385,24 @@ For example, sub-collection resource “accounts” of a particular “customer�
 
 Similarly, a singleton resource “account” inside the sub-collection resource “accounts” can be identified as follows: “/customers/{customerId}/accounts/{accountId}“.
 
-### URI
+###### store
 
-`REST API`s use Uniform Resource Identifiers (`URI`s) to address resources.
+A store is a client-managed resource repository. A store resource lets an API client put resources in, get them back out, and decide when to delete them.
 
-The constraint of a uniform interface is partially addressed by the combination of URIs and HTTP verbs and using them in line with the standards and conventions.
+A store never generates new URIs. Instead, each stored resource has a URI. The URI was chosen by a client when the resource initially put it into the store.
 
-# Constraints (principles)
+Use “plural” name to denote store resource archetype.
 
-- client/server relationship: separate components interacting through an interface
-- uniform interface: use of resources, self-descriptive messages
-- stateless: each message contains all info needed
-- HATEOS / Hypertext as the engine of application state (make API discoverable in state through links!)
-- layered system: application itself is ideally in layers interacting through interfaces
-- cachable: responses should specify if info is cachable or not.
+Examples:
 
-### Best Practices
+- `http://api.example.com/song-management/users/{id}/playlists`
+
+#### Best Practices
 
 - use nouns for resources (users, posts, etc) not verbs
 - use plurals for resources that are collections
 - single resources are represented by a name or id
 - send appropriate response code back
-
-resource archetypes categories:
-
-- document
-- collection
-- store
-- controller
 
 Put a resource into one archetype and then use its naming convention consistently.
 
