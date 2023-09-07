@@ -249,27 +249,39 @@ NOTE: openMocks() is used in newer versions of Mockito and it replaces @initMock
 
 96 Logback
 Real World Application is supplementary
-Architecture
-Logging Levels
-Basic Configuration
-Creating and Using a Logger
-Week 7 Assessment
-Day 1
-Generics
-creating a class that uses generics
-using a generic class
-type parameter naming conventions
-Stacks
-Queues
-Collection Hierarchy
-Day 2
-Sets
-Maps
-Linked List
-Using Iterators
+
+97 Architecture
+
+98 Logging Levels
+
+99 Basic Configuration
+
+100 Creating and Using a Logger
+
+101 Generics
+
+102 creating a class that uses generics
+
+103 using a generic class
+
+104 type parameter naming conventions
+
+105 Stacks
+
+106 Queues
+
+107 Collection Hierarchy
+
+108 Sets
+
+109 Maps
+
+110 Linked List
+
+111 Using Iterators
 Note: You will NOT be assessed over the PriorityQueue or Vector classes
-Day 3
-common UNIX commands
+
+112 common UNIX commands
 ls
 pwd
 mv
@@ -278,63 +290,95 @@ mkdir
 cat
 grep
 cp
-source control management
-Git Fundamentals
-Day 4
-Understand how to push to repo
-Understand how to use branches
-Understand how to merge
-Week 8 Assessment
-Day 1
-DCL
-TCL
-Transactions
-Transaction properties
-aggregate functions
-scalar functions
-GROUP BY
-Day 2
-Functions
-Stored Procedures
-Triggers
-Sequences
-Indexes
-Day 3
-Algorithm
+
+113 source control management
+
+114 Git Fundamentals
+
+115 Understand how to push to repo
+
+116 Understand how to use branches
+
+117 Understand how to merge
+
+118 DCL
+
+119 TCL
+
+120 Transactions
+
+121 Transaction properties
+
+122 aggregate functions
+
+123 scalar functions
+
+124 GROUP BY
+
+125 Functions
+
+126 Stored Procedures
+
+127 Triggers
+
+128 Sequences
+
+129 Indexes
+
+130 Algorithm
 Note: The types of algorithms mentioned in the lesson are supplementary to know.
-The common Big O Notations
-Factory Pattern
-Singleton Pattern
-Day 4
-Bubble Sort
-Merge Sort
-Binary Search
-Linear Search
-Week 9 Assessment
-Day 1
-Optionals
+
+131 The common Big O Notations
+
+132 Factory Pattern
+
+133 Singleton Pattern
+
+134 Bubble Sort
+
+135 Merge Sort
+
+136 Binary Search
+
+137 Linear Search
+
+138 Optionals
 using Optional.of(), Optional.empty(), Optional.ofNullable(), and isPresent() and get(), orElse()
 Everything else is supplementary
-Overview of the Reflection API
-How to use Class class and related classes in reflect package to find and work with class members
-Stream API
-terminal vs intermediate operations
-reduction operations
-common terminal operations
+
+139 Overview of the Reflection API
+
+140 How to use Class class and related classes in reflect package to find and work with class members
+
+141 Stream API
+
+142 terminal vs intermediate operations
+
+143 reduction operations
+
+144 common terminal operations
 reduce()
 forEach()
-common intermediate operations
+
+145 common intermediate operations
 filter()
 map()
 sorted()
-Day 2
-Threads
-Thread class and Runnable interface
-important class members
-Thread states
-concurrency
-Day 3
+
+146 Threads
+
+147 Thread class and Runnable interface
+
+148 important class members
+
+149 Thread states
+
+150 concurrency
+
 Know the following concepts at a high level:
-Deadlock
-Livelock
+151 Deadlock
+
+152 Livelock
+
+153
 Producer-Consumer Problem
