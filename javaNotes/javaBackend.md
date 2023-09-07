@@ -72,15 +72,6 @@ rm file1
 rm -r directory1
 # force deletion flag
 -f
-
-
-
-mv
-rm
-
-cat
-grep
-cp
 ```
 
 ## source control management
@@ -92,8 +83,8 @@ cp
 - manage and keep track of all your source code
 - all your changes are being stored in a repository.
 - there are 2 types of Version Control Systems
-  - the Centralized Version Control System (CVCS)
-  - Distributed (DVCS).
+  - **C**entralized **V**ersion **C**ontrol **S**ystem (CVCS)
+  - **D**istributed **V**ersion **C**ontrol **S**ystem (DVCS).
 
 The concept of `CVCS` is that it works on a Client-Server relationship. The repository is located in one place and provides access to many clients.
 
@@ -101,7 +92,7 @@ On the contrary, in `DVCS`, every user has a local copy of the repository in add
 
 ## Git
 
-- you have the entire history of the project right there on your local disk
+- you have the entire history of the project right there on your local disk (DVCS)
 
 > What are the main states that your files can reside in when using Git?
 
@@ -115,9 +106,9 @@ Git has three main `states` that your files can reside in:
 
 The three main `sections` of a Git project:
 
-- the `working tree` (or `working directory`, as in the diagram below) is a single checkout of one version of the project, downloaded to your local machine. The working tree is the set of all files and folders a developer can add, edit, rename and delete during application development. These files are pulled out of the compressed database in the Git directory and placed on disk for you to use or modify.
-- the `staging area` is a file, generally contained in your Git directory, that stores information about what will go into your next commit. Its technical name in Git parlance is the `“index”`, but the phrase “staging area” works just as well. (See diagram below)
-- `Git directory`(a.k.a. `repository folder`) is where Git stores the metadata and object database for your project. This is the most important part of Git, and it is what is copied when you clone a repository from another computer
+- `working tree` (or `working directory`) is a single checkout of one version of the project, downloaded to your local machine.
+- `staging area` is a file, generally contained in your Git directory, that stores information about what will go into your next commit. Its technical name in Git parlance is the `“index”`
+- `git directory`(a.k.a. `repository folder`) is where Git stores the metadata and object database for your project. This is the most important part of Git, and it is what is copied when you clone a repository from another computer
   - stores the history of all changes made to the files in a Git project
   - name of directory: `.git`
 
@@ -129,13 +120,8 @@ Two types of Git repositories, based on user permissions:
 - Non-Bare Repositories
 
   - With non-bare repositories, users can modify the existing repository and create new versions.
-  - By default, the cloning process creates a non-bare repository.
-
-  > What are some common operations you would be performing when using Git?
-
-- Understand how to push to repo
-- Understand how to use branches
-- Understand how to merge
+  - By default, the cloning process creates a non-bare repository.<br><br>
+    > What are some common operations you would be performing when using Git?
 
 ```shell
 # initialize repository
@@ -197,19 +183,9 @@ We use it as Maven helps in:
 
 Maven project configuration and dependencies are handled via the `Project Object Model`, defined in the `pom.xml` file. This file contains information about the project, is used to build the project, includes project dependencies and plugins.
 
-Some important tags within the pom.xml file include:
+### Maven build lifecycle phases
 
-- `<project>` - this is the root tag of the file
-- `<modelVersion>` - defining which version of the page object model to be used
-- `<name>` - name of the project
-- `<properties>` - project-specific settings
-- `<dependencies>` - this is where you put your Java dependencies you want to use. Each one needs a `<dependency>`, which has:
-  - `<groupId>`
-  - `<artifactId>`
-  - `<version>`
-- `<plugins>` - for 3rd party plugins that work with Maven
-
-### 70 What are the Maven build lifecycle phases?
+> What are the Maven build lifecycle phases?
 
 When Maven builds your project, it goes through several steps called phases
 
@@ -221,9 +197,9 @@ When Maven builds your project, it goes through several steps called phases
 - `install` - install the package into the local repository, for use as a dependency in other projects locally
 - `deploy` - done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.
 
-### 71 Describe the POM.xml file and its importance.
+### `POM` - `Project Object Model`
 
-`POM` - `Project Object Model`
+> Describe the POM.xml file and its importance.
 
 In `Maven` the project coordinates below together uniquely identify a specific version of a program:
 
@@ -231,53 +207,45 @@ In `Maven` the project coordinates below together uniquely identify a specific v
 - `artifact-id`: project name
 - `version`: version number for example: "0.0.1-SNAPSHOT"
 
-#### Some other important tags within the `pom.xml` file include:
-
-`<project>` - this is the root tag of the file
-
-- `<modelVersion>` - defining which version of the page object model to be used
-- `<properties>` - project-specific settings
-- `<dependencies>`: this is where you put your Java dependencies you want to use. Each one needs a
-  - `<dependency>` which has:
-    - `<groupId>`
-    - `<artifactId>`
-    - `<version>`
-- `<plugins>` for 3rd party plugins that work with Maven
-
-Here's an example:
+POM.xml example:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- root tag of the file -->
 <project>
+    <!-- version of the page object model to be used -->
     <modelVersion>4.0.0</modelVersion>
-    <!-- project metadata-->
+    <!-- project metadata, that identifies the project-->
     <groupId>org.revature</groupId>
     <artifactId>PEPLabsChallenges</artifactId>
     <version>0.1</version>
 
-    <!-- maven allows us to change the version of java we'd like to use -->
+    <!-- version of java we'd like to use -->
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
-    <!--
-        maven allows us to use external dependencies from mvn repository.
-    -->
+    <!-- external dependencies from mvn repository. -->
     <dependencies>
+
         <!-- junit, our framework for writing unit tests.-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
         </dependency>
+
     </dependencies>
+
+    <!-- for 3rd party plugins that work with Maven -->
+    <plugins>
+    </plugins>
+
 </project>
 ```
 
 ## JSON
-
-_ignore implementation, the second part of it is in JavaScript_
 
 - `JSON` (`JavaScript Object Notation`) is a lightweight data-interchange format.
 - JSON Object is a set of key and value pair enclosed within curly braces
@@ -309,53 +277,61 @@ Applications of JSON:
 
 ## REST
 
-_You will not be assessed over the example in the Implementation section (we will not cover Servlets)_
-
-DEFINITION:
-
-> Representational State Transfer (REST) is an architectural style that defines a set of constraints to be used for creating web services.
+Representational State Transfer (REST) is an architectural style that defines a set of constraints to be used for creating web services.
 
 - Representational State Transfer
 - architecture for exposing information and functionality between software or devices
-- used to fetch or give some information from a web service
 - information provided is a representation of the state of a given resource
 - representation is usually JSON
-- all communication done via REST API uses only HTTP requests
-- In HTTP there are five methods that are commonly used in a REST-based Architecture: POST, GET, PUT, PATCH, and DELETE. These correspond to create, read, update, and delete (or CRUD) operations respectively.
+- all communication uses HTTP
 
-`REST` vs.<br>
-`SOAP` (`Simple Access Protocol`) and <br>
-`RPC` (`Remote Procedure Call`)
+REST vs. SOAP vs. RPC
 
-- REST uses less bandwidth than SOAP
-- SOAP can only return `xml`, REST can return json, xml, yaml and more
-- in REST users are not required to know procedure names or spedific parameters in a specific order like in RPC
+- REST vs. `SOAP` (`Simple Access Protocol`)
+  - REST uses less bandwidth than
+  - SOAP can only return xml, REST can return json, xml, yaml and more
+- REST vs. `RPC` (`Remote Procedure Call`)
+  - in REST users are not required to know procedure names or spedific parameters in a specific order
 
-### Is RESTful API right for the application
+### REST Constraints (principles)
 
-There are some key `constraints` to think about when considering whether a RESTful API is the right type of API for your needs:
+- `Client-Server`
+  - the client and the server should be separate from each other and allowed to evolve individually
+  - client and server are interacting through an interface
+- `Stateless`
+  - calls can be made independently of one another
+  - each call contains all of the data necessary to complete itself successfully.
+- `Cachable`
+  - because a stateless API can increase request overhead by handling large loads of incoming and outbound calls, a REST API should be designed to encourage the storage of cacheable data.
+  - responses should specify if info is cachable or not
+- `Uniform Interface`
 
-- `Client-Server`: This constraint operates on the concept that the client and the server should be separate from each other and allowed to evolve individually.
-- `Stateless`: REST APIs are stateless, meaning that calls can be made independently of one another, and each call contains all of the data necessary to complete itself successfully.
-- `Cache`: Because a stateless API can increase request overhead by handling large loads of incoming and outbound calls, a REST API should be designed to encourage the storage of cacheable data.
-- `Uniform Interface`: The key to the decoupling client from server is having a uniform interface that allows independent evolution of the application without having the application’s services, or models and actions, tightly coupled to the API layer itself.
-- `Layered System`: REST APIs have different layers of their architecture working together to build a hierarchy that helps create a more scalable and modular application.
-- `Code on Demand`: Code on Demand allows for code or applets to be transmitted via the API for use within the application.
+  - The key to the decoupling client from server is having a uniform interface that allows independent evolution of the application without having the application’s services, or models and actions, tightly coupled to the API layer itself.
+  - use of resources,
+  - use of self-descriptive messages
 
-### REST resources and url construction
+- `Layered System`
+  - REST APIs have different layers of their architecture working together to build a hierarchy that helps create a more scalable and modular application.
+  - application itself is ideally in layers interacting through interfaces
+- - `Code on Demand`
+  - allows for code or applets to be transmitted via the API for use within the application.
+- `HATEOS` (**H**ypertext **A**s **T**he **E**ngine **O**f application **S**tate)
+  - make API discoverable in state through links
+
+### REST resources and URL construction
 
 #### REST Resource
 
 - entity or data that API can provide info about
 - can be identified by a URL
 - can allow actions to be performed on it (GET, POST, PUT, DELETE)
+- a resource can be a singleton or a collection.
 
-Singleton and Collection Resources
-A resource can be a singleton or a collection.
+##### Singleton and Collection Resources
 
-For example, “customers” is a collection resource and “customer” is a singleton resource (in a banking domain).
-
-We can identify “customers” collection resource using the URI “/customers“. We can identify a single “customer” resource using the URI “/customers/{customerId}“.
+- A resource can be a singleton or a collection.
+- “customers” is a collection resource and “customer” is a singleton resource
+  We can identify “customers” collection resource using the URI “/customers“. We can identify a single “customer” resource using the URI “/customers/{customerId}“.
 
 Collection and Sub-collection Resources
 A resource may contain sub-collection resources also.
@@ -491,10 +467,6 @@ http://api.example.com/device-management/managed-devices
 http://api.example.com/device-management/managed-devices?region=USA
 http://api.example.com/device-management/managed-devices?region=USA&brand=XYZ
 http://api.example.com/device-management/managed-devices?region=USA&brand=XYZ&sort=installation-date
-
-### Exposing and Consuming RESTful API endpoints
-
-_You will not be assessed over implementation code of steps 3 and 4 (Bennu Framework)_
 
 ## Logging
 
