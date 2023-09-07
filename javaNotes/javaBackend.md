@@ -397,6 +397,17 @@ Examples:
 
 - `http://api.example.com/song-management/users/{id}/playlists`
 
+###### controller
+
+A controller resource models a procedural concept. Controller resources are like executable functions, with parameters and return values, inputs, and outputs.
+
+Use “verb” to denote controller archetype.
+
+Examples:
+
+- `http://api.example.com/cart-management/users/{id}/cart/checkout`
+- `http://api.example.com/song-management/users/{id}/playlist/play`
+
 #### Best Practices
 
 - use nouns for resources (users, posts, etc) not verbs
@@ -404,109 +415,47 @@ Examples:
 - single resources are represented by a name or id
 - send appropriate response code back
 
-Put a resource into one archetype and then use its naming convention consistently.
+Forming URIs
 
-For uniformity’s sake, resist the temptation to design resources that are hybrids of more than one archetype.
-
-#### document
-
-A document resource is a singular concept that is akin to an object instance or database record.
-
-In REST, you can view it as a single resource inside resource collection. A document’s state representation typically includes both fields with values and links to other related resources.
-
-Use “singular” name to denote document resource archetype.
-
-http://api.example.com/device-management/managed-devices/{device-id}
-http://api.example.com/user-management/users/{id}
-http://api.example.com/user-management/users/admin
-
-#### collection
-
-A collection resource is a server-managed directory of resources.
-
-Clients may propose new resources to be added to a collection. However, it is up to the collection resource to choose to create a new resource or not.
-
-A collection resource chooses what it wants to contain and also decides the URIs of each contained resource.
-
-Use the “plural” name to denote the collection resource archetype.
-
-http://api.example.com/device-management/managed-devices
-http://api.example.com/user-management/users
-http://api.example.com/user-management/users/{id}/accounts
-
-#### store
-
-A store is a client-managed resource repository. A store resource lets an API client put resources in, get them back out, and decide when to delete them.
-
-A store never generates new URIs. Instead, each stored resource has a URI. The URI was chosen by a client when the resource initially put it into the store.
-
-Use “plural” name to denote store resource archetype.
-
-http://api.example.com/song-management/users/{id}/playlists
-
-#### controller
-
-A controller resource models a procedural concept. Controller resources are like executable functions, with parameters and return values, inputs, and outputs.
-
-Use “verb” to denote controller archetype.
-
-http://api.example.com/cart-management/users/{id}/cart/checkout http://api.example.com/song-management/users/{id}/playlist/play
+- Put a resource into one archetype and then use its naming convention consistently.
+- For uniformity’s sake, resist the temptation to design resources that are hybrids of more than one archetype.
 
 Consistency is the key
-Use consistent resource naming conventions and URI formatting for minimum ambiguity and maximum readability and maintainability. You may implement the below design hints to achieve consistency:
+
+- Use consistent resource naming conventions and URI formatting for minimum ambiguity and maximum readability and maintainability. You may implement the below design hints to achieve consistency:
 
 - Use forward slash (/) to indicate hierarchical relationships
   The forward-slash (/) character is used in the path portion of the URI to indicate a hierarchical relationship between resources. e.g.
 
-http://api.example.com/device-management
-http://api.example.com/device-management/managed-devices
-http://api.example.com/device-management/managed-devices/{id}
-http://api.example.com/device-management/managed-devices/{id}/scripts
-http://api.example.com/device-management/managed-devices/{id}/scripts/{id}
+  - `http://api.example.com/device-management`
+  - `http://api.example.com/device-management/managed-devices`
+  - `http://api.example.com/device-management/managed-devices/{id}`
+
+  - `http://api.example.com/device-management/managed-devices/{id}/scripts`
+  - `http://api.example.com/device-management/managed-devices/{id}/scripts/{id}`
 
 - Do not use trailing forward slash (/) in URIs
   As the last character within a URI’s path, a forward slash (/) adds no semantic value and may confuse. It’s better to drop it from the URI.
 
-http://api.example.com/device-management/managed-devices/ http://api.example.com/device-management/managed-devices /_This is much better version_/
-
 - Use hyphens (-) to improve the readability of URIs
-  To make your URIs easy for people to scan and interpret, use the hyphen (-) character to improve the readability of names in long path segments.
-
-http://api.example.com/device-management/managed-devices/
-http://api.example.com/device-management/managed-devices /_This is much better version_/
-Do not use underscores ( _ )
-It’s possible to use an underscore in place of a hyphen to be used as a separator – But depending on the application’s font, it is possible that the underscore (_) character can either get partially obscured or completely hidden in some browsers or screens.
-
-To avoid this confusion, use hyphens (-) instead of underscores ( \_ ).
-
-http://api.example.com/inventory-management/managed-entities/{id}/install-script-location //More readable
-
-http://api.example.com/inventory-management/managedEntities/{id}/installScriptLocation //Less readable
+  To make your URIs easy for people to scan and interpret, use the hyphen (-) character to improve the readability of names in long path segments. Do not use underscores ( \_ )
 
 - Use lowercase letters in URIs
 
 - do not use file extensions
 
-Apart from the above reason, if you want to highlight the media type of API using file extension, then you should rely on the media type, as communicated through the Content-Type header, to determine how to process the body’s content.
-
-http://api.example.com/device-management/managed-devices.xml /_Do not use it_/
-
-http://api.example.com/device-management/managed-devices /_This is correct URI_/
-
 - Use query component to filter URI collection
-  Often, you will encounter requirements where you will need a collection of resources sorted, filtered, or limited based on some specific resource attribute.
+  Often, you will encounter requirements where you will need a collection of resources sorted, filtered, or limited based on some specific resource attribute. For this requirement, do not create new APIs – instead, enable sorting, filtering, and pagination capabilities in resource collection API and pass the input parameters as query parameters. e.g.
 
-For this requirement, do not create new APIs – instead, enable sorting, filtering, and pagination capabilities in resource collection API and pass the input parameters as query parameters. e.g.
-
-http://api.example.com/device-management/managed-devices
-http://api.example.com/device-management/managed-devices?region=USA
-http://api.example.com/device-management/managed-devices?region=USA&brand=XYZ
-http://api.example.com/device-management/managed-devices?region=USA&brand=XYZ&sort=installation-date
+  - `http://api.example.com/device-management/managed-devices`
+  - `http://api.example.com/device-management/managed-devices?region=USA`
+  - `http://api.example.com/device-management/managed-devices?region=USA&brand=XYZ`
+  - `http://api.example.com/device-management/managed-devices?region=USA&brand=XYZ&sort=installation-date`
 
 ## Logging
 
 > What is logging and what are the benefits of it?
->
+
 > Logging is keeping a log of events that occur form an application.
 
 ### Logback
@@ -524,7 +473,7 @@ Resons to prefer `Logback` over `Log4j`:
 - much better tested framework
 - automatically reloads configuration files
 - gracefully recovers from I/O errors (no need to restart app after server fail, just to get logging to work again)
-- automatic removel of old log archives
+- automatic removal of old log archives
 - automatic compression of archived log files
 
 ### Logback Architecture
