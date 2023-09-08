@@ -576,15 +576,17 @@ public class Example {
 
 ## Testing
 
-### 67 What is test driven development?
+### TDD
+
+> What is test driven development?
 
 The `TDD` process consists of writing unit tests first, **before** the implemented application code has been written.
 
+### Unit Testing
+
 `Unit testing` is the testing of individual software components in isolation from the rest of the system.
 
-### 68 Why are unit tests important?
-
-`Unit testing` is the testing of individual software components in isolation from the rest of the system. This is done by writing unit tests which execute the code we want to inspect.
+> Why are unit tests important?
 
 When developing software, it is important to ensure that most if not all of the code being written is tested to verify the functionality of the code.
 
@@ -593,7 +595,7 @@ The TDD process consists of writing unit tests first, before the implemented app
 
 When refactoring code, the unit tests give us confidence that we can change the source code without breaking existing functionality. This makes debugging much easier.
 
-### 69 How can JUnit annotations help with running our tests?
+### JUnit
 
 To use Junit add it as a dependency to `pom.xml`
 
@@ -606,6 +608,10 @@ To use Junit add it as a dependency to `pom.xml`
 			</dependency>
 
 ```
+
+#### Annotations
+
+> How can JUnit annotations help with running our tests?
 
 `Annotations` are used to support, identify, and execute test method features.
 
@@ -621,13 +627,11 @@ To use Junit add it as a dependency to `pom.xml`
 
 > What is a mock?
 
-### Mockito
-
 Mocking framework used for unit tests
 
 A mock object is a dummy implementation for an interface or a class.
 
-Mockito records the interaction with mock and allows you to check if the mock object was used correct, e.g. if a certain method has been called on the mock. This allows you to implement behavior testing instead of only testing the result of method calls.
+Mockito records the interaction with mock and allows you to check if the mock object was used correctly, e.g. if a certain method has been called on the mock. This allows you to implement behavior testing instead of only testing the result of method calls.
 
 Mockito:
 
@@ -637,7 +641,7 @@ Mockito:
 - from the docs: "Real spies should be used carefully and occasionally, for example when dealing with legacy code."
 - `stub`: replacement behavior
 
-### Creating Mocks
+#### Creating Mocks
 
 Dependency Injection using @Mock, @InjectMock, and @openMocks
 
@@ -648,28 +652,30 @@ _NOTE: @openMocks is the syntax used in newer versions of Mockito and it replace
 - `MockitoAnnotations.openMocks()` is used to perform the injection
 - Mockito will use any constructors available in the real object for injection, otherwise it will try using setters, and then finally it will try using fields
 
-### Stubbing
+#### Stubbing
 
 - when() is used to target an invocation
 - thenReturn() or thenThrow() is used to return dummy results / throw exceptions
 - if a mock's method isn't stubbed, it will return default values (null, empty collection, 0, false, etc)
 - doThrow(), doAnswer(), doNothing(), doCallRealMethod() are used with void methods (https://www.baeldung.com/mockito-void-methods)
 
-### Verify
+#### Verify
 
 - a mock will remember all method invocations on it for verification
 - `times(x)` is used to verify a behavior was invoked x many times
 - `never()` is used to verify a behavior was not invoked
 - `atMostOnce()`, `atLeastOnce()`, `atMost(x)`, `atLeast(x)`
 
-## Java Backend Model
+## Java Backend
+
+### Layers
 
 - Models - representing database tables
 - DAO - interacting with the database
 - Services - executing logic, validation
 - Controller - server with endpoints
 
-## DAO Layer
+### DAO Layer
 
 > What is the DAO Design Pattern and why should we use it?
 
