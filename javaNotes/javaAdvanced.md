@@ -296,7 +296,7 @@ A `collection` is a single object which acts as a container for other objects.
 ### Useful Methods
 
 - put()
-- get()
+- get() - return `null` if not found
 - remove()
 - entrySet()
 - keySet()
