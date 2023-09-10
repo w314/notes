@@ -31,6 +31,82 @@
 
 `JVM` (`Java Virtual Machine`) runs compiled bytecode in a virtual environment that is same accross every platform. However you need JVM that is specific to the operating system. It uses `JIT` `Just In Time` compiler to turn that bytecode to machine code.
 
+## Stack & Heap
+
+> Describe the difference between the stack and the heap.
+
+To run an application in an optimal way, JVM divides memory into stack and heap memory. Whenever we declare new variables and objects, call a new method JVM designates memory to these operations from either Stack Memory or Heap Space.
+
+### `Stack`
+
+- `Stack` Memory in Java is used for static memory allocation and the execution of a thread. It contains primitive values that are specific to a method and references to objects referred from the method that are in a heap.
+- Access to this memory is in Last-In-First-Out (LIFO) order.
+- When the method finishes execution, its corresponding stack frame is flushed, the flow goes back to the calling method, and space becomes available for the next method.
+- It grows and shrinks as new methods are called and returned, respectively.
+- Variables inside the stack exist only as long as the method that created them is running.
+- It's automatically allocated and deallocated when the method finishes execution.
+- If this memory is full, Java throws `java.lang.StackOverFlowError`.
+- Access to this memory is fast when compared to heap memory.
+- This memory is threadsafe, as each thread operates in its own stack.
+
+### `HEAP`
+
+- used for the dynamic memory allocation of Java objects and JRE classes at runtime.
+
+### `Stack` vs `Heap`
+
+- static vs dynamic memory allocation
+- fast vs. slow memory access
+- `java.lang.StackOverFlowError` vs `java.lang.OutOfMemoryError`
+- automatic memory flush vs garbage collection
+- threadsafe vs not threadsafe
+
+<table>
+<thead>
+<tr>
+<td><strong>Parameter</strong></td>
+<td><strong>Stack Memory</strong></td>	<td><strong>Heap Space</strong></td></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Application</strong></td>
+<td>Stack is used in parts, one at a time during execution of a thread</td>
+<td>The entire application uses Heap space during runtime</td>
+</tr>
+<tr>
+<td><strong>Size</strong></td>
+<td>Stack has size limits depending upon OS, and is usually smaller than Heap</td>
+<td>There is no size limit on Heap</td>
+</tr>
+<tr>
+<td><strong>Storage</strong></td>
+<td>Stores only primitive variables and references to objects that are created in Heap Space</td>
+<td>All the newly created objects are stored here</td>
+</tr>
+<tr>
+<td><strong>Order</strong></td>
+<td>It's accessed using Last-in First-out (LIFO) memory allocation system</td>
+<td>This memory is accessed via complex memory management techniques that include Young Generation, Old or Tenured Generation, and Permanent Generation.</td>
+</tr>
+<tr>
+<td><strong>Life</strong></td>
+<td>Stack memory only exists as long as the current method is running</td>
+<td>Heap space exists as long as the application runs</td>
+</tr>
+<tr>
+<td><strong>Efficiency</strong></td>
+<td>Much faster to allocate when compared to heap</td>
+<td>Slower to allocate when compared to stack</td>
+</tr>
+<tr>
+<td><strong>Allocation/Deallocation</strong></td>
+<td>This Memory is automatically allocated and deallocated when a method is called and returned, respectively</td>
+<td>Heap space is allocated when new objects are created and deallocated by Garbage Collector when they're no longer referenced</td>
+</tr>
+</tbody>
+
+</table>
+
 ## Java Entities
 
 > Can you describe some of the basic entities of a Java program?
@@ -99,6 +175,32 @@ variableName = value;
   - float 4 bytes floating point
   - long 8 bytes numerical
   - double 8 bytes floating point
+
+### Opearators
+
+> What is the modulo operator? How is it useful?
+
+> What are shorthand assignment operators?
+
+Assgnment operators assign value to a variable.
+
+= += -= \*= /= %= &= ^=
+
+> How do you use increment and decrement operators?
+
+- postfix: changes the value after the entire expression is evaluated
+
+```java
+int a = 5;
+int b = a++; // b=5, a=6
+```
+
+- prefix
+
+```java
+int a = 5;
+int b = ++a; // b=6, a=6
+```
 
 ## Java Methods
 
@@ -213,7 +315,9 @@ do {
 
 ## print statements
 
-## Scanner class
+## Input - Output
+
+### Scanner class
 
 > What is the Scanner class used for? Give an example of how you would use it.
 
@@ -324,32 +428,6 @@ int[] otherArray = {1, 2, 3};
 
 - `Arrays.sort(myArray)`
 
-## Opearators
-
-### 12 What is the modulo operator? How is it useful?
-
-### 13 What are shorthand assignment operators?
-
-Assgnment operators assign value to a variable.
-
-= += -= \*= /= %= &= ^=
-
-### 14 How do you use increment and decrement operators?
-
-- postfix: changes the value after the entire expression is evaluated
-
-```java
-int a = 5;
-int b = a++; // b=5, a=6
-```
-
-- prefix
-
-```java
-int a = 5;
-int b = ++a; // b=6, a=6
-```
-
 ## Debugging
 
 ### 17 What is a stacktrace? How can you use it to debug your application?
@@ -448,79 +526,6 @@ When a variable is declared in a Java program, it is attached to a specific scop
 - `Class, or static scope` - Resides on the class definition itself.
 - `Method scope` - Declared within a method block; only available within the method in which they are declared.
 - `Block scope` - Only exist within the specific control flow block (for, while, etc.)
-
-### 40 stack vs. heap Describe the difference between the stack and the heap.
-
-To run an application in an optimal way, JVM divides memory into stack and heap memory. Whenever we declare new variables and objects, call a new method JVM designates memory to these operations from either Stack Memory or Heap Space.
-
-#### `Stack` vs `Heap`
-
-- static vs dynamic memory allocation
-- fast vs. slow memory access
-- `java.lang.StackOverFlowError` vs `java.lang.OutOfMemoryError`
-- automatic memory flush vs garbage collection
-- threadsafe vs not threadsafe
-
-#### `Stack`
-
-- `Stack` Memory in Java is used for static memory allocation and the execution of a thread. It contains primitive values that are specific to a method and references to objects referred from the method that are in a heap.
-- Access to this memory is in Last-In-First-Out (LIFO) order.
-- When the method finishes execution, its corresponding stack frame is flushed, the flow goes back to the calling method, and space becomes available for the next method.
-- It grows and shrinks as new methods are called and returned, respectively.
-- Variables inside the stack exist only as long as the method that created them is running.
-- It's automatically allocated and deallocated when the method finishes execution.
-- If this memory is full, Java throws `java.lang.StackOverFlowError`.
-- Access to this memory is fast when compared to heap memory.
-- This memory is threadsafe, as each thread operates in its own stack.
-
-#### `HEAP`
-
-- used for the dynamic memory allocation of Java objects and JRE classes at runtime.
-
-<table>
-<thead>
-<tr>
-<td>Parameter</td>	<td>Stack Memory</td>	<td>Heap Space</td></tr>
-</thead>
-<tbody>
-<tr>
-<td>Application</td>
-<td>Stack is used in parts, one at a time during execution of a thread</td>
-<td>The entire application uses Heap space during runtime</td>
-</tr>
-<tr>
-<td>Size</td>
-<td>Stack has size limits depending upon OS, and is usually smaller than Heap</td>
-<td>There is no size limit on Heap</td>
-</tr>
-<tr>
-<td>Storage</td>
-<td>Stores only primitive variables and references to objects that are created in Heap Space</td>
-<td>All the newly created objects are stored here</td>
-</tr>
-<tr>
-<td>Order</td>
-<td>It's accessed using Last-in First-out (LIFO) memory allocation system</td>
-<td>This memory is accessed via complex memory management techniques that include Young Generation, Old or Tenured Generation, and Permanent Generation.</td>
-</tr>
-<tr>
-<td>Life</td>
-<td>Stack memory only exists as long as the current method is running</td>
-<td>Heap space exists as long as the application runs</td>
-</tr>
-<tr>
-<td>Efficiency</td>
-<td>Much faster to allocate when compared to heap</td>
-<td>Slower to allocate when compared to stack</td>
-</tr>
-<tr>
-<td>Allocation/Deallocation</td>
-<td>This Memory is automatically allocated and deallocated when a method is called and returned, respectively</td>
-<td>Heap space is allocated when new objects are created and deallocated by Garbage Collector when they're no longer referenced</td>
-</tr>
-</tbody>
-
-</table>
 
 ### 41 What is a constructor and how is it different from a method?
 
