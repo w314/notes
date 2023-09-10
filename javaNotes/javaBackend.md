@@ -1,6 +1,6 @@
 java, javalin, backend, dao, jdbc
 
-## common UNIX commands
+## Common UNIX Commands
 
 > What are some common Linux commands? Why are they useful?
 
@@ -74,7 +74,7 @@ rm -r directory1
 -f
 ```
 
-## source control management
+## Source Control Management
 
 > What is source control management? Why is it useful?
 
@@ -90,9 +90,11 @@ The concept of `CVCS` is that it works on a Client-Server relationship. The repo
 
 On the contrary, in `DVCS`, every user has a local copy of the repository in addition to the central repo on the server-side.
 
-## Git
+### Git
 
 - you have the entire history of the project right there on your local disk (DVCS)
+
+#### Git States
 
 > What are the main states that your files can reside in when using Git?
 
@@ -102,26 +104,35 @@ Git has three main `states` that your files can reside in:
 - `staged` - you have marked a modified file in its current version to go into your next commit snapshot.
 - `committed` - the data is safely stored in your local database
 
+#### Git Project Sections
+
 > What are the main sections of a Git project?
 
 The three main `sections` of a Git project:
 
 - `working tree` (or `working directory`) is a single checkout of one version of the project, downloaded to your local machine.
 - `staging area` is a file, generally contained in your Git directory, that stores information about what will go into your next commit. Its technical name in Git parlance is the `“index”`
-- `git directory`(a.k.a. `repository folder`) is where Git stores the metadata and object database for your project. This is the most important part of Git, and it is what is copied when you clone a repository from another computer
+- `git directory`(a.k.a. `repository folder`)
+  - stores the metadata and object database for your project
   - stores the history of all changes made to the files in a Git project
   - name of directory: `.git`
+    -the most important part of Git, and it is what is copied when you clone a repository from another computer
 
-Two types of Git repositories, based on user permissions:
+#### Git Repository Types
 
-- Bare Repositories
+Repository types based on user permissions:
+
+- `Bare` Repositories
   - Software development teams use bare repositories to share changes made by team members.
   - Individual users aren't allowed to modify or create new versions of the repository.
-- Non-Bare Repositories
+- `Non-Bare` Repositories
 
   - With non-bare repositories, users can modify the existing repository and create new versions.
   - By default, the cloning process creates a non-bare repository.<br><br>
-    > What are some common operations you would be performing when using Git?
+
+#### Git Operations
+
+> What are some common operations you would be performing when using Git?
 
 ```shell
 # initialize repository
@@ -161,7 +172,7 @@ git checkout master
 git merge new-branch
 ```
 
-### Git Bash
+#### Git Bash
 
 - Git Bash is an application for Microsoft Windows environments which provides an emulation layer for a Git command line experience. A package that installs Bash, some common bash utilities, and Git on a Windows operating system.
 - `Bash` is an acronym for `Bourne Again Shell`
@@ -504,6 +515,8 @@ The `Logback architecture` is comprised of three classes:
 
 Setting level at a certain level gives all level on and above that level.
 
+#### Logging Levels Are Used For
+
 What are logging levels good for?
 
 - filtering
@@ -802,7 +815,7 @@ PetServiceTest {
 
 > What is the DAO Design Pattern and why should we use it?
 
-### DAO Design Pattern
+#### DAO Design Pattern
 
 The `DAO` (`Data Access Objects`) design pattern logically separates the code that accesses the database into Data Access Objects.
 
@@ -839,14 +852,14 @@ Now whenever we need to query the database, we have a simple, clean interface wh
 
 > What is the JDBC API and the benefits of using it?
 
-### `Java Database Connectivity` (`JDBC`)
+#### `Java Database Connectivity` (`JDBC`)
 
 - low-level API
 - interacts with relational databases via SQL
 - database agnostic
 - uses database drivers which implement the interfaces defined in the JDBC API for the given database
 
-#### How to use the `JDBC` to interact with the datase
+##### How to use the `JDBC` to interact with the datase
 
 In order to interact with a database, we need to do several things:
 
@@ -855,7 +868,7 @@ In order to interact with a database, we need to do several things:
 3. execute the SQL statements using
 4. process the ResultSet
 
-#### 1. Register the `JDBC` driver
+##### 1. Register the `JDBC` driver
 
 To register the JDBC driver for a specific database, add it as a `dependency` in the `pom.xml` file (except oracle)
 
@@ -870,7 +883,7 @@ To register the JDBC driver for a specific database, add it as a `dependency` in
 </dependencies>
 ```
 
-#### 2. Open a database connection
+##### 2. Open a database connection
 
 > What information would you need in order to successfully connect to a database?
 
@@ -914,7 +927,7 @@ conn.setAutoCommit(false);
 conn.commit();
 ```
 
-#### 2. Execute SQL statements
+##### 2. Execute SQL statements
 
 Once we have the `Connection object`, we can write our SQL and execute it.
 
@@ -935,7 +948,7 @@ String sql = "SELECT * FROM employees";
 ResultSet rs = stmt.executeQuery(sql);
 ```
 
-##### `Prepared Statment`
+###### `Prepared Statment`
 
 > What is the difference between a Simple and Prepared JDBC statement?
 
@@ -955,6 +968,8 @@ The `PreparedStatement interface` is used for executing pre-compiled SQL stateme
 - This interface gives us the flexibility of specifying parameters with the `?`symbol.
 
 - Protects against `SQL injection` when user input is used by pre-compiling the SQL statement
+
+###### SQL Injections
 
 > What is SQL Injection and how can we prevent it using the JDBC?
 
