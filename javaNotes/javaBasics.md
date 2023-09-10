@@ -747,15 +747,6 @@ Types:
 - `protected`: within package + outside of package through inheritance
 - `private`: only within the class, a class (except a nested class) cannot be private
 
-### 58 What is the purpose of using getter and setter methods?
-
-### 59 Why would you use an interface over an abstract class?
-
-Interfaces have these advantages over class:
-
-- Implementation details do not need to be provided in the interface.
-- A class can only extend one other class, but it can implement as many interfaces as needed.
-
 ### 60 object methods to override What methods are commonly overridden from the Object class and why?
 
 - `equals()`
@@ -789,16 +780,3 @@ There are a few rules that the method follows:
 #### `.finalize()` _DEPRECIATED_
 
 Finally, the `.finalize()` method is called by the garbage collector when it determines there are no more references to the object. It can be overriden to perform cleanup activities before garbage collection, although it has been deprecated in newer versions of Java.
-
-### 61 What state and behavior would you define in a parent class but not a subclass?
-
-Example:
-Animal:
-age, name, abstract makeNoise, sleep
-
-### 62 What state and behavior would you define in a subclass but not in the parent class?
-
-Example
-Animal:
-age, name, abstract makeNose, sleep
-Dog: growl

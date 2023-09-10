@@ -103,3 +103,25 @@ EXAMPLE
 employee object, make slary private, setSalary checks valid salary number, getSalary check is user has access rights
 
 ### 56 How is method overriding different from method overloading?
+
+### 58 What is the purpose of using getter and setter methods?
+
+### 59 Why would you use an interface over an abstract class?
+
+Interfaces have these advantages over class:
+
+- Implementation details do not need to be provided in the interface.
+- A class can only extend one other class, but it can implement as many interfaces as needed.
+
+### 61 What state and behavior would you define in a parent class but not a subclass?
+
+Example:
+Animal:
+age, name, abstract makeNoise, sleep
+
+### 62 What state and behavior would you define in a subclass but not in the parent class?
+
+Example
+Animal:
+age, name, abstract makeNose, sleep
+Dog: growl
