@@ -205,6 +205,11 @@ A `collection` is a single object which acts as a container for other objects.
 > What is the Collection API?
 > Java has the Collection API that implements common data structures
 
+### Important Static Methods
+
+- `Collections.sort(myList)`
+- `Collections.reverse(myList)`
+
 ### Important Interfaces
 
 - `Iterable`: requires that subtypes must be iterable so it can be traversed using a for-each loop
