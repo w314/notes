@@ -114,6 +114,8 @@ The most common examples of polymorphism:
 - upcasting
 - downcasting
 
+> How is method overriding different from method overloading?
+
 #### `method overloading`
 
 Within a class when there are two or more methods in a class with the same method name, but different method signatures by changing the parameter list.
@@ -156,14 +158,16 @@ method overriding - speak method implemented differently in Animal subspecies
 
 ### Encapsulation
 
+`Encapsulation` means **restricting access to data members** by using access modifiers and getter/setter methods
+
 > Describe encapsulation and how would you use it in a project?
+
+> What is the purpose of using getter and setter methods?
 
 - `encapsulation` is a process of wrapping data and methods in a single unit.
 - it is an OOP principle
 - in OOP data and methods operating on that data are combined together to form a single unit, which is referred to as a Class
 - `encapsulation` is as a protective wrapper that prevents the code and data from being arbitrarily accessed by other code defined outside the wrapper.
-
-> `encapsulation` means **restricting access to data members** by using access modifiers and getter/setter methods
 
 When encapsulating your code, certain conventions should be followed:
 
@@ -175,14 +179,3 @@ When encapsulating your code, certain conventions should be followed:
 
 EXAMPLE
 employee object, make slary private, setSalary checks valid salary number, getSalary check is user has access rights
-
-### 56 How is method overriding different from method overloading?
-
-### 58 What is the purpose of using getter and setter methods?
-
-### 59 Why would you use an interface over an abstract class?
-
-Interfaces have these advantages over class:
-
-- Implementation details do not need to be provided in the interface.
-- A class can only extend one other class, but it can implement as many interfaces as needed.

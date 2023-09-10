@@ -349,7 +349,9 @@ Together, these form the `method signature`.
 
 ```java
 // METHOD CREATION SYNTAX
-int addNums(int n1, int n2) {
+int addNums(int n1,
+
+ int n2) {
   return n1 + n2;
 }
 
@@ -424,6 +426,17 @@ As a result, you can access the static method without first creating a class ins
 - `autoboxing` - Java feature which will automatically convert primitives to wrapper classes implicitly. In case when passing an `int` variable as parameter to a function requesting an `Integer`.
 - `Unboxing` is the reverse - converting a wrapper class to its primitive.
 - Wrapper classes have static helper methods like .parseX() and .valueOf() for explicit primitive conversion.
+
+### Interfaces
+
+### Abstract Classes
+
+> Why would you use an interface over an abstract class?
+
+Interfaces have these advantages over class:
+
+- Implementation details do not need to be provided in the interface.
+- A class can only extend one other class, but it can implement as many interfaces as needed.
 
 ## Java Programs
 
