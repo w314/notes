@@ -119,6 +119,22 @@ Garbage collection is run in the background by the JVM. There is no way we can e
 - Runtime.getRuntime().gc()
 - System.runFinalize()
 
+## Debugging
+
+> What is a stacktrace? How can you use it to debug your application?
+
+`Stack trace` is a report of the active `stack frames` at a certain point in time during a thread's execution.
+
+Each `JVM thread` (a path of execution) is associated with a stack that's created when the thread is created.
+
+This data structure (stack) is divided into `frames`, which are data structures associated with method calls. For this reason, each thread's stack is often referred to as a method-call stack.
+
+When an exception / error gets thrown. A stack trace is displayed to the console.
+
+> What steps would you take to debug your program if it crashed with an error message in the console?
+
+> What steps would you take to debug your program if runs, but gives you the wrong results?
+
 ## Errors & Exceptions
 
 > What is the difference between an Error and an Exception?
@@ -383,8 +399,6 @@ do {
 
 ```
 
-## print statements
-
 ## Input - Output
 
 ### Scanner class
@@ -430,6 +444,8 @@ Methods:
 - `nextShort()` Reads a short value from the user
 
 If you enter wrong input (e.g. text in a numerical input), you will get an exception/error message (like `InputMismatchException`).
+
+### Print Statements
 
 ## String class
 
@@ -497,24 +513,6 @@ int[] otherArray = {1, 2, 3};
 #### Sorting an Array
 
 - `Arrays.sort(myArray)`
-
-## Debugging
-
-### 17 What is a stacktrace? How can you use it to debug your application?
-
-> `Stack trace` is a report of the active `stack frames` at a certain point in time during a thread's execution.
-
-Each `JVM thread` (a path of execution) is associated with a stack that's created when the thread is created.
-
-This data structure (stack) is divided into `frames`, which are data structures associated with method calls. For this reason, each thread's stack is often referred to as a method-call stack.
-
-When an exception / error gets thrown. A stack trace is displayed to the console.
-
-### 25 debug crash What steps would you take to debug your program if it crashed with an error message in the console?
-
-### 26 debug wrong result What steps would you take to debug your program if runs, but gives you the wrong results?
-
-### 32 What is the modulo operator and why would we use it?
 
 ### 33 What is a package and why would we use one?
 
@@ -663,90 +661,6 @@ short s = (short)i;
 - Wrapper classes have static helper methods like .parseX() and .valueOf() for explicit primitive conversion.
 
 ### 50 If there was an error in the console when you tried to run your program, how would you debug?
-
-## Lists
-
-### 51 list operations What are some operations you can perform on a List?
-
-`List`
-
-- interface
-- implements collection interface
-- collection of elements of the same type
-- preserves the order in which elements are inserted
-- duplicate entries are allowed
-- elements are accessed by their index, which begins with 0
-
-List interface includes operations:
-
-- positional access operations
-- search operations
-- iteration operations
-- range-view operations
-
-#### 1. Positional access operations
-
-Manipulates elements based on their numerical position in the list
-
-- `get`
-- `set`
-- `add`
-- `addAll`
-- `remove`
-
-#### 2. Search operations
-
-Searches for a specified object in the list and returns its numerical position.
-
-- `.indexOf()` -`.lastIndexOf()`
-- `indexOfSubList`
-
-#### 3. Iteration operations
-
-`ListIterator`, which allows you to traverse the list in either direction, modify the list during iteration, and obtain the current position of the iterator.
-
-Methods:
-
-Inherited from `Iterator`
-
-- `hasNext()`
-- `next()` - moves cursor forward
-- `remove()`
-
-Added methods:
-
-- `hasPrevious()`
-- `previous()` - moves cursor backward
-
-```java
-// iterating backwards through a  List
-for (ListIterator<Type> it = list.listIterator(list.size()); it.hasPrevious(); ) {
-    Type t = it.previous();
-    ...
-}
-```
-
-Arguments
-
-The List interface has two forms of the listIterator method.
-
-- no arguments: returns a ListIterator positioned at the beginning of the list
-- with an int argument: returns a ListIterator positioned at the specified index.
-
-The index refers to the element that would be returned by an initial call to next. An initial call to previous would return the element whose index was index-1. In a list of length n, there are n+1 valid values for index, from 0 to n, inclusive.
-
-Cursor
-
-- Intuitively speaking, the `cursor` is always between two elements — the one that would be returned by a call to previous and the one that would be returned by a call to next
-- Calls to next and previous can be intermixed, but you have to be a bit careful. The first call to previous returns the same element as the last call to next. Similarly, the first call to next after a sequence of calls to previous returns the same element as the last call to previous.
-
-#### 4. Range-view operations
-
-Returns a List view of the portion of this list whose indices range from fromIndex, inclusive, to toIndex, exclusive.
-
-The returned List is backed up by the List on which subList was called, so changes in the former are reflected in the latter.
-
-- `sublist(int fromIndex, int toIndex)`
 
 ### 57 access modifiers What are the four levels of access we can give to class members? How are they different from one another?
 

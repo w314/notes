@@ -220,6 +220,90 @@ A `collection` is a single object which acts as a container for other objects.
 - `Deque`: extends `Queue` supports double-ended queue
 - `Map`: does not implement the Collection or Iterable interfaces, but is part of the collection framework.
 
+## List Interface
+
+### 51 list operations What are some operations you can perform on a List?
+
+`List`
+
+- interface
+- implements collection interface
+- collection of elements of the same type
+- preserves the order in which elements are inserted
+- duplicate entries are allowed
+- elements are accessed by their index, which begins with 0
+
+List interface includes operations:
+
+- positional access operations
+- search operations
+- iteration operations
+- range-view operations
+
+#### 1. Positional access operations
+
+Manipulates elements based on their numerical position in the list
+
+- `get`
+- `set`
+- `add`
+- `addAll`
+- `remove`
+
+#### 2. Search operations
+
+Searches for a specified object in the list and returns its numerical position.
+
+- `.indexOf()` -`.lastIndexOf()`
+- `indexOfSubList`
+
+#### 3. Iteration operations
+
+`ListIterator`, which allows you to traverse the list in either direction, modify the list during iteration, and obtain the current position of the iterator.
+
+Methods:
+
+Inherited from `Iterator`
+
+- `hasNext()`
+- `next()` - moves cursor forward
+- `remove()`
+
+Added methods:
+
+- `hasPrevious()`
+- `previous()` - moves cursor backward
+
+```java
+// iterating backwards through a  List
+for (ListIterator<Type> it = list.listIterator(list.size()); it.hasPrevious(); ) {
+    Type t = it.previous();
+    ...
+}
+```
+
+Arguments
+
+The List interface has two forms of the listIterator method.
+
+- no arguments: returns a ListIterator positioned at the beginning of the list
+- with an int argument: returns a ListIterator positioned at the specified index.
+
+The index refers to the element that would be returned by an initial call to next. An initial call to previous would return the element whose index was index-1. In a list of length n, there are n+1 valid values for index, from 0 to n, inclusive.
+
+Cursor
+
+- Intuitively speaking, the `cursor` is always between two elements — the one that would be returned by a call to previous and the one that would be returned by a call to next
+- Calls to next and previous can be intermixed, but you have to be a bit careful. The first call to previous returns the same element as the last call to next. Similarly, the first call to next after a sequence of calls to previous returns the same element as the last call to previous.
+
+#### 4. Range-view operations
+
+Returns a List view of the portion of this list whose indices range from fromIndex, inclusive, to toIndex, exclusive.
+
+The returned List is backed up by the List on which subList was called, so changes in the former are reflected in the latter.
+
+- `sublist(int fromIndex, int toIndex)`
+
 ## Queue
 
 - FIFO: add to end/tail, remove from beginning/head
