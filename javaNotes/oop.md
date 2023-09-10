@@ -158,7 +158,7 @@ method overriding - speak method implemented differently in Animal subspecies
 
 ### Encapsulation
 
-`Encapsulation` means **restricting access to data members** by using access modifiers and getter/setter methods
+`E~ncapsulation` means **restricting access to data members** by using access modifiers and getter/setter methods
 
 > Describe encapsulation and how would you use it in a project?
 
