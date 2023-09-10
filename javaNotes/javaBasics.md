@@ -568,14 +568,6 @@ A class used as the `type` for a `reference variable` determines what behaviors 
 
 We use classes to create a blueprint for objects.
 
-### 37 Describe what an object is.
-
-An object is an instance of a class in memory.
-
-- In Java, you never interact with objects directly. Instead, you interact with them through their reference, which is the memory address used by the JVM to find a particular object.
-
-- constructor declares how an object is to be instantiated and initialized from the class "blueprint".
-
 ### 39 If I define a variable within a method, how can I access its value outside of the method?
 
 When a variable is declared in a Java program, it is attached to a specific scope within the program, which determines where the variable resides. The different scopes of a variable in Java are:

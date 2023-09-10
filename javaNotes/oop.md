@@ -1,3 +1,11 @@
+### 37 Describe what an object is.
+
+An object is an instance of a class in memory.
+
+- In Java, you never interact with objects directly. Instead, you interact with them through their reference, which is the memory address used by the JVM to find a particular object.
+
+- constructor declares how an object is to be instantiated and initialized from the class "blueprint".
+
 ### 52 Describe inheritance and how would you use it in a project?
 
 `Inheritance` is inheriting the common state and behavior of parent class (super class) by its derived class (sub class or child class).
