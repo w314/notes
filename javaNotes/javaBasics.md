@@ -215,42 +215,13 @@ If the exception is not handled anywhere in the program, it will propagate up th
 
 A `variable` is a container for storing data.
 
-```java
-dataType variableName = value;
-```
+#### Variable Types
 
-Java is strongly typed meaning that when a variable is declared in Java, the type must be specified.
-
-#### Variable Types:
-
-- primitive type - data types defined by the language itself
-- reference type - data types defined in the Java API or by a programmer
-
-The `variable name` is the unique identifier used to reference that variable again.
-
-#### Using variables
-
-> What is the difference between assigning and declaring a variable?
-
-DECLARE a variable
-
-```java
-datatype variableName;
-```
-
-- Java is a strongly-typed language which means that all variables in Java must define what type of data we can store into that variable.
-- This statement creates a place in memory for Java to store information of that specific datatype.
-- camelCase naming convention
-- We can refer to this named place in memory using the variable name. If we want to store a value in the variable
-
-ASSIGN a value to a variable
-
-```java
-variableName = value;
-```
-
-- stores a value in the variable
-- only work as long as the new variable is of the same datatype
+- `primitive data type` - data types defined by the language itself
+  - the type of a primitive variable determines the range of values that a primitive variable can store
+- `reference data type` - data types defined in the Java API or by a programmer
+  - stores the reference to an object in memory
+  - the type of a reference variable determines what types of objects a reference variable can store a reference to
 
 > What is a primitive data type? Please list a few and explain them.
 
@@ -265,6 +236,36 @@ variableName = value;
   - float 4 bytes floating point
   - long 8 bytes numerical
   - double 8 bytes floating point
+
+#### Using variables
+
+```java
+dataType variableName = value;
+```
+
+> What is the difference between assigning and declaring a variable?
+
+##### Declaring a variable
+
+```java
+datatype variableName;
+```
+
+- The `variable name` is the unique identifier used to reference that variable again
+- Java is a strongly-typed language which means that all variables in Java must define what type of data we can store into that variable.
+- This statement creates a place in memory for Java to store information of that specific datatype.
+- camelCase naming convention
+
+##### Assigning value to a variable
+
+If we want to store a value in the variable:
+
+```java
+variableName = value;
+```
+
+- stores a value in the variable
+- only work as long as the new variable is of the same datatype
 
 #### Opearators
 

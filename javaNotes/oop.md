@@ -6,7 +6,7 @@
 
 A class is a template used to instantiate objects.
 
-A class used as the `type` for a `reference variable` determines what behaviors of an object can be invoked, and how any variables get initialized.
+A class used as the `type` for a `reference variable` determines what state and behavior an object will possess.
 
 We use classes to create a blueprint for objects.
 
@@ -18,7 +18,7 @@ An object is an instance of a class in memory.
 
 - In Java, you never interact with objects directly. Instead, you interact with them through their reference, which is the memory address used by the JVM to find a particular object.
 
-- constructor declares how an object is to be instantiated and initialized from the class "blueprint".
+- the `constructor` declares how an object is to be instantiated and initialized from the class "blueprint".
 
 ### Constructur
 
