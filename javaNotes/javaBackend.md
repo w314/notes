@@ -125,8 +125,10 @@ Repository types based on user permissions:
 - `Bare` Repositories
   - Software development teams use bare repositories to share changes made by team members.
   - Individual users aren't allowed to modify or create new versions of the repository.
-- `Non-Bare` Repositories
 
+<br>
+
+- `Non-Bare` Repositories
   - With non-bare repositories, users can modify the existing repository and create new versions.
   - By default, the cloning process creates a non-bare repository.<br><br>
 
