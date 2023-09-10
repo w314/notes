@@ -292,6 +292,37 @@ int a = 5;
 int b = ++a; // b=6, a=6
 ```
 
+#### Casting
+
+> What is explicit and implicit casting?
+
+`Casting` is the process of converting a data type to another data type.
+
+`implicit casting`
+
+- automatically done by Java
+- does it with primitive data types
+- where there is no loss of data
+
+  - If one of the values is a double, the other value is converted to a double
+  - If neither is a double but one is a float, the other is converted to a float.
+  - If neither is a double nor a float but one is a long, the other is converted to a long.
+  - If all else fails, both values are converted to int.
+
+`explicit casting`
+
+- done by programmer
+- uses `()`:
+
+```java
+int i = 200;
+short s = (short)i;
+```
+
+- In some cases you will have to use the data type's own methods to convert. Some of these methods are listed in the table below.
+  - `String` to `int` with `Integer.parseInt(String)`
+  - `int` to `String` with `String.valueOf(int)`
+
 ### Java Methods
 
 > What is a method?
@@ -384,6 +415,15 @@ A static method is a method of a class that isn’t associated with an instance 
 Instead, the method belongs to the class itself.
 
 As a result, you can access the static method without first creating a class instance.
+
+### Autoboxing
+
+> What is autoboxing and unboxing?
+
+- `Boxing` - the process of converting a primitive to its wrapper clas
+- `autoboxing` - Java feature which will automatically convert primitives to wrapper classes implicitly. In case when passing an `int` variable as parameter to a function requesting an `Integer`.
+- `Unboxing` is the reverse - converting a wrapper class to its primitive.
+- Wrapper classes have static helper methods like .parseX() and .valueOf() for explicit primitive conversion.
 
 ## Java Programs
 
@@ -617,6 +657,14 @@ String words = "once upon";
 String[] wordArray = words.split(" ");
 ```
 
+> If you received text input from the user, how would you go about comparing it to a value, like "yes" or "no"?
+
+```java
+String str1 = "yes";
+String str2 = "no";
+boolean isSame = str1.equals(str2);
+```
+
 ## Java Arrays
 
 > What is an array? Why is it useful?
@@ -641,55 +689,4 @@ int[] otherArray = {1, 2, 3};
 
 - `Arrays.sort(myArray)`
 
-### 42 array vs. ArrayList What is the difference between an array and an ArrayList?
-
-### 46 compare strings If you received text input from the user, how would you go about comparing it to a value, like "yes" or "no"?
-
-```java
-String str1 = "yes";
-String str2 = "no";
-boolean isSame = str1.equals(str2);
-```
-
-### 47 casting What is explicit and implicit casting?
-
-`Casting` is the process of converting a data type to another data type.
-
-`implicit casting`
-
-- automatically done by Java
-- does it with primitive data types
-- where there is no loss of data
-
-  - If one of the values is a double, the other value is converted to a double
-  - If neither is a double but one is a float, the other is converted to a float.
-  - If neither is a double nor a float but one is a long, the other is converted to a long.
-  - If all else fails, both values are converted to int.
-
-`explicit casting`
-
-- done by programmer
-- uses `()`:
-
-```java
-int i = 200;
-short s = (short)i;
-```
-
-- In some cases you will have to use the data type's own methods to convert. Some of these methods are listed in the table below.
-  - `String` to `int` with `Integer.parseInt(String)`
-  - `int` to `String` with `String.valueOf(int)`
-
-### 48 scopes What are the different scopes in Java?
-
-- Instance, or object, scope
-- Class, or static, scope
-- Method scope
-- Block scope
-
-### 49 What is autoboxing and unboxing?
-
-- `Boxing` - the process of converting a primitive to its wrapper clas
-- `autoboxing` - Java feature which will automatically convert primitives to wrapper classes implicitly. In case when passing an `int` variable as parameter to a function requesting an `Integer`.
-- `Unboxing` is the reverse - converting a wrapper class to its primitive.
-- Wrapper classes have static helper methods like .parseX() and .valueOf() for explicit primitive conversion.
+> What is the difference between an array and an ArrayList?
