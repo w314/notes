@@ -20,6 +20,30 @@ An object is an instance of a class in memory.
 
 - constructor declares how an object is to be instantiated and initialized from the class "blueprint".
 
+### Constructur
+
+> What is a constructor and how is it different from a method?
+
+A `constructor` is a special method that declares how an object is to be instantiated and initialized from the class "blueprint".
+
+- A constructor is declared like a method, except its method signature does not contain a return type, and a constructor always has the same name as the class.
+
+- The new object created by the constructor is always of the class in which the constructor is declared.
+  this refers to the object which is being instantiated - it is used to initialize instance variables, or - to call other constructors (this is called constructor chaining)
+  There is another keyword important for constructors - the super keyword, which references the "super", or parent, class.
+  When invoked as a method (super()), the parent class constructor will be called.
+  A super() call (or a this() call) must be the first line of any constructor.
+- If not explicitly provided, the compiler will inject super() it on the first line implicitly.
+  The "default" constructor takes no arguments and simply calls super() (see above) - sometimes it is referred to as the "default, no-args" constructor.
+- However if we define our own constructor(s) in the class, we will not receive a default constructor from the compiler.
+
+#### Constructors vs. Methods
+
+- have no return types
+- have same name as class
+- provide no functionality to object
+- automatically called at object creation when a class is instanceated
+
 ## OOP Principles
 
 - Inheritance

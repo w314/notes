@@ -135,6 +135,8 @@ When an exception / error gets thrown. A stack trace is displayed to the console
 
 > What steps would you take to debug your program if runs, but gives you the wrong results?
 
+> If there was an error in the console when you tried to run your program, how would you debug?
+
 ## Errors & Exceptions
 
 > What is the difference between an Error and an Exception?
@@ -337,7 +339,33 @@ int total = addNums(1, 2);
 - Method scope
 - Block scope
 
-### 34 instance vs. static variable What is the difference between using an instance variable and a static variable?
+> If I define a variable within a method, how can I access its value outside of the method?
+
+When a variable is declared in a Java program, it is attached to a specific scope within the program, which determines where the variable resides. The different scopes of a variable in Java are:
+
+### Classes
+
+#### Access Modifiers
+
+> What are the four levels of access we can give to class members? How are they different from one another?
+
+- `access modifiers` set access level of methods, variables, classes and constructors
+
+Types:
+
+- `public`: can be accessed by any classes
+- `default` (when there is no access modifier): within the same package only
+- `protected`: within package + outside of package through inheritance
+- `private`: only within the class, a class (except a nested class) cannot be private
+
+#### Instance vs. Object Scope
+
+- `Instance, or object scope` - The variable is attached to individual objects created from the class.
+- `Class, or static scope` - Resides on the class definition itself.
+- `Method scope` - Declared within a method block; only available within the method in which they are declared.
+- `Block scope` - Only exist within the specific control flow block (for, while, etc.)
+
+> What is the difference between using an instance variable and a static variable?
 
 The static keyword in Java is mainly used for memory management. The static keyword in Java is used to share the same variable or method of a given class.
 
@@ -348,8 +376,6 @@ A static variable is a variable of a class that isn’t associated with an insta
 Instead, the variable belongs to the class itself.
 
 As a result, you can access the static variable without first creating a class instance.
-
-### `instance` vs. `static`
 
 > What is the difference between calling an instance method and a static method?
 
@@ -512,7 +538,43 @@ If you enter wrong input (e.g. text in a numerical input), you will get an excep
 
 #### Print Statements
 
-## String class
+## Object Class
+
+> What methods are commonly overridden from the Object class and why?
+
+- `equals()`
+- `hashCode()`
+- `toString()`
+
+#### `toString()`
+
+The `toString()` method is automatically called if you print an Object. Usually, this is overridden to provide human-readable output. Otherwise, you will print out fully.qualified.ClassName@memoryAddress
+
+#### `equals(Object o)`
+
+The `equals(Object o)` method compares two Objects. The == operator also compares objects, but only the memory address (i.e. will return true if and only if the variables refer to the exact same object in memory). By default, and unless you explicitly override it, the equals method simply calls the == operator.
+
+In Object class `equals()` is true if we compare the same instance, for value objects we may want to compare based on property values.
+
+- two instances of _Person_ with same name and birthday should be different
+- we may want to two instances of _Money_ with same amount and currency be the same, in this case we have to change both the `equals()` and `hashCode()` methods
+
+#### `hashCode()`
+
+The `hashCode()` method returns a hash code - a number that puts instances of a class into a finite number of categories.
+
+There are a few rules that the method follows:
+
+- You are expected to override hashCode() if you override equals()
+- The result of hashCode() should not change in a program
+- if .equals() returns true, the hash codes should be equal
+- if .equals() returns false, the hash codes do not have to be distinct. However, doing so will help the performance of hash tables.
+
+#### `.finalize()` _DEPRECIATED_
+
+Finally, the `.finalize()` method is called by the garbage collector when it determines there are no more references to the object. It can be overriden to perform cleanup activities before garbage collection, although it has been deprecated in newer versions of Java.
+
+## String Class
 
 > Which datatype represents text in Java?
 
@@ -579,45 +641,6 @@ int[] otherArray = {1, 2, 3};
 
 - `Arrays.sort(myArray)`
 
-### 36 What are classes used for?
-
-A class is a template used to instantiate objects.
-
-A class used as the `type` for a `reference variable` determines what behaviors of an object can be invoked, and how any variables get initialized.
-
-We use classes to create a blueprint for objects.
-
-### 39 If I define a variable within a method, how can I access its value outside of the method?
-
-When a variable is declared in a Java program, it is attached to a specific scope within the program, which determines where the variable resides. The different scopes of a variable in Java are:
-
-- `Instance, or object scope` - The variable is attached to individual objects created from the class.
-- `Class, or static scope` - Resides on the class definition itself.
-- `Method scope` - Declared within a method block; only available within the method in which they are declared.
-- `Block scope` - Only exist within the specific control flow block (for, while, etc.)
-
-### 41 What is a constructor and how is it different from a method?
-
-A `constructor` is a special method that declares how an object is to be instantiated and initialized from the class "blueprint".
-
-- A constructor is declared like a method, except its method signature does not contain a return type, and a constructor always has the same name as the class.
-
-- The new object created by the constructor is always of the class in which the constructor is declared.
-  this refers to the object which is being instantiated - it is used to initialize instance variables, or - to call other constructors (this is called constructor chaining)
-  There is another keyword important for constructors - the super keyword, which references the "super", or parent, class.
-  When invoked as a method (super()), the parent class constructor will be called.
-  A super() call (or a this() call) must be the first line of any constructor.
-- If not explicitly provided, the compiler will inject super() it on the first line implicitly.
-  The "default" constructor takes no arguments and simply calls super() (see above) - sometimes it is referred to as the "default, no-args" constructor.
-- However if we define our own constructor(s) in the class, we will not receive a default constructor from the compiler.
-
-#### Constructors vs. Methods
-
-- have no return types
-- have same name as class
-- provide no functionality to object
-- automatically called at object creation when a class is instanceated
-
 ### 42 array vs. ArrayList What is the difference between an array and an ArrayList?
 
 ### 46 compare strings If you received text input from the user, how would you go about comparing it to a value, like "yes" or "no"?
@@ -670,50 +693,3 @@ short s = (short)i;
 - `autoboxing` - Java feature which will automatically convert primitives to wrapper classes implicitly. In case when passing an `int` variable as parameter to a function requesting an `Integer`.
 - `Unboxing` is the reverse - converting a wrapper class to its primitive.
 - Wrapper classes have static helper methods like .parseX() and .valueOf() for explicit primitive conversion.
-
-### 50 If there was an error in the console when you tried to run your program, how would you debug?
-
-### 57 access modifiers What are the four levels of access we can give to class members? How are they different from one another?
-
-- `access modifiers` set access level of methods, variables, classes and constructors
-
-Types:
-
-- `public`: can be accessed by any classes
-- `default` (when there is no access modifier): within the same package only
-- `protected`: within package + outside of package through inheritance
-- `private`: only within the class, a class (except a nested class) cannot be private
-
-### 60 object methods to override What methods are commonly overridden from the Object class and why?
-
-- `equals()`
-- `hashCode()`
-- `toString()`
-
-#### `toString()`
-
-The `toString()` method is automatically called if you print an Object. Usually, this is overridden to provide human-readable output. Otherwise, you will print out fully.qualified.ClassName@memoryAddress
-
-#### `equals(Object o)`
-
-The `equals(Object o)` method compares two Objects. The == operator also compares objects, but only the memory address (i.e. will return true if and only if the variables refer to the exact same object in memory). By default, and unless you explicitly override it, the equals method simply calls the == operator.
-
-In Object class `equals()` is true if we compare the same instance, for value objects we may want to compare based on property values.
-
-- two instances of _Person_ with same name and birthday should be different
-- we may want to two instances of _Money_ with same amount and currency be the same, in this case we have to change both the `equals()` and `hashCode()` methods
-
-#### `hashCode()`
-
-The `hashCode()` method returns a hash code - a number that puts instances of a class into a finite number of categories.
-
-There are a few rules that the method follows:
-
-- You are expected to override hashCode() if you override equals()
-- The result of hashCode() should not change in a program
-- if .equals() returns true, the hash codes should be equal
-- if .equals() returns false, the hash codes do not have to be distinct. However, doing so will help the performance of hash tables.
-
-#### `.finalize()` _DEPRECIATED_
-
-Finally, the `.finalize()` method is called by the garbage collector when it determines there are no more references to the object. It can be overriden to perform cleanup activities before garbage collection, although it has been deprecated in newer versions of Java.
