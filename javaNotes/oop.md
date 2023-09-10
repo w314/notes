@@ -1,4 +1,18 @@
-### 37 Describe what an object is.
+## Classes and Objects
+
+### Class
+
+> What are classes used for?
+
+A class is a template used to instantiate objects.
+
+A class used as the `type` for a `reference variable` determines what behaviors of an object can be invoked, and how any variables get initialized.
+
+We use classes to create a blueprint for objects.
+
+### Object
+
+> Describe what an object is.
 
 An object is an instance of a class in memory.
 
@@ -6,7 +20,16 @@ An object is an instance of a class in memory.
 
 - constructor declares how an object is to be instantiated and initialized from the class "blueprint".
 
-### 52 Describe inheritance and how would you use it in a project?
+## OOP Principles
+
+- Inheritance
+- Abstraction
+- Encapsulation
+- Polymorphism
+
+### Inheritance
+
+> Describe inheritance and how would you use it in a project?
 
 `Inheritance` is inheriting the common state and behavior of parent class (super class) by its derived class (sub class or child class).
 A sub class can inherit all non-private members from super class, by default.
@@ -31,7 +54,22 @@ class Dog extends Animal {
 }
 ```
 
-### 53 Describe abstraction and how would you use it in a project?
+> What state and behavior would you define in a parent class but not a subclass?
+
+Example:
+Animal:
+age, name, abstract makeNoise, sleep
+
+> What state and behavior would you define in a subclass but not in the parent class?
+
+Example
+Animal:
+age, name, abstract makeNose, sleep
+Dog: growl
+
+### Abstraction
+
+> Describe abstraction and how would you use it in a project?
 
 `Abstraction` is an OOP programming principle.
 
@@ -39,7 +77,9 @@ Through abstraction we hide underlying complexity through a simplified interface
 
 example: Shape class, getArea() method
 
-### 54 Describe polymorphism and how would you use it in a project?
+### Polymorphism
+
+> Describe polymorphism and how would you use it in a project?
 
 `polymorphism` means "taking on many forms". In OOP polymorphism provides the means to perform a single action in multiple different ways
 
@@ -90,7 +130,9 @@ method overloading - temperature converter working with both integers, doubles o
 
 method overriding - speak method implemented differently in Animal subspecies
 
-### 55 Describe encapsulation and how would you use it in a project?
+### Encapsulation
+
+> Describe encapsulation and how would you use it in a project?
 
 - `encapsulation` is a process of wrapping data and methods in a single unit.
 - it is an OOP principle
@@ -120,16 +162,3 @@ Interfaces have these advantages over class:
 
 - Implementation details do not need to be provided in the interface.
 - A class can only extend one other class, but it can implement as many interfaces as needed.
-
-### 61 What state and behavior would you define in a parent class but not a subclass?
-
-Example:
-Animal:
-age, name, abstract makeNoise, sleep
-
-### 62 What state and behavior would you define in a subclass but not in the parent class?
-
-Example
-Animal:
-age, name, abstract makeNose, sleep
-Dog: growl

@@ -207,7 +207,7 @@ If the exception is not handled anywhere in the program, it will propagate up th
 
 `Methods` are blocks of reusable code.
 
-## Java Variables
+### Java Variables
 
 > What is a variable?
 
@@ -219,12 +219,14 @@ dataType variableName = value;
 
 Java is strongly typed meaning that when a variable is declared in Java, the type must be specified.
 
-Variable Types:
+#### Variable Types:
 
 - primitive type - data types defined by the language itself
 - reference type - data types defined in the Java API or by a programmer
 
 The `variable name` is the unique identifier used to reference that variable again.
+
+#### Using variables
 
 > What is the difference between assigning and declaring a variable?
 
@@ -262,7 +264,7 @@ variableName = value;
   - long 8 bytes numerical
   - double 8 bytes floating point
 
-### Opearators
+#### Opearators
 
 > What is the modulo operator? How is it useful?
 
@@ -288,7 +290,7 @@ int a = 5;
 int b = ++a; // b=6, a=6
 ```
 
-## Java Methods
+### Java Methods
 
 > What is a method?
 
@@ -296,7 +298,7 @@ A `method` is a block of reusable code that can be invoked again and again.
 
 > What is the difference in syntax between calling a method and creating a method?
 
-`Method Signature`
+#### `Method Signature`
 
 All methods in a class are defined by:
 
@@ -308,7 +310,7 @@ All methods in a class are defined by:
 
 Together, these form the `method signature`.
 
-`Method Parameters`
+#### `Method Parameters`
 
 - Method parameters are variables passed inside of the parenthesis of the method which we are able to utilize inside of our method. These values are given to us from the entity that invokes the method.
 
@@ -326,6 +328,69 @@ int total = addNums(1, 2);
 
 ```
 
+### Scope
+
+> What are the different scopes in Java?
+
+- Instance, or object, scope
+- Class, or static, scope
+- Method scope
+- Block scope
+
+### 34 instance vs. static variable What is the difference between using an instance variable and a static variable?
+
+The static keyword in Java is mainly used for memory management. The static keyword in Java is used to share the same variable or method of a given class.
+
+When a member is declared static, it can be accessed before any objects of its class are created, and without reference to any object.
+
+A static variable is a variable of a class that isn’t associated with an instance of a class.
+
+Instead, the variable belongs to the class itself.
+
+As a result, you can access the static variable without first creating a class instance.
+
+### `instance` vs. `static`
+
+> What is the difference between calling an instance method and a static method?
+
+A static method is a method of a class that isn’t associated with an instance of a class.
+
+Instead, the method belongs to the class itself.
+
+As a result, you can access the static method without first creating a class instance.
+
+## Java Programs
+
+### Package
+
+> What is a package and why would we use one?
+
+- a `package` is a collection of classes, interfaces, and enums in a hierarchical manner.
+- why?
+
+  - keep your classes separate from the classes in the Java API
+  - reuse classes in other applications.
+  - distribute your classes to others.
+
+- naming convention: lowercase characters separated by periods in the reverse way you would specify a web domain (com.revature.mypackage)
+
+- usage
+  - by default, everything in the `java.lang` package is imported.
+  - classes can be referenced anywhere in a program by their "fully qualified class name" - which is the package declaration followed by the class, in order to uniquely identify the class
+  - using imports
+- declare package: the first (non-commented) line in a .java file
+  declares the package in which the class will reside.
+
+```java
+// declare the package this class belongs to
+package com.revature.mypackage;
+
+// import other packages to use
+import java.util.*;
+```
+
+### Main method
+
 > Explain the main method.
 
 ```java
@@ -341,7 +406,7 @@ public class HelloWorld{
 - `void` is the "return type" of the method
 - `String[] args` array of Strings defined in the method parameters are passed from the command line when the java command is run
 
-## Java Conditional Statements
+### Java Conditional Statements
 
 Conditional statements are flow control statments.
 
@@ -362,7 +427,7 @@ Conditional statements are flow control statments.
   - `enum`
 - if the if statement is too long switch can be better
 
-## Java Loops
+### Java Loops
 
 Loops are flow control statments.
 
@@ -399,9 +464,9 @@ do {
 
 ```
 
-## Input - Output
+### Input - Output
 
-### Scanner class
+#### Scanner class
 
 > What is the Scanner class used for? Give an example of how you would use it.
 
@@ -445,7 +510,7 @@ Methods:
 
 If you enter wrong input (e.g. text in a numerical input), you will get an exception/error message (like `InputMismatchException`).
 
-### Print Statements
+#### Print Statements
 
 ## String class
 
@@ -513,52 +578,6 @@ int[] otherArray = {1, 2, 3};
 #### Sorting an Array
 
 - `Arrays.sort(myArray)`
-
-### 33 What is a package and why would we use one?
-
-- a `package` is a collection of classes, interfaces, and enums in a hierarchical manner.
-- why?
-
-  - keep your classes separate from the classes in the Java API
-  - reuse classes in other applications.
-  - distribute your classes to others.
-
-- naming convention: lowercase characters separated by periods in the reverse way you would specify a web domain (com.revature.mypackage)
-
-- usage
-  - by default, everything in the `java.lang` package is imported.
-  - classes can be referenced anywhere in a program by their "fully qualified class name" - which is the package declaration followed by the class, in order to uniquely identify the class
-  - using imports
-- declare package: the first (non-commented) line in a .java file
-  declares the package in which the class will reside.
-
-```java
-// declare the package this class belongs to
-package com.revature.mypackage;
-
-// import other packages to use
-import java.util.*;
-```
-
-### 34 instance vs. static variable What is the difference between using an instance variable and a static variable?
-
-The static keyword in Java is mainly used for memory management. The static keyword in Java is used to share the same variable or method of a given class.
-
-When a member is declared static, it can be accessed before any objects of its class are created, and without reference to any object.
-
-A static variable is a variable of a class that isn’t associated with an instance of a class.
-
-Instead, the variable belongs to the class itself.
-
-As a result, you can access the static variable without first creating a class instance.
-
-### 35 instance vs. static method What is the difference between calling an instance method and a static method?
-
-A static method is a method of a class that isn’t associated with an instance of a class.
-
-Instead, the method belongs to the class itself.
-
-As a result, you can access the static method without first creating a class instance.
 
 ### 36 What are classes used for?
 
