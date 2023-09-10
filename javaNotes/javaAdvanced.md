@@ -220,27 +220,24 @@ A `collection` is a single object which acts as a container for other objects.
 - `Deque`: extends `Queue` supports double-ended queue
 - `Map`: does not implement the Collection or Iterable interfaces, but is part of the collection framework.
 
-## List Interface
+### List Interface
 
-### 51 list operations What are some operations you can perform on a List?
-
-`List`
-
-- interface
 - implements collection interface
 - collection of elements of the same type
 - preserves the order in which elements are inserted
 - duplicate entries are allowed
 - elements are accessed by their index, which begins with 0
 
-List interface includes operations:
+#### List Operations
+
+> What are some operations you can perform on a List?
 
 - positional access operations
 - search operations
 - iteration operations
 - range-view operations
 
-#### 1. Positional access operations
+##### 1. Positional access operations
 
 Manipulates elements based on their numerical position in the list
 
@@ -250,18 +247,18 @@ Manipulates elements based on their numerical position in the list
 - `addAll`
 - `remove`
 
-#### 2. Search operations
+##### 2. Search operations
 
 Searches for a specified object in the list and returns its numerical position.
 
 - `.indexOf()` -`.lastIndexOf()`
 - `indexOfSubList`
 
-#### 3. Iteration operations
+##### 3. Iteration operations
 
 `ListIterator`, which allows you to traverse the list in either direction, modify the list during iteration, and obtain the current position of the iterator.
 
-Methods:
+#### Methods
 
 Inherited from `Iterator`
 
@@ -282,7 +279,7 @@ for (ListIterator<Type> it = list.listIterator(list.size()); it.hasPrevious(); )
 }
 ```
 
-Arguments
+##### listIterator
 
 The List interface has two forms of the listIterator method.
 
@@ -291,12 +288,12 @@ The List interface has two forms of the listIterator method.
 
 The index refers to the element that would be returned by an initial call to next. An initial call to previous would return the element whose index was index-1. In a list of length n, there are n+1 valid values for index, from 0 to n, inclusive.
 
-Cursor
+###### Cursor
 
 - Intuitively speaking, the `cursor` is always between two elements — the one that would be returned by a call to previous and the one that would be returned by a call to next
 - Calls to next and previous can be intermixed, but you have to be a bit careful. The first call to previous returns the same element as the last call to next. Similarly, the first call to next after a sequence of calls to previous returns the same element as the last call to previous.
 
-#### 4. Range-view operations
+##### 4. Range-view operations
 
 Returns a List view of the portion of this list whose indices range from fromIndex, inclusive, to toIndex, exclusive.
 
@@ -304,7 +301,7 @@ The returned List is backed up by the List on which subList was called, so chang
 
 - `sublist(int fromIndex, int toIndex)`
 
-## Queue
+### Queue Interface
 
 - FIFO: add to end/tail, remove from beginning/head
 - Java has an interface that represents this data structure
@@ -314,7 +311,7 @@ The returned List is backed up by the List on which subList was called, so chang
   - `poll`: attempt and remove, if you are able to
 - using add(), remove(), and element() would throw exceptions
 
-### Queue implementations
+#### Queue implementations
 
 - `LinkedList`
 - `ArrayDeque`
@@ -327,7 +324,7 @@ The returned List is backed up by the List on which subList was called, so chang
   - supports operations that wait on the queue to contain an element or for space to become available in the queue
   - Solution to the producer-consumer problem, where a producer thread inputs elements into the array while a consumer thread removes them for processing
 
-## Stack
+### Stack Interface - LEGACY DO NOT USE
 
 - LIFO: add to end/top, remove from end/top
 - Java has a legacy class that represents this data structure
@@ -337,24 +334,26 @@ The returned List is backed up by the List on which subList was called, so chang
   - `peek`: view top
   - `pop`: remove top
 
-## Sets
+### Deque Interface
+
+### Set Interface
 
 - collection that does not contain duplicates
 - this interface provides set operations (union, intersection, difference)
 
-### Implementations
+#### Set Implementations
 
 - HashSet: insertion order not guaranteed
 - LinkedHashSet: maintains insertion order
 - TreeSet: elements are sorted
 
-### Useful Methods
+#### Set Methods
 
 - addAll() - (union) adds elements from one set to the other, no duplicates
 - retainAll() - (intersection) retains only common elements between two sets
 - removeAll() - (difference) removes all elements from first set that are contained in second set
 
-## Maps
+### Map Interface
 
 - each entry in a map is a key-value pair
 - specifies two generic type parameters
@@ -365,7 +364,7 @@ The returned List is backed up by the List on which subList was called, so chang
   - `Map`
   - `SortedMap`
 
-### Implementations
+#### Map Implementations
 
 - `HashMap`
   - does NOT maintain order of insertion
@@ -382,7 +381,7 @@ The returned List is backed up by the List on which subList was called, so chang
   - slow insertion/retreival
   - cannot contain null keys
 
-### Useful Methods
+#### Map Methods
 
 - put()
 - get() - return `null` if not found
@@ -391,7 +390,7 @@ The returned List is backed up by the List on which subList was called, so chang
 - keySet()
 - values()
 
-### Iterating over map
+#### Iterating over map
 
 - does NOT implement the `Iterable interface`
 - therefore cannot be iterated over directly
@@ -400,7 +399,9 @@ The returned List is backed up by the List on which subList was called, so chang
   - `.keySet()` method to iterate over keys
   - `.values()` method return a `Collection` that can be iterated over
 
-## ArrayList Class
+### Classes of the Collection API
+
+#### ArrayList Class
 
 - implements the `List` interface
 - a data structure which contains an array within it, but can resize dynamically.
@@ -411,7 +412,7 @@ The returned List is backed up by the List on which subList was called, so chang
 - cannot use primitives, must use their wrapper classes
 - better for storing and accessing data
 
-## LinkedList Class
+#### LinkedList Class
 
 - implements both the `List` and `Dequeue` interfaces
 - the data structure is composed of nodes internally, each with a reference to the previous node and the next node - i.e. a doubly-linked list.
@@ -419,7 +420,7 @@ The returned List is backed up by the List on which subList was called, so chang
 - traversal is slow for an arbitrary index
 - better for manipulating data (vs. storing and accessing)
 
-### Linked List Methods
+##### Linked List Methods
 
 - addFirst()
 - addLast()
@@ -429,7 +430,7 @@ The returned List is backed up by the List on which subList was called, so chang
 - get() (uses index)
 - listIterator()
 
-## ArrayList vs. LinkedList
+#### ArrayList vs. LinkedList
 
 - When the rate of addition or removal rate is more than the read scenarios, then use a LinkedList. On the other hand, when the frequency of the read scenarios is more than the addition or removal rate, then ArrayList takes precedence over LinkedList.
 - Since the elements of an ArrayList are stored more compact as compared to a LinkedList; therefore, the ArrayList is more cache-friendly as compared to the LinkedList. Thus, chances for the cache miss are less in an ArrayList as compared to a LinkedList. Generally, it is considered that a LinkedList is poor in cache-locality.
