@@ -399,6 +399,15 @@ Types:
 - `Method scope` - Declared within a method block; only available within the method in which they are declared.
 - `Block scope` - Only exist within the specific control flow block (for, while, etc.)
 
+#### Abstract Class
+
+An `abstract` class is a class that is declared abstract —it may or may not include abstract methods.
+
+- Abstract classes cannot be instantiated, but they can be subclassed.
+- An abstract class can have 0 or more abstract methods, but if a class has at least one abstract method then the whole class has to be abstract.
+- An abstract class can have implemented methods as well.
+- Use the extends keyword to extend an abstract class.
+
 > What is the difference between using an instance variable and a static variable?
 
 The static keyword in Java is mainly used for memory management. The static keyword in Java is used to share the same variable or method of a given class.
@@ -419,6 +428,20 @@ Instead, the method belongs to the class itself.
 
 As a result, you can access the static method without first creating a class instance.
 
+### Interfaces
+
+An `interface` is similar to an abstract class, but one of many differences is that a class can only inherit one other class, but a class can implement as many interfaces as it needs.
+
+> Why would you use an interface over an abstract class?
+
+- A class implements an interface using the `implements` keyword in the class definition and by providing implementations for any abstract methods defined by the interface.
+- Interfaces have these advantages over class:
+  - Implementation details do not need to be provided in the interface.
+  - A class can only extend one other class, but it can implement as many interfaces as needed.
+- Interfaces have `implicit modifiers` on methods and variables.
+  - **Methods** are '`public`' and '`abstract`'
+  - **Variables** are '`public`', '`static`', and '`final`'
+
 ### Autoboxing
 
 > What is autoboxing and unboxing?
@@ -427,17 +450,6 @@ As a result, you can access the static method without first creating a class ins
 - `autoboxing` - Java feature which will automatically convert primitives to wrapper classes implicitly. In case when passing an `int` variable as parameter to a function requesting an `Integer`.
 - `Unboxing` is the reverse - converting a wrapper class to its primitive.
 - Wrapper classes have static helper methods like .parseX() and .valueOf() for explicit primitive conversion.
-
-### Interfaces
-
-### Abstract Classes
-
-> Why would you use an interface over an abstract class?
-
-Interfaces have these advantages over class:
-
-- Implementation details do not need to be provided in the interface.
-- A class can only extend one other class, but it can implement as many interfaces as needed.
 
 ## Java Programs
 

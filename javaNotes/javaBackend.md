@@ -178,7 +178,7 @@ git merge new-branch
 
 - Git Bash is an application for Microsoft Windows environments which provides an emulation layer for a Git command line experience. A package that installs Bash, some common bash utilities, and Git on a Windows operating system.
 - `Bash` is an acronym for `Bourne Again Shell`
-- `shell` is a terminal application used to interface with an operating system through written commands.
+- `Shell` is a terminal application used to interface with an operating system through written commands.
 - `Bash` is a popular default shell on Linux and macOS.
 
 ## Maven
@@ -301,7 +301,7 @@ Representational State Transfer (REST) is an architectural style that defines a 
 REST vs. SOAP vs. RPC
 
 - REST vs. `SOAP` (`Simple Access Protocol`)
-  - REST uses less bandwidth than
+  - REST uses less bandwidth than SOAP
   - SOAP can only return xml, REST can return json, xml, yaml and more
 - REST vs. `RPC` (`Remote Procedure Call`)
   - in REST users are not required to know procedure names or spedific parameters in a specific order
@@ -309,25 +309,45 @@ REST vs. SOAP vs. RPC
 ### REST Constraints (principles)
 
 - `Client-Server`
+
   - the client and the server should be separate from each other and allowed to evolve individually
   - client and server are interacting through an interface
+
+  <br>
+
 - `Stateless`
+
   - calls can be made independently of one another
   - each call contains all of the data necessary to complete itself successfully.
+
+  <br>
+
 - `Cachable`
+
   - because a stateless API can increase request overhead by handling large loads of incoming and outbound calls, a REST API should be designed to encourage the storage of cacheable data.
   - responses should specify if info is cachable or not
+
+  <br>
+
 - `Uniform Interface`
 
   - The key to the decoupling client from server is having a uniform interface that allows independent evolution of the application without having the application’s services, or models and actions, tightly coupled to the API layer itself.
   - use of resources,
   - use of self-descriptive messages
 
+<br>
+
 - `Layered System`
   - REST APIs have different layers of their architecture working together to build a hierarchy that helps create a more scalable and modular application.
   - application itself is ideally in layers interacting through interfaces
-- - `Code on Demand`
+
+<br>
+
+- `Code on Demand`
   - allows for code or applets to be transmitted via the API for use within the application.
+
+<br>
+
 - `HATEOS` (**H**ypertext **A**s **T**he **E**ngine **O**f application **S**tate)
   - make API discoverable in state through links
 
@@ -361,7 +381,7 @@ The constraint of a `Uniform Interface` is partially addressed by the combinatio
 
 ###### document
 
-A document resource is a singular concept that is akin to an object instance or database record.
+A document resource is a `singular` concept that is akin to an object instance or database record.
 
 In REST, you can view it as a single resource inside resource collection.
 
@@ -377,7 +397,7 @@ Examples:
 
 ###### collection
 
-A collection resource is a server-managed directory of resources.
+A collection resource is a **server-managed** directory of resources.
 
 Clients may propose new resources to be added to a collection. However, it is up to the collection resource to choose to create a new resource or not.
 
@@ -394,7 +414,7 @@ Examples
 Collection and Sub-collection Resources
 A resource may contain sub-collection resources also.
 
-For example, sub-collection resource “accounts” of a particular “customer” can be identified using the URN “/customers/{customerId}/accounts” (in a banking domain).
+For example, sub-collection resource “accounts” of a particular “customer” can be identified using the URN `“/customers/{customerId}/accounts”` (in a banking domain).
 
 Similarly, a singleton resource “account” inside the sub-collection resource “accounts” can be identified as follows: “/customers/{customerId}/accounts/{accountId}“.
 
@@ -412,7 +432,7 @@ Examples:
 
 ###### controller
 
-A controller resource models a procedural concept. Controller resources are like executable functions, with parameters and return values, inputs, and outputs.
+A controller resource models a **procedural concept**. Controller resources are like executable functions, with parameters and return values, inputs, and outputs.
 
 Use “verb” to denote controller archetype.
 
@@ -435,7 +455,7 @@ Forming URIs
 
 Consistency is the key
 
-- Use consistent resource naming conventions and URI formatting for minimum ambiguity and maximum readability and maintainability. You may implement the below design hints to achieve consistency:
+Use consistent resource naming conventions and URI formatting for minimum ambiguity and maximum readability and maintainability. You may implement the below design hints to achieve consistency:
 
 - Use forward slash (/) to indicate hierarchical relationships
   The forward-slash (/) character is used in the path portion of the URI to indicate a hierarchical relationship between resources. e.g.
