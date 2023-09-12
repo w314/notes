@@ -39,7 +39,12 @@ To run an application in an optimal way, JVM divides memory into stack and heap 
 
 ### `Stack`
 
-- `Stack` Memory in Java is used for static memory allocation and the execution of a thread. It contains primitive values that are specific to a method and references to objects referred from the method that are in a heap.
+- `Stack` Memory in Java is used for:
+  - static memory allocation
+  - the execution of a thread.
+  - it contains:
+    - primitive values that are specific to a method
+    - references to objects referred from the method that are in a heap.
 - Access to this memory is in Last-In-First-Out (LIFO) order.
 - When the method finishes execution, its corresponding stack frame is flushed, the flow goes back to the calling method, and space becomes available for the next method.
 - It grows and shrinks as new methods are called and returned, respectively.
@@ -47,7 +52,7 @@ To run an application in an optimal way, JVM divides memory into stack and heap 
 - It's automatically allocated and deallocated when the method finishes execution.
 - If this memory is full, Java throws `java.lang.StackOverFlowError`.
 - Access to this memory is fast when compared to heap memory.
-- This memory is threadsafe, as each thread operates in its own stack.
+- This memory is `threadsafe`, as each thread operates in its own stack.
 
 ### `HEAP`
 
@@ -366,16 +371,16 @@ int total = addNums(1, 2);
 
 ### Scope
 
+When a variable is declared in a Java program, it is attached to a specific scope within the program, which determines where the variable resides.
+
 > What are the different scopes in Java?
 
-- Instance, or object, scope
-- Class, or static, scope
-- Method scope
-- Block scope
+- `Instance, or object scope` - The variable is attached to individual objects created from the class.
+- `Class, or static scope` - Resides on the class definition itself.
+- `Method scope` - Declared within a method block; only available within the method in which they are declared.
+- `Block scope` - Only exist within the specific control flow block (for, while, etc.)
 
 > If I define a variable within a method, how can I access its value outside of the method?
-
-When a variable is declared in a Java program, it is attached to a specific scope within the program, which determines where the variable resides. The different scopes of a variable in Java are:
 
 ### Classes
 
@@ -383,21 +388,12 @@ When a variable is declared in a Java program, it is attached to a specific scop
 
 > What are the four levels of access we can give to class members? How are they different from one another?
 
-- `access modifiers` set access level of methods, variables, classes and constructors
-
-Types:
+`Access Modifiers` set access level of methods, variables, classes and constructors
 
 - `public`: can be accessed by any classes
 - `default` (when there is no access modifier): within the same package only
 - `protected`: within package + outside of package through inheritance
 - `private`: only within the class, a class (except a nested class) cannot be private
-
-#### Instance vs. Object Scope
-
-- `Instance, or object scope` - The variable is attached to individual objects created from the class.
-- `Class, or static scope` - Resides on the class definition itself.
-- `Method scope` - Declared within a method block; only available within the method in which they are declared.
-- `Block scope` - Only exist within the specific control flow block (for, while, etc.)
 
 #### Abstract Class
 
@@ -409,6 +405,8 @@ An `abstract` class is a class that is declared abstract —it may or may not in
 - Use the extends keyword to extend an abstract class.
 
 > What is the difference between using an instance variable and a static variable?
+
+#### Static Keyword
 
 The static keyword in Java is mainly used for memory management. The static keyword in Java is used to share the same variable or method of a given class.
 
@@ -470,7 +468,7 @@ An `interface` is similar to an abstract class, but one of many differences is t
   - by default, everything in the `java.lang` package is imported.
   - classes can be referenced anywhere in a program by their "fully qualified class name" - which is the package declaration followed by the class, in order to uniquely identify the class
   - using imports
-- declare package: the first (non-commented) line in a .java file
+- to declare package: the first (non-commented) line in a .java file
   declares the package in which the class will reside.
 
 ```java
@@ -596,7 +594,7 @@ Methods:
 - `nextInt()` Reads a int value from the user
 - `nextLine()`
   - Reads a String value from the user
-  - OR used to consume hidden newline character
+  - OR used to consume hidden newline character (between calling two nextInt() for example)
 - `nextLong()` Reads a long value from the user
 - `nextShort()` Reads a short value from the user
 
@@ -647,8 +645,8 @@ Finally, the `.finalize()` method is called by the garbage collector when it det
 Strings.
 
 - are not a primitive data type but a reference type
-- a string variable holds a reference to an object created from the String class, not the value of the string itself
-- Strings are immutable, constant objectsm, this is accomplished by having internal, private and final fields and not implementing any "setter" methods which would alter the state of those fields.
+- holds a reference to an object created from the String class, not the value of the string itself
+- Strings are `immutable`, constant objectsm, this is accomplished by having internal, private and final fields and not implementing any "setter" methods which would alter the state of those fields.
 - Because Strings are immutable, all of the methods in the String class return a new String - the original is not modified.
 - When Strings are created they are placed in a special location within the `heap` called the `String Pool`.
 - When String literals are created, if there is an existing String that matches in the String Pool, the reference variable will point to the existing value.
@@ -662,7 +660,7 @@ Strings.
 - `charAt(int index)` -This returns the indexed character of a string, where the index of the initial character is 0
 - `concat(String s)` -This returns a new string consisting which has the old string + s
 - `equals(String s)` -Checks if two strings are equal
-- `equaIsIgnoreCase(String s)` -This is like equals(), but it ignores the case(Ex: ‘Hello’ and ‘hello’ are equal)
+- `equalsIgnoreCase(String s)` -This is like equals(), but it ignores the case(Ex: ‘Hello’ and ‘hello’ are equal)
 - `length( )` -Returns the number of characters in the current string.
 - `replace(char old, char new)` -This returns a new string, generated by replacing every occurrence of old with new.
 - `trim()` -Returns the string that results from removing white space characters from the beginning and ending of the current string.

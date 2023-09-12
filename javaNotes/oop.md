@@ -29,13 +29,14 @@ A `constructor` is a special method that declares how an object is to be instant
 - A constructor is declared like a method, except its method signature does not contain a return type, and a constructor always has the same name as the class.
 
 - The new object created by the constructor is always of the class in which the constructor is declared.
-  this refers to the object which is being instantiated - it is used to initialize instance variables, or - to call other constructors (this is called constructor chaining)
-  There is another keyword important for constructors - the super keyword, which references the "super", or parent, class.
-  When invoked as a method (super()), the parent class constructor will be called.
-  A super() call (or a this() call) must be the first line of any constructor.
+- the `this` keyword refers to the object which is being instantiated - it is used to initialize instance variables, or - to call other constructors (this is called constructor chaining)
+- the `super` keyword references the "super", or parent class.
+
+  - When invoked as a method (super()), the parent class constructor will be called.
+  - A super() call (or a this() call) must be the first line of any constructor.
+
 - If not explicitly provided, the compiler will inject super() it on the first line implicitly.
-  The "default" constructor takes no arguments and simply calls super() (see above) - sometimes it is referred to as the "default, no-args" constructor.
-- However if we define our own constructor(s) in the class, we will not receive a default constructor from the compiler.
+- The `default constructor` takes no arguments and simply calls super(). However if we define our own constructor(s) in the class, we will not receive a default constructor from the compiler.
 
 #### Constructors vs. Methods
 
@@ -124,6 +125,9 @@ Within a class when there are two or more methods in a class with the same metho
 - change in types of parameters
 - compile time / static polymorphism
 
+EXAMPLE
+method overloading - temperature converter working with both integers, doubles or string
+
 #### `method overriding`
 
 when a method in a child class has the same method signature as a method in the parent class, but with a different implementation
@@ -134,7 +138,9 @@ when a method in a child class has the same method signature as a method in the 
 - return type can only be changed if it is a subtype of the original type (`covariant return types`)
 - access modifier can be changed but must provide more _not less_ access
 
-`virtual method invocation` when variable is declared as type Animal but refers to a Dog object, calling the method spead will use Dog's implementation of the method
+`virtual method invocation` when variable is declared as type Animal but refers to a Dog object, calling a method will use Dog's implementation of the method
+
+EXAMPLE of method overriding - speak method implemented differently in Animal subspecies
 
 #### `upcasting`
 
@@ -151,14 +157,12 @@ The process of casting an object of a superclass to an object of its subclass
 - risky, may result in `ClassCastException` if the object being cast is not actually an instance of the subclass
 - use `instanceof` operater to check before downcasting
 
-EXAMPLE
-method overloading - temperature converter working with both integers, doubles or string
-
-method overriding - speak method implemented differently in Animal subspecies
-
 ### Encapsulation
 
-`Encapsulation` means **restricting access to data members** by using access modifiers and getter/setter methods
+`Encapsulation` means **restricting access to data members** by using:
+
+- access modifiers
+- getter/setter methods
 
 > Describe encapsulation and how would you use it in a project?
 
