@@ -457,32 +457,18 @@ Consistency is the key
 
 Use consistent resource naming conventions and URI formatting for minimum ambiguity and maximum readability and maintainability. You may implement the below design hints to achieve consistency:
 
-- Use forward slash (/) to indicate hierarchical relationships
-  The forward-slash (/) character is used in the path portion of the URI to indicate a hierarchical relationship between resources. e.g.
+- use forward slash (/) to indicate hierarchical relationships between resources.
 
-  - `http://api.example.com/device-management`
-  - `http://api.example.com/device-management/managed-devices`
-  - `http://api.example.com/device-management/managed-devices/{id}`
-
-  - `http://api.example.com/device-management/managed-devices/{id}/scripts`
   - `http://api.example.com/device-management/managed-devices/{id}/scripts/{id}`
 
-- Do not use trailing forward slash (/) in URIs
-  As the last character within a URI’s path, a forward slash (/) adds no semantic value and may confuse. It’s better to drop it from the URI.
+- Do not use trailing forward slash (/), it adds no semantic value and may confuse
+- Use hyphens `-` to improve the readability of URIs, do not use underscores `_`
 
-- Use hyphens (-) to improve the readability of URIs
-  To make your URIs easy for people to scan and interpret, use the hyphen (-) character to improve the readability of names in long path segments. Do not use underscores ( \_ )
-
-- Use lowercase letters in URIs
+- use lowercase letters
 
 - do not use file extensions
 
-- Use query component to filter URI collection
-  Often, you will encounter requirements where you will need a collection of resources sorted, filtered, or limited based on some specific resource attribute. For this requirement, do not create new APIs – instead, enable sorting, filtering, and pagination capabilities in resource collection API and pass the input parameters as query parameters. e.g.
-
-  - `http://api.example.com/device-management/managed-devices`
-  - `http://api.example.com/device-management/managed-devices?region=USA`
-  - `http://api.example.com/device-management/managed-devices?region=USA&brand=XYZ`
+- use query component to filter URI collection, do not create new APIs – instead, enable sorting, filtering, and pagination capabilities in resource collection API and pass the input parameters as query parameters.
   - `http://api.example.com/device-management/managed-devices?region=USA&brand=XYZ&sort=installation-date`
 
 ## Logging
