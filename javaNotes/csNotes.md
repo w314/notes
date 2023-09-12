@@ -67,7 +67,11 @@
 The `Software Delevopment Life Cycle` (`SDLC`)
 is the application of **standard business practices** to building software applications.
 
-Helps companies:
+- defines workflow for developing software
+- reduces costs and mistakes
+- has many implementations, like Waterfall and Agile
+
+Benefits:
 
 - reduce cost
 - deliver software faster
@@ -86,6 +90,11 @@ Stages of SDLC:
 
 ### Waterfall
 
+- linear
+- one long workflow
+- every phase is meticulously detailed and outlined
+- not very flexible
+
 #### The advantages of waterfall
 
 - Requires less coordination due to clearly defined phases sequential processes
@@ -103,6 +112,11 @@ Stages of SDLC:
 - Product ownership and engagement may not be as strong when compared to agile since the focus is brought to the current phase.
 
 ### Agile
+
+- iterative
+- short workflows
+- flexible
+- scrum is an implementation
 
 #### The advantages of agile project management
 
@@ -124,6 +138,68 @@ Stages of SDLC:
 
 - when i want to see results faster
 - when i want to be flexible
+
+### Agile Core Values
+
+- Individuals and interactions over processes and tools
+  - As sophisticated as technology gets, the human element will always serve as an important role in any kind of project management
+  - Relying too heavily on processes and tools results in an inability to adapt to changing circumstances.
+- Working software over comprehensive documentation
+  - As important as documentation is, working software is more. This value is all about giving the developers exactly what they need to get the job done, without overloading them.
+- Customer collaboration over contract negotiation
+  - Your customers are one of your most powerful assets.
+  - Whether internal or external customers, involving them throughout the process can help to ensure that the end product meets their needs more effectively.
+- Responding to change over following a plan
+  - This value is one of the biggest departures from traditional project management.
+  - Historically, change was seen as an expense, and one to be avoided.
+  - Agile allows for continuous change throughout the life of any given project. Each sprint provides an opportunity for review and course correction.
+
+#### Key components of Agile project management
+
+- User stories
+  - Put simply, a user story is a high-level definition of a work request.
+  - It contains just enough information so the team can produce a reasonable estimate of the effort required to accomplish the request.
+  - This short, simple description is written from the user’s perspective and focuses on outlining what your client wants (their goals) and why.
+  - The user story follows the general format "As a user I want to functionality so that motivation.
+    - Example: As a manager, I want to be able to understand my team members' progress, so I can better report our success and failures.
+- Sprints
+  - Sprints are a short iteration, usually between one to three weeks to complete, where teams work on tasks determined in the sprint planning meeting. As you move forward, the idea is to continuously repeat these sprints until your product is feature ready.
+  - Once the sprint is over, you review the product see what is and isn’t working, make adjustments, and begin another sprint to improve the product or service.
+  - Sprints are implemented in the Agile framework Scrum but not in some other frameworks like Kanban.
+- Stand-up meetings
+  - Daily stand-up meetings (under 10 minutes), also known as “daily Scrum meetings,” are a great way to ensure everyone is on track and informed.
+  - These daily interactions are known as “stand up” because the participants are required to stay standing, helping to keep the meetings short and to the point.
+- Agile board
+  - An Agile board helps your team track the progress of your project.
+  - This can be a whiteboard with sticky notes, a simple Kanban board, or a function within your project management software.
+- Backlog
+  - As project requests are added through your intake system, they become outstanding stories in the backlog.
+  - During Agile planning sessions, your team will estimate story points to each task.
+  - During sprint planning, stories in the backlog are moved into the sprint to be completed during the iteration.
+  - Managing your backlog is a vital role for project managers in an Agile environment.
+
+#### Agile Methodology Steps
+
+- Project planning
+  - Like with any project, before beginning your team should understand the end goal, the value to the organization or client, and how it will be achieved.
+  - You can develop a project scope here, but remember that the purpose of using Agile project management is to be able to address changes and additions to the project easily, so the project scope shouldn’t be seen as unchangeable.
+- Product roadmap creation
+  - A roadmap is a breakdown of the features that will make up the final product. This is a crucial component of the planning stage of Agile, because your team will build these individual features during each sprint.
+  - At this point, you will also develop a product backlog, which is a list of all the features and deliverables that will make up the final product. When you plan sprints later on, your team will pull tasks from this backlog.
+- Release planning
+  - In traditional waterfall project management, there is one implementation date that comes after an entire project has been developed.
+  - When using Agile, however, your project uses shorter development cycles (called sprints) with features released at the end of each cycle.
+  - Before kicking off the project, you’ll make a high-level plan for feature releases and at the beginning of each sprint, you’ll revisit and reassess the release plan for that feature.
+
+#### SCRUM
+
+- one implementation of the Agile Metodology
+- has actors (product owner, scrum master, etc)
+- has ceremonies (events) like:
+  - sprint planning
+  - daily stand-ups
+  - sprint review
+- has documents like a burndown chart and backlogs
 
 ## HTTP
 

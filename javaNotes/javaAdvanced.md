@@ -228,7 +228,7 @@ A `collection` is a single object which acts as a container for other objects.
 - duplicate entries are allowed
 - elements are accessed by their index, which begins with 0
 
-#### List Operations
+#### List Operations (Methods)
 
 > What are some operations you can perform on a List?
 
@@ -237,28 +237,34 @@ A `collection` is a single object which acts as a container for other objects.
 - iteration operations
 - range-view operations
 
+##### Other Methods
+
+- isEmpty
+- size
+
 ##### 1. Positional access operations
 
 Manipulates elements based on their numerical position in the list
 
-- `get`
+- `get` - using index
 - `set`
-- `add`
+- `add` - value OR value at index
 - `addAll`
-- `remove`
+- `remove` - using index OR value
 
 ##### 2. Search operations
 
 Searches for a specified object in the list and returns its numerical position.
 
-- `.indexOf()` -`.lastIndexOf()`
+- `.indexOf()`
+- `.lastIndexOf()`
 - `indexOfSubList`
 
 ##### 3. Iteration operations
 
 `ListIterator`, which allows you to traverse the list in either direction, modify the list during iteration, and obtain the current position of the iterator.
 
-#### Methods
+###### Itearation Methods
 
 Inherited from `Iterator`
 

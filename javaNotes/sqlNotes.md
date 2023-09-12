@@ -99,6 +99,8 @@ ALTER TABLE testalter_tbl DROP INDEX (c);
 
 > What are constraints and can you describe a few constraints?
 
+`Constraints` are rules for columns to ensure validity of data.
+
 `Constraints` are used to define a database schema and are the backbone for defining `integrity constraints` of the schema. They help validate data beyond just a simple data type.
 
 - `NOT NULL` Ensures that a column's value is not null.
@@ -223,6 +225,7 @@ There are 4 different multiplicity relationships
 - Character types
   - Fixed-length
   - Variable-length
+  - `VARCHAR`
 - Numeric types
 
   - Decimal
@@ -239,6 +242,7 @@ There are 4 different multiplicity relationships
   - Integer
   - Floating point
 
+- Boolean
 - Temporal types
   - Date
   - Time
@@ -478,7 +482,8 @@ DELETE FROM roles where name='VIEWER';
 
 `DQL`the `Data Query Language` is used to search, filter, group and aggregate stored data
 
-- `SELECT`
+- uses the `SELECT` statement
+- retrieves a `Resultset`
 
 ```sql
 SELECT [ALL | DISTINCT]
@@ -498,11 +503,27 @@ SELECT [ALL | DISTINCT]
 
 #### `WHERE` Clause
 
+`WHERE` filters and extracts only records that match condition
+
+- if using an aggregate function, WHERE filters before it is called
+- `HAVING` is used only if an aggregate function is called
+- HAVING filters after the function call
+
 > Why would I use the WHERE clause?
 
 The `WHERE` clause is not only used in `SELECT` statements, it is also used in `UPDATE`, `DELETE` as well
 
-FILTERING: The filtering clause of a select statement is a `WHERE` clauses that defines how selected rows are filtered from the table. WHERE` clauses use **logical operators** to select records that meet specific conditions.
+FILTERING: The filtering clause of a select statement is a `WHERE` clauses that defines how selected rows are filtered from the table.
+
+##### WHERE Clause Operators
+
+WHERE` clauses use to select records that meet specific conditions:
+
+- logical operators
+- comparison operators
+- matching operators
+
+Operators:
 
 - `AND` true if both boolean expresions evaluate to true
 - `IN` true if the operand is included in a list of expressions
