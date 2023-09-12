@@ -808,7 +808,32 @@ PetServiceTest {
       verify(petDAOMock, atLeastOnce()).getAllPets();
   }
 }
+
 ```
+
+## Fullstack Applications
+
+### What is and application
+
+- software: bundles of files
+- performs a task
+- 3 main parts
+
+#### 1. Front-End
+
+- user interface
+- command-line interface OR
+- graphical user interface
+
+#### 2. Back-End
+
+- logic
+- responding to front-end code
+- interacting with database
+
+#### 3. Database
+
+- data storage
 
 ## Java Backend
 
