@@ -2,17 +2,19 @@
 
 > What is an operating system?
 
-- a software that communicates with the hardware and allows other programs to run
+- - main software of a computer it communicates with the hardware and allows other programs to run
 - it is comprised of system software, or the fundamental files your computer needs to boot up and function
 - they allow you to install and run programs written for the operating system
-- every device (computer, tablet, phone) has an operating system
-- the hardware you choose affects what operating system(s) you can run (Windows on PC hardware, Mac OS X Apple, Linux on both)
+- the hardware you choose affects the type of operating system it can run:
+  - `Windows` on PC hardware
+  - `OS X` on Apple's Mac
+  - `Linux` on both
+- can be interacted with either through `CLI` or `GUI`
 
-Functions Operating Systems Provide
+### Roles of the Operating System
 
-- Process and `Process Management` (`process` is a program in execution)
-- `Threads` - a thread as a flow of execution through the process code. The thread keeps track of all the instructions that need to be executed next in the program counter. Also, the thread contains system registers that hold the current working variables. Also, the thread's stack contains the execution history.
-
+- `Process Management` (`process` is a program in execution)
+- Managing `Threads` - a thread as a flow of execution through the process code. The thread keeps track of all the instructions that need to be executed next in the program counter. Also, the thread contains system registers that hold the current working variables. Also, the thread's stack contains the execution history.
 - `Scheduling` - in scheduling, the process manager takes the responsibility to remove the running process from the CPU and chooses another process based on a specific strategy.
 - `Memory Management` - the functionality of an operating system that handles and manages the primary memory. Processes move back and forth between the main memory and the disk during the execution.
 

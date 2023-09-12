@@ -2,12 +2,20 @@
 
 > Java What are some of the benefits of Java?
 
-- platform independent,
-- has a C-language inspired syntax
+### Features of Java
+
+- strongly typed
+- general purpose
 - provides automatic memory management
+- platform independent
+- object oriented
+- has a C-language inspired syntax
+
+### Benefits of Java
+
 - has an extensive built-in runtime library
 - is supported by the Oracle corporation
-- has a rich open source community
+- popular, has a rich open source community
 
 ## Java Compilation Process
 
