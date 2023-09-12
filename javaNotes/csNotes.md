@@ -2,7 +2,7 @@
 
 > What is an operating system?
 
-- - main software of a computer it communicates with the hardware and allows other programs to run
+- main software of a computer it communicates with the hardware and allows other programs to run
 - it is comprised of system software, or the fundamental files your computer needs to boot up and function
 - they allow you to install and run programs written for the operating system
 - the hardware you choose affects the type of operating system it can run:
@@ -14,7 +14,11 @@
 ### Roles of the Operating System
 
 - `Process Management` (`process` is a program in execution)
-- Managing `Threads` - a thread as a flow of execution through the process code. The thread keeps track of all the instructions that need to be executed next in the program counter. Also, the thread contains system registers that hold the current working variables. Also, the thread's stack contains the execution history.
+- Managing `Threads`
+  - a thread is a flow of execution through the process code
+  - keeps track of all the instructions that need to be executed next in the program counter
+  - contains system registers that hold the current working variables.
+  - the thread's stack contains the execution history
 - `Scheduling` - in scheduling, the process manager takes the responsibility to remove the running process from the CPU and chooses another process based on a specific strategy.
 - `Memory Management` - the functionality of an operating system that handles and manages the primary memory. Processes move back and forth between the main memory and the disk during the execution.
 
@@ -116,7 +120,6 @@ Stages of SDLC:
 - iterative
 - short workflows
 - flexible
-- scrum is an implementation
 
 #### The advantages of agile project management
 

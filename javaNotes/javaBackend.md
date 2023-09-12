@@ -837,14 +837,34 @@ PetServiceTest {
 
 ## Java Backend
 
-### Layers
+### N-Tier Architecture
 
-- Models - representing database tables
-- DAO - interacting with the database
-- Services - executing logic, validation
-- Controller - server with endpoints
+- separates app into layers that are each responsible for a group of related tasks
+- layers interact with one another through interfaces you define
+- benefits: more organized, flexible, and maintainable code
+
+#### Layers
+
+- Controller
+  - takes input from client
+  - calls service layer for decision making
+  - sends output afterward
+- Service
+  - takes input from controller
+  - makes decisions (validation, error handling)
+  - communicates with DAO layer if data management needed
+  - returns information to controller
+- DAO
+  - takes input from service layer
+  - performs CRUD operations on database
+  - returns a result to service layer
+- Models
+  - contains classes that represent entities (like DB tables)
 
 ### DAO Layer
+
+- `Data Access Object`
+- object responsible for CRUD operations on an entity
 
 > What is the DAO Design Pattern and why should we use it?
 
@@ -887,21 +907,35 @@ Now whenever we need to query the database, we have a simple, clean interface wh
 
 #### `Java Database Connectivity` (`JDBC`)
 
-- low-level API
-- interacts with relational databases via SQL
+- Java API that allows us to interact with a database
+- found within the `java.sql` package
 - database agnostic
-- uses database drivers which implement the interfaces defined in the JDBC API for the given database
+- for connection requires
+  - database driver
+  - db URL
+  - db credentials
+- database driver
+  - other software that acts as mediator between Java and DB
+  - implement the interfaces defined in the JDBC API for the given database
+
+##### JDBC API Classes or Interfaces
+
+- Connection
+- DriverManager
+- Statement
+- PreparedStatement
+- SQLException
 
 ##### How to use the `JDBC` to interact with the datase
 
-In order to interact with a database, we need to do several things:
+0. register the JDBC driver
+1. establish a connection
+2. create a statement
+3. execute the statement
+4. process the results
+5. close the connection
 
-1. register the JDBC driver
-2. open a database connection
-3. execute the SQL statements using
-4. process the ResultSet
-
-##### 1. Register the `JDBC` driver
+##### Register the `JDBC` driver
 
 To register the JDBC driver for a specific database, add it as a `dependency` in the `pom.xml` file (except oracle)
 
@@ -916,7 +950,7 @@ To register the JDBC driver for a specific database, add it as a `dependency` in
 </dependencies>
 ```
 
-##### 2. Open a database connection
+##### Open a database connection
 
 > What information would you need in order to successfully connect to a database?
 
@@ -960,7 +994,7 @@ conn.setAutoCommit(false);
 conn.commit();
 ```
 
-##### 2. Execute SQL statements
+##### Execute SQL statements
 
 Once we have the `Connection object`, we can write our SQL and execute it.
 
@@ -1075,7 +1109,7 @@ The `Statement` and `PreparedStatement` also have additional methods for sending
 
 - `.execute()` - for any kind of SQL statement, returns a `boolean`
 
-#### 3. Use ResultSet
+#### Use the ResultSet
 
 `ResultSet`is an object which represents a set of data returned from a database as a result of a query input. Can be iterated over.
 
