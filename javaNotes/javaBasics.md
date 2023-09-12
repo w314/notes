@@ -453,6 +453,14 @@ As a result, you can access the static method without first creating a class ins
 
 ### Classes
 
+Class members:
+
+- variables
+- methods
+- constructors
+
+(Variables and methods that are NOT static are instance members.)
+
 #### Access Modifiers
 
 > What are the four levels of access we can give to class members? How are they different from one another?

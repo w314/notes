@@ -1,10 +1,28 @@
+## Object Oriented Programming
+
+- approach to solving programming problems by creating entities that model real-world objects
+- these entities, called objects, can interact with one another
+
 ## Classes and Objects
 
 ### Class
 
-> What are classes used for?
-
 A class is a template used to instantiate objects.
+
+#### Class members:
+
+- variables
+- methods
+- constructors
+
+##### static vs. instance members
+
+- Variables and methods that are NOT static are instance members.
+- instance members are copied by objects and can only be interacted with using an object of the class
+- instance variables are known as "state" that objects can have
+- instance methods are known as "behavior" that objects can have
+
+> What are classes used for?
 
 A class used as the `type` for a `reference variable` determines what state and behavior an object will possess.
 
@@ -16,6 +34,8 @@ We use classes to create a blueprint for objects.
 
 An object is an instance of a class in memory.
 
+- It has `state`(instance variables) and `behavior` (instance methods).
+
 - In Java, you never interact with objects directly. Instead, you interact with them through their reference, which is the memory address used by the JVM to find a particular object.
 
 - the `constructor` declares how an object is to be instantiated and initialized from the class "blueprint".
@@ -26,17 +46,31 @@ An object is an instance of a class in memory.
 
 A `constructor` is a special method that declares how an object is to be instantiated and initialized from the class "blueprint".
 
-- A constructor is declared like a method, except its method signature does not contain a return type, and a constructor always has the same name as the class.
+- special method defined in a class
+- initializes the state of a newly created object
+- has no return type
+- name is the same of the class
+- the new object created by the constructor is always of the class in which the constructor is declared
+- you can have more than one constructor IF they have different parameter lists
 
-- The new object created by the constructor is always of the class in which the constructor is declared.
-- the `this` keyword refers to the object which is being instantiated - it is used to initialize instance variables, or - to call other constructors (this is called constructor chaining)
+#### `this`Keyword
+
+The `this` keyword refers to the object which is being instantiated - it is used to initialize instance variables, or - to call other constructors (this is called constructor chaining)
+
+#### `super` Keyword
+
 - the `super` keyword references the "super", or parent class.
 
   - When invoked as a method (super()), the parent class constructor will be called.
   - A super() call (or a this() call) must be the first line of any constructor.
 
 - If not explicitly provided, the compiler will inject super() it on the first line implicitly.
-- The `default constructor` takes no arguments and simply calls super(). However if we define our own constructor(s) in the class, we will not receive a default constructor from the compiler.
+
+#### Default Constructor
+
+- if you do not add a constructor to your class a `no-args` constructor is created for you behind the scenes
+- this `default constructor` takes no arguments and simply calls super()
+- however if we define our own constructor(s) in the class, we will not receive a default constructor from the compiler.
 
 #### Constructors vs. Methods
 
