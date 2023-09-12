@@ -47,6 +47,9 @@ To run an application in an optimal way, JVM divides memory into stack and heap 
 
 ### `Stack`
 
+- area in memory keeps track of the currently executing methods
+- stores any variables that these methods create and use
+- smaller than heap
 - `Stack` Memory in Java is used for:
   - static memory allocation
   - the execution of a thread.
@@ -65,6 +68,12 @@ To run an application in an optimal way, JVM divides memory into stack and heap 
 ### `HEAP`
 
 - used for the dynamic memory allocation of Java objects and JRE classes at runtime.
+
+#### String Pool
+
+- special are in Heap to store String objects
+- a String is stored in Sting Pool if object was created using **literal notation** (double quotes)
+- a String is stored outside of pool if object was created using **object notation** (new keyword + constructor) EVEN IF object is already in the pool
 
 ### `Stack` vs `Heap`
 
@@ -122,15 +131,16 @@ To run an application in an optimal way, JVM divides memory into stack and heap 
 
 ## Garbage Collection
 
+Garbage collection is a background process created by JVM to delete unused objects from the heap
+
 > What is the role of garbage collection in Java?
 
-Garbage collection is the process of removing objects from the heap which have no references to them.
-
-Garbage collection is run in the background by the JVM. There is no way we can explicitly force garbage collection to happen, but we can request garbage collection to be run through the use of one of the following:
-
-- System.gc()
-- Runtime.getRuntime().gc()
-- System.runFinalize()
+- deletes objects which have no references to them
+- frees up space for us
+- we don't control the garbage collector, there is no way we can explicitly force garbage collection to happen, but we can request garbage collection to be run through the use of one of the following:
+  - System.gc()
+  - Runtime.getRuntime().gc()
+  - System.runFinalize()
 
 ## Debugging
 
@@ -143,6 +153,13 @@ Each `JVM thread` (a path of execution) is associated with a stack that's create
 This data structure (stack) is divided into `frames`, which are data structures associated with method calls. For this reason, each thread's stack is often referred to as a method-call stack.
 
 When an exception / error gets thrown. A stack trace is displayed to the console.
+
+### Reading Stacktraces
+
+- contain the type of issue encountered
+- may contain a useful message
+- record method call chain
+- record line numbers + files
 
 > What steps would you take to debug your program if it crashed with an error message in the console?
 
@@ -393,7 +410,7 @@ int total = addNums(1, 2);
 
 ### Scope
 
-When a variable is declared in a Java program, it is attached to a specific scope within the program, which determines where the variable resides.
+When a variable or method is declared in a Java program, it is attached to a specific scope within the program, which determines where the variable or method exits.
 
 > What are the different scopes in Java?
 
@@ -403,6 +420,34 @@ When a variable is declared in a Java program, it is attached to a specific scop
 - `Block scope` - Only exist within the specific control flow block (for, while, etc.)
 
 > If I define a variable within a method, how can I access its value outside of the method?
+
+#### Static Keyword
+
+The static keyword in Java is mainly used for memory management. The static keyword in Java is used to share the same variable or method of a given class.
+
+When a member is declared static, it can be accessed before any objects of its class are created, and without reference to any object.
+
+A static variable is a variable of a class that isn’t associated with an instance of a class.
+
+Instead, the variable belongs to the class itself.
+
+As a result, you can access the static variable without first creating a class instance.
+
+> What is the difference between calling an instance method and a static method?
+
+A static method is a method of a class that isn’t associated with an instance of a class.
+
+Instead, the method belongs to the class itself.
+
+As a result, you can access the static method without first creating a class instance.
+
+##### How to use Static members
+
+- within same class: just use name of member
+- in another class: use class name and then name of member using dot notation
+- example:
+  - Math.min(4, 5)
+  - Math.PI
 
 ### Classes
 
@@ -427,26 +472,6 @@ An `abstract` class is a class that is declared abstract —it may or may not in
 - Use the extends keyword to extend an abstract class.
 
 > What is the difference between using an instance variable and a static variable?
-
-#### Static Keyword
-
-The static keyword in Java is mainly used for memory management. The static keyword in Java is used to share the same variable or method of a given class.
-
-When a member is declared static, it can be accessed before any objects of its class are created, and without reference to any object.
-
-A static variable is a variable of a class that isn’t associated with an instance of a class.
-
-Instead, the variable belongs to the class itself.
-
-As a result, you can access the static variable without first creating a class instance.
-
-> What is the difference between calling an instance method and a static method?
-
-A static method is a method of a class that isn’t associated with an instance of a class.
-
-Instead, the method belongs to the class itself.
-
-As a result, you can access the static method without first creating a class instance.
 
 ### Interfaces
 
@@ -477,21 +502,31 @@ An `interface` is similar to an abstract class, but one of many differences is t
 
 > What is a package and why would we use one?
 
-- a `package` is a collection of classes, interfaces, and enums in a hierarchical manner.
-- why?
+`Package` is a collection of classes, interfaces, and enums in a hierarchical manner.
 
-  - keep your classes separate from the classes in the Java API
-  - reuse classes in other applications.
-  - distribute your classes to others.
+- folders for organizing files
+- also a way to manage accessibility
 
-- naming convention: lowercase characters separated by periods in the reverse way you would specify a web domain (com.revature.mypackage)
+#### Benefits of Package
 
-- usage
+- keep your classes separate from the classes in the Java API
+- reuse classes in other applications.
+- distribute your classes to others.
+
+#### Syntax
+
+- for source files within a package, they need a **package declaration**
+
+  - declare package in the first (non-commented) line in a .java file
+  - declares the package in which the class will reside
+  - use reverse domain name : lowercase characters separated by periods in the reverse way you would specify a web domain (com.revature.mypackage)
+
+  <br>
+
+- to use functionality from another package, you'll need an **import statement**
   - by default, everything in the `java.lang` package is imported.
-  - classes can be referenced anywhere in a program by their "fully qualified class name" - which is the package declaration followed by the class, in order to uniquely identify the class
-  - using imports
-- to declare package: the first (non-commented) line in a .java file
-  declares the package in which the class will reside.
+
+<br>
 
 ```java
 // declare the package this class belongs to
@@ -748,8 +783,9 @@ boolean isSame = str1.equals(str2);
 An `array` is a `contiguous block of memory` storing a group of `sequentially stored` elements of the same type. Provies fast data access.
 
 - fixed size and cannot be resized after declaration
-- items in an array are referenced via their index in square bracket notation, which begins with 0 for the first element
-- ave a length property specifying the length of the array
+- indexed - items in an array are referenced via their index in square bracket notation, which begins with 0 for the first element
+- have a length property specifying the length of the array
+- can be iterated over
 
 ```java
 int[] myArray = new int[5];
@@ -761,8 +797,26 @@ int[] otherArray = {1, 2, 3};
 
 > How would you access the last value in an array if you do not know the size of the array?
 
-#### Sorting an Array
+#### Array Static Methods
 
-- `Arrays.sort(myArray)`
+- `Arrays.sort()`
+- `Aarrays.binarySearch()` - array must be sorted
+- `Arrays.toString()`
+- `Arrays.equals(array1, array2)` - compares the contents of the arrays
+
+```java
+// create a new array
+int[] myArray = new int[5];
+// OR
+int[] myArray1 = {2, 6, 7};
+
+// lenght of the array
+myArray.length();
+
+// print out array
+System.out.println(Arrays.toString(myArray));
+
+
+```
 
 > What is the difference between an array and an ArrayList?
