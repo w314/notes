@@ -499,8 +499,8 @@ An `interface` is similar to an abstract class, but one of many differences is t
 > What is autoboxing and unboxing?
 
 - `Boxing` - the process of converting a primitive to its wrapper clas
-- `autoboxing` - Java feature which will automatically convert primitives to wrapper classes implicitly. In case when passing an `int` variable as parameter to a function requesting an `Integer`.
 - `Unboxing` is the reverse - converting a wrapper class to its primitive.
+- `autoboxing` - a feature in which both boxing and unboxing done implicitly by Java. Example: when passing an `int` variable as parameter to a function requesting an `Integer`
 - Wrapper classes have static helper methods like .parseX() and .valueOf() for explicit primitive conversion.
 
 ## Java Programs
