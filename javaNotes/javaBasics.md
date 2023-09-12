@@ -345,6 +345,7 @@ int b = ++a; // b=6, a=6
 
 `implicit casting`
 
+- AKA widening or upcasting
 - automatically done by Java
 - does it with primitive data types
 - where there is no loss of data
@@ -356,6 +357,7 @@ int b = ++a; // b=6, a=6
 
 `explicit casting`
 
+- AKA narrowing or downcasting
 - done by programmer
 - uses `()`:
 
@@ -473,7 +475,7 @@ An `abstract` class is a class that is declared abstract —it may or may not in
 
 > What is the difference between using an instance variable and a static variable?
 
-### Interfaces
+##### Interfaces
 
 An `interface` is similar to an abstract class, but one of many differences is that a class can only inherit one other class, but a class can implement as many interfaces as it needs.
 
@@ -487,7 +489,12 @@ An `interface` is similar to an abstract class, but one of many differences is t
   - **Methods** are '`public`' and '`abstract`'
   - **Variables** are '`public`', '`static`', and '`final`'
 
-### Autoboxing
+#### Wrapper Classes
+
+- every primitive has a corresponding object type
+- mainly useful when working with Collections
+
+##### Autoboxing
 
 > What is autoboxing and unboxing?
 
