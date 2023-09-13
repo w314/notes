@@ -37,7 +37,7 @@ SQL databases are a type of RDBMS which use the standard Structured Query Langua
   - procedures
   - indexes
   - views
-- In and RDBMS table the schema defines the columns, their data types, and constraints.
+- In an RDBMS table the schema defines the columns, their data types, and constraints.
 
 #### Table
 
@@ -132,7 +132,7 @@ create table content_meta (
 
 `Composite Key` is combining two or more keys in a table to create a primary key to uniquly identify a record.
 
-It is also known as `Compound Key`, where each attribute creating a key is a `foreign key`.
+`Compound Key` is a `Composite Key` where each attribute creating a key is a `Foreign Key`.
 
 ### Foreign Key
 
@@ -433,7 +433,7 @@ COMMIT; --statement4
 
 ### DML
 
-The `DML` (`Data Management Language`) sublanguage of SQL is utilized to cre`ate, update, and delete data in a database.
+The `DML` (`Data Management Language`) sublanguage of SQL is utilized to create, update, and delete data in a database.
 
 - `INSERT`
 - `UPDATE`
@@ -480,7 +480,7 @@ DELETE FROM roles where name='VIEWER';
 
 ## SQL DQL
 
-`DQL`the `Data Query Language` is used to search, filter, group and aggregate stored data
+`DQL` the `Data Query Language` is used to search, filter, group and aggregate stored data
 
 - uses the `SELECT` statement
 - retrieves a `Resultset`
@@ -530,7 +530,7 @@ Operators:
 - `NOT` Reverses the value of any boolean expression
 - `OR` true if either or both boolean expressions is true
 - `LIKE` true if the operand matches a pattern
-  - `%`` (percent) match any string of zero or more characters
+  - `%` (percent) match any string of zero or more characters
   - `_` (underscore) match any single character
 - `BETWEEN` true if the operand falls within a range
   Where Logical operators
@@ -641,7 +641,7 @@ A function in MySQL is a set of statements you can call by name.
 - can be used as part of a SQL expression (since it returns a value)
 - can include DQL and DML (and DDL but not used often in function)
 - some are built-in and we can create our own
-- to use a function / get its value, select from it: `select count(*)...`
+- to use a function use `SELECT`: `SELECT COUNT(*)...`
 - Stored functions are very similar to stored procedures, except that a function returns a value to the environment in which it is called.
 
 > What is the difference between an aggregate and a scalar function?
