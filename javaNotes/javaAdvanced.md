@@ -445,12 +445,12 @@ Each of these methods exists in two forms:
 
 #### Map Methods
 
-- put()
-- get() - return `null` if not found
-- remove()
-- entrySet()
-- keySet()
-- values()
+- `.put()`
+- `.get()` - return `null` if not found
+- `.remove()`
+- `.entrySet()`
+- `.keySet()`
+- `.values()`
 
 #### Iterating over map
 
