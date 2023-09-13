@@ -312,9 +312,9 @@ The returned List is backed up by the List on which subList was called, so chang
 - FIFO: add to end/tail, remove from beginning/head
 - Java has an interface that represents this data structure
 - operations unique to queues:
-  - `.offer()`: attempt and adds, if you are able to
-  - `.peek()`: attempt to get head, if there is one
-  - `.poll()`: attempt and remove, if you are able to
+  - `.offer()` - Inserts a new element onto the Queue
+  - `.peek()` - Inspects the element at the front of the Queue, without removing it
+  - `.poll()` - Removes an element from the front of the Queue
 - using add(), remove(), and element() would throw exceptions
 
 #### Queue implementations
@@ -330,7 +330,7 @@ The returned List is backed up by the List on which subList was called, so chang
   - supports operations that wait on the queue to contain an element or for space to become available in the queue
   - Solution to the producer-consumer problem, where a producer thread inputs elements into the array while a consumer thread removes them for processing
 
-### Stack Interface - LEGACY DO NOT USE
+### Stack Interface - LEGACY USE Deque INSTEAD
 
 - LIFO: add to end/top, remove from end/top
 - Java has a legacy class that represents this data structure
@@ -341,6 +341,62 @@ The returned List is backed up by the List on which subList was called, so chang
   - `pop`: remove top
 
 ### Deque Interface
+
+- Extends the Queue interface
+- Short for “double-ended queue", pronounced “deck”
+- Supports element insertion and removal from both ends of the queue
+- Can be used to implement a stack, with Last-In-First-Out (LIFO) behavior
+
+#### Deque Methods
+
+This interface defines methods to access the elements at both ends of the deque.
+
+Each of these methods exists in two forms:
+
+- one throws an exception if the operation fails,
+- the other returns a special value (either null or false, depending on the operation).
+
+(The latter form of the insert operation is designed specifically for use with capacity-restricted Deque implementations; in most implementations, insert operations cannot fail.)
+
+<table>
+<thead>
+<tr>
+<td></td>
+<td>First Element (Head)	</td>
+<td></td>
+<td>Last Element (Tail)</td>
+</tr>
+<td></td>
+<td>Throws exception</td>
+<td>Special value</td>
+<td>Throws exception</td>
+<td>Special value</td>
+<tr>
+</thead>
+<tbody>
+<tr>
+<td>Insert</td>
+<td>addFirst(e)</td>
+<td>offerFirst(e)</td>
+<td>addLast(e)</td>
+<td>offerLast(e)</td>
+</tr>
+<tr>
+<td>Remove</td>
+<td>removeFirst()</td>	
+<td>pollFirst()</td>	
+<td>removeLast()</td>	
+<td>pollLast()</td>
+</tr>
+<tr>
+<td>Examine</td>	
+<td>getFirst()</td>	
+<td>peekFirst()</td>	
+<td>getLast()</td>	
+<td>peekLast()</td>
+</tr>
+</tbody>
+</table>
 
 ### Set Interface
 
@@ -355,9 +411,9 @@ The returned List is backed up by the List on which subList was called, so chang
 
 #### Set Methods
 
-- addAll() - (union) adds elements from one set to the other, no duplicates
-- retainAll() - (intersection) retains only common elements between two sets
-- removeAll() - (difference) removes all elements from first set that are contained in second set
+- `.addAll()` - UNION adds elements from one set to the other, no duplicates
+- `.retainAll()` - INTERSECTION retains only common elements between two sets
+- `.removeAll()` - DIFFERENCE removes all elements from first set that are contained in second set
 
 ### Map Interface
 
