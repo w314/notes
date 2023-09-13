@@ -273,11 +273,11 @@ POM.xml example:
 
 JSON object syntax:
 
-```javascript
+```json
 let Book = {
-  id: 110,
-  language: "Python",
-  author: ["John", "Ben"],
+  "id": 110,
+  "language": "Python",
+  "author": ["John", "Ben"],
 };
 ```
 
@@ -397,7 +397,7 @@ Examples:
 
 ###### collection
 
-A collection resource is a **server-managed** directory of resources.
+A collection resource is a **server-managed directory of resources**.
 
 Clients may propose new resources to be added to a collection. However, it is up to the collection resource to choose to create a new resource or not.
 
@@ -420,7 +420,7 @@ Similarly, a singleton resource “account” inside the sub-collection resource
 
 ###### store
 
-A store is a client-managed resource repository. A store resource lets an API client put resources in, get them back out, and decide when to delete them.
+A store is a **client-managed resource repository**. A store resource lets an API client put resources in, get them back out, and decide when to delete them.
 
 A store never generates new URIs. Instead, each stored resource has a URI. The URI was chosen by a client when the resource initially put it into the store.
 
@@ -488,7 +488,7 @@ Use consistent resource naming conventions and URI formatting for minimum ambigu
 
 Resons to prefer `Logback` over `Log4j`:
 
-- small and speedy: components are faster and have a smaller memroy footprint
+- small and speedy: components are faster and have a smaller memory footprint
 - much better tested framework
 - automatically reloads configuration files
 - gracefully recovers from I/O errors (no need to restart app after server fail, just to get logging to work again)

@@ -225,6 +225,13 @@ If the exception is not handled anywhere in the program, it will propagate up th
 
 - Exception-handling is mandatory for any exception class that is not a subclass of either Error or RuntimeException.
 
+#### Creating Custom Exceptions
+
+- A programmer can create custom exceptions in Java by extending any exception class.
+- If you extend RuntimeException, however, you will be creating an unchecked exception.
+  - This is a good idea if you do not want other code to have to handle your exception being thrown.
+  - If you do always want to require your exception to be handled, then create a checked exception by extending any existing one, or the Exception class itself.
+
 ## Java Entities
 
 > Can you describe some of the basic entities of a Java program?
