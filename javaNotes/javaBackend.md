@@ -214,6 +214,8 @@ When Maven builds your project, it goes through several steps called phases
 
 > Describe the POM.xml file and its importance.
 
+`pom.xml` declares metadata about the project, including project coordinates, dependencies, and plugins.
+
 In `Maven` the project coordinates below together uniquely identify a specific version of a program:
 
 - `group-id`: company name for example: "com.revature"

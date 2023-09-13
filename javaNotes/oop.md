@@ -128,6 +128,8 @@ Dog: growl
 
 ### Abstraction
 
+`Abstraction` means hiding implementation details through a higher-level construct, like abstract classes and interfaces, thereby decreasing coupling and increasing cohesion.
+
 > Describe abstraction and how would you use it in a project?
 
 `Abstraction` is an OOP programming principle.

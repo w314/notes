@@ -712,6 +712,22 @@ If you enter wrong input (e.g. text in a numerical input), you will get an excep
 
 ## Object Class
 
+`Object` is a special class in Java which is the root class from which all other classes inherit, either directly or indirectly.
+
+### Object Class Methods
+
+- Object clone() - Returns a copy of this object.
+- boolean equals(Object o) - Indicates whether this object is equal to the o object.
+- void finalize() - Called by the garbage collector when the object is destroyed.
+- Class<?> getClass() Returns a Class object that represents this object's runtime class
+- int hashCode() - Returns this object's hash code.
+- void notify() - Is used with threaded applications to wake up a thread that's waiting on this object.
+- void notifyAll() - Is used with threaded applications to wake up all threads that are waiting on this object.
+- String toString() - Returns a String representation of this object.
+- void wait() - Causes this object's thread to wait until another thread calls notify or notifyAll.
+  - void wait(long timeout) - Is a variation of the basic wait method.
+  - void wait(long timeout, int nanos) - Another variation of the wait method.
+
 > What methods are commonly overridden from the Object class and why?
 
 - `equals()`
