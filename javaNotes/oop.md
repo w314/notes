@@ -138,9 +138,11 @@ example: Shape class, getArea() method
 
 ### Polymorphism
 
+`Polymorphism` mean allowing the implementation of a given behavior to vary, whether between subclasses or within the same class.
+
 > Describe polymorphism and how would you use it in a project?
 
-`polymorphism` means "taking on many forms". In OOP polymorphism provides the means to perform a single action in multiple different ways
+`Polymorphism` means "taking on many forms". In OOP polymorphism provides the means to perform a single action in multiple different ways.
 
 The most common examples of polymorphism:
 
