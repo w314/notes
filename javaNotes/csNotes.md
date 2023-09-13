@@ -376,7 +376,8 @@ Design Patterns are tried and true software design for keeping apps maintainable
 ### Factory Design Pattern
 
 > What is the Factory design pattern?
-> Factory is a design pattern which creates objects in which the precise type may not be known until runtime. There are several reasons to use the factory pattern:
+
+Factory is a design pattern which creates objects in which the precise type may not be known until runtime. There are several reasons to use the factory pattern:
 
 - If you don't know the exact types needed before running the code.
 - If you want to hide the creational logic, which prevents end user creating things that they shouldn't.
@@ -388,6 +389,15 @@ Some extra benefits of using the factory pattern:
 - Single responsibility is upheld by putting all of the construction code in a single function.
 - Open/Closed principle is upheld by allowing new subclasses to easily implement and be added, without negatively affecting any of the already written classes.
 - Abstracts the actual creation of the objects away from the user.
+
+Problems that are solved by Factory Design Pattern:
+
+- you had client code that kept track of all available objects it can create
+- if you wanted to create an additional class for client code to use, client code needed to be updated
+
+Factory Design Pattern provides this solution:
+
+- by removing object creation responsibility from client, client just uses factory to get an object and no longer needs to keep track of concrete classes that it needs to choose from
 
 #### Real World Application
 
@@ -407,13 +417,13 @@ To make a factory:
 
 - Create the abstract data type
 - Create several classes that inherit the abstract data type (the objects whose instantiation details may not be known until runtime)
-- Set up a static method whose return type is the abstract data type in (1), which will return the concrete instance
+- Set up a static method whose return type is the abstract data type which will return the concrete instance
 
 ```java
-// Abstract Data Type
+// crate Abstract Data Type
 public interface Dessert {}
 
-// Classes that inherit the abstract data type
+// create Classes that inherit the abstract data type
 public class Cake implements Dessert {}
 
 public class Cookie implements Dessert {}
@@ -425,6 +435,9 @@ public class DessertNotFoundException extends RuntimeException {}
 
 // Factory class that returns the concrete instance
 public class DessertFactory {
+
+    // static method returns with abstract data type as return type
+    // will return the concrete inctances
     public static Dessert getDessert(String dessertType) {
         switch(dessertType) {
             case "cake":
@@ -449,15 +462,6 @@ public class DessertFactory {
 }
 ```
 
-#### REV NOTES: About Factory Design Patter:
-
-- creating objects without exposing creation logic to client code
-- problem solved by this pattern:
-- you have client code keeps track of all available objects it can create
-- if you want to create an additional class for client code to use, client code needs to be updated
-- solution this pattern provides:
-- by removing object creation responsibility from client, client just uses factory to get an object and no longer needs to keep track of concrete classes that it needs to choose from
-
 #### Simple Factory
 
 - not full implementation of the design pattern, but a good first step
@@ -466,22 +470,16 @@ public class DessertFactory {
 - A class separate from the client class is created to keep track of available options/objects that client code can use
 - does not follow Open/Closed Principle since you have to update class if additional option/object added
 
----
-
-#### Factory Method Pattern (Supplementary)
-
-- does take responsibility from client
-- flexible
-- Class with client code relies on an abstract factory method. Subclassing superclass allows us to add more options to client code by overriding factory method. Follows Open/Closed Principle.
-
----
-
 ### Singleton Design Pattern
 
 > What is the Singleton design pattern?
 
 - The Singleton design pattern allows for the creation of a single instance of an object in memory that can be shared across multiple classes.
-- Benefits of using a Singleton include coordination across the system, clear instance retrieval, control over instantiation, and global access point.
+- Benefits of using a Singleton:
+  - coordination across the system
+  - clear instance retrieval
+  - control over instantiation
+  - global access point.
 - It can be useful for services in an application, or other resources like a connection or thread pool.
 - Situations where Singleton pattern can be useful include logging frameworks, database connections, caching, configuration settings, and thread pool/task manager in concurrent programming.
 
@@ -489,14 +487,14 @@ Singleton Design Patter:
 
 - ensure there can only be one instance of the class and it can be accessed throughout project
 - solution this pattern provides:
-- for classes where creating more than one object can lead to problems (one logger to ensure your logs are not conflicting/duplicated/out of order)
-- when you want the object to exist only when it is needed (for example, you don't want to create a global object from the start of application if it is resource intesive)
-- use case we've already seen: connection to a database
+  - for classes where creating more than one object can lead to problems (one logger to ensure your logs are not conflicting/duplicated/out of order)
+  - when you want the object to exist only when it is needed (for example, you don't want to create a global object from the start of application if it is resource intesive)
+  - use case we've already seen: connection to a database
 
 #### Benefits to using a Singleton:
 
 - There will only be 1 instance, which allows coordination across a system.
-- There is a clear way to fetch the correct instance. getInstance()
+- There is a clear way to fetch the correct instance. `getInstance()`
 - Programmer has complete control over instantiation.
 - global access point
 - The singleton is not created until it is used, often referred to as lazy instantiation.
@@ -524,13 +522,13 @@ The primary benefit of a Singleton is the management of data or functionality th
 
 To make a class into a Singleton in Java use:
 
-- private static variable of the class' type
+- private static variable of the class's type
 - private constructor - to prevent arbitrary object creation
 - public static getInstance() method, which will either instantiate the object or return the instance in memory
 
 ```java
 public class Singleton {
-    // Private static variable of the class' type
+    // Private static variable of the class's type
     private static Singleton instance;
     private int number;
     // Private Constructor
