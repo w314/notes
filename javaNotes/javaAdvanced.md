@@ -129,7 +129,7 @@ Type params are single, uppercase letters.
 - objects that allow you to traverse a Collection
 - are used "behind the scenes" in enhanced for loops
 
-The `Iterable` interface defines a data structure which can be directly traversed using the `.iterator()` method, which returns an `Iterator`.
+The `Iterable Interface` defines a data structure which can be directly traversed using the `.iterator()` method, which returns an `Iterator`.
 
 - Any class that implements the Iterable interface needs to override the `iterator()` method
 - Any class implementing the Iterator interface needs to override the `hasNext()` and `next()` methods provided by the Iterator interface.
@@ -143,7 +143,7 @@ The `Iterable` interface defines a data structure which can be directly traverse
 - `.hasNext()` - returns true if the iteration has more elements
 - `.next()` - returns the next element in the iteration.
 - `.remove()` - removes element from underlying collection (can only be called on modifiable Collections!)
-- you cannot modify using Collection methods during iteration!
+- you cannot modify elements using Collection methods during iteration!
 
 ### List Iterator
 
@@ -239,18 +239,18 @@ A `collection` is a single object which acts as a container for other objects.
 
 ##### Other Methods
 
-- isEmpty
-- size
+- `isEmpty()`
+- `size()`
 
 ##### 1. Positional access operations
 
 Manipulates elements based on their numerical position in the list
 
-- `get` - using index
-- `set`
-- `add` - value OR value at index
-- `addAll`
-- `remove` - using index OR value
+- `.get()` - using index
+- `.set()`
+- `.add()` - value OR value at index
+- `.addAll()`
+- `.remove()` - using index OR value
 
 ##### 2. Search operations
 
@@ -258,7 +258,7 @@ Searches for a specified object in the list and returns its numerical position.
 
 - `.indexOf()`
 - `.lastIndexOf()`
-- `indexOfSubList`
+- `.indexOfSubList()`
 
 ##### 3. Iteration operations
 
@@ -268,14 +268,14 @@ Searches for a specified object in the list and returns its numerical position.
 
 Inherited from `Iterator`
 
-- `hasNext()`
-- `next()` - moves cursor forward
-- `remove()`
+- `.hasNext()`
+- `.next()` - moves cursor forward
+- `.remove()`
 
 Added methods:
 
-- `hasPrevious()`
-- `previous()` - moves cursor backward
+- `.hasPrevious()`
+- `.previous()` - moves cursor backward
 
 ```java
 // iterating backwards through a  List
@@ -305,16 +305,16 @@ Returns a List view of the portion of this list whose indices range from fromInd
 
 The returned List is backed up by the List on which subList was called, so changes in the former are reflected in the latter.
 
-- `sublist(int fromIndex, int toIndex)`
+- `.sublist(int fromIndex, int toIndex)`
 
 ### Queue Interface
 
 - FIFO: add to end/tail, remove from beginning/head
 - Java has an interface that represents this data structure
 - operations unique to queues:
-  - `offer`: attempt and adds, if you are able to
-  - `peek`: attempt to get head, if there is one
-  - `poll`: attempt and remove, if you are able to
+  - `.offer()`: attempt and adds, if you are able to
+  - `.peek()`: attempt to get head, if there is one
+  - `.poll()`: attempt and remove, if you are able to
 - using add(), remove(), and element() would throw exceptions
 
 #### Queue implementations
