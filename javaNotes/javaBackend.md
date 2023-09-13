@@ -1138,6 +1138,7 @@ Note: You will not be assessed over the Persisting Data with JDBC topic_
 - `java.sql.ResultSet` interface represents the result set of a query on a database
 - The `ResultSet` is an object which represents a set of data returned from a database as a result of a query input.
 - `executeQuery` method can be used to obtain the result table from the `SELECT` statement in a ResultSet object.
+- in a ResultSet column names are case insensitive
 
 #### `Prepared Statment`
 

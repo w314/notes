@@ -45,7 +45,7 @@ SQL databases are a type of RDBMS which use the standard Structured Query Langua
 
 In MySQL, a table stores and organizes data in columns and rows as defined during table creation.
 
-- Tables are used to group the records in relation with each other and create a dataset.
+- a `row` in a table represents a relationship among a set of values
 
 TABLE commands:
 
@@ -99,7 +99,7 @@ ALTER TABLE testalter_tbl DROP INDEX (c);
 
 > What are constraints and can you describe a few constraints?
 
-`Constraints` are rules for columns to ensure validity of data.
+`Constraints` are rules for columns to ensure validity of data. They are used to restrict the values of data which are inserted into a table.
 
 `Constraints` are used to define a database schema and are the backbone for defining `integrity constraints` of the schema. They help validate data beyond just a simple data type.
 
@@ -177,26 +177,31 @@ Referential Integrity:
 - ensure referential integrity
 - simplify data management
 
-1. `1NF` First Normal Form
+- `1NF` First Normal Form
 
-- Each table cell should contain a single value.
-- Each record needs to be unique
-- violation example: hobbies with several values
-- solution add new rows with each value
+  - Each table cell should contain a single value.
+  - Each record needs to be unique
+  - violation example: hobbies with several values
+  - solution add new rows with each value
 
-2. `2NF` Second Normal Form
+- `2NF` Second Normal Form
 
-- Be in 1NF
-- Single Column Primary Key - that does not functionally dependant on any subset of candidate key relation
-- violation example: name and address identifies a record when two different people have the same name
-- solution: add a primary key column
+  - Be in 1NF
+  - Single Column Primary Key - that does not functionally dependant on any subset of candidate key relation
+  - violation example: name and address identifies a record when two different people have the same name
+  - solution: add a primary key column
 
-3. `3NF` Third Normal Form
+- `3NF` Third Normal Form
 
-- in 2NF
-- all the attributes (e.g. database columns) are functionally dependent on solely the primary key (no transitive functional dependencies)
-- violation example: hospital database having a table of patients which included a column for the telephone number of their doctor. The phone number is dependent on the doctor, rather than the patient, thus would be better stored in a table of doctors
-- solution: create table for doctors and store phone number there
+  - in 2NF
+  - all the attributes (e.g. database columns) are functionally dependent on solely the primary key (no transitive functional dependencies)
+  - violation example: hospital database having a table of patients which included a column for the telephone number of their doctor. The phone number is dependent on the doctor, rather than the patient, thus would be better stored in a table of doctors
+  - solution: create table for doctors and store phone number there
+
+- BCNF Boyce-Codd Normal Form
+  - in 3NF
+  - for any dependency A → B, A should be a super key. which means that A should be a non-key attribute if B is a key attribute
+  - for every Functional Dependency, LHS is the super key - ???????????????
 
 ### Multiplicity
 
@@ -222,10 +227,13 @@ There are 4 different multiplicity relationships
 
 ### SQL Datatypes
 
+The purpose of SQL data types is to constraint a columns expected value.
+
 - Character types
-  - Fixed-length
-  - Variable-length
-  - `VARCHAR`
+  - Fixed-length - `MY_VALUE CHARACTER(10)`
+    - size: 10 bytes
+  - Variable-length - `MY_VALUE VARCHAR(255)`
+    - size: min 2 bytes, max 255 bytes
 - Numeric types
 
   - Decimal
