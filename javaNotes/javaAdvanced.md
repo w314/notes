@@ -466,11 +466,11 @@ Each of these methods exists in two forms:
 #### ArrayList Class
 
 - implements the `List` interface
-- a data structure which contains an array within it, but can resize dynamically.
-- Once it reaches maximum capacity, an ArrayList will increase its size by 50% by copying its elements to a new (internal) array.
-- Traversal is fast (constant time) because elements can be randomly accessed via index, just like an array.
-- Insertion or removal of elements is slow, however (linear time, since there is a risk of having to resize the underlying array)
-- ArrayList is a parameterized type
+- a data structure which contains an array within it
+- resizes dynamically - Once it reaches maximum capacity, an ArrayList will increase its size by 50% by copying its elements to a new (internal) array.
+- fast traversal: O(1) - because elements can be randomly accessed via index, just like an array
+- slow insertion or removal of elements : O(n) - since there is a risk of having to resize the underlying array
+- `parameterized type` - declared as using generics
 - cannot use primitives, must use their wrapper classes
 - better for storing and accessing data
 
