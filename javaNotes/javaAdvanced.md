@@ -645,11 +645,18 @@ _How to use Class class and related classes in reflect package to find and work 
 
 `Reflection` is a feature in the Java programming language. It allows an executing Java program to examine or "introspect" upon itself, and manipulate internal properties of the program. For example, it's possible for a Java class to obtain the names of all its members and display them.
 
-- includes the reflect package and the `Class` class (which is in the lang package)
+- includes the reflect package and the `Class` class (which is in the `java.lang` package)
 - reflection allows programmatic access to information about a class itself and its members
 - used by debuggers, interpreters, frameworks, etc
 
-### Class class
+### Classes of Reflection API
+
+- Class class
+- Method class
+- Field class
+- Constructor class
+
+#### Class class
 
 - instances of this class represent classes or interfaces themselves
 - getFields() / getDeclaredFields() / getField() / getDeclaredField()
@@ -657,7 +664,7 @@ _How to use Class class and related classes in reflect package to find and work 
 - getConstructors() / getDeclaredConstructors() / getConstructor() / getDeclaredConstructor()
 - and much more information can be obtained a well
 
-### Method, Field, Constructor Classes
+#### Methods of the Method, Field, Constructor Classes
 
 - getModifiers(), getParameterTypes() getParameterCount(), and more
 - get(), getType(), set(), and more
