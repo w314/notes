@@ -52,4 +52,8 @@ int indFound = Collections.binarySearch(arrList, 9);
 // print array
 System.out.println(arrList);
 
+// int[] arr to ArrayList
+int[] arr9 = {1, 2, 3, 3};
+List<Integer> arrList9 = new ArrayList<>(Arrays.stream(arr9).boxed().collect(Collectors.toList()));
+
 ```
