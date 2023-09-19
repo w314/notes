@@ -33,4 +33,13 @@ for(String element : set) {
 // print
 System.out.println(set);
 
+// array to set
+String[] arr1 = {"TX", "GA"};
+HashSet<String> set1 = new HashSet<>(Arrays.asList(arr));
+// with primitives
+int[] arr2 = {3, 5, 6, 6};
+HashSet<Integer> set2 = new HashSet<>(Arrays.stream(arr2).boxed().collect(Collectors.toSet()));
+
+
+
 ```
