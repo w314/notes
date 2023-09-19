@@ -849,7 +849,7 @@ int[] myArray = new int[5];
 int[] myArray1 = {2, 6, 7};
 
 // lenght of the array
-myArray.length();
+myArray.length;
 
 // print out array
 System.out.println(Arrays.toString(myArray));
