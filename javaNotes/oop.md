@@ -79,7 +79,7 @@ The `this` keyword refers to the object which is being instantiated - it is used
 - provide no functionality to object
 - automatically called at object creation when a class is instanceated
 
-## OOP Principles
+## OOP Features
 
 - Inheritance
 - Abstraction
@@ -221,3 +221,47 @@ When encapsulating your code, certain conventions should be followed:
 
 EXAMPLE
 employee object, make slary private, setSalary checks valid salary number, getSalary check is user has access rights
+
+## SOLID Design Principles
+
+Set of rules and best practices to follow in OOP class design.
+
+> What are the SOLID design principles and why are they important?
+
+- SRP - Single Responsibility Principle
+- OCP - Open Closed Principle
+- LSP - Liskov Substitution Principle
+- ISP - Interface Segregation Principle
+- DIP - Dependency Inversion Principle
+
+### `Single Responsibility Principle (SRP)`
+
+- A class should have only one purpose, focusing on a single responsibility or task.
+- EXAMPLE: pulling data from a server, manipulating and storing it in a database is not single responsibility
+
+### `Open-Closed Principle (OCP)`:
+
+- Software entities should be open for extension but closed for modification
+- you should be able to **add new functionality
+  to a system without modifying its existing** code
+- we use `abstract classes` and `interfaces` to achieve the `Open Close Principle`
+- EXAMPLE: have an abstract area method in a shape class, that can be implemented differentle in triangles and squares, rather than if statements in shape class that have to be modified any time a new shape is introduced
+
+### `Liskov Substitution Principle (LSP)`
+
+- Objects of a superclass should be replaceable with objects of their subclasses
+- any instance of a base class should be able to be replaced by an instance of a subclass without affecting the correctness of the program
+- This means that, given that class B is a subclass of class A, we should be able to pass an object of class B to any method that expects an object of class A and the method should not give any weird output in that case.
+- This is the expected behavior, because when we use inheritance we assume that the child class inherits everything that the superclass has. The child class extends the behavior but never narrows it down.
+- EXAMPLE:
+
+### `Interface Segregation Principle (ISP)`
+
+- is about separating interfaces, many client-specific interfaces are better than one general-purpose interface
+- Clients should not be forced to depend on interfaces they do not use
+- EXAMPLE vehicle interface with opendoors() method and Bike class implementing vehicle interface and mock implement opendoors() method
+
+### `Dependency Inversion Principle (DIP)`
+
+- our classes should depend upon interfaces or abstract classes instead of concrete classes and functions
+- if the `OCP (Open Closed Principle)` is the goal of `OO` architecture, `DIP (Dependency Inversion Principle)` is the primary mechanism to achive it

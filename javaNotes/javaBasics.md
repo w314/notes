@@ -43,11 +43,12 @@
 
 > Describe the difference between the stack and the heap.
 
-To run an application in an optimal way, JVM divides memory into stack and heap memory. Whenever we declare new variables and objects, call a new method JVM designates memory to these operations from either Stack Memory or Heap Space.
+JVM divides memory into stack and heap memory.
 
 ### `Stack`
 
-- area in memory keeps track of the currently executing methods
+- area in memory
+- keeps track of the currently executing methods
 - stores any variables that these methods create and use
 - smaller than heap
 - `Stack` Memory in Java is used for:
@@ -56,7 +57,7 @@ To run an application in an optimal way, JVM divides memory into stack and heap 
   - it contains:
     - primitive values that are specific to a method
     - references to objects referred from the method that are in a heap.
-- Access to this memory is in Last-In-First-Out (LIFO) order.
+- LIFO : Access to this memory is in Last-In-First-Out (LIFO) order.
 - When the method finishes execution, its corresponding stack frame is flushed, the flow goes back to the calling method, and space becomes available for the next method.
 - It grows and shrinks as new methods are called and returned, respectively.
 - Variables inside the stack exist only as long as the method that created them is running.
@@ -136,6 +137,7 @@ Garbage collection is a background process created by JVM to delete unused objec
 > What is the role of garbage collection in Java?
 
 - deletes objects which have no references to them
+- call objects `.final()` method
 - frees up space for us
 - we don't control the garbage collector, there is no way we can explicitly force garbage collection to happen, but we can request garbage collection to be run through the use of one of the following:
   - System.gc()
@@ -266,14 +268,18 @@ A `variable` is a container for storing data.
 - data types defined by the language
 - stores the value of the data
 - types
-  - boolean 1 bit true or false
-  - byte 1 byte numerical
-  - char 2 bytes 1 character
-  - short 2 bytes numerical
-  - int 4 bytes numerical
-  - float 4 bytes floating point
-  - long 8 bytes numerical
-  - double 8 bytes floating point
+  - boolean - `true` or `false`
+    - `boolean` - 1 bit
+  - character - uses `''`
+    - `char` - 2 bytes
+  - numerical
+    - `byte` - 1 byte
+    - `short` - 2 bytes
+    - `int` - 4 bytes
+    - `long` - 8 bytes
+  - floating points
+    - `float` - 4 bytes
+    - `double` - 8 bytes
 
 #### Using variables
 
@@ -768,6 +774,7 @@ Finally, the `.finalize()` method is called by the garbage collector when it det
 
 Strings.
 
+- use ""
 - are not a primitive data type but a reference type
 - holds a reference to an object created from the String class, not the value of the string itself
 - Strings are `immutable`, constant objectsm, this is accomplished by having internal, private and final fields and not implementing any "setter" methods which would alter the state of those fields.

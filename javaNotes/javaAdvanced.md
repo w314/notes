@@ -1,13 +1,12 @@
 ## Functional Programming in Java
 
-- `functional programming` uses functions to solve problems
-- specifying what you want to happen to get results, not how you want it to happen
-- (use predefined functions and rely heavily on chaining function calls, not on creating structure, like classes where we define the "how")
+- In functional programming, everything is a function.
+- Functional programming tries to keep data and behavior separate. (vs objects in OOP)
 
-Key Concept
+Rules of Functional Programming
 
-- wherever we have a functional interface reference variable / parameter, we have a position where we can use a lambda (or method reference)
-- functional interfaces enable functional programming in Java
+- data is `immutable` - if you want to change data, such as an array, you return a new array with the changes
+- functions are `stateless` - same input -> same output
 
 ### functional interfaces
 

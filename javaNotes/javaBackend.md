@@ -262,6 +262,8 @@ POM.xml example:
 
 ## JSON
 
+Data interchange format.
+
 - `JSON` (`JavaScript Object Notation`) is a lightweight data-interchange format.
 - JSON Object is a set of key and value pair enclosed within curly braces
 - a key is a string enclosed in quotation marks
@@ -292,9 +294,14 @@ Applications of JSON:
 
 ## REST
 
-Representational State Transfer (REST) is an architectural style that defines a set of constraints to be used for creating web services.
+An an architectural style for distributed hypermedia systems.
 
-- Representational State Transfer
+- Representational State Transfer (REST).
+- has its guiding principles and constraints, these principles must be satisfied if a `service interface` needs to be referred to as `RESTful`
+- `Web API` (or Web Service) conforming to the REST architectural style is a `REST API`
+
+REST
+
 - architecture for exposing information and functionality between software or devices
 - information provided is a representation of the state of a given resource
 - representation is usually JSON
@@ -308,12 +315,23 @@ REST vs. SOAP vs. RPC
 - REST vs. `RPC` (`Remote Procedure Call`)
   - in REST users are not required to know procedure names or spedific parameters in a specific order
 
-### REST Constraints (principles)
+### REST Principles
 
 - `Client-Server`
 
-  - the client and the server should be separate from each other and allowed to evolve individually
-  - client and server are interacting through an interface
+  - the client and the server should be separate from each other
+  - client and server evolve independently
+
+  <br>
+
+  - `Uniform Interface`
+
+  - key to the decoupling client from server is having a uniform interface
+  - the following four constraints can achieve a uniform REST interface
+    - Identification of resources – The interface must uniquely identify each resource involved in the interaction between the client and the server.
+    - Manipulation of resources through representations – The resources should have uniform representations in the server response. API consumers should use these representations to modify the resources state in the server.
+    - Self-descriptive messages – Each resource representation should carry enough information to describe how to process the message. It should also provide information of the additional actions that the client can perform on the resource.
+    - Hypermedia as the engine of application state – The client should have only the initial URI of the application. The client application should dynamically drive all other resources and interactions with the use of hyperlinks.
 
   <br>
 
@@ -326,26 +344,17 @@ REST vs. SOAP vs. RPC
 
 - `Cachable`
 
-  - because a stateless API can increase request overhead by handling large loads of incoming and outbound calls, a REST API should be designed to encourage the storage of cacheable data.
-  - responses should specify if info is cachable or not
-
-  <br>
-
-- `Uniform Interface`
-
-  - The key to the decoupling client from server is having a uniform interface that allows independent evolution of the application without having the application’s services, or models and actions, tightly coupled to the API layer itself.
-  - use of resources,
-  - use of self-descriptive messages
+  - a response should implicitly or explicitly label itself as cacheable or non-cacheable.
 
 <br>
 
 - `Layered System`
-  - REST APIs have different layers of their architecture working together to build a hierarchy that helps create a more scalable and modular application.
-  - application itself is ideally in layers interacting through interfaces
+  - layered system style allows an architecture to be composed of hierarchical layers
+  - in a layered system, each component cannot see beyond the immediate layer they are interacting with.
 
 <br>
 
-- `Code on Demand`
+- `Code on Demand` (OPTIONAL)
   - allows for code or applets to be transmitted via the API for use within the application.
 
 <br>

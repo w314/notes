@@ -424,7 +424,6 @@ COMMIT; --statement4
 
 - `Consistency` : One of the advantages of using a transaction is that, even if the transaction is a success or a failure, the database is consistent and the data integrity is maintained.
   All inconsistent data is removed, and all transactions that might cause inconsistency are aborted and an error is created or transcribed into an error log. Example: Consider two bank accounts ACC1 and ACC2 with funds of 10000$ and 9000, which is is total of 19000, after a transaction of transferring 50$ from ACC2 to ACC1 the funds in ACC1 is 10050$ and ACC2 are 8950$, which means the totals funds in AC1 and ACC2 adds up to 19000, So the funds in ACC1 and ACC2 are consistent before and after the Transaction.
-  
 - `Isolation`: Every transaction is isolated from other transactions. Therefore, a transaction shouldn't affect other transactions running at the same time. Stated another way, data modifications made by one transaction should be isolated from the data modifications made by other transactions. So, while a transaction can see data in the state it was in before another concurrent transaction modified it, as well as after the second transaction has completed, it cannot see any intermediate states. Example: Consider that the user A withdraws $100 and user B withdraws $250 from user ACC1 account, which has a balance of $1,000. Since both A and B draw from ACC1 account, one of the users is required to wait until the other user transaction is completed, avoiding inconsistent data.
 
 - `Durability`:
