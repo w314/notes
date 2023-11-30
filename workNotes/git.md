@@ -33,7 +33,7 @@ Use `GCM` (_Git Creadential Manager_) to store the `PAT`. (It may already be int
   ```
 
   ```shell
-    export GCM_CREDENTIAL_STORE="cache"
+  export GCM_CREDENTIAL_STORE="cache"
   ```
 
   When using `git push` for the first time, a pop-up window comes up, and there is a possiblity to enter the token. After that the token is already stored.
