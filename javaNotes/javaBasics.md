@@ -842,21 +842,26 @@ int[] otherArray = {1, 2, 3};
 
 > How would you access the last value in an array if you do not know the size of the array?
 
-#### Array Static Methods
+#### Arrays Static Methods
 
-- `Arrays.sort()`
+- `Arrays.sort()` - modifies original array
 - `Aarrays.binarySearch()` - array must be sorted
-- `Arrays.toString()`
+- `Arrays.toString()` - for printing out array
 - `Arrays.equals(array1, array2)` - compares the contents of the arrays
 
 ```java
-// create a new array
+// create a new empty array size 5
 int[] myArray = new int[5];
-// OR
-int[] myArray1 = {2, 6, 7};
 
-// lenght of the array
+// create array with values
+int[] myArray1 = {9, 6, 7};
+
+// length of the array
 myArray.length;
+
+// sort array
+Arrays.sort(myArray1) 
+// -> [6, 7, 9]
 
 // print out array
 System.out.println(Arrays.toString(myArray));
