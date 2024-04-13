@@ -6,7 +6,7 @@ java, HashMap
 ```java
 // create
 // only works with wrapper types not primitives
-HashSet<Strig> set = new HashSet<>();
+HashSet<String> set = new HashSet<>();
 
 // add element
 // no error if you try to add already existing element
