@@ -19,8 +19,8 @@ A class is a template used to instantiate objects.
 
 - Variables and methods that are NOT static are instance members.
 - instance members are copied by objects and can only be interacted with using an object of the class
-- instance variables are known as "state" that objects can have
-- instance methods are known as "behavior" that objects can have
+- instance variables are known as `state` that objects can have
+- instance methods are known as `behavior` that objects can have
 
 > What are classes used for?
 
@@ -32,15 +32,15 @@ We use classes to create a blueprint for objects.
 
 > Describe what an object is.
 
-An object is an instance of a class in memory.
+An object is an *instance of a class in memory*.
 
 - It has `state`(instance variables) and `behavior` (instance methods).
 
 - In Java, you never interact with objects directly. Instead, you interact with them through their reference, which is the memory address used by the JVM to find a particular object.
 
-- the `constructor` declares how an object is to be instantiated and initialized from the class "blueprint".
+- the `constructor` declares how an object is to be `instantiated` and `initialized` from the class "blueprint".
 
-### Constructur
+### Constructor
 
 > What is a constructor and how is it different from a method?
 
@@ -51,7 +51,8 @@ A `constructor` is a special method that declares how an object is to be instant
 - has no return type
 - name is the same of the class
 - the new object created by the constructor is always of the class in which the constructor is declared
-- you can have more than one constructor IF they have different parameter lists
+ TODO: ???
+ - you can have more than one constructor IF they have different parameter lists
 
 #### `this`Keyword
 
@@ -62,24 +63,24 @@ The `this` keyword refers to the object which is being instantiated - it is used
 - the `super` keyword references the "super", or parent class.
 
   - When invoked as a method (super()), the parent class constructor will be called.
-  - A super() call (or a this() call) must be the first line of any constructor.
+  - A super() call (or a this() cal TODO: WHAT IS  THIS() CALL? ) must be the first line of any constructor.
 
 - If not explicitly provided, the compiler will inject super() it on the first line implicitly.
 
 #### Default Constructor
 
-- if you do not add a constructor to your class a `no-args` constructor is created for you behind the scenes
+- if you do not add a constructor to your class a `no-args constructor` is created for you behind the scenes
 - this `default constructor` takes no arguments and simply calls super()
-- however if we define our own constructor(s) in the class, we will not receive a default constructor from the compiler.
+- however if we define our own constructor(s) in the class, we will not receive a default constructor from the compiler
 
 #### Constructors vs. Methods
 
 - have no return types
 - have same name as class
 - provide no functionality to object
-- automatically called at object creation when a class is instanceated
+- automatically called at object creation when a class is instantiated
 
-## OOP Features
+## OOP Programming Principles
 
 - Inheritance
 - Abstraction
@@ -87,17 +88,21 @@ The `this` keyword refers to the object which is being instantiated - it is used
 - Polymorphism
 
 ### Inheritance
+> Describe inheritance and how would you
+ use it in a project?
 
-> Describe inheritance and how would you use it in a project?
+Inheritance is an OOP programming principle.
 
-`Inheritance` is inheriting the common state and behavior of parent class (super class) by its derived class (sub class or child class).
-A sub class can inherit all non-private members from super class, by default.
+
+
+Inheritance is inheriting the common state and behavior of parent class (super class) by its derived class (sub class or child class).
+A sub class can inherit all non-private members from super class, by default. TODO: BY DEAFULT? NOT CLEAR
 
 Types:
 
 - `single`
-- `multi-level`
-- `hierarchical`: one super class with more than one subclasses
+- `multi-level`: Class C extends Class B, Class B extends Class A
+- `hierarchical`: one super class with more than one subclasses, both Class C and B extend Class A
 - `multiple`: inherit from more than one parent (NOT POSSIBLE IN JAVA)
 
 Example:
@@ -117,7 +122,7 @@ class Dog extends Animal {
 
 Example:
 Animal:
-age, name, abstract makeNoise, sleep
+age, name, abstract makeNoise, sleep TODO EXPLANATION UNCLEAR
 
 > What state and behavior would you define in a subclass but not in the parent class?
 
@@ -127,24 +132,30 @@ age, name, abstract makeNose, sleep
 Dog: growl
 
 ### Abstraction
-
-`Abstraction` means hiding implementation details through a higher-level construct, like abstract classes and interfaces, thereby decreasing coupling and increasing cohesion.
-
 > Describe abstraction and how would you use it in a project?
 
-`Abstraction` is an OOP programming principle.
+
+Abstraction is an OOP programming principle.
+
+Abstraction means hiding implementation details through a higher-level construct, like abstract classes and interfaces, thereby decreasing coupling and increasing cohesion. TODO: COHESION? WHAT IS COHESION
+
+
+
 
 Through abstraction we hide underlying complexity through a simplified interface.
 
-example: Shape class, getArea() method
+example: Shape class, getArea() method TOOD: EXAMPLE NOT CLEAR
 
 ### Polymorphism
 
-`Polymorphism` mean allowing the implementation of a given behavior to vary, whether between subclasses or within the same class.
 
 > Describe polymorphism and how would you use it in a project?
 
-`Polymorphism` means "taking on many forms". In OOP polymorphism provides the means to perform a single action in multiple different ways.
+Polymorphism is an OOP programming principle.
+
+Polymorphism means "taking on many forms", it allows the implementation of  given behavior to vary, whether between subclasses (`method overriding`) or within the same class (`method overloading`).
+
+In OOP polymorphism provides the means to perform a single action in multiple different ways.
 
 The most common examples of polymorphism:
 
@@ -173,10 +184,15 @@ when a method in a child class has the same method signature as a method in the 
 - make class hierarchies more flexible and dynamic
 - runtime / dynamic polymorphism
 - `static methods` cannot be overriden
-- return type can only be changed if it is a subtype of the original type (`covariant return types`)
+- return type can only be changed if it is a subtype of the original type (`covariant return types`) TODO: EXAMPLE
 - access modifier can be changed but must provide more _not less_ access
 
 `virtual method invocation` when variable is declared as type Animal but refers to a Dog object, calling a method will use Dog's implementation of the method
+```java
+Animal myDog = new Dog();
+// it will output wof-wof not baah as it uses the implementation in Dog class
+myDog.speak()
+```
 
 EXAMPLE of method overriding - speak method implemented differently in Animal subspecies
 
@@ -187,6 +203,7 @@ is the process of casting an object of a subclass to an object of its superclass
 - done automatically by the Java compiler
 - safe operation does not involve loss of data
 - you can access only the members of the superclass, but don not lose any members of the subclass
+- Liskov Substitution Principle
 
 #### `downcasting`
 
@@ -196,20 +213,19 @@ The process of casting an object of a superclass to an object of its subclass
 - use `instanceof` operater to check before downcasting
 
 ### Encapsulation
-
-`Encapsulation` means **restricting access to data members** by using:
-
-- access modifiers
-- getter/setter methods
-
 > Describe encapsulation and how would you use it in a project?
+
+- Encapsulation is an OOP programming principle.
+- In OOP data and methods operating on that data are combined together to form a single unit, which is referred to as a Class
+- Eencapsulation is as a protective wrapper that prevents the code and data from being arbitrarily accessed by other code defined outside the wrapper
+by using:
+  - access modifiers
+  - getter/setter methods
 
 > What is the purpose of using getter and setter methods?
 
-- `encapsulation` is a process of wrapping data and methods in a single unit.
-- it is an OOP principle
-- in OOP data and methods operating on that data are combined together to form a single unit, which is referred to as a Class
-- `encapsulation` is as a protective wrapper that prevents the code and data from being arbitrarily accessed by other code defined outside the wrapper.
+Restricting access to class members. TODO: UNCLEAR
+.
 
 When encapsulating your code, certain conventions should be followed:
 
@@ -224,7 +240,7 @@ employee object, make slary private, setSalary checks valid salary number, getSa
 
 ## SOLID Design Principles
 
-Set of rules and best practices to follow in OOP class design.
+Set of rules and best practices to follow in *OOP class design*.
 
 > What are the SOLID design principles and why are they important?
 
@@ -257,7 +273,7 @@ Set of rules and best practices to follow in OOP class design.
 
 ### `Interface Segregation Principle (ISP)`
 
-- is about separating interfaces, many client-specific interfaces are better than one general-purpose interface
+- is about **separating interfaces**, many client-specific interfaces are better than one general-purpose interface
 - Clients should not be forced to depend on interfaces they do not use
 - EXAMPLE vehicle interface with opendoors() method and Bike class implementing vehicle interface and mock implement opendoors() method
 
