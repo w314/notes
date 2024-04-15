@@ -1,3 +1,86 @@
+
+## HTTP
+
+> What is HTTP? Why is it important to know about?
+
+`HTTP` (`HyperText Transfer Protocol`) is a technique of transmitting data in a particular format, primarily between a server and a client.
+
+HTTP works by a client making a connection to a `server`, sending a `request`, and receiving a `response`
+
+The data tranmitted can be:
+
+- `hypertext` - A text documents that have the special ability to link to one another.
+- `hypermedia` - hypertext documents that have the ability to show multiple kinds of media
+
+A '`Request` contains:
+
+- the `method` being used
+- the `URL` where the target is
+- version of HTTP is being used
+- Optional information to help the server with the request (called `headers`)
+- For some methods, a `body` which contains some resources (ex.: files to be uploaded)
+
+A `Response` contains:
+
+- version of HTTP is being used
+- `status code` reflecting the outcome of the request
+- `status message` which is shorthand and less descriptive than the status code
+- Optional information to detail what happened with the request (called `headers` again)
+- For some methods, a `body` which contains some resource (ex. file to be downloaded)
+
+### HTTP verbs
+
+> What are common HTTP verbs used when a client application is making a request?
+
+- GET
+  - used to retrieve data from a server at the specified resource
+  - does not modifying any resources
+  - safe and `idempotent` method
+- POST
+  - used to send data to the API server to create or update a resource
+  - the data sent to the server is stored in the request body of the HTTP request
+  - `non-idempotent`
+- PUT
+  - similar to POST, PUT requests are used to send data to the API to update or create a resource
+  - `idempotent`, calling the same PUT request multiple times will always produce the same result
+  - when a PUT request creates a resource the server will respond with a 201 (Created), and if the request modifies existing resource the server will return a 200 (OK) or 204 (No Content)
+- HEAD
+- DELETE
+
+  - deletes the resource at the specified URL
+
+- PATCH
+
+  - PATCH only applies partial modifications to the resource.
+  - `non-idempotent`
+  - with a PATCH request, you may only need to send the updated username in the request body - as opposed to POST and PUT which require the full user entity
+
+- OPTIONS
+  - an OPTIONS request should return data describing what other methods and operations the server supports at the given URL
+
+### HTTP Status Codes
+
+> What are some common HTTP status codes that can be included in a response?
+
+HTTP Status Codes whether a specific HTTP request has been successfully completed.
+
+Responses are grouped in five classes:
+
+- Informational responses (100–199)
+- Successful responses (200–299)
+- Redirection messages (300–399)
+- Client error responses (400–499)
+- Server error responses (500–599)
+
+Common Status Codes:
+
+- 200 - OK, success
+- 201 - Created
+- 400 - Bad Request, client error
+- 404 - Not Found
+- 500 - Internal Server Error
+
+
 ## REST
 
 An an architectural style for distributed hypermedia systems.
