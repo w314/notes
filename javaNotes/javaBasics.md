@@ -33,11 +33,13 @@
 
 > What is the difference between the JDK, JRE, and JVM?
 
-`JDK` `Java Development Kit` contains `JRE` and development tools like compiler, debugger, documentation tools.
+`JVM` (`Java Virtual Machine`) runs compiled bytecode (that is the same accress every platform) in a virtual environment. You need JVM that is specific to the operating system of the machine it runs on. It uses `JIT` `Just In Time` compiler to turn bytecode to machine code.
 
 `JRE` (`Java Runtime Environment`) contains `JVM` and runtime libraries.
 
-`JVM` (`Java Virtual Machine`) runs compiled bytecode in a virtual environment that is same accross every platform. However you need JVM that is specific to the operating system. It uses `JIT` `Just In Time` compiler to turn that bytecode to machine code.
+`JDK` `Java Development Kit` contains `JRE` and development tools like compiler, debugger, documentation tools.
+
+
 
 ## Stack & Heap
 
@@ -72,9 +74,9 @@ JVM divides memory into stack and heap memory.
 
 #### String Pool
 
-- special are in Heap to store String objects
-- a String is stored in Sting Pool if object was created using **literal notation** (double quotes)
-- a String is stored outside of pool if object was created using **object notation** (new keyword + constructor) EVEN IF object is already in the pool
+- special area in Heap to store String objects
+- a String is stored in Sting Pool if object was created using **literal notation** (`String str = "abd";`)
+- a String is stored outside of pool if object was created using **object notation** (`String str = new String("abc");`) EVEN IF object is already in the pool
 
 ### `Stack` vs `Heap`
 
@@ -137,7 +139,7 @@ Garbage collection is a background process created by JVM to delete unused objec
 > What is the role of garbage collection in Java?
 
 - deletes objects which have no references to them
-- call objects `.final()` method
+- calls `.final()` method of objects
 - frees up space for us
 - we don't control the garbage collector, there is no way we can explicitly force garbage collection to happen, but we can request garbage collection to be run through the use of one of the following:
   - System.gc()
@@ -149,8 +151,9 @@ Garbage collection is a background process created by JVM to delete unused objec
 > What is a stacktrace? How can you use it to debug your application?
 
 `Stack trace` is a report of the active `stack frames` at a certain point in time during a thread's execution.
+- Each `JVM thread` (a path of execution) is associated with a stack that's created when the thread is created.
+`Stack frame` is a data structure associated wiht method calls. Each method call gets its own stack frame in the stack.
 
-Each `JVM thread` (a path of execution) is associated with a stack that's created when the thread is created.
 
 This data structure (stack) is divided into `frames`, which are data structures associated with method calls. For this reason, each thread's stack is often referred to as a method-call stack.
 
@@ -177,19 +180,19 @@ Both `Error` and `Exception` extend the `Throwable` class
 
 ### `Error`
 
-1. `Compilation Error`
+- `Compilation Error`
 
-- occurs at compile time
-- syntax error
-- not handling checked exceptions
-- eg: `SyntaxError`
+  - occurs at compile time
+  - syntax error
+  - not handling checked exceptions
+  - eg: `SyntaxError`
 
-2. `Error`
+- `Error`
 
-- occurs at runtime
-- severe problem with the program
-- we dot hand attempt to recover from them
-- eg: `OutOfMemoryError`
+  - occurs at runtime
+  - severe problem with the program
+  - we dot hand attempt to recover from them
+  - eg: `OutOfMemoryError`
 
 ### `Exception`
 
@@ -201,13 +204,12 @@ Exceptions are the conditions that occur at runtime and may cause the terminatio
 
 Exception can be recovered from with `try - catch`:
 
-- two types
-  - checked
-    - must be handled
-    - eg: `IOException`
-  - unchecked
-    - runtime errors
-    - eg: `ArrayOutOfBounds`
+- checked
+  - must be handled
+  - eg: `IOException`
+- unchecked
+  - runtime errors
+  - eg: `ArrayOutOfBounds`
 
 When risky code is written that has the possibility of throwing an exception, it can be dealt with in one of two ways:
 
@@ -238,15 +240,9 @@ If the exception is not handled anywhere in the program, it will propagate up th
 
 > Can you describe some of the basic entities of a Java program?
 
-- classes
-- variables
-- methods
-
-`Classes` are blueprints for creating objects in Java. Classes can have variables and methods within them to represent state and behavior.
-
-`Variables` are containers to store data.
-
-`Methods` are blocks of reusable code.
+- `classes` - blueprints for creating objects,  can have variables and methods within them to represent state and behavior
+- `variables` - containers to store data
+- `methods` - blocks of reusable code
 
 ### Java Variables
 
@@ -289,7 +285,11 @@ dataType variableName = value;
 
 > What is the difference between assigning and declaring a variable?
 
-##### Declaring a variable
+- `Declaring` creates a place in memory to store information of that datatype.
+
+- `Assigning` stores a value in the created memory place.
+
+##### Variable Declaration
 
 ```java
 datatype variableName;
@@ -352,9 +352,9 @@ int b = ++a; // b=6, a=6
 
 #### Casting
 
+`Casting` is the process of converting a data type to another data type.
 > What is explicit and implicit casting?
 
-`Casting` is the process of converting a data type to another data type.
 
 `implicit casting`
 
@@ -425,7 +425,9 @@ int total = addNums(1, 2);
 
 ### Scope
 
-When a variable or method is declared in a Java program, it is attached to a specific scope within the program, which determines where the variable or method exits.
+Part of the program where a variable of method exits.
+
+When a variable or method is declared in a Java program, its0 scope determines where the variable or method exits.
 
 > What are the different scopes in Java?
 

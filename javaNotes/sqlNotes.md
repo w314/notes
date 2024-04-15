@@ -16,9 +16,6 @@ An RDBMS is a data storage system based on a relational model
 - RDBMS manages data by storing them in tables.
 - uses Structured Query Language (SQL)
 
-- RDBMS manages data by storing them in tables.
-- uses Structured Query Language (SQL)
-
 ### SQL Database
 
 > What is SQL and why would we use this language
