@@ -52,7 +52,7 @@ A `Response` contains:
 - PATCH
 
   - PATCH only applies partial modifications to the resource.
-  - `non-idempotent`
+  - are not required to by idempotent
   - with a PATCH request, you may only need to send the updated username in the request body - as opposed to POST and PUT which require the full user entity
 
 - OPTIONS

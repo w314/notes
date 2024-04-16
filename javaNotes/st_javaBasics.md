@@ -28,7 +28,15 @@ Compilation transforms a program written in a high-level programming language fr
 2 steps compilation process:
 
 1. compiler creates machine independent `bytecode` (`.java` -> `.class`)
+```bash
+#  command to compile .java file
+javac myFile.java
+```
 2. `JVM` creates machine code
+```bash
+# command to run java program (.class file)
+java myFile
+```
 
 > What is the difference between the JDK, JRE, and JVM?
 
@@ -398,6 +406,7 @@ All methods in a class are defined by:
 - any non-access modifiers
 - return type
 - method name
+- parameters
 - (optionally) a throws exception declaration
 
 Together, these form the `method signature`.
@@ -723,7 +732,7 @@ If you enter wrong input (e.g. text in a numerical input), you will get an excep
 
 ### Object Class Methods
 
-- Object clone() - Returns a copy of this object.
+- Object `.clone()` - Returns a copy of this object.
 - boolean equals(Object o) - Indicates whether this object is equal to the o object.
 - void finalize() - Called by the garbage collector when the object is destroyed.
 - Class<?> getClass() Returns a Class object that represents this object's runtime class
