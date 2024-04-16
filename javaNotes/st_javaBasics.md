@@ -18,18 +18,17 @@
 - popular, has a rich open source community
 
 ## Java Compilation Process
+Compilation transforms a program written in a high-level programming language from `source code` into `object code` / `bytecode`
 
 > What is the difference between source code and bytecode?
 
-- Compilation means to transform a program written in a high-level programming language from `source code` into `object code` / `bytecode`.
-- `.java` -> `.class`
-
 > How would you describe the compilation process for Java?
+
 
 2 steps compilation process:
 
-- compiler creates machine independent `bytecode`
-- `JVM` creates machine code
+1. compiler creates machine independent `bytecode` (`.java` -> `.class`)
+2. `JVM` creates machine code
 
 > What is the difference between the JDK, JRE, and JVM?
 

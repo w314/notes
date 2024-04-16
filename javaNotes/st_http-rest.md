@@ -12,7 +12,7 @@ The data tranmitted can be:
 - `hypertext` - A text documents that have the special ability to link to one another.
 - `hypermedia` - hypertext documents that have the ability to show multiple kinds of media
 
-A '`Request` contains:
+A `Request` contains:
 
 - the `method` being used
 - the `URL` where the target is
@@ -34,7 +34,7 @@ A `Response` contains:
 
 - GET
   - used to retrieve data from a server at the specified resource
-  - does not modifying any resources
+  - does not modify any resources
   - safe and `idempotent` method
 - POST
   - used to send data to the API server to create or update a resource
@@ -43,7 +43,7 @@ A `Response` contains:
 - PUT
   - similar to POST, PUT requests are used to send data to the API to update or create a resource
   - `idempotent`, calling the same PUT request multiple times will always produce the same result
-  - when a PUT request creates a resource the server will respond with a 201 (Created), and if the request modifies existing resource the server will return a 200 (OK) or 204 (No Content)
+  - when a PUT request creates a resource the server will respond with a 201 (Created), and if the request modifies existing resource the server will return a 200 (OK) or 204 (No Content)  TODO : no content???
 - HEAD
 - DELETE
 

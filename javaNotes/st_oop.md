@@ -82,10 +82,10 @@ The `this` keyword refers to the object which is being instantiated - it is used
 
 ## OOP Programming Principles
 
-- Inheritance
-- Abstraction
-- Encapsulation
-- Polymorphism
+- `Inheritance` - receiving state and behavior from other classes, thereby reducing boilerplate and duplicate code and allowing for hierarchies of classes
+- `Abstraction` - hiding implementation details through a higher-level construct, like abstract classes and interfaces, thereby decreasing coupling and increasing cohesion
+- `Encapsulation` - restricting access to data members by using access modifiers and getter/setter methods
+- `Polymorphism` - allowing the implementation of a given behavior to vary, whether between subclasses or within the same class
 
 ### Inheritance
 > Describe inheritance and how would you
