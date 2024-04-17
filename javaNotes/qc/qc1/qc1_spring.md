@@ -10,10 +10,13 @@ Usually means the Spring Framwork.
 
 >How do we build a spring application? 
 
-A standalone open-source framework developed to suppert the development of enterprise scale applications.
+A Java framework used to develope Java applications.
 
-- makes development easier.
-- provides layers of abstraction through dependency injection
+- main advantage: convention over configuration
+- has multiple modules: Core, Data, Web
+- Spring IoC container is used for handling objects(beans) and handling dependencies, it is implemented by:
+    - ApplicationContext
+    - BeanFactory
 
 
 ## Quick Terminology  
@@ -24,7 +27,7 @@ A class registered with the Spring Container
 - they can be injected as a dependency
 
 ### Spring/IoC Container 
- An object that creates (instantiates) and holds your Spring Beans, then injects them wherever they’re being called in the application.
+ An object that instantiates (creates) and holds your Spring Beans, then injects them wherever they’re being called in the application.
 ### Spring Module 
 Parts of the Spring FrameWork
 - required 
@@ -36,8 +39,11 @@ Know the required ones and some optional ones
 Optional extention to the Spring Framwork.
 
 ### Bean Wiring 
- Configuration on how our beans are connected to each other. This is how we tell Spring where and how to inject our beans as dependencies. 
- 
+
+Bean Wiring is how we connect our beans as dependencies of one another.
+
+<hr>
+<hr>
 
 ## IoC: 
 >What is Inversion of Control? 
@@ -48,9 +54,11 @@ Optional extention to the Spring Framwork.
 
 >Benefits and drawbacks of Spring’s opinionated tendencies? 
 
-IoC is the act of taking control of some aspects of application away from the developer, and letting the Framework handle it instead. (The CONTROL of the application development is being INVERTED away from the programmer.) 
+IoC is the act of taking control of some aspects of application away from the developer, and letting the Framework handle it instead. 
 
-In Spring’s case this is done through dependency injection.  
+- the process of creating, initializing and managing the objects was initially a task for the developer.
+- business logic is more important than the above tasks. So, this process is handled by spring IoC( Inversion of control ) through dependency injection
+
 
 ## Dependency Injection: 
 
@@ -64,7 +72,7 @@ In Spring’s case this is done through dependency injection.
 
  Injecting objects into other objects is called Dependency Injection.
 
- ### Dependency Injection Types:
+ ### Types of Dependency Injections:
 -  `Constructor Injection` - This sets dependencies using a Class’s constructor so that the injection happens at the same time as Class instantiation. 
 
 - `Setter Injection` - uses the setter method of a Class to add the dependencies slightly after instantiation (after the constructor is invoked) 
@@ -74,29 +82,46 @@ In Spring’s case this is done through dependency injection.
     - bad practice !!!
     - breaks encapsulation
 
-
 ## Spring Beans
 
 Java Classes managed by the Spring  to be used for dependency injections.
+
 
 ### How to define a Bean
 
 
 >Stereotype Annotations: 
 
->What do they do? 
+> - What do they do? 
 
->Why are they called that? 
+>- Why are they called that? 
 
->What are the 4 annotations? 
-#### 1. Annotation Driven - with stereotype annotations
-- `@Component` - generic annotation to make a class a bean
-- `@Repository` - used for DAO classes
-- `@Service` - used for service classes
-- `@Controller` - used for controller classes
+>- What are the 4 annotations? 
+#### 1. with Stereotype annotations
+- are used to create beans automatically in the application context
+- types:
+    - `@Component` - most common: generic annotation to make a class a bean
+    - `@Repository` - used for DAO classes
+    - `@Service` - used for service classes
+    - `@Controller` - used for controller classes
 #### 2. Configuration Java Class
 #### 3. XML Configuration
 - via the <bean> tag
+
+
+### Bean Wiring
+
+Bean Wiring is how we connect our beans as dependencies of one another.
+
+- When you need to access an other class's method like a Service Class calls a DAO Class method, you use dependecy injection to establish a connection between them.
+- Types
+    - Constructor Injection
+    - Setter Injection
+    - Field Injection (DO NOT USE)
+
+ 
+
+
 
 
 ## Spring (IOC) Containers
@@ -130,7 +155,11 @@ Java Classes managed by the Spring  to be used for dependency injections.
 ```java
 ApplicationContext ac = new
 ````
+
+### Bean Wiring
+
  
+
 
 ### Bean Lifecycle: 
 
@@ -142,15 +171,34 @@ Know the 8 steps of the setup and teardown process. (You don’t have to memoriz
 
 ## Bean Scopes: 
 
-What are they?  
+> What are they?  
 
-Which ones are common to all Spring applications? (two of them) 
+> Which ones are common to all Spring applications? (two of them) 
 
-Know the difference between singleton and prototype scopes 
+> Know the difference between singleton and prototype scopes 
 
-Which ones are web aware? (four of them) 
+> Which ones are web aware? (four of them) 
 
- 
+The Scope of the Bean determines its visibility and lifecycle. (TODO lifecycle what way?)
+
+### Types:
+- Singleton
+    - the container creates a single instance of that bean
+    - the default Scope
+    - to define it explicitly use: `@Scope("singleton")`
+- Prototype
+    - will return a different instance every time it is requested from the container
+    - `@Scope("prototype")` 
+- Web Aware Scopes
+    - Request - creates a Bean for an HTTP Request
+    - Session - creates a Bean for an HTTP Session
+    - Application - creates a Bean for a ServletContext
+    - WebSocket - creates a Bean for a WebSocket session
+
+
+## Spring Annotations:
+### Spring Core Annotations
+
 
 ## Bean Wiring: 
 
@@ -164,7 +212,57 @@ Which way is the best/easiest?
 
 What does “automagically” mean?  
 
- 
+## Spring Boot: 
+
+Spring Boot is a tool that makes developing a web application and microservices with Spring Framework faster and easier through:
+- Autoconfiguration
+- An opinionated approach to configuration
+- The ability to create standalone applications
+
+### Features of spring boot?
+- In-built starter projects.
+- In-built WebServers.
+- RestTemplate supports.
+- JSON Support.
+- Third-Party Integration Support.
+
+### Why Spring Boot over Spring?
+- Actuators.
+- Version Management.
+- Auto Configuration.
+- Component Scanning.
+- Embedded server (TOMCAT).
+- InMemory DB.
+- Starter POM.
+
+
+
+
+> What is it? (Opinionated autoconfiguration of Spring) 
+
+> What are some benefits/advantages of Spring Boot? 
+
+> How do you implement it?  
+
+>Know about the embedded tomcat server.  
+
+>Know what opinionated means 
+
+>Know the annotations in the main method class to run a Spring Boot app.  
+
+>Know what Spring Boot Actuator and DevTools do 
+
+>What is the Spring environment Interface? What does it allow us to do? 
+
+>Properties? 
+
+>Profiles? 
+
+>What is validation? (Check revpro notes) 
+
+
+
+
 
 ## SpringMVC:  
 
@@ -225,30 +323,6 @@ Look into the transaction propagation strategies in revpro
 Look at the ACID properties, memorize the main rule for each property.  
 
  
-
-## Spring Boot: 
-
-What is it? (Opinionated autoconfiguration of Spring) 
-
-What are some benefits/advantages of Spring Boot? 
-
-How do you implement it?  
-
-Know about the embedded tomcat server.  
-
-Know what opinionated means 
-
-Know the annotations in the main method class to run a Spring Boot app.  
-
-Know what Spring Boot Actuator and DevTools do 
-
-What is the Spring environment Interface? What does it allow us to do? 
-
-Properties? 
-
-Profiles? 
-
-What is validation? (Check revpro notes) 
 
  
 
