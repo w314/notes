@@ -25,9 +25,15 @@ What is method reference syntax? What convenience does it add?
 Be able to describe the 4 different types we can use 
  
 
-## Optional Class
+## Optional Object
 
 What is the Optional Class? What is it used for? 
+
+
+What: Optional is a container object that meant to contain an other object. 
+Why: helps us avoid NullPointerExcpetions
+How:
+
 
 ## Reflection API 
 
@@ -37,6 +43,9 @@ What Java package does it come from?
 
 What are some of its use cases? 
  
+Feature in Java that lets us manipulate java entities
+- create an instance of ta class (Spring uses for beans)
+
 
 
 ### Singleton

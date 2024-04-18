@@ -1,8 +1,45 @@
 java, spring, bean
 
-# [Spring](https://spring.io ) 
+# [Spring](https://spring.io ) Concepts
 Usually means the Spring Framwork.
+
+
 ## Spring Framework 
+
+A Java framework used to develope Java applications.
+
+Why:
+- lets the developer concentrate on writing business logic
+- lets us write an appliction using POJOs (Plain Old Java Objects) while Spring is managing the infrastructure and applies services to our POJOs (no need for application server for example)
+
+Advatages:
+- Convention over Configuration
+- use of POJOs
+<br>Spring framework helps developers to develop enterprise applications using POJO. An enterprise container like an application server is not required while using POJOs.
+- Flexibility for configuring Spring: 
+    - XML or
+    - Java-based annotations.
+- No need for Server
+<br>Spring framework provides a lightweight container and it can be activated without any web server or application server.
+- No need for reinvention
+<br>Spring uses technologies such as JDK timers, ORM frameworks, Java EE, etc. So developers need not have to learn all those technologies or frameworks to develop applications.
+- Modularity
+- Ease of Testability
+<br>Spring Dependency Injection simplifies the injection of test data by using JavaBean POJO.
+- Inversion Control and APIs
+<br>Spring framework provides inversion control and APIs to translate exceptions thrown by JDBC and Hibernate into unchecked and consistent.
+
+
+### Spring Modules
+
+![Spring Modules](image.png)
+
+#### Spring Core Module
+- Provides the IoC Container
+- IoC container is implemented by
+    - BeanFactory or
+    - ApplicationContext
+
 
 >What is it? 
 
@@ -10,7 +47,6 @@ Usually means the Spring Framwork.
 
 >How do we build a spring application? 
 
-A Java framework used to develope Java applications.
 
 - main advantage: convention over configuration
 - has multiple modules: Core, Data, Web
@@ -19,26 +55,30 @@ A Java framework used to develope Java applications.
     - BeanFactory
 
 
-## Quick Terminology  
 
-### Spring Bean 
+
+
+
+### Quick Terminology  
+
+#### Spring Bean 
 A class registered with the Spring Container
 
 - they can be injected as a dependency
 
-### Spring/IoC Container 
+#### Spring/IoC Container 
  An object that instantiates (creates) and holds your Spring Beans, then injects them wherever they’re being called in the application.
-### Spring Module 
+#### Spring Module 
 Parts of the Spring FrameWork
 - required 
 - optional
 
 
 Know the required ones and some optional ones 
-### Spring Project 
+#### Spring Project 
 Optional extention to the Spring Framwork.
 
-### Bean Wiring 
+#### Bean Wiring 
 
 Bean Wiring is how we connect our beans as dependencies of one another.
 
@@ -109,7 +149,7 @@ Java Classes managed by the Spring  to be used for dependency injections.
 - via the <bean> tag
 
 
-### Bean Wiring
+## Bean Wiring
 
 Bean Wiring is how we connect our beans as dependencies of one another.
 
@@ -212,125 +252,9 @@ Which way is the best/easiest?
 
 What does “automagically” mean?  
 
-## Spring Boot: 
 
-Spring Boot is a tool that makes developing a web application and microservices with Spring Framework faster and easier through:
-- Autoconfiguration
-- An opinionated approach to configuration
-- The ability to create standalone applications
-
-### Features of spring boot?
-- In-built starter projects.
-- In-built WebServers.
-- RestTemplate supports.
-- JSON Support.
-- Third-Party Integration Support.
-
-### Why Spring Boot over Spring?
-- Actuators.
-- Version Management.
-- Auto Configuration.
-- Component Scanning.
-- Embedded server (TOMCAT).
-- InMemory DB.
-- Starter POM.
-
-
-
-
-> What is it? (Opinionated autoconfiguration of Spring) 
-
-> What are some benefits/advantages of Spring Boot? 
-
-> How do you implement it?  
-
->Know about the embedded tomcat server.  
-
->Know what opinionated means 
-
->Know the annotations in the main method class to run a Spring Boot app.  
-
->Know what Spring Boot Actuator and DevTools do 
-
->What is the Spring environment Interface? What does it allow us to do? 
-
->Properties? 
-
->Profiles? 
-
->What is validation? (Check revpro notes) 
-
-
-
-
-
-## SpringMVC:  
-
-What is it? 
-
-What does MVC stand for? 
-
-What does it do for us?  
-
-What is its structure? What do the following classes/interfaces do: 
-
-DispatcherServlet 
-
-HandlerMapping/RequestMappingHandlerMapping 
-
-ViewResolver 
-
-ContextLoaderListener 
-
-Know the SpringMVC application flow.  
-
-What is a Controller? 
-
-When are they called, and by what? 
-
-Know the annotations and what they do (annotations cheat sheet in the notes should be helpful) 
-
-Look into @RequestParam in the curriculum, just in case it’s asked 
-
-What is RestTemplate? What does it let us do? 
 
  
 
  
-
-## Spring Data JPA: 
-
-What is the JPA? What does it let us do? 
-
-What are some annotations we use from JPA? Where do we use them? 
-
-What does ORM stand for? 
-
-What benefits does Spring Data provide? 
-
-What is the interface hierarchy? 
-
-Which interface do we implement to make our custom DAOs? 
-
-We can’t instantiate interfaces... how do we use the methods in our custom DAOs? 
-
-Know the Spring Data annotations 
-
-Know @Transactional annotation and what a transaction is. 
-
-Look into the transaction propagation strategies in revpro 
-
-Look at the ACID properties, memorize the main rule for each property.  
-
- 
-
- 
-
-## Lombok 
-
-What is it? How do we implement it? 
-
-How does it help us? 
-
-What is the drawback of Lombok that Ben mentioned? 
 

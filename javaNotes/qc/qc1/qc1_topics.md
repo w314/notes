@@ -5,6 +5,7 @@ qc, reavture
 - Optional
 - Reflection
 - Threads
+- Logging
 
 ## SQL
 
@@ -12,9 +13,10 @@ qc, reavture
 ## Spring
 - SpringMVC
 - Spring Data
+- Spring Boot
 
 
-## Program Design
+## Other
 - SDLF
 - Solid Design Priniples
 
