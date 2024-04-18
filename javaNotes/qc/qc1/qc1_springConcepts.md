@@ -134,7 +134,7 @@ Java Classes managed by the Spring  to be used for dependency injections.
     - `@Controller` - used for controller classes
 #### 2. Configuration Java Class
 #### 3. XML Configuration
-- via the <bean> tag
+- via the `<bean>` tag
 
 
 ## Bean Wiring
@@ -166,23 +166,29 @@ A process that “Automagically” determines the dependencies for you, and then
  
  
 
-## Bean Lifecycle (QC loves to ask, I’m sorry) 
+### Bean Lifecycle (QC loves to ask, I’m sorry) 
 (If they’re italicized you don’t need to know them for QC) 
 
+The methods that are run when the Bean is istantiated, initialized, and tear down at the end.
 
-Setup starts when a Bean is called for, Teardown is POSSIBLE once the bean is eligible for Garbage Collection – when there are no more live references to it. 
+String IoC container takes care of it.
 
-Implementation: 
+#### 1. Setup 
+Starts when a Bean is called for.  
 
-Setup 
+#### 1.1 Bean is instantiated
 
 0 - Bean is called/instantiated 
 
-1 - BeanNameAware’s setBeanName(); 
+1 - **BeanNameAware**’s `setBeanName()`; 
 
-2 - BeanClassLoaderAware’s setBeanClassLoader(); 
+2 - **BeanClassLoaderAware**’s `setBeanClassLoader()`; 
 
-3 - BeanFactoryAware’s setBeanFactory(); 
+3 - **BeanFactoryAware**’s `setBeanFactory()`; 
+
+<i>
+4-8 NO NEED TO REMEMBER they are only applicable when running in application context
+
 
 4 - ResourceLoaderAware's setResourceLoader (only applicable when running in an application context) 
 
@@ -193,32 +199,26 @@ Setup
 7 - ApplicationContextAware's setApplicationContext (only applicable when running in an application context) 
 
 8 - ServletContextAware's setServletContext (only applicable when running in a web application context) 
+</i>
 
-9 - BeanPostProcessor’s postProcessBeforeInitialization() 
+##### 1.2 Bean is intitalized
+9 - BeanPostProcessor’s `postProcessBeforeInitialization()` 
 
-10 - InitializingBean’s afterPropertiesSet(); 
+10 - InitializingBean’s `afterPropertiesSet()` 
 
-11 - Your own custom initialization method (defined with @PostInit) 
+11 - Your own custom initialization method (defined with `@PostInit`) 
 
-12 - BeanPostProcessor’s postProcessAfterInitialization(); 
+12 - BeanPostProcessor’s `postProcessAfterInitialization()`; 
 
-Teardown 
+#### 2. Teardown 
 
-1 - DisposableBean’s destroy() 
+Teardown is POSSIBLE once the bean is eligible for Garbage Collection – when there are no more live references to it.
 
-2 - Your custom destroy method (defined with @PreDestroy) 
+1 - DisposableBean’s `destroy()` 
+
+2 - Your custom destroy method (defined with `@PreDestroy`) 
 
 3 - Garbage Collection eventually 
-
- 
-
-
-
-### Bean Lifecycle: 
-
-Know it conceptually 
-
-Know the 8 steps of the setup and teardown process. (You don’t have to memorize the steps that are italicized.) 
 
  
 
@@ -244,19 +244,6 @@ Know the 8 steps of the setup and teardown process. (You don’t have to memoriz
 
 ## Spring Annotations:
 ### Spring Core Annotations
-
-
-## Bean Wiring: 
-
-What is it?  
-
-Why do we do it? 
-
-What are the three ways we can do it? (XML, Class-based, Annotation-driven) 
-
-Which way is the best/easiest? 
-
-What does “automagically” mean?  
 
 
 
@@ -325,5 +312,24 @@ What does “automagically” mean?
 
  
 
+### Bean Wiring Questions 
+
+>What is it?  
+
+>Why do we do it? 
+
+>What are the three ways we can do it? (XML, Class-based, Annotation-driven) 
+
+>Which way is the best/easiest? 
+
+>What does “automagically” mean?  
+
+
  
+
+### Bean Lifecycle Questions: 
+
+>Know it conceptually 
+
+>Know the 8 steps of the setup and teardown process. (You don’t have to memorize the steps that are italicized.) 
 

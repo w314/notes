@@ -2,10 +2,26 @@
 # Spring Boot: 
 Spring Boot is a **Spring Project** used to create standalone Spring-based applications that you can "just run".
 
+
+WHy SPring BOOt
+- embedded tomcat
+- intializer
+- no xml configuration
+- provides dependencies
+
+- actuator si a dependency
+- devtool is a dependecy
+
+
 Spring Boot is a tool that makes developing a web application and microservices with Spring Framework faster and easier through:
 - Autoconfiguration
 - An opinionated approach to configuration
 - The ability to create standalone applications
+
+
+Creates our ApplicationCOntext.xml for us
+
+
 
 ### Features of spring boot?
 - In-built starter projects.
@@ -72,7 +88,7 @@ MVC Architecture
 - the most common implementation is the RequestMappingHandlerMapping which is what we’ll use (see @RequstMapping below)???????
 
 `Controllers`
-- all the controllers are annotated with `@Controller` and are managed by DispacherServlet
+- are annotated with `@Controller` and are managed by DispacherServlet
     - stereotype annotation (makes a class a bean)
     - with more functionality in Spring MVC
     - in Spring MVC it indicates the class will handle HTTP requests
@@ -80,7 +96,7 @@ MVC Architecture
 - there are also `@___Mapping` (@GetMapping, @PostMapping) for methods within a Controller that specify what verbed requests go to that certain method
 - the `ResponseEntity` object is used to send back responses to the client. It lets us set status code and the body of the response.  
 
-
+`ContextLoaderListener` - This automates the creation of our ApplicationContext for us so that our application and its server can “just run”
 
 ## Spring MVC Application FLow
 - When the `Tomcat server` receives a `HTTP request`, it gets passed to the `DispatcherServlet` (our Front Controller) 
@@ -153,65 +169,91 @@ MVC Architecture
 
 # Spring Data JPA (Java Persistence API)  
 
-JPA is where we get the annotations that map our model classes to DB tables. 
 
+## Spring Data
+- is a Spring Project 
+- Spring Data provides Abstractions/interfaces you can use based on the type of database (relational or non-relational)
+
+
+### Spring Data Interface Hierarchy
+
+This is the inheritance hierarchy for Spring Data’s interfaces used to create your DAO classes
+
+ - `Repository`
+    - base class for all the repositories providing access to databases
+
+- `CrudRepository`
+    -  extends Repository
+    - it provides CRUD operations irrespective of databases
+- ... many other
+
+- `JpaRepository`
+    - extends several interface
+    - contains most of the basic DAO methods you’ll want to use.
+- Your Custom Interface
+    - all our DAOs extend JpaRepository
+
+
+## Spring Data JPA (Java Persistent API) 
+- is a Spring Data module
+- works with relational databases
 - defined in the `javax.persistence` package
-- uses annotations from the JPA to directly map our Java models to Database tables. (So our DB tables get created by our Java models!)
-- uses the `EntityManager Interface` to create, read, update and delete (crud) DB entities (tables) and their data in the database. 
+- uses the `EntityManager Interface` to do CRUD operations in the database
+- has standardized annotations to map our Java models to Database tables
+- uses `JDBC` under the hood
+- abstract away from the `Hibernate` framework
+- uses ORM framework
 
-
-`EntityManager Interface`
- - the interface that lets us query/manipulate our database from our Java server (QC line) 
-
-JPA has standardized annotations that we’ll rely on heavily (e.g. @Entity comes from javax.persistence and indicates that a model class is meant to be a DB table).  
-
- 
-
-Spring Data’s advantages over JDBC: 
+### Advanteges over JDBC
 - simpler
-- we can change our database dialect we can change it in the config file `application.properties` vs changing  a significant amount of our JDBC statements for syntax reasons.
-- In JDBC we have to convert ResultSets manually to our POJOs (plain ol’ Java objects), Spring Data will do that for us.  
-- JDBC requires the developer to have specific knowledge of the database (table and column names) while Spring Data does not
-- Spring Data requires MUCH less lines of connection code and DAO code
- 
+-  easier to change our database dialect, we just change the config file *application.properties*
+- converts the ResultSet automatically to POJOs
+- no need to know table specific knowledge (table and column names)
+- needs  MUCH less lines of connection code and DAO code
 
 
-### Spring Data Interface Hierarchy 
-
-This is the inheritance hierarchy for Spring Data’s interfaces used to create your DAO classes 
-
-Repository - Most generic repository  
-
-CrudRepository - This can be used to create a very basic repo just from implementing it. 
-
-ListCrudRepository – A more specific version of CrudRepository, sort of like the link between CrudRepository and JpaRepository 
-
-JpaRepository - contains most of the basic DAO methods you’ll want to use. 
-
-Your custom interface. All your repository (DAO) interfaces should extend from this one. 
-
-(There is a class implementation of JpaRepository that you can extend from if you really really need a concrete class that uses Spring Data. But I tend to stick with the Interface) 
-
- 
-
- 
 ### JPA Annotations
 
-#### Fundamental JPA Annotations in our Java Classes 
+#### Fundamental JPA Annotations
 (Definitely on QC) 
 
-These JPA Annotations are used for entity mapping/configuration in our Java Classes. `Entity mapping` means mapping our Java Classes into DB ENTITIES.
+- used for entity mapping/configuration in our Java Classes
+- `Entity mapping` means mapping our Java Classes into DB ENTITIES.
 
--  `@Entity` - Indicates that the Class is meant to be mapped to a DB table 
-- `@Table` - Doesn’t actually make a class a table (@Entity does that) but it’s useful for setting table options such as the name of the table in the database 
-- `@Column` - Defines a variable as a column in the table. Hibernate will turn all of a Class’s field in DB columns by default, BUT using the annotation lets us set things such as column name, or constraints like not null, and unique.   
-- `@Id` - Declares a variable as a primary key in a table 
-- `@GeneratedValue` - This gives you control over the options for how Hibernate will auto-generate your primary key 
 
+##### Mapping Tables
+
+`@Entity`
+- indicates that the Class is meant to be mapped to a DB table 
+
+`@Table` 
+- used for setting table options such as the name of the table in the database 
+
+- doesn’t actually make a class a table (@Entity does that)
+
+##### Mapping Table Columns
+`@Column` 
+- Hibernate will turn all of a Class’s field in DB columns by default
+- BUT using the annotation lets us set things such as column name, or constraints like not null, and unique.   
+
+
+##### Mapping Primary Keys
+The 2 below would define an autogenerated primary key:
+
+`@Id` - Declares a variable as a primary key in a table 
+
+`@GeneratedValue`
+- gives you control over the options for how Hibernate will auto-generate your primary key 
+```java
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private int gameId;
+```
  
 #### JPA Relationship Annotations 
 
-- `@ManyToOne`/`@OneToMany`/`@ManyToMany` - These annotations define the relationship between our model classes in Java. (Which, as we know, map to tables in our DB.) 
+`@ManyToOne`/`@OneToMany`/`@ManyToMany` 
+- define the relationship between our model classes in Java. (Which, as we know, map to tables in our DB.) 
 
 The relationship is defined from the perspective of the Class in which the annotation sits. 
 - the field on the “Many” side would have @ManyToOne
@@ -281,6 +323,30 @@ Marks a field as transient, to be ignored by the data store. Transient = not per
  
 
  
+
+
+■ “EntityManager is the interface that lets us query/manipulate our database from our Java server” -Good QC line
+
+Implementation
+
+- 
+
+
+JPA is where we get the annotations that map our model classes to DB tables. 
+
+- defined in the `javax.persistence` package
+- uses annotations from the JPA to directly map our Java models to Database tables. (So our DB tables get created by our Java models!)
+- uses the `EntityManager Interface` to create, read, update and delete (crud) DB entities (tables) and their data in the database. 
+
+
+`EntityManager Interface`
+ - the interface that lets us query/manipulate our database from our Java server (QC line) 
+
+JPA has standardized annotations that we’ll rely on heavily (e.g. @Entity comes from javax.persistence and indicates that a model class is meant to be a DB table).  
+
+ 
+
+
 
  
 
