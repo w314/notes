@@ -99,22 +99,24 @@ MVC Architecture
 
 - The HTTP lifecycle starts again whenever a new request is sent! 
  
+### Spring MVC Annotations
+- `@RequestMapping`
+    - is a class and method level annotation used to map web requests to spring controller methods
+ ```java
+ @RequestMapping(value ="/submit", method = RequestMethod.POST)
+//  OR
+@PostMapping("/users")
+@GetMapping("/users")
+@DeleteMapping("/users/{userId}")
+// and so on
+ ```
 
-- all the controllers are annotated with `@Controller` and are managed by DispacherServlet.
-- a spring MVC configuration file is created to manage the controllers.
-- the requests from the client is taken by web.xml and sent to the DispatcherServlet and based on the request the respective controller is called.
-- the response from the controller is a model and view name. TODO????
- - the DispatcherServlet communicates with the view template.
-
-
-
-In Spring Boot you need the `WEB` dependency
-```bash
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-```
+- `@PathVariable`
+    - extracts values from the request URI **path**
+    - not encoded
+- `@RequestParam`
+    - extract values form the request URI **query string**
+    - encoded
 
 ## Sprign MVC Questions 
 >What is it? 
