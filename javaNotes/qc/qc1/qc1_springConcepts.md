@@ -130,13 +130,6 @@ Java Classes managed by the Spring  to be used for dependency injections.
 ### How to define a Bean
 
 
->Stereotype Annotations: 
-
-> - What do they do? 
-
->- Why are they called that? 
-
->- What are the 4 annotations? 
 #### 1. with Stereotype annotations
 - are used to create beans automatically in the application context
 - types:
@@ -196,9 +189,6 @@ Bean Wiring is how we connect our beans as dependencies of one another.
 ApplicationContext ac = new
 ````
 
-### Bean Wiring
-
- 
 
 
 ### Bean Lifecycle: 
@@ -252,7 +242,16 @@ Which way is the best/easiest?
 
 What does “automagically” mean?  
 
+## Spring Concept Questions
 
+
+>Stereotype Annotations: 
+
+> - What do they do? 
+
+>- Why are they called that? 
+
+>- What are the 4 annotations? 
 
  
 
