@@ -30,90 +30,58 @@ Advatages:
 <br>Spring framework provides inversion control and APIs to translate exceptions thrown by JDBC and Hibernate into unchecked and consistent.
 
 
-### Spring Modules
+## Spring Modules 
+Spring Modules are pieces of the Spring Framework. 
+
+- Required Modules (needed for Spring to work as intended) 
+
+    - `Core`
+        - core functionality of Spring
+        - BeanFactory interface
+
+    - `Bean`
+        - Bean configuration and functionality 
+
+    - `Context`: 
+        - ApplicationContext interface (the IoC container we use)
+
+- Optional Modules  
+
+    - `Spring Web/MVC`
+        - functionality for handling HTTP requests
+    - `SpringAOP` (Aspect Oriented Programming)
+        - Handles “cross cutting concerns” like logging
+
 
 ![Spring Modules](image.png)
 
-#### Spring Core Module
-- Provides the IoC Container
-- IoC container is implemented by
-    - BeanFactory or
-    - ApplicationContext
+## Spring Projects
+Spring Projects are built on Spring modules and provide solutions to issues faced by industry level applications. 
 
+- think of them as add-ons
+- are all open source
+- `Spring Framework` is considered the foundational Spring Project (built on top of the Spring Core Module) 
+- `Spring Boot` is considered a Spring Project too
+- `SpringORM/SpringData: Two modules???????? that handle the application’s ORM (Object Relational Mapping) and the database connection. We’ll be using SpringData. 
+- `Spring Security` 
 
->What is it? 
-
->What does it do for us?   
-
->How do we build a spring application? 
-
-
-- main advantage: convention over configuration
-- has multiple modules: Core, Data, Web
-- Spring IoC container is used for handling objects(beans) and handling dependencies, it is implemented by:
-    - ApplicationContext
-    - BeanFactory
-
-
-
-
-
-
-### Quick Terminology  
-
-#### Spring Bean 
-A class registered with the Spring Container
-
-- they can be injected as a dependency
-
-#### Spring/IoC Container 
- An object that instantiates (creates) and holds your Spring Beans, then injects them wherever they’re being called in the application.
-#### Spring Module 
-Parts of the Spring FrameWork
-- required 
-- optional
-
-
-Know the required ones and some optional ones 
-#### Spring Project 
-Optional extention to the Spring Framwork.
-
-#### Bean Wiring 
-
-Bean Wiring is how we connect our beans as dependencies of one another.
-
-<hr>
-<hr>
 
 ## IoC: 
->What is Inversion of Control? 
-
->What control does Spring invert exactly? 
-
->What does the phrase convention over configuration mean in Spring? 
-
->Benefits and drawbacks of Spring’s opinionated tendencies? 
 
 IoC is the act of taking control of some aspects of application away from the developer, and letting the Framework handle it instead. 
 
-- the process of creating, initializing and managing the objects was initially a task for the developer.
-- business logic is more important than the above tasks. So, this process is handled by spring IoC( Inversion of control ) through dependency injection
+- the process of creating, initializing and managing the objects was initially a task for the developer, in Spring it is handled by Spring IoC through Dependency Injection
 
 
 ## Dependency Injection: 
 
->What is it? 
-
->What are the types? 
-
->What does Spring use? 
-
->Why is field injection bad? (Breaks encapsulation - ignores OOP getters/setters/private) 
-
  Injecting objects into other objects is called Dependency Injection.
 
  ### Types of Dependency Injections:
--  `Constructor Injection` - This sets dependencies using a Class’s constructor so that the injection happens at the same time as Class instantiation. 
+-  `Constructor Injection` 
+    - uses a Class’s constructor
+    - the injection happens at the Class instantiation. 
+    - `
 
 - `Setter Injection` - uses the setter method of a Class to add the dependencies slightly after instantiation (after the constructor is invoked) 
 
@@ -121,6 +89,33 @@ IoC is the act of taking control of some aspects of application away from the de
     - inject dependencies in the variable declarations
     - bad practice !!!
     - breaks encapsulation
+
+
+## Spring (IOC) Containers
+
+
+
+ An object that creates (instantiates) and holds your Spring Beans, then injects them wherever they’re being called in the application. -nice QC line 
+
+ Spring Container can be implemented in two different ways: 
+ - BeanFactory
+ - ApplicationContext
+
+#### BeanFactory:  
+
+- Older 
+- Lazily instantiates beans. (Bean objects aren’t created until they’re needed) 
+- Requires a resource object configuration, generally called the beans.xml to be instantiated. It’s super verbose and ugly. 
+
+#### ApplicationContext:  
+- Newer, it’s actually built on top of BeanFactory – it's an abstraction! 
+- Eagerly instantiates beans (When the application starts, all the beans are ready) 
+- Provides support for annotations (No longer have to do EVERYTHING in XML like we would have to if using BeanFactory) - The ApplicationContext can take XML configs directly for configuration 
+```java
+ApplicationContext ac = new
+````
+
+
 
 ## Spring Beans
 
@@ -153,41 +148,69 @@ Bean Wiring is how we connect our beans as dependencies of one another.
     - Field Injection (DO NOT USE)
 
  
+#### Autowiring: 
+A process that “Automagically” determines the dependencies for you, and then provides them. 
+
+ - automagically means that @Autowired will abstract away the dependency injection that it does for you. So to us, it looks automatic and magical  
+
+- There are two ways to use autowiring: 
+
+    - XML (won’t see this after HelloSpring) 
+
+    - Annotation-Driven 
+
+- usege: put the `@Autowired` annotation above a constructor, or setter, depending on what type of injection you want
 
 
 
+ 
+ 
 
-## Spring (IOC) Containers
+## Bean Lifecycle (QC loves to ask, I’m sorry) 
+(If they’re italicized you don’t need to know them for QC) 
 
->What are they? 
 
->What are your two options? (BF vs AC) 
+Setup starts when a Bean is called for, Teardown is POSSIBLE once the bean is eligible for Garbage Collection – when there are no more live references to it. 
 
->What’s the difference between them?  
+Implementation: 
 
->Which one do we use? 
+Setup 
 
->How do I build and access a Spring Container?  
+0 - Bean is called/instantiated 
 
- An object that creates (instantiates) and holds your Spring Beans, then injects them wherever they’re being called in the application. -nice QC line 
+1 - BeanNameAware’s setBeanName(); 
 
- Spring Container can be implemented in two different ways: 
- - BeanFactory
- - ApplicationContext
+2 - BeanClassLoaderAware’s setBeanClassLoader(); 
 
-#### BeanFactory:  
+3 - BeanFactoryAware’s setBeanFactory(); 
 
-- Older 
-- Lazily instantiates beans. (Bean objects aren’t created until they’re needed) 
-- Requires a resource object configuration, generally called the beans.xml to be instantiated. It’s super verbose and ugly. 
+4 - ResourceLoaderAware's setResourceLoader (only applicable when running in an application context) 
 
-#### ApplicationContext:  
-- Newer, it’s actually built on top of BeanFactory – it's an abstraction! 
-- Eagerly instantiates beans (When the application starts, all the beans are ready) 
-- Provides support for annotations (No longer have to do EVERYTHING in XML like we would have to if using BeanFactory) - The ApplicationContext can take XML configs directly for configuration 
-```java
-ApplicationContext ac = new
-````
+5 - ApplicationEventPublisherAware's setApplicationEventPublisher (only applicable when running in an application context) 
+
+6 - MessageSourceAware's setMessageSource (only applicable when running in an application context) 
+
+7 - ApplicationContextAware's setApplicationContext (only applicable when running in an application context) 
+
+8 - ServletContextAware's setServletContext (only applicable when running in a web application context) 
+
+9 - BeanPostProcessor’s postProcessBeforeInitialization() 
+
+10 - InitializingBean’s afterPropertiesSet(); 
+
+11 - Your own custom initialization method (defined with @PostInit) 
+
+12 - BeanPostProcessor’s postProcessAfterInitialization(); 
+
+Teardown 
+
+1 - DisposableBean’s destroy() 
+
+2 - Your custom destroy method (defined with @PreDestroy) 
+
+3 - Garbage Collection eventually 
+
+ 
 
 
 
@@ -201,25 +224,18 @@ Know the 8 steps of the setup and teardown process. (You don’t have to memoriz
 
 ## Bean Scopes: 
 
-> What are they?  
-
-> Which ones are common to all Spring applications? (two of them) 
-
-> Know the difference between singleton and prototype scopes 
-
-> Which ones are web aware? (four of them) 
-
-The Scope of the Bean determines its visibility and lifecycle. (TODO lifecycle what way?)
+ Bean Scope refers to how many instances of a Bean are/can be created and where they are used. (QC Line) 
 
 ### Types:
-- Singleton
-    - the container creates a single instance of that bean
-    - the default Scope
-    - to define it explicitly use: `@Scope("singleton")`
-- Prototype
-    - will return a different instance every time it is requested from the container
-    - `@Scope("prototype")` 
-- Web Aware Scopes
+- Universal Scopes
+    - Singleton
+        - the container creates a single instance of that bean
+        - the default Scope
+        - to define it explicitly use: `@Scope("singleton")`
+    - Prototype
+        - will return a different instance every time it is requested from the container
+        - `@Scope("prototype")` 
+- Web Aware Scopes (for Application that can take HTTP requests)
     - Request - creates a Bean for an HTTP Request
     - Session - creates a Bean for an HTTP Session
     - Application - creates a Bean for a ServletContext
@@ -242,7 +258,61 @@ Which way is the best/easiest?
 
 What does “automagically” mean?  
 
+
+
+################ QUESTIONS BELOW ########################
 ## Spring Concept Questions
+
+
+### Spring General Questions
+
+>What is it? 
+
+>What does it do for us?   
+
+>How do we build a spring application? 
+
+### IoC questions
+
+>What is Inversion of Control? 
+
+>What control does Spring invert exactly? 
+
+>What does the phrase convention over configuration mean in Spring? 
+
+>Benefits and drawbacks of Spring’s opinionated tendencies? 
+
+
+### Dependency Injection Question
+
+>What is it? 
+
+>What are the types? 
+
+>What does Spring use? 
+
+>Why is field injection bad? (Breaks encapsulation - ignores OOP getters/setters/private) 
+
+### Spring IoC Container Questions
+>What are they? 
+
+>What are your two options? (BF vs AC) 
+
+>What’s the difference between them?  
+
+>Which one do we use? 
+
+>How do I build and access a Spring Container?  
+
+### Bean Scope Questiona:
+> What are they?
+
+> Which ones are common to all Spring applications? (two of them)
+
+> Know the difference between singleton and prototype scopes
+
+>Which ones are web aware? (four of them)
+
 
 
 >Stereotype Annotations: 

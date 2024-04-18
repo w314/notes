@@ -151,7 +151,139 @@ MVC Architecture
 >What is RestTemplate? What does it let us do? 
 
 
-# Spring Data JPA
+# Spring Data JPA (Java Persistence API)  
+
+JPA is where we get the annotations that map our model classes to DB tables. 
+
+- defined in the `javax.persistence` package
+- uses annotations from the JPA to directly map our Java models to Database tables. (So our DB tables get created by our Java models!)
+- uses the `EntityManager Interface` to create, read, update and delete (crud) DB entities (tables) and their data in the database. 
+
+
+`EntityManager Interface`
+ - the interface that lets us query/manipulate our database from our Java server (QC line) 
+
+JPA has standardized annotations that we’ll rely on heavily (e.g. @Entity comes from javax.persistence and indicates that a model class is meant to be a DB table).  
+
+ 
+
+Spring Data’s advantages over JDBC: 
+- simpler
+- we can change our database dialect we can change it in the config file `application.properties` vs changing  a significant amount of our JDBC statements for syntax reasons.
+- In JDBC we have to convert ResultSets manually to our POJOs (plain ol’ Java objects), Spring Data will do that for us.  
+- JDBC requires the developer to have specific knowledge of the database (table and column names) while Spring Data does not
+- Spring Data requires MUCH less lines of connection code and DAO code
+ 
+
+
+### Spring Data Interface Hierarchy 
+
+This is the inheritance hierarchy for Spring Data’s interfaces used to create your DAO classes 
+
+Repository - Most generic repository  
+
+CrudRepository - This can be used to create a very basic repo just from implementing it. 
+
+ListCrudRepository – A more specific version of CrudRepository, sort of like the link between CrudRepository and JpaRepository 
+
+JpaRepository - contains most of the basic DAO methods you’ll want to use. 
+
+Your custom interface. All your repository (DAO) interfaces should extend from this one. 
+
+(There is a class implementation of JpaRepository that you can extend from if you really really need a concrete class that uses Spring Data. But I tend to stick with the Interface) 
+
+ 
+
+ 
+### JPA Annotations
+
+#### Fundamental JPA Annotations in our Java Classes 
+(Definitely on QC) 
+
+These JPA Annotations are used for entity mapping/configuration in our Java Classes. `Entity mapping` means mapping our Java Classes into DB ENTITIES.
+
+-  `@Entity` - Indicates that the Class is meant to be mapped to a DB table 
+- `@Table` - Doesn’t actually make a class a table (@Entity does that) but it’s useful for setting table options such as the name of the table in the database 
+- `@Column` - Defines a variable as a column in the table. Hibernate will turn all of a Class’s field in DB columns by default, BUT using the annotation lets us set things such as column name, or constraints like not null, and unique.   
+- `@Id` - Declares a variable as a primary key in a table 
+- `@GeneratedValue` - This gives you control over the options for how Hibernate will auto-generate your primary key 
+
+ 
+#### JPA Relationship Annotations 
+
+- `@ManyToOne`/`@OneToMany`/`@ManyToMany` - These annotations define the relationship between our model classes in Java. (Which, as we know, map to tables in our DB.) 
+
+The relationship is defined from the perspective of the Class in which the annotation sits. 
+- the field on the “Many” side would have @ManyToOne
+- field on the “One” side would have @OneToMany
+- enough to annotate just the @ManyToOne side
+
+In these relationship annotations, we can specify a few attributes, like CascadeType and FetchType (read below) 
+
+@JoinColumn - Specifies a column to establish the relationship on. Just like we do normally, this is usually a Foreign Key pointing to the Primary Key of the table being referred to.  
+
+CascadeType specifies the cascading on the database when removing/updating items. This is how we maintain referential integrity in hibernate. 
+
+I tend to always use CascadeType.ALL when possible, making all typical Cascade operations occur when needed.  
+
+FetchType determines if the related objects are called from the database immediately (EAGER) or if called, waits until they are needed (LAZY).  
+
+I tend to always use EAGER, more memory intensive, but less error prone. 
+
+ 
+
+ 
+
+ 
+
+Implementing @ManyToMany requires specifying a @JoinTable annotation to determine which table we’re linking to create a Many to Many relationship (This is how we make JOIN TABLES in Spring Data) 
+
+Feel free to investigate, but I typically just use @ManyToOne and @OneToMany together to accomplish the same functionality as @ManyToMany. 
+
+ 
+
+ 
+
+Other Spring Data Annotations 
+
+ 
+
+Spring Data has even more annotations that abstract away the code required for data storage, allowing us to focus more on the business logic. The following is a list and brief explanation of some common Spring Data annotations, which allow us to configure how the queries execute. Usually, defaults are fine, and we won’t need to mess with these. 
+
+These annotations will mostly stay in the DAOs and models 
+
+These are all cAsE sEnSiTiVe!!!  
+
+ 
+
+Annotation 
+
+Purpose 
+
+@Transactional 
+
+Indicates that a method should be treated as a transaction. See the Transaction notes below, you’ll often need to use this with updates/deletes. 
+
+@NoRepositoryBean 
+
+Creates an Interface that provides common methods for child repositories. Like making your own version of JpaRepository. Not intended to be used directly for data operations. 
+
+@query & @param 
+
+@query can be used to create your own custom queries with more direct SQL-esque syntax. @param lets you pass parameters to queries defined with @query 
+
+@transient 
+
+Marks a field as transient, to be ignored by the data store. Transient = not persisted to DB.   
+
+ 
+
+ 
+
+ 
+
+ 
+
 
 ## Spring Data JPA Questions 
 
@@ -183,7 +315,50 @@ MVC Architecture
 
 ## Lombok 
 
-### Lombok Questions
+`Lombok` is a Spring Project designed to remove the need to write repetitive boilerplate code for our Classes (typically the models). 
+
+Lombok lets you use annotations to determine what boilerplate code you want the framework to include in our Java objects. The code is then inserted for you at compile time.  
+
+### Lombok Annotations 
+
+- @Getter 
+
+- @Setter 
+
+- @NoArgsConstructor 
+
+- @AllArgsConstructor 
+
+- @ToString 
+
+- @EqualsAndHashCode 
+
+- @Data 
+- and others... 
+
+### Lombok installation: 
+
+For your IDE to work well with Lombok, it must be installed in the IDE. Otherwise, it will not be aware of the methods that Lombok is providing.  
+
+### How to use Lombok
+```java
+@Entity
+@Table(name = "books")
+@Data // Lombok annotation to generate getters, setters, hashCode and toString methods
+@NoArgsConstructor // Lombok annotation to generate no args constructor
+@AllArgsConstructor // Lombok annotation to generate all args constructor
+public Books {
+
+}
+```
+Why might Lombok not be a good choice? 
+
+If you’re working on a personal project that only you (or maybe a couple others) will use, it’s probably fine 
+
+The problem arises when many people are intended to clone the application or develop it alongside you. By implementing Lombok, you force other developers working on your project to use it too. 
+
+ 
+## Lombok Questions
 >What is it? How do we implement it? 
 
 >How does it help us? 
