@@ -42,76 +42,6 @@ create table content_meta (
 
 `Compound Key` is a `Composite Key` where each attribute creating a key is a `Foreign Key`.
 
-### Foreign Key
-
-> What is a foreign key?
-
-A `FOREIGN KEY` is a field or collection of fields in a table that refers to the `PRIMARY KEY` of the other table.
-
-- responsible for managing the relationship between the tables.
-- forms the bases of referential integrity
-
-```sql
-CREATE TABLE Branch(
-    branch_id INT PRIMARY KEY,
-    branch_name VARCHAR(20)
-     );
--- Add branch_id as foreign key for employee table
-
-ALTER TABLE employee ADD branch_id INT;
-ALTER TABLE employee ADD FOREIGN KEY (branch_id) REFERENCES Branch(branch_id);
-```
-
-### Referential Integrity
-
-> What is referential integrity?
-
-`REFERENTIAL INTEGRITY` is the relationship between tables.
-
-Referential Integrity:
-
-- the requirement that a foreign key cannot be defined unless its corresponding primary key exists is a referential integrity constraint
-- does not allow the addition of any record in a table that contains the foreign key unless the reference table contains a corresponding primary key.
-- does not allow to deletion of a record in a table that contains the foreign key, to delete the record in the parent table, the corresponding record in the child table should be deleted first. to solve this issue `ON DELETE CASCADE` is used.
-- Other options are to set the foreign key to null or to its default value (only if the default value references an existing value in the primary-key table).
-
-### Normalization
-
-> What is normalization?
-
-`Normalization` is the process of organizing the data and the attributes of a database.
-
-- reduce the duplication of data, - avoid data anomalies
-- ensure referential integrity
-- simplify data management
-
-- `1NF` First Normal Form
-
-  - Each table cell should contain a single value.
-  - Each record needs to be unique
-  - violation example: hobbies with several values
-  - solution add new rows with each value
-
-- `2NF` Second Normal Form
-
-  - Be in 1NF
-  - Single Column Primary Key - that does not functionally dependant on any subset of candidate key relation
-  - violation example: name and address identifies a record when two different people have the same name
-  - solution: add a primary key column
-
-- `3NF` Third Normal Form
-
-  - in 2NF
-  - all the attributes (e.g. database columns) are functionally dependent on solely the primary key (no transitive functional dependencies)
-  - violation example: hospital database having a table of patients which included a column for the telephone number of their doctor. The phone number is dependent on the doctor, rather than the patient, thus would be better stored in a table of doctors
-  - solution: create table for doctors and store phone number there
-
-- BCNF Boyce-Codd Normal Form
-  - in 3NF
-  - for any dependency A → B, A should be a super key. which means that A should be a non-key attribute if B is a key attribute
-  - for every Functional Dependency, LHS is the super key - ???????????????
-  - no dependency and lossless join - ??????????????????
-
 
 ## SQL Transactions
 
@@ -132,11 +62,15 @@ TCL commands manage the transactions that take place in a database.
 - DDL can be included, but cannot be rolled back. Don't use DDL in a transaction mixed with other statements
 
 ### SQL Transaction Properties - ACID
-  - **A**TOMICITY: either all statements succeed or they all fail
-  - **C**ONSISTENTENCY: transactions keep data in a consistent state
-  - **I**SOLATION: ability of transactions to not interfere with one another (isolation level can be changed)
-  - **D**URABILITY: transactions are logged, saved to long-term memory, and are recoverable
-- there are only two outputs for a transaction, success or failure, if all the statements are executed successfully the transaction is successful, even if a single statement fails, the entire transaction fails.
+  - **A**TOMICITY
+    - All the operations performed within the transaction get executed or none of them.
+  - **C**ONSISTENTENCY
+    - Consistency ensures that your transaction takes a system from one consistent state to another consistent state.
+  - **I**SOLATION
+    - ensures that the transaction is isolated from other transactions.
+    - isolation level can be changed
+  - **D**URABILITY
+    - Durability ensures that your committed changes get persisted.
 
 ### TCL Commands
 

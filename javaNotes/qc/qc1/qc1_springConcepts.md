@@ -7,6 +7,7 @@ Usually means the Spring Framwork.
 ## Spring Framework 
 
 A Java framework used to develope Java applications.
+It provides layers of abstraction in our Java Projects, primarily through Dependency Injection.
 
 Why:
 - lets the developer concentrate on writing business logic
@@ -167,58 +168,19 @@ A process that “Automagically” determines the dependencies for you, and then
  
 
 ### Bean Lifecycle (QC loves to ask, I’m sorry) 
-(If they’re italicized you don’t need to know them for QC) 
+![alt text](image-3.png)
 
-The methods that are run when the Bean is istantiated, initialized, and tear down at the end.
+1. Setup
+- Spring IOC starts
+- Bean Instantiated
+- Dependencies Injected
+- Internal Spring processing
+- Custom init method( ready for use)
+2. Bean is ready for Use
+3. Bean is ready for garbage collection
+- Container shutdown
+- Custom destroy method
 
-String IoC container takes care of it.
-
-#### 1. Setup 
-Starts when a Bean is called for.  
-
-#### 1.1 Bean is instantiated
-
-0 - Bean is called/instantiated 
-
-1 - **BeanNameAware**’s `setBeanName()`; 
-
-2 - **BeanClassLoaderAware**’s `setBeanClassLoader()`; 
-
-3 - **BeanFactoryAware**’s `setBeanFactory()`; 
-
-<i>
-4-8 NO NEED TO REMEMBER they are only applicable when running in application context
-
-
-4 - ResourceLoaderAware's setResourceLoader (only applicable when running in an application context) 
-
-5 - ApplicationEventPublisherAware's setApplicationEventPublisher (only applicable when running in an application context) 
-
-6 - MessageSourceAware's setMessageSource (only applicable when running in an application context) 
-
-7 - ApplicationContextAware's setApplicationContext (only applicable when running in an application context) 
-
-8 - ServletContextAware's setServletContext (only applicable when running in a web application context) 
-</i>
-
-##### 1.2 Bean is intitalized
-9 - BeanPostProcessor’s `postProcessBeforeInitialization()` 
-
-10 - InitializingBean’s `afterPropertiesSet()` 
-
-11 - Your own custom initialization method (defined with `@PostInit`) 
-
-12 - BeanPostProcessor’s `postProcessAfterInitialization()`; 
-
-#### 2. Teardown 
-
-Teardown is POSSIBLE once the bean is eligible for Garbage Collection – when there are no more live references to it.
-
-1 - DisposableBean’s `destroy()` 
-
-2 - Your custom destroy method (defined with `@PreDestroy`) 
-
-3 - Garbage Collection eventually 
 
  
 
