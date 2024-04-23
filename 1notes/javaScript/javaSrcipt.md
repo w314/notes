@@ -1,7 +1,41 @@
-'''
-  # JavaScript DOM
+javaScript, js
+
+# JavaSrcipt
+
+## About JavaScript
+- dynamic, loosely typed
+- used for WEB development (gives functionality to websites)
+
+### JavaScript vs Java
+### Objects
+JavaScript
+    
+    - inheritance is through prototype mechanism in javaSript
+    - 
+## Data Types
+- let
+- const
+## Scope
+
+## Variables
+
+## Arrays
+
+## Functions
+- arrow functions
+
+## closures
+
+## this 
+
+## Type coersion
+
+## DOM (Database Object Model)
+
+
+### JavaScript DOM Manipulations
   
-  ## Add Element
+#### Add Element
   
   To avoid extra `reflows` create fragment, add elements to fragment before adding fragment to page.
   ```javascript
@@ -18,33 +52,30 @@
   // reflow and repaint here -- once!
   ```
   
-  Adding attributes
+  #### Add Attributes to Elements
   ```javascript
   const element = document.createElement('p');
-  element.setAttributue('id', 'elementId');
+  element.setAttribute('id', 'elementId');
   ```
   
-  ### Add Class
+  #### Add Class to Element
   ```javascript
   const div = document.createElement('div');
   div.className = 'foo';
-  
-  // our starting state: <div class="foo"></div>
-  console.log(div.outerHTML);
   
   // use the classList API to remove and add classes
   div.classList.remove("foo");
   div.classList.add("anotherclass");
   
-  // <div class="anotherclass"></div>
-  console.log(div.outerHTML);
-  
-  // if visible is set remove it, otherwise add it
+
+  // toggle class
+  //  if class visible is part of the classList remove it, otherwise add it
   div.classList.toggle("visible");
   
-  // add/remove visible, depending on test conditional, i less than 10
+  // toggle visible, depending on a conditional
   div.classList.toggle("visible", i < 10 );
   
+  // check if a class is in classList
   console.log(div.classList.contains("foo"));
   
   // add or remove multiple classes
@@ -52,11 +83,26 @@
   div.classList.remove("foo", "bar", "baz");
   
   // add or remove multiple classes using spread syntax
-  const cls = ["foo", "bar"];
-  div.classList.add(...cls);
-  div.classList.remove(...cls);
+  const classes = ["foo", "bar"];
+  div.classList.add(...classes);
+  div.classList.remove(...classes);
   
   // replace class "foo" with class "bar"
   div.classList.replace("foo", "bar");
   ```
+
+
+## Event Listeners
+
+## Template Literal
+
+## Fetch API
+
+## Async Await
+
+## Promises
+
+
+
+
 
