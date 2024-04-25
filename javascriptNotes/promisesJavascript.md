@@ -1,14 +1,3 @@
-createdAt: "2020-11-19T17:07:27.090Z"
-updatedAt: "2020-11-20T21:12:48.053Z"
-type: "MARKDOWN_NOTE"
-folder: "7869a5810e7871ff4be9"
-title: "JavaScript Promises"
-tags: [
-  "js"
-  "javascript"
-  "promises"
-]
-content: '''
   js, javascript, promises
   
   # JavaScript Promises
@@ -48,9 +37,3 @@ content: '''
   })
   .catch(error => console.log(error));
   ```
-  
-  
-'''
-linesHighlighted: []
-isStarred: false
-isTrashed: false

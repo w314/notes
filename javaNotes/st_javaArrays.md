@@ -33,6 +33,12 @@ int n = arr[2];
 // remove element
 FIXED SIZE CANNOT REMOVE
 
+// slice array
+
+int[] nums = {45, 67, 12};
+// end index excluded
+int[] slice = Arrays.copyOfRange(arr, startIndex, endIndex);
+
 // iterate over array
 for(int n : arr) {
   System.out.println(n);

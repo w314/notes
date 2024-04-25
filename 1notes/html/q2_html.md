@@ -20,13 +20,20 @@ A language that uses tags to convey more meaning and/or functionality to the con
 
 ```
 
-#### 
+## HTML tags
+
+
 
 ## HTML Elements
 Part of elmenets:
 - opening tag
 - content 
 - closing tag
+
+
+## Inline vs Block Elements
+
+## Input elements and types
 
 
 

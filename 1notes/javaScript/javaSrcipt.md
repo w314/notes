@@ -7,12 +7,32 @@ javaScript, js
 - used for WEB development (gives functionality to websites)
 
 ### JavaScript vs Java
-### Objects
-JavaScript
-    
-    - inheritance is through prototype mechanism in javaSript
+- Compiled / Interpreted
+  - JS is interpreted
+  - Java is compiled
+- Varibales
+  - JS is loosely typed
+  - Java is strongly typed
+-  Objects    
+    - in JS inheritance is through prototype mechanism
+    - in Java through classes
+- Threads
+  - JavaScript is single threaded
+  - Java is multithreaded
     - 
+## Variables
+
+Available variable declarations
+JavaScript has three kinds of variable declarations.
+
+`var` - Declares a variable, optionally initializing it to a value.
+
+`let`- Declares a block-scoped, local variable, optionally initializing it to a value.
+
+`const` - Declares a block-scoped, read-only named constant.
+
 ## Data Types
+
 - let
 - const
 ## Scope

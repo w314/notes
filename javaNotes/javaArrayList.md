@@ -28,6 +28,11 @@ arrList.remove(1);
 // remove all elements:
 arrList.clear();
 
+// slice arrayList
+// end index excluded
+
+List<Integer> slice = arrList.subList(0, 2);
+
 // iterate over array
 for(String name : arrList) {
   System.out.println(name);
