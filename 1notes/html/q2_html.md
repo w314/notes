@@ -9,7 +9,7 @@ html
     - browser will interpret the markup
 - HTML Syntax
     - elements
-    - attributes
+    - attributes (key-value pairs)
 
 ## HTML Document Structure
 ```html
@@ -112,6 +112,14 @@ Part of element:
 - closing tag (unless self closing)
 
 ### Inline vs Block Elements
+`Inline Element` 
+  - will stretch to take up only as much space as its content
+  - cannot contain block elements
+  - typically represent styling accents
+
+`Block Element` 
+  - will stretch to take up the entire width of their container
+  - typically represent structured portions of the document
 
 ## HTML Tags
 
@@ -122,8 +130,25 @@ Part of element:
 
 ### `<p>`
 
+### `<a>` Anchor Tag
 
-### `<img>
+ Link to another webpage or to a different portion of the current webpage.
+```html
+<a href="https://www.google.com" target="_blank" download>Google</a>
+```
+Attributes (some of them at leas):
+- `href`
+  - sets the location to go to when clicked
+  - can be a `#` followed by an id to jump to that section of the page
+`target`: tells the browser where to open the linked document
+  - `_blank`: in a new tab
+  - `_parent`: in a parent frame
+  - `_self`: in the same frame (Default)
+  - `_top`: nn the full body of the window
+  - `iFrameName`: In the iFrame with the same name
+- `download`: specified that the file will be downloaded
+
+### `<img>` Image Tag
 ```html
 <img 
     src="picture.jpg" 
@@ -144,19 +169,118 @@ Part of element:
   <figcaption>Fig.1 - Trulli, Puglia, Italy.</figcaption>
 </figure>
 ```
+- together they create a captioned figure
+- used with an image in order to use the image as a figure and then provide some information about the image
+- block elements
 
-<details> and <summary>
-<br />
-<hr />
-<table>, <tr>, <th>, <td> and <caption>
-<ol>, <ul> and <li>
-<div>
-<span>
-<a>
-<form> and the <form> tags
+### `<details> and <summary>`
+```html
+<details>
+  <summary>Epcot Center</summary>
+  <p>Epcot is a theme park at...</p>
+</details>
+```
+- together they create a titled collapsable section
+- until the name of the section (determined by `<summary>`) is clicked on the detials are hidden
+- `<summary>` is an inline element
+- `<details>` is a block element
 
 
-## Input elements and types
+### `<br />`
+- `<br>` also works
+- line break
+- block element
+
+### `<hr />`
+- `<hr>` also works
+- horizontal line
+- block element
+
+### lists `<ol>, <ul> and <li>`
+```html
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<ol start="50">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+```
+- all block elements
+- can be nested
+- `<li>` list item
+- `<ul>` unordered list
+- `<ol>` ordered list
+
+### Page Section Tags
+- all block elements
+- `<header>` : Used to represent the header of a page
+- `<footer>` : Used to represent the footer of a page
+- `<section>` : Used to represent a break to the next portion of the document
+- `<article>` : Used to represent a self-contained subdocument
+- `<aside>` : Used to represent content related to the main page content but not necessary for full understanding
+
+Non-Sematic section tags:
+- `<div>`
+  - subsection of a document, no semantic meaning
+  - block element
+- `<span>`
+  - subcection of a document, no semantic meaning
+  - inline element
+
+### Table
+```html
+<table>
+  <!-- Table HEAD -->
+  <thead>
+    <!-- Table CAPTION -->
+    <caption>Monthly savings</caption>
+    <tr>
+      <!-- details use <th> tags -->
+      <th>Month</th>
+      <th>Savings</th>
+    </tr>
+  </thead>
+  <!-- Table BODY -->
+  <tbody>
+    <tr>
+      <!-- details use <td> tags -->
+      <td>January</td>
+      <td>$100</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td>$80</td>
+    </tr>
+  </tbody>
+  <!-- Table FOOTER -->
+  <tfoot>
+    <tr>
+      <td>Sum</td>
+      <td>$180</td>
+    </tr>
+  </tfoot>
+</table>
+```
+- `<table>` is the only block element
+- `colspan` attribute for `<th>` and `<td>` specifies how many columns this entry should take up
+
+
+## `<form> and the <form>` tags
+An HTML form collects information from input elements.
+
+### Input Elements
+```html
+
+```
+
+
+## `<input>` Input Element
+The <input> element can be displayed in several ways, depending on the type attribute.
 
 
 
