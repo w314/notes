@@ -15,6 +15,22 @@ react
         - view and logic are together inside the component
         - uses `JSX` to describe the view
 
+
+## Virtual DOM
+
+React uses a Virtual DOM.  For every DOM object, react has a corresponding "virtual DOM object" that represents the actual DOM object.
+
+Why?
+<br>Manipulating the DOM is slow. Manipulating the virtual DOM is much faster because nothing gets drawn onscreen.
+
+How?
+<br>When you try to update the DOM in React:
+- The entire virtual DOM gets updated.
+- The virtual DOM gets compared to what it looked like before you updated it. (the snapshot) 
+- React figures out which objects have changed.
+- The changed objects, and the changed objects only, get updated on the real DOM.
+- Changes on the real DOM cause the screen to change.
+
 ## JSX
 
 ## Create a React App
@@ -48,7 +64,34 @@ npm start
 
 - follow the single responsibility principle when creating components
 
+TypeScript Component
+```ts
+// components is stored in ChildComponent variable
+// it's type:
+// React.FunctionComponent<{
+//   prop1: string,
+//   prop2: number
+// }>
+const ChildComponent:React.FunctionComponent<{
+    name: string,
+    count: number
+}> = (props) => {
+    return(
+        <>
+            <h2>I am a Child Component</h2>
+            <ul>My Props:</ul>
+            <li>Name: { props.name }</li>
+            <li>Count: { props.count}</li>
+        </>
 
+    )
+}
+// component is exported to be used elsewhere
+export default ChildComponent;
+```
+- type of the component is `React.FunctionComponent<{prop object}>`
+- the component is a function with a props object as the argument
+- it return a description of the UI
 
 class based syntax:
 ```js
@@ -60,10 +103,72 @@ class Hello extends React.Component{
     }
 }
 ```
-## Virtual DOM
-
-React uses a Virtual DOM. Technically, with React, you don't actually write HTML. Instead, you generate HTML views using JS. For every DOM object, react has a corresponding "virtual DOM object" that represents the actual DOM object.
-
-Why is using a Virtual DOM useful? Updating the DOM is costly in terms of performance. React greatly improves performance by minimizing changes to the DOM - it only updates what's necessary. The Virtual DOM much more lightweight than the actual DOM, so the virtual DOM is updated whenever we make a change, but React will decide when it is most efficient to actually make the real DOM reflect the changes seen in the Virtual DOM. Since rendering the page is costly (performance wise), minimizing unnecessary renders is one way that React improves performance. This update process is referred to as reconciliation, and you can read more about it her
 
 
+## Hooks
+>Hooks are functionsthat let you “hook into” React state and lifecycle features from function components.
+- are at the top of the component similar to how you import modules at the top the file
+- there cannot be inside a conditional statement
+- not for class based components
+- there are built-in hooks and you can build custom ones too
+
+### useState
+- is a hook that allows you to persist a value across renders and trigger a re-render when the value changes
+```tsx
+// useState returns a two element array
+// here we use array destructuring to store them
+const [count, setCount] = React.useState(0)
+```
+- takes in a single argument, the initial value for that piece of state
+- returns an array:
+    - first item is the state value
+    - second item is a function to update that state
+
+
+How to use useState:
+```tsx
+
+```
+### useEffect
+
+### useNavigate
+
+### useContext
+
+
+## Routing
+>Routing allows for the navigation from one view to another, by changing which components are displayed on the single page.
+
+- What components are shown is determined by the URL 
+- Certain components will be linked (or ROUTED) to certain URL endpoints
+
+### React Router
+>React Router is a declarative model for navigational components within your application.
+
+Not part of the React library, to use React Router Dom install it with:
+```bash
+npm install react-router-dom
+```
+
+To use Routing in our app:
+```tsx
+// imports needed for routing
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+function App() {
+  return (
+    <div className="App">
+        <BrowserRouter>
+            <Routes>
+                <Route path="/hyp" element={<Hypotenuse/>}></Route>
+                <Route path="/emp" element={<EmployeeContainer incomingData={data}/>}></Route>
+            </Routes>
+        </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
+```
+
+### `<Link>`
