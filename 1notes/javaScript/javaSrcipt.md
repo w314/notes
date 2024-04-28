@@ -114,6 +114,72 @@ JavaScript has three kinds of variable declarations.
 
 ## Event Listeners
 
+### Event
+> Events are things that happen in the system you are programming.
+- the system produces (or "fires") a signal of some kind when an event occurs
+- and provides a mechanism by which an action can be automatically taken (that is, some code running) when the event occurs
+- examples:
+  - user clicks a button
+  - browser loads page
+  
+### How to handle events
+#### `addEventListener()`
+Objects that can fire events have an `addEventListener()` method.
+
+#### To add event listener:
+```js
+// select element
+const btn = document.querySelector("button");
+
+// add event listener
+btn.addEventListener("click", () => {
+  console.log("I was clicked!")
+});
+
+// ************* OR *************
+
+// create named function
+function sayClicked() {
+ console.log("I was clicked!")
+}
+
+// use function name in addEventListener
+btn.addEventListener("click", sayClicked);
+```
+Add multiple event listeners:
+<br>By making more than one call to addEventListener(), providing different handlers, you can have multiple handlers for a single event
+```js
+myElement.addEventListener("click", functionA);
+myElement.addEventListener("click", functionB);
+```
+
+Use the `event handler property`
+```js
+// CANNOT ADD MULTIPLE LISTENER THIS WAY
+// SECOND WOULD OVERWRITE THE FIRST
+btn.onlcick = () => {console.log("I am clicked!")}
+// or
+btn.onclick = sayClicked;
+```
+
+
+#### To remove event listener
+```js
+btn.removeEventListener("click", sayClicked);
+```
+
+
+### Event Object
+- automatically passed to event handlers
+- the `target` property of the event object is a reference of the object the event accured upon
+- can have extra properties (eg: keydown event object has a key property)
+
+### Preventing default behavior
+THe `eventObject.preventDefault()` method of the event object will prevent default behavior for example submitting a form when the submit button is clicked.
+
+### Event Bubbling
+
+
 ## Template Literal
 
 ## Fetch API
