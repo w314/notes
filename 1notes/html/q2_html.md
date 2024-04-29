@@ -282,7 +282,11 @@ An HTML form collects information from input elements.
 ## `<input>` Input Element
 The <input> element can be displayed in several ways, depending on the type attribute.
 
+```html
 
+
+
+```
 
 
 # HTML Questions

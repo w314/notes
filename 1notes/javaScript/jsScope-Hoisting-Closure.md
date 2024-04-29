@@ -14,6 +14,7 @@ JavaScript, js, scope
 - block scope
     - scope created with a pair of `{}`
     - only for `let` and `const`
+- (lexical scope aka closure scope)
 
 
 ## Hoisting

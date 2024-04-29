@@ -42,12 +42,30 @@ JavaScript has three kinds of variable declarations.
 ## Arrays
 
 ## Functions
+
 - arrow functions
+### Callback & Higher Order Funtions
+A `higher order funtion` is a function that takes an other function as an argument.
+
+The function passed as the argument is a `callback funtion`.
+
 
 ## closures
 
 ## this 
+>In JavaScript, when we used in a funtion, the this keyword directs to an object to which it is bound.
 
+Types of binding in JavaScript
+- Default binding
+  - outside of function: global object
+  - inside function: 
+    - strict mode: undefined
+    - non-strict mode: global object
+  - event handlers: object that received the event
+
+- Implicit binding
+- Constructor call binding
+- Explicit binding
 ## Type coersion
 
 ## DOM (Database Object Model)
@@ -181,12 +199,94 @@ THe `eventObject.preventDefault()` method of the event object will prevent defau
 
 
 ## Template Literal
+Template literals are literals delimited with backtick (`)  characters, allowing for multi-line strings and  string interpolation with embedded expressions.
 
-## Fetch API
-
-## Async Await
+```js
+const name = "Bobek";
+console.log(`Hi ${name}!`);
+```
 
 ## Promises
+A Promise is a proxy for a value not necessarily known when the promise is created. It allows you to associate handlers with an asynchronous action's eventual success value or failure reason.
+
+- Promise is an object 
+- it represents the eventual completion (or failure) of an asynchronous operation and its resulting value
+
+A Promise is in one of these states:
+
+- `pending`: default initial state, neither fulfilled nor rejected.
+- `fulfilled`: meaning that the operation was completed successfully.
+- `rejected`: meaning that the operation failed.
+
+The eventual state of a pending promise either:
+- `fulfilled` with a value 
+- `rejected` with a reason (error)
+
+When either of these options occur, the associated handlers  are called. 
+
+
+### How to create a Promise
+- create a new Promise intance <br>
+`const myPromise = new Promise()`
+- the constructor takes one argument a (callback) function <br>
+`const myPromise = new Promise(() => {})`
+- the callback functions is passed two arguments
+<br>`const myPromise = new Promise((resolve, reject) => {})`
+  - `resolve`: a function that allows you to change the status of the promise to `fulfilled`
+  - `reject`: a function that allows to change the status fo the promise to `rejected`
+
+```js
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(); // Change status to 'fulfilled'
+  }, 2000);
+});
+```
+### How to listen to Promises
+- When you create a new Promise, you're really just creating a plain old JavaScript object. 
+  - This object can invoke two methods, then, and catch. - when the status of the promise changes to fulfilled, the function that was passed to .then will get invoked - when the status of a promise changes to rejected, the function that was passed to .catch will be invoked.
+```js
+function onSuccess() {
+  console.log("Success!");
+}
+
+function onError() {
+  console.log("💩");
+}
+
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve();
+  }, 2000);
+});
+
+promise.then(onSuccess);
+promise.catch(onError);
+```
+
+## Async Await
+- returns a Promise
+- the `await` keyword makes js wait untill the promise is settled
+
+
+## Fetch API
+>The Fetch API interface allows web browser to make HTTP requests to web servers.
+- promise based
+- asynchronous
+- takes to arguments:
+  - url
+  - init object you can use to set for example:
+    - `method: POST`
+    - `headers: {}`
+    - `body:`
+```js
+async function logMovies() {
+  const response = await fetch("http://example.com/movies.json");
+  const movies = await response.json();
+  console.log(movies);
+}
+```
+
 
 
 
