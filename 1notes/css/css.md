@@ -10,7 +10,14 @@ css
 
 ## Responsive Web Design
 
-## CSS Overview
+## CSS Variables
+```css
+:root {
+  --blue: #1e90ff;
+}
+
+body { background-color: var(--blue); }
+```
 
 ## Selectors
 
@@ -36,8 +43,29 @@ div: hover {
 
 
 ## Animations
+> Animation lets and element gradually change form style to another.
+- to use animation you have to specify some keyframes
+- keyframes hold what style th element will have at a certain time
+- you have to bind the animation to an element
+- set the animatin duration
+- after the animation the style goes back to the one originally set up for the element
 
+Basic animation example:
+```css
+@keyframes boxColor {
+    0% {background-color: red;}
+    50% {background-color: yellow;}
+    100% {background-color: blue;}
+}
 
+.div {
+    /* attach keyframe */
+    animation-name: boxColor;
+    /* set duration */
+    animation-duration: 4s;
+    back
+}
+```
 
 ## Responsive Web Design
 
@@ -113,7 +141,7 @@ Media queries allow you to customize the presentation of your web pages for a sp
 .flexItem {
     /* let's item appear NOT in the order it is in the source file */
     order: 5;
-    
+
 }
 ```
 
