@@ -13,7 +13,7 @@
 ## Max of Array
 ```javascript
 const nums = [3, 7, 2]
-const maxValue = Math.max.apply(null, nums)
+const maxValue = Math.max.(...nums)
   ```
   
   ## Array Properties

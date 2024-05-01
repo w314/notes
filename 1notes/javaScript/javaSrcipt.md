@@ -139,7 +139,23 @@ Types of binding in JavaScript
 - examples:
   - user clicks a button
   - browser loads page
-  
+
+### Event Capturing
+
+The standard DOM Events describes 3 phases of event propagation:
+
+- `Capturing phase` – the event goes down to the element.
+- `Target phase` – the event reached the target element.
+- `Bubbling phase` – the event bubbles up from the element.
+
+To catch an event on the capturing phase, we need to set the handler capture option to true:
+```js
+elem.addEventListener(..., {capture: true})
+```
+
+
+
+
 ### How to handle events
 #### `addEventListener()`
 Objects that can fire events have an `addEventListener()` method.

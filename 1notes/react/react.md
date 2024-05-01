@@ -336,6 +336,12 @@ How to use useState:
 - when passing object use te
 ### useEffect
 
+allows you to perform some logic at specific points of the applications life
+
+o It can be used to listen for events or changes in state to perform some logic when that event occurs, such as a button click, or when a component loads.
+
+§ Like JS event listeners!! These are good for event handling
+
 ## Routing
 >Routing allows for the navigation from one view to another, by changing which components are displayed on the single page.
 
