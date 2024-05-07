@@ -75,6 +75,12 @@ Use `GCM` (_Git Creadential Manager_) to store the `PAT`. (It may already be int
 
   .gitignore only ignores files that are not part of the repository yet. If you already git added some files, their changes will still be tracked. To remove those files from your repository (but not from your file system) use `git rm --cached` on them.
 
+  ### Change emial on previous commits
+The number after `HEAD~` specifies how many commits to change.
+```bash
+git rebase -i HEAD~4 -x "GIT_COMMITTER_NAME='w314' GIT_COMMITTER_EMAIL='piroska.werner@gmail.com' git commit --amend --author 'w314 <piroska.werner@gmail.com>' --no-edit"
+```
+
   ## Git configuration
 
   **see git configuration**:
@@ -83,14 +89,8 @@ Use `GCM` (_Git Creadential Manager_) to store the `PAT`. (It may already be int
   **configure git**:
   `git config --global user.name "Piroska Werner"`
 
-'''
-linesHighlighted: []
-isStarred: false
-isTrashed: false
 
-||||||| fe5b72e
+
 When using `git push` for the first time, a pop-up window comes up, and there is a possiblity to enter the token. After that the token is already stored.
 =======
 When using `git push` for the first time, a pop-up window comes up, chose `token` as sign in method and enter it. After that the token is already stored.
-
-> > > > > > > 5aeb71c02a5442402b99fb4e9908a1ca67986485
