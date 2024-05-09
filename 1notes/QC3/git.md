@@ -2,6 +2,9 @@ git
 
 # GIT
 
+## Git Branching
+Branching means you diverge from the main line of development and continue to do work without messing with that main line.
+
 ## GIT Questions
 
 Git Topics

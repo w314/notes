@@ -97,6 +97,8 @@ Two types of auto-scaling are:
 - A VPC comes with a default security group.
 - You can associate a security group only with resources in the VPC for which it is created.
 - you add rules that control the traffic based on protocols and port numbers
+- hese function like a firewall for instances of AWS services (EC2, RDS, etc.). They restrict traffic by IP, Protocol, or port.
+
 
 ### VPC (Virtual Private Cloud)
 > With Amazon Virtual Private Cloud (Amazon VPC), you can launch AWS resources in a logically isolated virtual network that you've defined. 
@@ -119,7 +121,7 @@ A network access control list (ACL) allows or denies specific inbound or outboun
 
 It takes any data, like a file or database entry, and divides it into blocks of equal sizes. The block storage system then stores the data block on underlying physical storage in a manner that is optimized for fast access and retrieval.
 
-## AMI (Amazon Machine Image)
+## AMI (ASmazon Machine Image)
 
 >An Amazon Machine Image (AMI) is a supported and maintained image provided by AWS that provides the information required to launch an instance.
 
