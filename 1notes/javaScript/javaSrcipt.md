@@ -39,6 +39,28 @@ JavaScript has three kinds of variable declarations.
 
 ## Variables
 
+## Objects
+
+
+### `Object.freeze()
+> Method used to make object immutable.
+Object.freeze is `shallow`, it only affects the immediate properties of th object. 
+
+If the objects contains other objects (like arrays or other JS object) those can still be modified.
+
+```js
+const obj = {
+    prop: 42
+};
+
+Object.freeze(obj);
+
+obj.prop = 33; // This will not have any effect
+console.log(obj.prop); // Outputs: 42
+```
+
+- use `Object.isFrozen() to check if an object is frozen.
+
 ## Arrays
 
 ## Functions

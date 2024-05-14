@@ -22,6 +22,73 @@ ai
 ## Machine Learning
 > Branch of AI that provides systems the ability to automatically learn and improve from experience without being explicitly programmed.
 
+### Machine Learning Process
+#### 1. Decision Process
+The algorithm will attempt to predict a value or classify a new example based on previous information.
+#### 2. Error Function
+A way to measure how wrong the model is.
+
+#### 3. Model Optimalization Process
+Updates the model to achive lower error rates.
+- updates the model weights which control how important specific data/inputs are
+
+
+### Machine Learning Types
+- Supervised Learning
+    - uses a labeled data set
+    - a data set with correct labels attached
+- Unsupervised Learning
+    - uses unlabeled data set
+    - uncovers hidden features of data
+- Semi-Supervised Learning
+    - often starts with a small labeled dataset
+    - combines label and unlabeled data sets
+
+### Machine Learnign Algorithms
+- Neural Networks
+    - uses a series of nodes called neurons
+- Linear Regression
+    - supervised learning
+    - predict numerical values
+    - based on a linear relationship between differen values
+- Logistic Regression
+    - supervised learning
+    - makes predictions for categorical response variables
+- Clustering
+    - unsupervised learning
+    - can identify data that can be groupped
+- Decision Trees
+    - can be used for prediction of numerical values of categories
+    - uses a branching sequence of linked decisions
+
+
+## LLM (Large Langue Model)
+> Type of AI that can recognize and generate text.
+- trained on huge datasets
+- trained further via tuning 
+- ChatGPT is an LLM
+
+
+## Promt Engineering
+> Means prompting the AI system in a way that let's it better comprehend and answer your question.
+
+### How to Prompt Engineer
+- provide a  persona
+
+
+#### n-Shot prompting
+- zero shot prompting
+    - typical, generic prompting
+
+- few shot prompting
+    - provide examples in your prompt
+    - let's AI focus 
+
+
+## Hallucinations
+
+
+
 ## AI Questions
 - What is Artificial Intelligence?
 

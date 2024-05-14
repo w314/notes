@@ -11,7 +11,16 @@ content: '''
   - [TypeScript: Typed JavaScript at Any Scale.](https://www.typescriptlang.org/)
   - [TypeScript 4.0 Cheat Sheet \\| SitePen](https://www.sitepen.com/blog/typescript-cheat-sheet)
   - [TypeScript: Documentation - Do's and Don'ts](https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html)
+
+- Superset of JavaScript. 
+- transpiled into JavaSrcipt with `tsc myFile.ts`
+- open source
+- strongly typed: must declare variable type at declaration
+- strictly typed: no implicit type coersion
   
+### Transpilation
+Transforms source code written in one language (eg. TypeScript) to another language (eg. JavaScript) with a similar level of abstraction.
+
   ## Implicit Typing
   - TypeScript automatically assumes the types of objects
   - Best practice to use this when dealing with immutable variables and simple functions
@@ -30,7 +39,41 @@ content: '''
   - string
   - number
   - boolean
-  
+
+  ### `as const`
+> `as const` is used to create a "readonly" literal type. It means the variable's value is set at creation and cannot be changed. 
+
+```typescript
+// creates a readonly object
+// in JavaScript you'd have to use. Object.freeze
+const example = {
+  name: "John",
+  age: 30
+} as const;
+
+const exampleArray = [1, 2, 3] as const;
+```
+
+###  `readonly`
+> The readonly keyword is used to make properties of an object or elements of an array immutable.
+
+```typescript
+interface ReadonlyPerson {
+    readonly name: string;
+    readonly age: number;
+}
+
+const person: ReadonlyPerson = {
+    name: 'John',
+    age: 30
+};
+
+person.name = 'Jane'; // Error: Cannot assign to 'name' because it is a read-only property
+
+
+const arr: readonly number[] = [1, 2, 3];
+arr[0] = 5; // Error: Index signature in type 'readonly number[]' only permits reading
+```
   ### **Union Types**:
   Used when more than one type can be used
   ```typescript
@@ -212,7 +255,20 @@ content: '''
   const myStudent = studentFactory('Hana', 16);
   
   ```
-  ### Classes
+
+
+### Casting
+```ts
+let x: unknown = 'hello';
+
+// casting with `as`
+console.log((x as string).length);
+
+// casting using <>
+console.log((<string>x).length);
+```
+
+  ## Classes
   - can use access modifiers
     - `public` by default all properties of TypeScript classes are public
     - `private` (or `#`) properties can only be accesssed  and modified within the class itself. Using it only will give you a typescript error, there are no true private variables in JavaScript
@@ -243,6 +299,21 @@ content: '''
   console.log(howard.name);
   // Property 'name' is protected and only accessible within class 'Person' and its subclasses.
   ```
+
+  
+### Keyof
+Keyof operator takes an object type and produces a string or numeric literal union of its keys.
+
+It can be used that a string is valid key on the object or not
+
+```ts
+interface Person {
+  name: string;
+  age: number;
+}
+
+keyof Person // results in  "name" | "age"
+````
   
   ### Generics
   ```typescript
