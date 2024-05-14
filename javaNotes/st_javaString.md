@@ -117,6 +117,15 @@ String[] words = str.split(" ");
 char[] letters = str.toCharArray();
 
 
+// SORTING
+
+// to sort a string, there are no sort method on strings
+String str = "melnogn";
+char[] charArray = str.toCharArray();
+Arrays.sort(charArray);
+String sortedString = new String(charArray);
+
+
 // CONVERSIONS
 
 // int to String

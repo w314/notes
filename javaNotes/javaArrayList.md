@@ -28,9 +28,8 @@ arrList.remove(1);
 // remove all elements:
 arrList.clear();
 
-// slice arrayList
+// get sublist
 // end index excluded
-
 List<Integer> slice = arrList.subList(0, 2);
 
 // iterate over array
