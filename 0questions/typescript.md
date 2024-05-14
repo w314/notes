@@ -21,12 +21,12 @@ content: '''
 ### Transpilation
 Transforms source code written in one language (eg. TypeScript) to another language (eg. JavaScript) with a similar level of abstraction.
 
-  ## Implicit Typing
+  ### Implicit Typing
   - TypeScript automatically assumes the types of objects
   - Best practice to use this when dealing with immutable variables and simple functions
   
   
-  ## Explicit Typing
+  ### Explicit Typing
   ```typescript
   let myNumber: number;
   
@@ -35,10 +35,21 @@ Transforms source code written in one language (eg. TypeScript) to another langu
   };
   ```
   
-  ### **Basic Types**:
-  - string
-  - number
-  - boolean
+  ## TypeScript Data Types
+  - all JavaScript data types
+    - string
+    - number
+    - boolean
+  - any
+  - unknown
+  - array `string[]`
+  - union types `string | number`
+  - tuples `[ string, number ]`
+  - enums
+  - function return types:
+    - void
+    - never
+
 
   ### `as const`
 > `as const` is used to create a "readonly" literal type. It means the variable's value is set at creation and cannot be changed. 
@@ -360,3 +371,19 @@ const temp = someObj[field as keyof ObjectType]
 // Solution 2: When the type of the object is not known
 const temp = someObj[field as keyof typeof someObj]
 ```
+
+## Generics
+
+
+## Utility Types
+> Provide a convenient way to transfrom types from one form to another. 
+
+
+## Typeguards
+> Design pattern that narrows down the type of an object with a conditional block.
+
+
+
+## TypeScript Configuration
+
+Set in the `tsconfig.json` file.

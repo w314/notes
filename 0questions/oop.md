@@ -111,6 +111,10 @@ class Dog extends Animal {
   - coupling <br>represents the degree to which a single unit is dependent on others
   - cohesion <br>represents the degree to which a part of a code base forms a logically single, atomic unit
 
+  Examples: 
+    - Spring DATA abstracts away JDBC
+    - Math.Random() abstracts away the details of creating a random number
+
 
 ### Polymorphism
 > Polymorphism allows the implementation of  given behavior to vary, whether between subclasses (`method overriding`) or within the same class (`method overloading`).

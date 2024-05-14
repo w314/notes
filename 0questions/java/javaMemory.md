@@ -3,6 +3,7 @@ java, memory, stack, heap
 # Java Memory
 
 - Java provides automatic memory management.
+- stack and heap are parts of memory
 - JVM divides memory into stack and heap memory.
 
 
@@ -10,6 +11,7 @@ java, memory, stack, heap
 
 - area in memory
 - keeps track of the currently executing methods
+- while your program is running it will always have one method on your stack the main method of your program
 - stores any variables that these methods create and use
 - smaller than heap
 - `Stack` Memory in Java is used for:

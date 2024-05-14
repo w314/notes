@@ -42,7 +42,7 @@ JavaScript has three kinds of variable declarations.
 ## Objects
 
 
-### `Object.freeze()
+### Object.freeze()
 > Method used to make object immutable.
 Object.freeze is `shallow`, it only affects the immediate properties of th object. 
 

@@ -324,7 +324,7 @@ When a variable or method is declared in a Java program, its0 scope determines w
 
 > If I define a variable within a method, how can I access its value outside of the method?
 
-#### Static Keyword
+#### `static` Keyword
 
 The static keyword in Java is mainly used for memory management. The static keyword in Java is used to share the same variable or method of a given class.
 
@@ -344,6 +344,13 @@ Instead, the method belongs to the class itself.
 
 As a result, you can access the static method without first creating a class instance.
 
+
+
+### Non-Access Modifiers
+- static
+- final
+- abstract
+
 ##### How to use Static members
 
 - within same class: just use name of member
@@ -351,6 +358,18 @@ As a result, you can access the static method without first creating a class ins
 - example:
   - Math.min(4, 5)
   - Math.PI
+
+
+#### `final` keyword
+> Used to define an entity that cannot be changed.
+
+- final variable
+  - cannot be reassigned
+  - but values in an array can still be changed
+- final method
+  - method cannot be overriden by a subclass
+- final class
+  - cannot be extended
 
 ### Classes
 
@@ -657,6 +676,75 @@ There are a few rules that the method follows:
 Finally, the `.finalize()` method is called by the garbage collector when it determines there are no more references to the object. It can be overriden to perform cleanup activities before garbage collection, although it has been deprecated in newer versions of Java.
 
 
+
+### abstract class vs. interface
+- interface CANNOT have implementations to its method
+- unless you use `default`
+- you use `extends` to extend classes
+- you use `implements` with interfaces
+
 > See Java String
 
 > See Java Arrays
+
+
+
+CHecked Exception
+- compile time
+
+Unchecked
+- runtime exception
+
+
+How ot compare two objects
+
+obj1.equals(obj2) but has to have equals override
+
+
+public satic...
+access modifier, scope, return type, method name, parameter type, and parameter name
+
+Singleton
+example: Beans are singletons by default
+
+
+
+Collections
+know see
+
+arrays are statically sized
+arrayList are dinmaically sized
+
+Collection only take objects
+arrays can take primitives
+
+Collection API
+list set and queue interfaces
+
+
+linkedlist implemetn list and queue
+
+hashtable vs hashmap?
+
+- Synchronization
+  - HashTable is synchronized (threadsafe) and can be shared between multiple threads
+- Null keys and null values
+  - HashTable does not allow null keys or null values
+  - HashMap allows one null key and any number or null values
+- Iteration
+  -  HashMap iterator is fail-fast, will throw a `ConcurrentModificationException` if the map is structurally modified while iterating over it
+  - HashTable does not do that
+- Performance
+  - HashMap is faster and uses less memory 
+  - as HashMap is unsynchronized
+- Legacy
+  - HashTable is legacy class
+  - HashMap is part of newer Collections Framework
+
+
+Optional 
+
+avoid nullpointerexception have safer code
+
+
+
