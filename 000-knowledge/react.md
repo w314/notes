@@ -15,6 +15,11 @@ react
         - view and logic are together inside the component
         - uses `JSX` to describe the view
 
+## Advantages over using plain JS
+- component bases architecture
+- declarative: more readable and easier to debug
+- virtual dom improves performance
+- unidirectional data flow keeps the application stable
 
 ## Virtual DOM
 
@@ -91,7 +96,7 @@ return (
 #  if using with TypeScript
 npx create-react-app <app-name> --template typescrpipt
 
-# create TypeScirpt config file if needed
+# create TypeScirpt config file if needed (it will be created with the method above)
 npc tsc --init
 
 #  install dependencies if using cloned directory
@@ -309,7 +314,8 @@ export default function Todo ({ { todo, handleUpdateTodo }}) {
 
 
 ## Hooks
->Hooks are functionsthat let you “hook into” React state and lifecycle features from function components.
+>Hooks are functions that let you “hook into” React state and lifecycle features.
+- used in funstion components only (not in class components)
 - are at the top of the component similar to how you import modules at the top the file
 - there cannot be inside a conditional statement
 - not for class based components
@@ -335,6 +341,11 @@ How to use useState:
 
 - when passing object use te
 ### useEffect
+
+Effects let a component connect to and synchronize with external systems.
+
+This hook lets you perform side effects in function components. It's like componentDidMount, componentDidUpdate, and componentWillUnmount combined in class components.
+
 
 allows you to perform some logic at specific points of the applications life
 
@@ -378,9 +389,10 @@ export default App;
 ```
 
 ### `<Link>`
->Helps to navigate between our routes.
+>Compenent used to create links in your application.
 
-The `to` attribute takes the path.
+- provided by `react-router-dom`
+- the `to` attribute takes the path
 
 ```jsx
 <nav>
@@ -388,3 +400,18 @@ The `to` attribute takes the path.
   <Link to='/about'>About</Link>
 </nav>
 ```
+
+
+### useNavigate()
+> Hook that allows you to programatically navigate through your application.
+
+- provided by `react-router-dom`
+
+```tsx
+const navigate = useNavigate();
+
+const handleButtonClick = () => {
+  navigate("/items");
+}
+```
+

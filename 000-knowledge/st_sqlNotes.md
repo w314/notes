@@ -51,6 +51,37 @@ TABLE commands:
 - `TRUNCATE TABLE`
 - `ALTER TABLE`
 
+Create Table Example
+```sql
+CREATE TABLE Departments (
+    DeptID INT PRIMARY KEY,
+    DeptName VARCHAR(50)
+);
+
+CREATE TABLE Employees (
+    ID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Email VARCHAR(100),
+    DeptID INT,
+    FOREIGN KEY (DeptID) REFERENCES Departments(DeptID)
+);
+```
+
+Alter Table Examples
+```sql
+-- add column
+ALTER TABLE Employees
+ADD BirthDate DATE;
+
+-- modify column
+ALTER TABLE Employees
+MODIFY COLUMN Email VARCHAR(200);
+
+-- delete column
+ALTER TABLE Employees
+DROP COLUMN BirthDate;
+```
 #### View
 
 > What is a view and why is it useful?

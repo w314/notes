@@ -52,9 +52,56 @@ A `collection` is a single object which acts as a container for other objects.
 - `Map`: does not implement the Collection or Iterable interfaces, but is part of the collection framework.
 
 
+## Main Classes of the Collection API
+Classes that implement the collection interfaces typically have names in the form of `<Implementation-style><Interface>`.
+
+![alt text](image.png)
 
 
 
+
+
+`ArrayList`
+- implements the List interface
+- uses an array to store elements
+- dynamically resizable
+- better for accessing and changing elements.
+
+`LinkedList`
+- implements the  List interface
+- uses a doubly-linked list to store elements-
+-  better for manipulating data (add/remove operations)
+
+`HashSet`
+- implements the Set interface
+- uses a hash table for storage
+- does not maintain any order of its elements
+
+`ArrayDeque`
+- implementation of the Deque interface
+- uses a resizable array
+
+`HashMap`
+- implements of the Map interface
+- uses a hash table for storage
+- does not maintain any order of its keys.
+
+
+
+AND MORE
+
+`LinkedHashSet` This is another implementation of the Set interface. It is ordered and uses a doubly-linked list to store elements.
+
+`TreeSet` This is an implementation of the Set interface that uses a tree for storage. Elements are stored in a sorted (ascending) manner.
+
+PriorityQueue: This is an implementation of the Queue interface. It orders elements according to their natural ordering or by a comparator provided at queue construction time.
+
+ArrayDeque: This is an implementation of the Deque interface that uses a resizable array.
+
+
+LinkedHashMap: This is another implementation of the Map interface. It maintains a doubly-linked list of its entries, which defines the iteration ordering.
+
+TreeMap: This is an implementation of the Map interface that uses a tree for storage. Keys are stored in a sorted (ascending) manner.
 
 
 ---- OLD NOTES----

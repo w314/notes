@@ -4,6 +4,27 @@ spring, java, spring data, spring data jpa
 
 # Spring Data JPA (Java Persistence API)  
 
+facilitates communicaiton with our database
+communicates with the database
+have to set database credentials
+
+
+Autowiring
+
+its annotation driven wiring as opposed to class or config wiring
+
+
+
+tsx = typescript xml
+view rendering syntax of react
+
+component - encapsulated piece of a web page
+
+
+paas : QWS RDS
+
+
+
 
 ## Spring Data
 - is a Spring Project 

@@ -484,7 +484,7 @@ public class HelloWorld{
 ```
 
 - `public` is an access modifier
-- `static` is a non-access modifier
+- `static` is a non-access modifier sets the scope
 - `void` is the "return type" of the method
 - `String[] args` array of Strings defined in the method parameters are passed from the command line when the java command is run
 

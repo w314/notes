@@ -120,7 +120,7 @@ ApplicationContext ac = new
 
 ## Spring Beans
 
-Java Classes managed by the Spring  to be used for dependency injections.
+Java Classes managed by the Spring IoC   to be used for dependency injections.
 
 
 ### How to define a Bean
