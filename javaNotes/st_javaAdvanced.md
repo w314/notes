@@ -202,13 +202,11 @@ _Everything else is supplementary_
 
 It is a container/wrapper object used to hold a value which could be non-null or null, and provides easy ways of handling either case
 
-- The purpose of the class is to provide a type-level solution for representing optional values instead of null references.
-
-- To overcome frequent occurrences of NullPointerException, Java 8 has introduced a new class Optional in java.util package.
-- By using Optional, we can specify alternate values to return or alternate code to run.
+- to solve the  frequent occurrences of NullPointerException,
+- by using Optional, we can specify alternate values to return or alternate code to run.
 
 - do not use Optionals as method parameters
-- The intent of Java when releasing Optional was to use it as a return type, thus indicating that a method could return an empty value, but they can also be used where null is likely to cause errors
+-  use it as a return type, thus indicating that a method could return an empty value, but they can also be used where null is likely to cause errors
 
 - using Optional in a serializable class will result in a `NotSerializableException`
 
