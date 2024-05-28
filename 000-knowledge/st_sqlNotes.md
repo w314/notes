@@ -359,6 +359,18 @@ ALTER TABLE users ADD CONSTRAIN name NOT NULL;
 - `UPDATE`
 - `DELETE`
 
+```sql
+INSERT INTO Employees (ID, FirstName, LastName, Email)
+VALUES (1, 'John', 'Doe', 'john.doe@example.com');
+
+UPDATE Employees
+SET Email = 'j.doe@example.com'
+WHERE ID = 1;
+
+DELETE FROM Employees
+WHERE ID = 1;
+```
+
 ## DCL - Data Control Language
 
 > What is DCL?
@@ -579,7 +591,16 @@ Operators:
 - used to group data based on the exact value in a specific field
 - groups rows that have the same values into summary rows
 - have to be used with aggregate functions like `COUNT`, `MAX`, `MIN`.
-- `HAVING` is used to filter out groups that meet a condition.
+
+#### `HAVING` clause
+> Used to filter the results of an aggregate function.
+
+```sql
+SELECT DeptID, COUNT(ID) as EmployeeCount
+FROM Employees
+GROUP BY DeptID
+HAVING COUNT(ID) > 5;
+```
 
 #### `ORDER BY` Clause
 

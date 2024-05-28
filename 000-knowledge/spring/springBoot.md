@@ -7,7 +7,10 @@ WHy SPring BOOt
 - embedded tomcat
 - intializer
 - no xml configuration
-- provides dependencies
+- provides dependencies at initalization
+- creates standalone applications (that just run)
+- convention over configuration
+
 
 - actuator si a dependency
 - devtool is a dependecy

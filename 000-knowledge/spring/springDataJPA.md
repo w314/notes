@@ -15,13 +15,12 @@ its annotation driven wiring as opposed to class or config wiring
 
 
 
-tsx = typescript xml
+
 view rendering syntax of react
 
 component - encapsulated piece of a web page
 
 
-paas : QWS RDS
 
 
 

@@ -140,6 +140,7 @@ Stages of SDLC:
   - sprint planning
   - daily stand-ups
   - sprint review
+  - sprint restrospective 
 - has documents like a burndown chart and backlogs
 
 #### Story Points

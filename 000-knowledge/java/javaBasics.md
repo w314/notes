@@ -575,54 +575,6 @@ do {
 
 ```
 
-### Input - Output
-
-#### Scanner class
-
-> What is the Scanner class used for? Give an example of how you would use it.
-
-The `Scanner` class is used to get user input.
-
-- found in the `java.util` package
-
-```java
-import java.util.Scanner;
-
-class Main {
-  public static void main(String[] args) {
-    // create Scanner object
-    Scanner myScanner = new Scanner(System.in);
-
-    // prompt user for input
-    System.out.println("Enter username:");
-
-    // read and store user input
-    int userAge = myScanner.nextInt();
-    // consume hidden newLine character
-    myScanner.nextLine();
-
-    myScanner.close();
-  }
-}
-```
-
-Methods:
-
-- `nextBoolean()` Reads a boolean value from the user
-- `nextByte()` Reads a byte value from the user
-- `nextDouble()` Reads a double value from the user
-- `nextFloat()` Reads a float value from the user
-- `nextInt()` Reads a int value from the user
-- `nextLine()`
-  - Reads a String value from the user
-  - OR used to consume hidden newline character (between calling two nextInt() for example)
-- `nextLong()` Reads a long value from the user
-- `nextShort()` Reads a short value from the user
-
-If you enter wrong input (e.g. text in a numerical input), you will get an exception/error message (like `InputMismatchException`).
-
-#### Print Statements
-
 ## Object Class
 
 `Object` is a special class in Java which is the root class from which all other classes inherit, either directly or indirectly.
