@@ -1,49 +1,60 @@
 java, ArrayList
+- only works with wrapper objects not primitives
 
-need:
+
+needs import:
 
 ```java
 import java.util.ArrayList;
 ```
 
 ```java
+// CREATE
 
-
-// create ArrayList
-// only works with wrapper types not primitives
+// empty
 List<String> arrList = new ArrayList<>();
+// with values
+List<Integer> arrList1 = new ArrayList<>(Arrays.asList(1, 2, 3));
 
-// add element
+
+// ADD ELEMENT
 arrList.add("bob");
-arrList.add("bob2");
 
-// modify element
+
+// MODIFY ELEMENT
 arrList.set(0, "bobek");
 
-// get element
+
+// GET ELEMENT
 String name = arrList.get(1);
 
-// remove element
+
+// REMOVE ELEMENT
+// at index
 arrList.remove(1);
 // remove all elements:
 arrList.clear();
 
-// get sublist
+
+// SUBLIST
 // end index excluded
 List<Integer> slice = arrList.subList(0, 2);
 
-// iterate over array
+
+// ITERATE OVER
 for(String name : arrList) {
   System.out.println(name);
 }
 
-// size of array
+// SIZE
 int arrListLength = arrList.size();
 
 
-// sort array
+// SORT
 Collections.sort(arrList);
+// reverse sort
 Collections.reverse(arrList);
+
 
 // search sorted arrayList<Integer>
 // sort arrayList first

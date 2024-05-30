@@ -12,14 +12,18 @@ java, array
 - can be iterated over
 
 ```java
-// create array
+// CREATE
+
 // create empty array with 5 elements
 int[] myArray = new int[5];
+
 // OR one with values
 int[] otherArray = {1, 2, 3};
 
-// add element 
+
+// ADD ELEMENT
 //FIXED SIZE CANNOT ADD
+
 
 // modify element
 int[] arr1 = {4, 5, 6}
@@ -27,14 +31,15 @@ Arrays.fill(arr, 2);
 arr[1] = 5;
 
 
-// get element
+// GET ELEMENT
 int n = arr[2];
 
-// remove element
-FIXED SIZE CANNOT REMOVE
 
-// slice array
+// REMOVE ELEMENT
+// FIXED SIZE CANNOT REMOVE
 
+
+// SUBARRAY
 int[] nums = {45, 67, 12};
 // end index excluded
 int[] slice = Arrays.copyOfRange(arr, startIndex, endIndex);
@@ -95,13 +100,34 @@ int[] nums3 = Arrays.stream(nums, 1, 3).toArray(int[]::new);
 // print array
 System.out.println(Arrays.toString(arr));
 
-// array to ArrayList
-// does not work with int[] to List<Integer>
+
+
+// ARRAY -> ARRAYLIST 
+
+// for string arrays - does not work with int[] to List<Integer>
 String[] arr3 = {"bob", "bobek"};
 List<String> arrList = new ArrayList<>(Arrays.asList(arr3));
 // OR
 List<string> arrList1 = new ArrayList<>();
 Collections.addAll(arrList1,arr3);
+
+// for arrays of primitives
+int[] arr4 = {1, 2, 5};
+List<Integer> arrList4 = new ArrayList<>(Arrays.stream(arr4).boxed().toList());
+// - boxed wraps the object to its wrapper object
+
+
+
+// ARRAY -> SET
+
+// string array
+String[] strArr = {"nn", "mm", "mm", "oo"};
+Set<String> strSet = new HashSet(Arrays.asList(strArr));
+
+// with primitives
+int[] arr5 = {3, 4, 4, 5};
+Set<Integer> arrSet = new HashSet<>(Arrays.stream(arr5).boxed().toList);
+
 ```
 
 

@@ -471,8 +471,10 @@ A type of `terminal operation` that produce a single result.
 //Filter
 public void streamFilter(List<Associate> associateList, String filter) {
   //Filter receives a Predicate<T> as parameter
-  associateList.stream().filter((Associate a) -> new StringBuilder(a.getFirstName()).indexOf(filter) != -1)
-  .forEach((Associate a) -> { System.out.println(a.getFirstName()); });
+  associateList
+    .stream()
+    .filter((Associate a) -> new StringBuilder(a.getFirstName()).indexOf(filter) != -1)
+    .forEach((Associate a) -> { System.out.println(a.getFirstName()); });
 }
 
 //Max

@@ -8,27 +8,31 @@
 
 The `Scanner` class is used to get user input.
 
-- found in the `java.util` package
+- needs `import java.util.Scanner;`
+
 
 ```java
-import java.util.Scanner;
 
-class Main {
-  public static void main(String[] args) {
-    // create Scanner object
-    Scanner myScanner = new Scanner(System.in);
+// create Scanner object
+Scanner myScanner = new Scanner(System.in);
 
-    // prompt user for input
-    System.out.println("Enter username:");
+// prompt user for input
+System.out.println("Enter username:");
 
-    // read and store user input
-    int userAge = myScanner.nextInt();
-    // consume hidden newLine character
-    myScanner.nextLine();
+// read and store user input
+int userAge = myScanner.nextInt();
+// consume hidden newLine character
+myScanner.nextLine();
 
-    myScanner.close();
-  }
+
+// read until end of input
+while( myScanner.hasNext()) {
+
 }
+
+
+// close sanner
+myScanner.close()
 ```
 
 Methods:
