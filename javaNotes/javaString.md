@@ -33,19 +33,58 @@ As strings are `immutable` string methods return a new string.
 - `.substring(int beginningInd, int endIndex)` - end index is optional
 - `.toCharArray()` - converts String to `char[]` array
 
-### Working with Strings
-
-- String to Integer
+### String Conversion
 
 ```java
-int x = Integer.parseInt("1234");
-```
 
-- String to Array
+// CREATE
 
-```java
+// create str myStr
+String myStr = "Me bob";
+System.out.println(myString);
+
+// from char[] Array
+char[] charArray = {"b", "o", "b"};
+String charArrayString = new String(charArray);
+System.out.println(charArrayString);
+ 
+
+
+ // SUBSTRING
+ String str1 = "bobek"
+ // get middel 3 letters
+ String middle = str1.substring(1, 4);
+ System.out.println(middle);
+
+
+
+// SORT STRING
+String name = "bobek";
+char[] nameArray = name.toCharArray();
+Arrays.sort(nameArray);
+String sortedName = new String(nameArray);
+System.out.println(sortedName);
+
+
+
+// CONVERSIONS
+
+// String to Integer
+String strNum = "1234"
+int num = Integer.parseInt("1234");
+
+// int to String
+int num1 = 345;
+String strNum1 = String.valueOf(num1);
+
+// String to String Array
 String words = "once upon";
 String[] wordArray = words.split(" ");
+
+// String to Char Array
+String str = "bobek";
+char[] charArray = str.toCharArray();
+
 ```
 
 > If you received text input from the user, how would you go about comparing it to a value, like "yes" or "no"?
@@ -58,8 +97,6 @@ boolean isSame = str1.equals(str2);
 
 
 ```java
-// create
-String str = "Me bob";
 
 // length
 int strLength = str.length();
@@ -82,6 +119,7 @@ int strIndex = str.indexOf("bob");
 String subStr = str.substring(1);
 // end index excluded
 String subStr1 = str.substring(1, 4);
+
 
 
 // COMPARING STRINGS
@@ -116,23 +154,5 @@ String[] words = str.split(" ");
 // string to char array
 char[] letters = str.toCharArray();
 
-
-// SORTING
-
-// to sort a string, there are no sort method on strings
-String str = "melnogn";
-char[] charArray = str.toCharArray();
-Arrays.sort(charArray);
-String sortedString = new String(charArray);
-
-
-// CONVERSIONS
-
-// int to String
-int x = 345;
-String num = String.valueOf(x);
-// string to int
-String n = "12";
-int y = Integer.parseInt(n);
 
 ```

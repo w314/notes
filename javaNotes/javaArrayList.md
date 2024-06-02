@@ -36,7 +36,7 @@ arrList.remove(1);
 arrList.clear();
 
 
-// SUBLIST
+// SUBARRAYLIST
 // end index excluded
 List<Integer> slice = arrList.subList(0, 2);
 

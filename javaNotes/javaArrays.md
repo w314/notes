@@ -25,24 +25,31 @@ int[] otherArray = {1, 2, 3};
 //FIXED SIZE CANNOT ADD
 
 
-// modify element
+// MODIFY ELEMENT
 int[] arr1 = {4, 5, 6}
 Arrays.fill(arr, 2);
 arr[1] = 5;
+
 
 
 // GET ELEMENT
 int n = arr[2];
 
 
+
 // REMOVE ELEMENT
 // FIXED SIZE CANNOT REMOVE
+
 
 
 // SUBARRAY
 int[] nums = {45, 67, 12};
 // end index excluded
 int[] slice = Arrays.copyOfRange(arr, startIndex, endIndex);
+// or
+int[] nums3 = Arrays.stream(nums, 1, 3).toArray();
+
+
 
 // iterate over array
 for(int n : arr) {
@@ -89,16 +96,13 @@ int indFound = Arrays.binarySearch(arr2, 9);
 int indNotFound = Arrays.binarySearch(arr2, 8); // returns -3
 
 
-// compare array contents
-boolean sameContent = Arrays.equals(arr1, arr2);
-
-// slice array
-int[] nums = {2, 5, 7, 8};
-int[] nums2 = Arrays.copyOfRange(nums, 1, 3);
-int[] nums3 = Arrays.stream(nums, 1, 3).toArray(int[]::new);
-
 // print array
 System.out.println(Arrays.toString(arr));
+
+
+// COMPARE
+boolean sameContent = Arrays.equals(arr1, arr2);
+
 
 
 

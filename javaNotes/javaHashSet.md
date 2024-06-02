@@ -42,5 +42,10 @@ int[] arr2 = {3, 5, 6, 6};
 HashSet<Integer> set2 = new HashSet<>(Arrays.stream(arr2).boxed().toList());
 
 
+// SET TO ARRAY
+int[] nums = {5, 8, 3, 4, 6};
+Set<Integer> numset = new HashSet<>(Arrays.stream(nums).boxed().toList());
+int[] newarr = numset.stream().mapToInt(i -> i).toArray();
+
 
 ```
