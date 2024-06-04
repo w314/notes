@@ -4,34 +4,39 @@ java, HashMap
 - no duplicates
 
 ```java
-// create
+// CREATE
 // only works with wrapper types not primitives
 HashSet<String> set = new HashSet<>();
 
-// add element
+
+// ADD ELEMENT
 // no error if you try to add already existing element
 set.add("TX");
 
-// check for element
+
+// CHECK FOR ELEMENT
 boolean hasElement = set.contains("TX");
 
 
-// remove element
+// REMOVE ELEMENT
 set.remove("GA");
 // remove all elements
 set.clear();
 
 
-// get size
+// SIZE
 int setSize = set.size();
 
-// iterate over
+
+// ITERATE OVER
 for(String element : set) {
     System.out.println(element);
 }
 
-// print
+
+// PRINT
 System.out.println(set);
+
 
 // ARRAY to SET
 // string arary

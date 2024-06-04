@@ -2,7 +2,7 @@ java, string
 
 # String Class
 
-> Which datatype represents text in Java?
+
 
 Strings.
 
@@ -85,6 +85,16 @@ String[] wordArray = words.split(" ");
 String str = "bobek";
 char[] charArray = str.toCharArray();
 
+// String to Set
+String str = "bobek";
+char[] charArray = str.toCharArray();
+Set<Character> set = new HashSet<>();
+for (char c : charArray) {
+    set.add(c);
+}
+// - stream does not work with char[], has to use for loop
+
+
 ```
 
 > If you received text input from the user, how would you go about comparing it to a value, like "yes" or "no"?
@@ -156,3 +166,7 @@ char[] letters = str.toCharArray();
 
 
 ```
+
+## Questions
+
+- Which datatype represents text in Java?
