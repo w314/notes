@@ -29,6 +29,7 @@ myScanner.nextLine();
 while( myScanner.hasNext()) {
 
 }
+// can by used with .hasNextInt() etc
 
 
 // close sanner

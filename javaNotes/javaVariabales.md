@@ -5,30 +5,45 @@ java, variable, casting, operators
 
 ## Variable Types
 
-- `primitive data type` - data types defined by the language itself
-  - the type of a primitive variable determines the range of values that a primitive variable can store
-  - stored in the stack
+- `primitive data type` 
 - `reference data type` - data types defined in the Java API or by a programmer
   - stores the reference to an object in memory
   - the type of a reference variable determines what types of objects a reference variable can store a reference to
 
-> What is a primitive data type? Please list a few and explain them.
 
+### Primitive Data Types
+> What is a primitive data type? Please list a few and explain them
 - data types defined by the language
 - stores the value of the data
-- types
-  - boolean - `true` or `false`
-    - `boolean` - 1 bit
-  - character - uses `''`
-    - `char` - 2 bytes
-  - numerical
-    - `byte` - 1 byte
-    - `short` - 2 bytes
-    - `int` - 4 bytes
-    - `long` - 8 bytes
+- type defines the size, that defines the range of values the variable can store
+- stored in the stack
+
+Primitive Types in Java:
+
+  - boolean
+    - 1 bit
+    - `true` or `false`
+  - char
+    - uses `''`
+    - 2 bytes
+  - numerical types (integers):
+    - `byte`
+      - 8-bit signed
+      - range: -128 to 127
+    - `short` 
+      - 16-bit signed integer
+      - range: -32,768 to 32,767
+    - `int` 
+      - 32-bit signed integer
+      - range: -2to31 to 2to31
+    - `long`
+      - 64-bit signed integer
+      - range -2to63 to 2to63
   - floating points
-    - `float` - 4 bytes
-    - `double` - 8 bytes
+    - `float` 
+      - 32-bit IEEE 754 floating point
+    - `double` 
+      - 64-bit IEEE 754 floating point
 
 #### Using variables
 

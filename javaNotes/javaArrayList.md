@@ -67,8 +67,10 @@ int indFound = Collections.binarySearch(arrList, 9);
 // print array
 System.out.println(arrList);
 
-// int[] arr to ArrayList
-int[] arr9 = {1, 2, 3, 3};
-List<Integer> arrList9 = new ArrayList<>(Arrays.stream(arr9).boxed().collect(Collectors.toList()));
 
+// CONVERT
+
+// ArrayList to int[]
+  List<Integer> list10 = new ArrayList<>(Arrays.asList(2, 3, 6));
+  int[] arr10 = list10.stream().mapToInt(i -> i).toArray();
 ```

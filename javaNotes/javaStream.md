@@ -1,65 +1,60 @@
-# Stream
+# Stream API
+> Way to deliver data. ( while Collections are a way to store data. )
 
-The Arrays.stream() method in Java does not support char[] because there is no CharStream in Java's Stream API. The Stream API provides specialized streams for int[], long[], and double[] (IntStream, LongStream, and DoubleStream, respectively), but not for char[].
+`stream` : sequence of data
+
+- a functional-style way of defining operations on a stream of elements
+- do not manipulate the original source of data
+- stream operations are lazily executed
+- some built-in Streams are located in the java.util.stream package
+- there is no CharStream in Java's Stream API (you CANNOT do `Arrays.stream()` on `char[]`)
 
 
+### Stream Operations
+Stream operatiosn are divided into intermediate and terminal operations.
 
+#### `Intermediate Operations`
+Return a new stream and are always lazy - they don't actually execute until a terminal operation is called.
 
-The Stream API is a functional-style way of defining operations on a stream of elements.
-
-- the Stream API allows you to create pipelines, or sequences of aggregate operations, on streams of data.
-- `Stream` : sequence of data
-- Streams do not STORE the data (like collections), they move the elements through the pipeline
-- Streams do not manipulate the original source of data
-- functional programming - useful for completing a series complex tasks on the data to get a result
-
-- Streams are an abstraction which allow defining operations which do not modify the source data and are lazily executed.
-- Some built-in Streams are located in the java.util.stream package.
-- Streams are divided into intermediate and terminal operations.
-  - `Intermediate Operations` return a new stream and are always lazy - they don't actually execute until a terminal operation is called.
-  - `Terminal Operations` trigger the execution of the stream pipeline, which allows efficiency by perfoming all operations in a single pass over the data.
-- `Reduction Operations` are terminal operations that take a sequence of elements and combine them into a single result.
-  - Stream classes have the `.reduce()` and `.collect()` methods for this purpose, with many built-in operations defined in the `Collectors` class.
-
-### Pipelines
-
-- require a source of data, like a collection
-- can contain zero or more intermediate operations
-
-### terminal vs intermediate operations
-
-In the Java Stream API, intermediate operations are operations which are lazily executed and return another Stream and terminal operations are operations which initiate the execution when invoked .
-
-> What are intermediate stream operations?
-
-> What are terminal stream operations?
-
-### common intermediate operations
-
-- produce a new stream
 - filter()
 - map()
 - sorted()
 
-### common terminal operations
+#### `Terminal Operations` 
+- Trigger the execution of the stream pipeline, which allows efficiency by perfoming all operations in a single pass over the data.
+- Produces a non-stream value OR no value at all
 
-Produces a non-stream value OR no value at all
-
+Common Terminal Operations:
 - forEach()
-- reduction operations
+- `Reduction Operations` 
+  - take a sequence of elements and combine them into a single result
+  - reduce()
+  - max()
+  - min()
+  - average()
+  - collect() uses the help of the Collectors class for a more specific return value
 
-#### reduction operations
+## Examples
 
-A type of `terminal operation` that produce a single result.
+```java
+// get the names of all female employees
+Employee.persons.stream()
+.filter(Employee::isFemale)
+.map(Employee::getName)
+.forEach(System.out::println);
 
-- reduce()
-- max()
-- min()
-- average()
-- collect() uses the help of the Collectors class for a more specific return value
+// get the names of all male employees who earn more than 5001.0
+Employee.persons.stream()
+.filter(Employee::isMale)
+.filter(p -> p.getIncome() > 5001.0)
+.map(Employee::getName)
+.forEach(System.out::println);
 
-### Example
 
+double
+```
+
+Old examples:
 ```java
 //Filter
 public void streamFilter(List<Associate> associateList, String filter) {
@@ -93,6 +88,21 @@ public static void main(String[] args) {
 
 ```
 
+## Built-In Streams
+
+Java provides several built-in stream types primarily in the `java.util.stream` package, designed to work with sequences of elements. These streams support a wide range of operations which can be pipelined to produce the desired result. The primary built-in streams in Java are:
+
+1. **Stream<T>**: A stream of objects of type `T`. It's the most generic stream type, capable of holding any object types.
+
+2. **IntStream**: A stream of primitive `int` values. This stream supports additional aggregate operations like `sum()`, `average()`, etc., specific to int values.
+
+3. **LongStream**: Similar to IntStream, but for long values. It also supports operations like `sum()`, `average()`, and so on, tailored for long values.
+
+4. **DoubleStream**: This stream is for `double` values and, like `IntStream` and `LongStream`, supports operations that are specific to `double` values, such as `sum()`, `average()`, etc.
+
+These streams can be created in various ways, such as from collections, arrays, or specific methods like `range()`, `of()`, etc. They support operations that are classified as intermediate (operations that return a stream, such as `filter()`, `map()`) and terminal (operations that close the stream and produce a result, such as `collect()`, `forEach()`, `reduce()`).
+
+Additionally, there's a special kind of stream known as `Stream.Builder<T>`, which is used to build streams by adding elements individually and then calling `build()` to create a `Stream<T>`.
 
 ## Questions
 

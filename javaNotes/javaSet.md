@@ -1,8 +1,24 @@
 java, HashMap
-
-- `import java.util.HashSet`
+# Set
 - no duplicates
 
+## HashSet
+
+- `import java.util.HashSet`
+- unordered
+- O(1) add, remove, contains
+- one `null` element
+- impplemented by using a `HashMap`
+
+## TreeSet
+- elements are sorted according to their natural order if they implement `Comparable`
+- or by a `Comparator` provided at set creation
+- O(logn) add, remove, contains
+- implemented by used a tree structure (Red-Black tree)
+- does not allow null elements if natural ordering is used
+
+
+## Syntax
 ```java
 // CREATE
 // only works with wrapper types not primitives
@@ -10,7 +26,7 @@ HashSet<String> set = new HashSet<>();
 
 
 // ADD ELEMENT
-// no error if you try to add already existing element
+// returns false if the set already contianed the element true if it did not
 set.add("TX");
 
 
@@ -54,3 +70,6 @@ int[] newarr = numset.stream().mapToInt(i -> i).toArray();
 
 
 ```
+
+
+
