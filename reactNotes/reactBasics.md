@@ -96,6 +96,9 @@ return (
 #  if using with TypeScript
 npx create-react-app <app-name> --template typescrpipt
 
+# if you do not want a git repository use
+npx create-react-app <app-name> --template typescrpipt --no-git
+
 # create TypeScirpt config file if needed (it will be created with the method above)
 npc tsc --init
 

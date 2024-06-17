@@ -57,6 +57,12 @@ When an exception / error gets thrown. A stack trace is displayed to the console
 
 > If there was an error in the console when you tried to run your program, how would you debug?
 
+## General Program execution
+- What does System.exit(0) do?
+System.exit(0) in Java terminates the currently running Java virtual machine (JVM). The argument 0 indicates a successful termination. Generally, a non-zero argument (e.g., System.exit(1)) indicates an abnormal termination due to an error or other issue. The argument passed to System.exit() is typically used as an exit code that can be queried by the operating system or calling process.
+
+
+
 ## Errors & Exceptions
 
 > What is the difference between an Error and an Exception?

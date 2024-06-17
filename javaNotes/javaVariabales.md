@@ -3,30 +3,40 @@ java, variable, casting, operators
 # Java Variables
 >A `variable` is a container for storing data.
 
-## Variable Types
+- variable names 
+  - cannot start with a digit
+  - must begin with a letter (a-z or A-Z), underscore (_), or dollar sign ($)
+- types:
+  - `primitive data type` 
+  - `reference data type` - data types defined in the Java API or by a programmer
+    - stores the reference to an object in memory
+    - the type of a reference variable determines what types of objects a reference variable can store a reference to
 
-- `primitive data type` 
-- `reference data type` - data types defined in the Java API or by a programmer
-  - stores the reference to an object in memory
-  - the type of a reference variable determines what types of objects a reference variable can store a reference to
 
-
-### Primitive Data Types
+## Primitive Data Types
 > What is a primitive data type? Please list a few and explain them
 - data types defined by the language
 - stores the value of the data
 - type defines the size, that defines the range of values the variable can store
 - stored in the stack
+- default value of an object reference is `null`
 
 Primitive Types in Java:
 
-  - boolean
-    - 1 bit
-    - `true` or `false`
-  - char
-    - uses `''`
-    - 2 bytes
-  - numerical types (integers):
+### `boolean`
+  - 1 bit
+  - `true` or `false`
+  - default value: `false`
+
+### `char`
+  - uses `''`
+  - 2 bytes
+  - default value: 0
+
+### numerical types
+- for integers
+- default value: 0
+- types:
     - `byte`
       - 8-bit signed
       - range: -128 to 127
@@ -39,11 +49,15 @@ Primitive Types in Java:
     - `long`
       - 64-bit signed integer
       - range -2to63 to 2to63
-  - floating points
+
+### floating points
+- default value: 0.0
+- types:
     - `float` 
       - 32-bit IEEE 754 floating point
     - `double` 
       - 64-bit IEEE 754 floating point
+
 
 #### Using variables
 

@@ -67,3 +67,4 @@ Examples:
 - What is the difference between source code and bytecode?
 - How would you describe the compilation process for Java?
 - What is the difference between the JDK, JRE, and JVM?
+- What does System.exit(0) do?

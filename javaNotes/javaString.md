@@ -1,11 +1,7 @@
 java, string
 
 # String Class
-
-
-
-Strings.
-
+- part of `java.lang` package
 - use `""`, not `''`
 - are not a primitive data type but a reference type
 - holds a reference to an object created from the String class, not the value of the string itself
