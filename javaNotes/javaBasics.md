@@ -191,42 +191,6 @@ When a variable or method is declared in a Java program, its0 scope determines w
 
 > If I define a variable within a method, how can I access its value outside of the method?
 
-#### `static` Keyword
-
-The static keyword in Java is mainly used for memory management. The static keyword in Java is used to share the same variable or method of a given class.
-
-When a member is declared static, it can be accessed before any objects of its class are created, and without reference to any object.
-
-A static variable is a variable of a class that isn’t associated with an instance of a class.
-
-Instead, the variable belongs to the class itself.
-
-As a result, you can access the static variable without first creating a class instance.
-
-> What is the difference between calling an instance method and a static method?
-
-A static method is a method of a class that isn’t associated with an instance of a class.
-
-Instead, the method belongs to the class itself.
-
-As a result, you can access the static method without first creating a class instance.
-
-
-
-### Non-Access Modifiers
-- static
-- final
-- abstract
-
-##### How to use Static members
-
-- within same class: just use name of member
-- in another class: use class name and then name of member using dot notation
-- example:
-  - Math.min(4, 5)
-  - Math.PI
-
-
 #### `final` keyword
 > Used to define an entity that cannot be changed.
 
