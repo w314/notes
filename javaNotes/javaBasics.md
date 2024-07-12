@@ -223,20 +223,6 @@ An `abstract` class is a class that is declared abstract —it may or may not in
 
 > What is the difference between using an instance variable and a static variable?
 
-##### Interfaces
-
-An `interface` is similar to an abstract class, but one of many differences is that a class can only inherit one other class, but a class can implement as many interfaces as it needs.
-
-> Why would you use an interface over an abstract class?
-
-- A class implements an interface using the `implements` keyword in the class definition and by providing implementations for any abstract methods defined by the interface.
-- Interfaces have these advantages over class:
-  - Implementation details do not need to be provided in the interface.
-  - A class can only extend one other class, but it can implement as many interfaces as needed.
-- Interfaces have `implicit modifiers` on methods and variables.
-  - **Methods** are '`public`' and '`abstract`'
-  - **Variables** are '`public`', '`static`', and '`final`'
-
 ## Java Programs
 
 ### Package
