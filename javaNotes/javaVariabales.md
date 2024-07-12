@@ -127,81 +127,6 @@ variableName = value;
 - stores a value in the variable
 - only work as long as the new variable is of the same datatype
 
-## Opearators
-
-- special symbols that perform a task
-- use one or more operands, or values
-- have precedence, just like math
-
-### Operator Categories
-
-- unary (`++`, `--`, `~`, `!`)
-- arithmetic
-- relational
-- logical (`&&`, `||`, `!`)
-- ternary
-- assignment
-- bitwise
-
-
-### Operator Precedence
-- paraenthesesis (`()`)
-- postfix `++`, `--`
-- unary, prefix `++`, `--`, `+`, `-`, `~`, `!`
-- mulitplicative `*`, `/`, `%`
-- additive `+`, `-`
-- shift `<<`, `>>`, `>>>`
-- relational `<`, `>`, `<=`, `>=`
-- equality `==` `!=`
-- logical AND `&&`
-- logical OR `||`
-- ternary `?:`
-- assigment `=`, `+=`, `<<=`, ...
-
-
-> What is the modulo operator? How is it useful?
-
-### Assignment Operators
-
-> What are shorthand assignment operators?
-
-Assignment operators assign value to a variable.
-
-= += -= \*= /= %= &= ^=
-
-> How do you use increment and decrement operators?
-
-- postfix: changes the value after the entire expression is evaluated
-
-```java
-int a = 5;
-int b = a++; // b=5, a=6
-```
-
-- prefix
-
-```java
-int a = 5;
-int b = ++a; // b=6, a=6
-```
-
-### Logical Operators
-- there is no unsigned left shift opearator `<<<` in Java
-
-
-### bitwise operators
-
-#### `~`
-
-```java
-int num = 5; // Binary representation of 5: 0000 0101
-int result = ~num; // This inverts each bit: 1111 1010
-System.out.println(result); // This will print the decimal equivalent of the inverted binary
-```
-- given that int is a 32-bit type in Java, the actual binary representation of 5 is `0000 0000 0000 0000 0000 0000 0000 0101`
-- `~num` would be `1111 1111 1111 1111 1111 1111 1111 1010`
--  when converted to decimal, this represents `-6` because Java uses `two's complement notation` for negative numbers.
-
 ## Casting
 
 `Casting` is the process of converting a data type to another data type.
@@ -248,6 +173,34 @@ System.out.println(intVar1) // 12
   - `String` to `int` with `Integer.parseInt(String)`
   - `int` to `String` with `String.valueOf(int)`
 
+
+
+
+## Wrapper Classes
+
+- every primitive has a corresponding object type
+- mainly useful when working with Collections
+
+#### Autoboxing
+
+> What is autoboxing and unboxing?
+
+- `Boxing` - the process of converting a primitive to its wrapper clas
+- `Unboxing` is the reverse - converting a wrapper class to its primitive.
+- `autoboxing` - a feature in which both boxing and unboxing done implicitly by Java. Example: when passing an `int` variable as parameter to a function requesting an `Integer`
+- Wrapper classes have static helper methods like .parseX() and .valueOf() for explicit primitive conversion.
+
+
+Values of which of the following types can be passed to the method below?
+- String
+- int
+- boolean
+```java
+public static void show(Object obj) {
+  System.out.println(obj);
+}
+```
+All, int, boolean will be autoboxed.
 
 ## Questions
 -  What is a variable?

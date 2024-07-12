@@ -191,17 +191,6 @@ When a variable or method is declared in a Java program, its0 scope determines w
 
 > If I define a variable within a method, how can I access its value outside of the method?
 
-#### `final` keyword
-> Used to define an entity that cannot be changed.
-
-- final variable
-  - cannot be reassigned
-  - but values in an array can still be changed
-- final method
-  - method cannot be overriden by a subclass
-- final class
-  - cannot be extended
-
 ### Classes
 
 Class members:
@@ -247,20 +236,6 @@ An `interface` is similar to an abstract class, but one of many differences is t
 - Interfaces have `implicit modifiers` on methods and variables.
   - **Methods** are '`public`' and '`abstract`'
   - **Variables** are '`public`', '`static`', and '`final`'
-
-#### Wrapper Classes
-
-- every primitive has a corresponding object type
-- mainly useful when working with Collections
-
-##### Autoboxing
-
-> What is autoboxing and unboxing?
-
-- `Boxing` - the process of converting a primitive to its wrapper clas
-- `Unboxing` is the reverse - converting a wrapper class to its primitive.
-- `autoboxing` - a feature in which both boxing and unboxing done implicitly by Java. Example: when passing an `int` variable as parameter to a function requesting an `Integer`
-- Wrapper classes have static helper methods like .parseX() and .valueOf() for explicit primitive conversion.
 
 ## Java Programs
 
