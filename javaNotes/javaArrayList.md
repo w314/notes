@@ -74,3 +74,31 @@ System.out.println(arrList);
   List<Integer> list10 = new ArrayList<>(Arrays.asList(2, 3, 6));
   int[] arr10 = list10.stream().mapToInt(i -> i).toArray();
 ```
+
+
+## ArrayList Methods
+
+- `void add(int index, Object element)` - inserts element at position
+- `boolean add(Object element)`
+  - can add `null` values not just the element type
+- `boolean addAll(Collection c)`
+- `boolean addAll(int index, Collection c)`
+- `Iterator iterator()`
+<br> returns an iterator over the elements
+- `void clear()`
+<br> removes every element
+- `boolean contains(Object element)`
+- `Object get(int index)`
+<br> returns element at index
+- `int indexOf(Object element)`
+<br> returns the first occurence of the element
+- `boolen isEmpty()`
+- `int lastIndexOf(Object element)`
+- `Object remove(int index)`
+<br> removes element at index
+- `Object set(int index, Object element)`
+<br> replaces current element of ArrayList at index with new element
+- `int size()`
+<br> returns number of elements
+- `Object[] toArray()` - returns and array containing the elements
+- `void sort(Comparator c)`

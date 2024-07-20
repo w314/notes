@@ -1,10 +1,17 @@
 java, LinkedList
+> best if elements are added, deleted in the middle of a list
 
+# `LinkedList Class`
+![Java Linked List](images/javaLinkedList.png)
 needs:
 
 ```java
 import java.util.LinkedList;
 ```
+
+## `LinkedList` methods
+- same as `ArrayList`
+
 
 ```java
 

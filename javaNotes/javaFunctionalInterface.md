@@ -1,10 +1,33 @@
+java, functional-interface, 
+
 # Functional Interface
 > Any interface that has only one abstract method.
 
+- special case of regular interface
+- has only one abstract method
+- there are many built-in functional interfaces in `java.util.function`
+
+### `@FunctionalInterface`
+- no need to include the annotation 
+- if included the compiler checks that there is only one abstract method
+
+```java
+@FunctionalInterface
+interface Calculator {
+    int do(int x int y);
+
+    default boolean isPositive(int x) {
+        return x > 0;
+    }
+}
+```
 
 ## Predicate
 
-In Java, a `Predicate` is a functional interface introduced in Java 8 as part of the `java.util.function` package. It represents a single argument function that returns a boolean value. Predicates are often used for filtering or matching objects based on certain criteria.
+- functional interface,  part of the `java.util.function`
+- has a single argument function
+- returns a boolean value
+- are often used for filtering or matching objects based on certain criteria
 
 Key Characteristics:
 - **Functional Interface**: It has a single abstract method, `test(T t)`, which evaluates the predicate on the given argument of type T and returns a boolean value.

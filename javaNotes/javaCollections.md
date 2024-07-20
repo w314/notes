@@ -4,10 +4,13 @@
 
 A `collection` is a single object which acts as a container for other objects.
 
+Collection framework provdes the `Iterator` that provides a mechanism 
+## Hierarcy of the Collection Framework
+![Java Collection Hierarchy](images/javaCollectionHiearachy.png)
+### Implementing `Collection Interface`
 
-### Main Interfaces
-
-`Collection Interface`
+#### Level 0: `Collection Interface`
+- represents a group of objects, its elements
 - the root interface in the collection hierarchy
 - defines common methods like 
     - add()
@@ -16,22 +19,99 @@ A `collection` is a single object which acts as a container for other objects.
     - size()
     - iterator()
 
-`Set Interface` 
-- extends the Collection interface 
-- unordered collection of objects
-- duplicate values cannot be stored
+#### Level 1: 3 main interfaces: `Set`, `List`, `Queue`
 
-`List Interface`
-- extends the Collection interface
-- ordered collection
+All extend the `Collection Interface`
+
+##### `Set Interface` 
+- can only contain **unique elements**
+- unordered
+
+##### `List Interface`
+- **ordered** collection
 - can contain duplicate elements
-- you can access elements by their index in the list
+- elements can be accessed by their index
 
-`Queue Interface`
-- extends the Collection interface
-- designed for holding elements prior to processing - - provides various methods for managing the queue elements
-    - peek() - retreives but does not remove head of the queue
-    - poll() - retrieves and removes head of queue
+##### `Queue Interface` 
+- is used to hold elements prior to processing
+- designed for holding elements prior to processing
+- orders element in FIFO manner, except priority queue
+- provides various methods for managing the queue elements
+
+    - `peek()` - retreives but does not remove head of the queue
+    - `poll()` - retrieves and removes head of queue
+
+
+#### Level 2: classes & interfaces
+
+##### Set Based
+- `HashSet Class`
+- `SortedSet Interface`
+
+##### List Based
+- `Vector Class`
+- `ArrayList Class`
+- `LinkedList Class` (also implements `Queue Interface`)
+
+##### Queue Based
+- `LinkedList Class` (also implements `List Interface`)
+- `Deque Interface` (pronounced "Deck")
+
+
+### Implementing `Map Interface`
+
+#### Level 0: `Map Interface`
+- does NOT implement `Collection Interface`
+
+#### Level 1
+- `HashMap Class`
+- `SortedMap Interface`
+- `ConcurrentMap Interface`
+
+#### Level 2
+- `LinkedHashMap Class`
+  - extends `HashMap Class`
+  - implements `Map Interface`
+
+-  `NavigableMap Interface`
+  - extends `SortedMap Interface`
+
+- `ConcurrentHasmap Class`
+  - implements `ConcurrentMap Interface`
+
+#### Level 3
+- `TreeMap Class`
+  - implements `NavigableMap Interface`
+
+
+## `Iterator Interface`
+
+- part of the Collection Framowork
+- provides a general purpose iterating mechanism for looping over collections
+
+### the `iterator()` method
+- each class of the `Collection` framework must implement and `iterator()` method
+- the method returns an `Iterator` that loops over the elements of the collection
+- the `Iterator interface` provides methods for iterating over the elements
+
+### Iterator methods
+- `boolean hasNext()` - true if there are more elements to iterate over
+- `E next()` - return the next element
+- `void remove` - removes the current element
+<br>**MAY CAUSE ERROR** if collection is simultaneously is modified by other methods
+
+### `ListIterator interface`
+- sub-interface of `Iterator interface`
+- allows traversing list in both forward and reverse directions
+- has methods:
+  - `boolean hasPrevious()`
+  - `E previous()`
+
+
+  <hr>
+OLDER NOTES BELOW
+_____________________
+
 
 - `Deque Interface`
 - extends the Queue interface
@@ -43,19 +123,12 @@ A `collection` is a single object which acts as a container for other objects.
 - an object that maps keys to values
 - cannot contain duplicate keys
 
-- `Iterable`: requires that subtypes must be iterable so it can be traversed using a for-each loop
-- `Collection`: defines common behavior that all subtypes should have (add, remove, contains, etc)
-- `Set`: defines set-specific behaviors
-- `List`: defines list-specific behaviors
-- `Queue`: defines queue-specific behaviors
-- `Deque`: extends `Queue` supports double-ended queue
-- `Map`: does not implement the Collection or Iterable interfaces, but is part of the collection framework.
 
 
 ## Main Classes of the Collection API
 Classes that implement the collection interfaces typically have names in the form of `<Implementation-style><Interface>`.
 
-![alt text](image.png)
+![Main Java Collection Classes](images/javaCollectionClasses.png)
 
 
 
