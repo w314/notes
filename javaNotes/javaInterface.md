@@ -17,7 +17,9 @@ Interfaces advantages over class:
 
 ## Interface contains
 1. methods signatures
-    - `public` & `abstract` methods
+    - by default interface methods are implicitly
+      - `public`
+      - `abstract` (no need to declare them `abstract`)
     - since Java 9 can also have
         - `private` methods
         - `default` methods
@@ -48,3 +50,4 @@ The `permits` clause specifies these classes.
 ```java
 sealed interface Pet permits Dog, Cat {}
 ```
+

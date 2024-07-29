@@ -195,43 +195,6 @@ Referential Integrity:
 - does not allow to deletion of a record in a table that contains the foreign key, to delete the record in the parent table, the corresponding record in the child table should be deleted first. to solve this issue `ON DELETE CASCADE` is used.
 - Other options are to set the foreign key to null or to its default value (only if the default value references an existing value in the primary-key table).
 
-### Normalization
-
-> What is normalization?
-
-`Normalization` is the process of organizing the data and the attributes of a database.
-
-- reduce the duplication of data, - avoid data anomalies
-- ensure referential integrity
-- simplify data management
-
-- `1NF` First Normal Form
-
-  - Each table cell should contain a single value.
-  - Each record needs to be unique
-  - violation example: hobbies with several values
-  - solution add new rows with each value
-
-- `2NF` Second Normal Form
-
-  - Be in 1NF
-  - Single Column Primary Key - that does not functionally dependant on any subset of candidate key relation
-  - violation example: name and address identifies a record when two different people have the same name
-  - solution: add a primary key column
-
-- `3NF` Third Normal Form
-
-  - in 2NF
-  - all the attributes (e.g. database columns) are functionally dependent on solely the primary key (no transitive functional dependencies)
-  - violation example: hospital database having a table of patients which included a column for the telephone number of their doctor. The phone number is dependent on the doctor, rather than the patient, thus would be better stored in a table of doctors
-  - solution: create table for doctors and store phone number there
-
-- BCNF Boyce-Codd Normal Form
-  - in 3NF
-  - for any dependency A → B, A should be a super key. which means that A should be a non-key attribute if B is a key attribute
-  - for every Functional Dependency, LHS is the super key - ???????????????
-  - no dependency and lossless join - ??????????????????
-
 ### Multiplicity
 
 > What is multiplicity?

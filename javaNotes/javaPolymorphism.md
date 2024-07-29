@@ -92,3 +92,46 @@ class Main {
     }
 }
 ```
+
+
+## Examples
+
+What is the output?
+```java
+class Parent {
+    String str1 = "a";
+
+    public Parent() {
+        parentMethod();
+    }
+
+    void parentMethod() {
+        System.out.println("Parent's parentMethod is called.");
+        System.out.println(str1 + " ");
+    }
+}
+
+class Child extends Parent {
+    String str2 = "b";
+
+    void parentMethod() {
+        System.out.println("Child's parentMethod is called");
+        System.out.println(str2 + " ");
+    }
+}
+
+
+class Main {
+    public static void main(String[] args) {
+        Child child = new Child();
+        child.parentMethod();
+    }
+}
+```
+Child's parentMethod is called
+null 
+Child's parentMethod is called
+b 
+- due to method overriding the parent constructor call the child's class method
+- at this point the the child's class variables are not initialized yet
+- after colling super constructor child class variables get initiated

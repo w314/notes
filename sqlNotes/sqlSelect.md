@@ -91,12 +91,28 @@ select, sql, select_distinct, case, like
   ```
   
   
+## ORDER BY
+
+- column position in table can be used as alternative to column name `ORDER BY 2`
   
-  
-  
-  
-  
-'''
-linesHighlighted: []
-isStarred: false
-isTrashed: false
+
+## GROUP BY
+- can use multiple columns `GROUP BY country, city`
+- can use mulitple aggergation function wiht the same GROUP BY
+
+```sql
+SELECT MAX(salary), MIN(salary) FROM Employees GROUP BY department;
+```
+- can nest aggregate functions up to a maximum of 2 levels
+```sql
+SELECT MAX(AVG(salary)) FROM Employees GROUP BY department
+```
+- do not use aliased name of columns in GROUP BY
+- should NOT contain aggregate columns
+- should contain ALL non-aggreagete columns present in the SELECT clause
+
+
+## Order of Query Execution
+
+FROM > JOIN > WHERE > GROUP BY > HAVING > SELECT > DISTINT > ORDER BY
+
