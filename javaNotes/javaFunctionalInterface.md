@@ -22,12 +22,29 @@ interface Calculator {
 }
 ```
 
-## Predicate
+## User Defined Functional Interface
+
+## Built In Funcional Interface
+Java provides a series of inbuilt functional interfaces.
+
+### Function
+> Represents a function that takes a single input parameter and returns a single value/object.
+
+```java
+Function<Long, Long> addNum = (value) -> value + 10;
+```
+
+### Predicate
+>It represents a function that takes a single value/object as a parameter, and returns true or false.
+```java
+Predicate<Integer> checkAge = (age) -> age > 18;
+```
 
 - functional interface,  part of the `java.util.function`
 - has a single argument function
 - returns a boolean value
-- are often used for filtering or matching objects based on certain criteria
+- are often used for filtering o  List<Integer> list10 = new ArrayList<>(Arrays.asList(2, 3, 6));
+r matching objects based on certain criteria
 
 Key Characteristics:
 - **Functional Interface**: It has a single abstract method, `test(T t)`, which evaluates the predicate on the given argument of type T and returns a boolean value.
@@ -67,3 +84,18 @@ public class PredicateExample {
 }
 ```
 In this example, a Predicate<String> is defined to test whether strings start with the letter "A". This predicate is then used to filter a list of names using the Stream API, collecting and printing names that satisfy the predicate.
+
+### Supplier
+>It represents a function that produces a value/an object without taking any input parameter.
+
+```java
+Supplier<Integer> generateRandom = ()-> new Integer((int) (Math.random() * 100));
+```
+
+### Consumer
+>It represents a function that consumes or processes a value/an object without returning anything. 
+
+```java
+Consumer<String> printValue = (name)-> System.out.println(name);
+```
+

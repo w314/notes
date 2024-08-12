@@ -52,11 +52,14 @@ int arrListLength = arrList.size();
 
 // SORT
 Collections.sort(arrList);
-// reverse sort
+
+
+// REVERSE ORDER OF ELEMENTS
+// NOT reverse sort
 Collections.reverse(arrList);
 
 
-// search sorted arrayList<Integer>
+// SEARCH sorted arrayList<Integer>
 // sort arrayList first
 Collections.sort(arrList);
 // returns index of element if found
@@ -69,9 +72,10 @@ System.out.println(arrList);
 
 
 // CONVERT
-
-// ArrayList to int[]
+// int[] to ArrayList<Integer>
   List<Integer> list10 = new ArrayList<>(Arrays.asList(2, 3, 6));
+
+// ArrayList<Integer> to int[]
   int[] arr10 = list10.stream().mapToInt(i -> i).toArray();
 ```
 

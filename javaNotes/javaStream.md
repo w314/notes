@@ -1,26 +1,47 @@
 # Stream API
-> Way to deliver data. ( while Collections are a way to store data. )
+> A `Stream` represents a sequence of elements from a source and supports various data processing options.
 
-`stream` : sequence of data
 
 - a functional-style way of defining operations on a stream of elements
 - do not manipulate the original source of data
 - stream operations are lazily executed
 - some built-in Streams are located in the java.util.stream package
-- there is no CharStream in Java's Stream API (you CANNOT do `Arrays.stream()` on `char[]`)
+- there is no CharStream in Java's Stream API (you CANNOT do `Arrays.stream()` on `Character[]`)
+- support paralell threading
+- are both serailly or parally executable
+
+## Creating a stream:
+```java
+// with stream() method from list of strings
+List<String> castList = List.of("Sam","Dean","Castiel","Crowley");
+Stream<String> supernatural = castList.stream();
+
+// with stream() method form Integer[]
+Integer[] array = {672, 340, 999};
+Stream<Integer> stream = Arrays.stream(array);
+
+// with Stream.of()
+Stream<Integer> stream = Stream.of(672, 340, 999);
+//Creating a Stream for objects of Class Employee
+Stream<Employee> empStream = Stream.of( new Employee("Tom",5699.5),
+			new Employee("Jack",7629.2),new Employee("Jane",5289.8));
 
 
-### Stream Operations
+
+```
+
+## Stream Operations
 Stream operatiosn are divided into intermediate and terminal operations.
 
-#### `Intermediate Operations`
+### `Intermediate Operations`
 Return a new stream and are always lazy - they don't actually execute until a terminal operation is called.
 
-- filter()
-- map()
-- sorted()
+- `filter()`
+- `map()` - returns new stream
+- `sorted()`
 
-#### `Terminal Operations` 
+
+### `Terminal Operations` 
 - Trigger the execution of the stream pipeline, which allows efficiency by perfoming all operations in a single pass over the data.
 - Produces a non-stream value OR no value at all
 
@@ -32,7 +53,19 @@ Common Terminal Operations:
   - max()
   - min()
   - average()
-  - collect() uses the help of the Collectors class for a more specific return value
+  - `collect()` stores the modified stream as a new collection
+
+```java
+List<Integer> number = new ArrayList();
+number.add(2);
+number.add(3);
+number.add(4);
+number.add(5);
+//The Modified Stream is stored in "doubled" using collect()
+List<Integer> doubled = number.stream().map(x->2*x).collect(Collectors.toList());
+		
+System.out.println(doubled);
+```
 
 ## Examples
 
