@@ -108,6 +108,26 @@ Best Practices
 
 ### Using annotation based configuration
 
+#### Add dependecy to `POM.xml`
+
+`pom.xml`
+```java
+<dependencies>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>6.0.10</version>
+    </dependency>
+</dependencies>
+```
+
+#### Create bean
+Regular java class that you plan to inject as dependency later:
+
+`SpringBean.java`
+```java
+
+```
 ```java
 // load context
 ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
@@ -119,68 +139,33 @@ UserService userService = ctx.getBean(CustomerLoginServiceImpl.class);
 // OR
 // by the name of the method it is configured
 UserService userService = (UserService) ctx.getBean("customerLoginServiceImpl");
-
 ```
 
- <hr>
- <hr>
- <hr>
- OLD NOTES
+## Autowiring
+- dependency injection without a configuration file
+- `@Autowired` annotation can be directly applied to constructors, attributes, setter methods
+- Spring uses Java `Reflection API` to perform dependency injection
 
-developer can focus on logic not configuration
-dependency injection
+In the example below
+```java
+public class CustomerLoginServiceImpl implements CustomerLoginService {
+	@Autowired
+	private CustomerLoginRepository customerLoginRepository;
+	
+    //... 
+}
+```
+Spring will search for the class that implements CustomerLoginRepository interface and injects its object.
 
-- it is a lightweigth application framework
-
-
-Spring replaced EJB (Enterprises Java Bean)
-
-without sublet container you could nto use spring container
-
-Why are you using tomcat
-
-tomcat is a webserver = server that will manage web container
-
-
-spring container is inside servlet container
-tomcat container 
-
-security you will implemetn at teh container level not the bean level
-
-what is lightweight
+- if no such bean is found it throws a `NoSuchBeanDefinitionException` exception
+- if more than one is found, it throws an exception indicating that
 
 
-third party services you inject into container, all the beans inside can use that service
-
-
-spring container does not have inbuilt services inside therefore it is lightweigt.
-
-If you need services you can inject them.
-
-____________________________
-
-If i change the nam eof the controller 
-
-how does @ComponentScan
-
-if I change com.wp.contorller to com.controller will Spring recongize the controller class?
-
-@ComponentScan is already included with @SpringBootApplication annotation.
-it will scan groupid.artifactid (com.wp.controller)
-
-what if you want to scan some user defined pacakges
-if you want different packages you have to overwrite the default ComponentScan with
-@ComponentScan(basePackages = {"com.*})
-
-Difference between web application and web services?
-web service not dependent on language
-web app is langugage dpeendent
-
-
-web services uses mediator that create an API from service
-
-
-aservices are API-s , response goes to client =in JSON format. JSON response is created by jackson JSON
-Jackson library converts response to JSON
-
-default response of controller is 
+To handle the case when more than one bean exists:
+```java
+public class CustomerLoginServiceImpl implements CustomerLoginService {
+	@Autowired
+    @Qualifier("jdbcRepository")
+	private CustomerLoginRepository customerLoginRepository;
+```
+the `@Qualifier` specifies that the bean registered to the container named "jdbcRepository" 
