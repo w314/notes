@@ -23,7 +23,7 @@ html, xml
 </html>
 ```
 
-### Doctype Declaration
+## Doctype Declaration
 ```html
 <!DOCTYPE html>
 ```
@@ -32,7 +32,7 @@ html, xml
  - informs the browser what type of document we are displaying
  - the above one is for HTML5
 
- #### HTML Root Tag
+ ## HTML Root Tag
  ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -42,38 +42,49 @@ html, xml
  - root tag, encloses the entire document
  - attribute `lang` sets the language the document is written in, can be used by search engines
 
-#### Head Tag
+### Head Tag
 ```html
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
 
-    <!-- to name the browswer tab -->
-    <title>Hello World</title> 
-    
-    <!-- to define internal CSS stylesheet -->
-    <style></style>
-   
-   <!-- to describe various pieces of information about 
-   the webpage to the search engine -->
-    <meta /> 
+  <!-- to name the browswer tab -->
+  <title>Hello World</title> 
 
-    <!-- to link external resource like CSS stylesheet -->
-   <link />
+  <!-- to define internal CSS stylesheet -->
+  <style></style>
 
-    <!-- o specify alternate content to be displayed 
-    to users who have scripts disabled or 
-    are on a browser that doesn't support scripts, 
-    can also be used in the <body>. -->
-   <noscript></noscript>
+  <!-- to describe various pieces of information about 
+  the webpage to the search engine -->
+  <meta /> 
 
-    <!-- to link an external JavaScript file -->
-    <script></script>
+  <!-- set keywords for page -->
+  <meta name="keywords" content="tutorial,HTML">
 
-    <!-- to specify a default URL and target setting for all links -->
-    <base />
+  <!-- refresh rate of 30 second -->
+  <meta http-equiv="refresh" content="30">
 
-  </head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <!-- to link external resource like CSS stylesheet -->
+  <link />
+
+  <!-- o specify alternate content to be displayed 
+  to users who have scripts disabled or 
+  are on a browser that doesn't support scripts, 
+  can also be used in the <body>. -->
+  <noscript></noscript>
+
+  <!-- to link an external JavaScript file -->
+  <script></script>
+
+  <!-- to specify a default URL and target setting for all links -->
+  <base />
+
+</head>
 </html>
 ```
 - contains metadata (information aobut the webpage)
