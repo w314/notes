@@ -49,7 +49,7 @@ java myFile
 - uses `JIT` `Just In Time` compiler to turn bytecode to machine code.
 
 ### JRE (Java Runtime Environment)
-> Executes Java programs. Includes JVM
+> Executes Java programs. Includes JVM and runtime libraries.
 
 `JRE`  contains `JVM` and runtime libraries.
 

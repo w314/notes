@@ -1,6 +1,6 @@
 ## Spring Data
 
->`Spring Data` is a framework that allows you write persistence layer fast`
+>`Spring Data` is a framework that allows you write persistence layer fast
 
 - high level project of Spring
 - it's objective is to unify and ease the access to different types of data access technologies

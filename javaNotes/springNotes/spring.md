@@ -7,12 +7,12 @@ Dependency Injection.
 - provides loose coupling, more flexible
 - easier to test
 
-> `Dependency Injetion` is a technique where an external framwork is responsible for creating, assempling and wiring the dependencies.
+> `Dependency Injection` is a technique where an external framework is responsible for creating, assembling and wiring the dependencies.
 
 > `Inversion of Control` means the control over creating, wiring and assembling an object no longer resides with the dependent classes themselves but with a `Dependency Injection Framework` also called `IoC Containers`
 
 
-Spring framework is one of the Dependency Injection Framworks avaialble.
+Spring framework is one of the Dependency Injection Frameworks avaialble.
 
 
 ## Advantages of the Spring Framework
@@ -87,6 +87,7 @@ public class SpringConfig {
 ```
 
 It looks for classes annotated with:
+<br><i> (the 4 stereotype annotation)</i>
 - `@Component` marks a Spring bean (general purpose)
 - `@Service` defines a service layer spring bean
 - `@Repository` defines a persistent layer spring bean

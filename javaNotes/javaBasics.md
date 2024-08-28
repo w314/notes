@@ -143,11 +143,17 @@ Class members:
 
 `Access Modifiers` set access level of methods, variables, classes and constructors
 
-- `public`: can be accessed by any classes
-- `default` (when there is no access modifier): within the same package only
-- `protected`: within package + outside of package through inheritance
-- `private`: only within the class, a class (except a nested class) cannot be private
-
+- `public`
+  - can be accessed by any classes
+- `default` 
+  - if there is no acces modofier the class is default
+  - within the same package only
+- `protected`: 
+  - within package 
+  - and outside of package through inheritance
+- `private`
+  - only an inner class can be private (class within another class)
+  
 #### Abstract Class
 
 An `abstract` class is a class that is declared abstract —it may or may not include abstract methods.
