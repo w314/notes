@@ -96,5 +96,3 @@ Makes components:
     - contains all dependencies
 - `tsconfig.json`	
     - Typescript configuration file
-
-
