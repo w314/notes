@@ -67,31 +67,78 @@ how to do two way binding
 
 
 
-Pipes
+## Pipes
+> Pipes are used to format data before displaying it.
 
-What is a pipe?
+`{{ expression | pipe }}`
 
->Pipe is a data transformation.
 
- 
+### Built In Pipes
 
-Used for formatting the output.
+- uppercase
+- lowercase
+- titleCase
+- json
+- currency
+- date
+- slice
+- decimal
+- percent
 
- 
 
-How we create a custom pipe?
+### Custome Pipes
 
-`ng g p pipeName`
+To create a customer pipe:
+```bash
+ng generate pipe myPipe
+# OR
+ng g p myPipe
+```
 
-- will create a class
+The command will create a class:
 
-- annotated with @Pipe
+`my-pipe.pipe.ts`
+```ts
+import { Pipe, PipeTransform } from '@angular/core';
 
-- implements pipeTransform
+// class is decorated with @Pipe decorator
+@Pipe
+({
+  name: 'myPipe'
+})
 
-- has to override transform method
+// class inherits PipeTransform interface
+export class MyPipe implements PipeTransform
+{
 
- 
+    // has to override transform method
+    transform(value: any, ...arg:any[]):any {}
+}
+```
+- transform method has two parameters:
+    - value to transform
+    - any number of parameters
+
+Example:
+```ts
+@Pipe ({ name: 'salutation'})
+
+export class Salutation implements PipeTransform {
+    
+    transform(name: string, gender: string): string {
+        if(gender == "M") {
+            return `Mr ${name}`
+        } else if(gender == "F") {
+            return `Ms ${name}`
+        } else {
+            return name;
+        }
+    }
+}
+```
+
+
+
 
 How do we nest component?
 
@@ -584,13 +631,10 @@ Display books in: `book.component.html`
 <!-- display error message if needed -->
 <div *ngIf="erroMessage">{{ errorMessage }}</div>
 ```
- 
-
-## Forms
 
  
 
-### Template Driven Forms
+## Template Driven Forms
 
  
 
@@ -618,101 +662,207 @@ Every input has 3 states
 
  
 
-### Reactive Forms
+## Reactive Forms / Model Driven Forms
+> We create control objects in a component class and bind to HTML form elements.
 
- 
+- we can push and fetch data to and form the HTML form
+- component can observe changes in form control state and react to it
+- value and validity updates are synchronous and under our control
+- we use the `FormBuilder Class` to create reactive forms
 
-Use typescript to do validation
+Advantages:
+- we can unit test validation logic
+- we can listen to form changes or events easily
 
-- import ReactiveFormsModule in app.module
+### How to Create Reactive Form
 
-- let us use fomrbuilder and validators
+#### 1. Add `ReactiveFormsModule` to `imports`
 
- 
-
-0. add `ReactiveFormsModule` to `app.module.ts` `imports`
-
-1. create form
-
-`component.ts`
-
+`app.module.ts`
 ```ts
+@NgModule({
+    imports: [
+        ReactiveFormsModule
+    ]
+})
+```
 
-export class MyClass {
+#### 2. Create From in Component
 
-   
+`myComponent.component.ts`
+```ts
+export class MyComponent implements OnInit{
 
-    // create form property
+    // create formGroup variable
+    userForm!: FormGroup;
+    sumbitted = false;
 
-    myForm!: FormGroup;
+    // inject formBuilder instance
+    constructor(private formBuilder: FormBuilder) {}
 
-   
-
-    // inject FormBuilder into constructor
-
-    constructor(private formBuilder: FormBuilder ) {}
-
- 
-
-    // initialize form
-
-    onInit() {
-
-        this.myForm = this.formBuilder.group({
-
-            id:['', [Validators.required]],
-
+    ngOnInit() {
+        // create formGroup and assign to variable
+        // use group() method of formBuilder object
+        // takes an object key -value pairs
+        // keys are the FormControl name
+        // values are the FormControl definitions
+        this.userForm = this.formBuilder.group({
+            // first parameter of the FormControl definition
+            // is the default value
+            // second is an array of Validators
             name: ['', [Validators.required]],
+            address: this.formBuilder.group({
+                city: [],
+                zip: []
+            })
 
-            age: ['', [Validators.required]]
+        })
+    }
+}
+```
 
-    })
+### 3. Bind formGroup to HTML form elements
 
+`my-component.component.html`
+```html
+<!-- bind form to formGroup -->
+<!-- add event binding for submission--> 
+<form [formGroup]="userFrom">
+    <div>
+        <label>Name</label>
+        <!-- bind HTML form element to formControl -->
+        <input type="text" formControlName="firstName">
+        <!-- display error message for invalid control -->
+        <p *ngIf="registerForm.controls['firstName'].errors">
+            This field is required!</p>
+    </div>
+    <div>
+      <fieldset formGroupName="address">
+          <label>City</label>
+          <input type="text" class="form-control" formControlName="city">
+        <label>Zip</label>
+        <input type="text" class="form-control" formControlName="zip">
+      </fieldset>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+```
+
+#### Send form input to server
+
+`myComp.component.html`
+```html
+<!-- bind submit event to calling sendData() function -->
+<form [formGroup]="myForm" (ngSubmit)="sendData()">
+    <button type=submit></button>
+</form>
+<!-- give feedback about success of submission -->
+<p *ngIf="successMessage">{{successMessage}}></p>
+<p *ngIf="errorMessage">{{errorMessage}}></p>
+```
+`myComp.component.ts`
+```ts
+export class MyComp {
+    myForm!: FormGroup;
+    constructor(private myService: MyService)
+    successMessage = "";
+    errorMessage = "";
+    
+    // sendData function will call service's sendData() functon
+    // and will send form values
+    // and subscribes to its response
+    sendData() {
+        this.myService.sendData(this.myForm.value).subscribe(
+            (responseData) => this.sucessMessage = "OK"
+            (error) => this.errorMessage = "AJAJ"
+        );
+    }
 }
 
+### Validators
+
+You add validator when creating the FormGroup in the component.
+
+#### `updateOn`
+
+- `updateOn` determines when Angular runs the validation process.
+- speeds up the applications when not running them at every keystroke
+
+Possible Values:
+- `change` 
+    - at every keystroke
+    - default
+- `blur`
+    - when the form loses focus
+- `sumbit`
+    - when the form is submitted
+
+`myComp.component.ts`:
+```ts
+    ngOnInit() {
+        this.myForm = this.formBuilder.group({
+            name: ['', {
+                updateOn: 'blur',
+                validators: [Validators.required]
+            }]
+        })
 ```
 
- 
+### Custem Validators
 
-`component.html`
+`myComp.component.ts`
+```ts
+...
+export class RegistrationFormComponent implements OnInit {
+//  ...
+  ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      name: ['', [
+        Validators.required,
+        validateName
+      ]],
+    });
+  }
+}
+
+// take formControl as argument
+function validateName(c: FormControl) {
+
+    return c.value == "Bob" 
+    // if value is valid we return null
+    ? null
+    // otherwise return an object with a key and value
+    // value can be an object
+    : {
+        nameError: { message: "Name should be Bob"}
+    };
+}
+```
+
+### Displey error messages in HTML Form
+
+`myComp.comonent.html`
+```html
+<p *ngIf="myForm.controls['name'].errors!['nameError']">
+    {{ myForm.controls['name'].errors!['nameError'].message }}
+</p>
+```
+function validateName(n: string)
+
 
 ```ts
+export class MyComp implements OnInit {
 
- 
+    myForm!: FormGroup
 
+    constructor(private formBuilder: FormBuilder) {}
+
+    ngOnInit() {
+        this.myForm = this.formBuilder.group({
+            name: ['', [
+
+            ]]
+        })
+    }
+} 
 ```
-
-2. add validation
-
-3. use data from form
-
- 
-
-## Routing
-
- 
-
-## Route Parameters
-
-- use :paramName in uri path
-
- 
-
-- use param
-
-`this.route.params.subscribe(para)....?`
-
- 
-
-You cannot pass object as param
-
- 
-
-### Route gurards
-
-
-
-
- 
-
-Page 2 of 2
