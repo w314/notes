@@ -15,6 +15,7 @@ const routes: Routes = [
     {path: "list", component: ListComponent, pathMatch: "full"},
     // :id lets us pass path parameters
     {path: "item/:id", component: ItemComponent, pathMatch: "full"},
+    {path: "item/:id/details", component: UserComponent },
     // path ** matches any path and redirects to list 
     {path: "**", redirectTo: "list"}
 ];
@@ -44,6 +45,7 @@ Activate routing in `app.component.html`
     <!-- pass parameter in routerLink array -->
      <!-- without the / the link address would add item after current URL like list/item -->
     <li><a [routerLink]="['/item', book.id]">{{ book.name }}</a></li>
+    <li><a [routerLink]="['/item', book.id,'details']">{{ book.name }} details</a></li>
 </ul>
 ```
 
@@ -56,7 +58,11 @@ export class MyComponent  {
     constructor(private router: Router) {}
 
     goToBook(id: number) {
-        this.router.navigate(['/item', id])
+        this.router.navigate(['/item', id])       
+    }
+    
+    goToBookDetails(id: number) {
+         this.router.navigate(['/item', id, 'details']);
     }
 }
 ```
@@ -82,22 +88,10 @@ export class MyComponent {
 
 ### 4. Retrive parameter from URL
 
-
-
-## Route Parameters
-
-- use :paramName in uri path
-
- 
-
-- use param
-
-`this.route.params.subscribe(para)....?`
-
- 
-
-You cannot pass object as param
-
  
 
 ### Route gurards
+
+
+
+

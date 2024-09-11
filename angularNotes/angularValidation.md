@@ -22,6 +22,31 @@ CSS classes automatically applied:
 
 #### Example in `Template Driven Form`:
 
+### Error message by validators
+
+```html
+<p *ngIf="
+    bookForm.controls['title'].errors?.['required']
+    &&
+    bookForm.controls['title'].dirty
+    "
+    class="alert alert-danger"
+>Field is Required</p>
+
+```
+OR
+
+```html
+<p *ngIf="
+    bookForm.get('title')?.hasError('pattern')
+    &&
+    bookForm.get('title')?.dirt
+    "
+    class="alert alert-danger"
+>Has to be between 3-5 characters</p>
+```
+
+
 `myComp.component.html`:
 ```html
 <form #loginFomr="ngForm" (ngSubmit)="verify()">
@@ -78,4 +103,4 @@ export class MyComp {
     <!-- validation -->
     <p *ngIf="myForm.controls['number'].errors![        
     required']">Required</p>
-
+```

@@ -14,16 +14,159 @@ ng serve --open
 ```
 
 ## Components
-> Responsible for handling the view.
+> Controls a patch of the screen (view).
+- basic building blocks of the angular application
+- components are defined by a typescript class marked by the `@Component` decorator
+- components are custom HTML tags, tagname = selector
 
-To generate component: 
-- use `ng g c compName`
-- creates 4 files
-    - compName.component.ts - CompName Class file
-    - compName.component.html - html template
-    - compName.component.css - css
-    - compName.component.spec.ts - tests
+### Component Structure
+- `myComp.comonent.ts`  - business logic
+- `myComp.component.html` - view that gets rendered
+- `myComp.component.css`  - custom styling
+- `myComp.component.spec.ts` - for test cases
 
+### Basic Component
+`appComponent.component.ts`
+```ts
+// need the import of Component
+import { Component } from '@angular/core';
+// marked by @Component decorator
+@Component({
+  // selector name is used to render the component like: <app-root></app-root>
+  selector: 'app-root',
+  // the view to be rendered  
+  templateUrl: './app.component.html',
+  // array of stylesheets to be used
+  styleUrls: ['./app.component.css']
+})
+
+// class is exported to be used in other components
+export class AppComponent {
+  // a class property is defined
+  title:string = 'MyApp';
+}
+```
+
+`AppComponent.component.html`
+```html
+<!-- interpolation with {{ }} is used to access class property -->
+<p>The component {{ title }} is working!</p>
+```
+
+## Modules
+> Modules are the mechanism to group a set of components, directive, pipes, services that are related to a particular application.
+- All components are grouped together under the same module, the root module: AppModule.
+- Using modules we can group certain components together and load only the ones that we need.
+- Every angular applications will have at least one module.
+
+
+`app.module.ts`
+```ts
+// BrowserModule class is need to run the application in a browser
+import { BrowserModule } from '@angular/platform-browser';
+// NgModule class defines metadata of the module
+import { NgModule } from '@angular/core';
+// AppRoutingModule for routing
+import { AppRoutingModule } from './app-routing.module';
+// import the AppComponent class (created automatically with ng new command)
+import { AppComponent } from './app.component';
+
+// module is decorated with @NgModule
+@NgModule({
+  // contains all user defined component, directive, pipe classes of the module
+  declarations: [ AppComponent ],
+  // all outside modules used
+  imports: [ BrowserModule, AppRoutingModule ],
+  // service class of the module
+  providers: [],
+  // the root component to load
+  bootstrap: [AppComponent]
+})
+
+export class AppModule { }
+```
+
+## How Angular App Works
+
+1. Module is defined in `app.module.ts`
+2. Root component to load is defined
+    - in `app.module.ts`
+    - in the `Bootstrap` declaration
+3. Bootstrapping root module
+`src/main.ts`
+```ts
+// compiles application based on browser platform
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+// root module to bootstrap
+import { AppModule } from './app/app.module';
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));
+```
+4. Load root component in the HTML page
+`src/index.html`
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MyApp</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <!-- loads root module -->
+  <app-root></app-root>
+</body>
+</html>
+```
+
+## Templates
+>Template is an HTML file that represents the view of the component.
+
+ELemenst of a template:
+- html
+- interpolation
+- template expressions
+- template statements
+
+### Interpolation
+> Used to access the properties and methods of the component class inside the view.
+
+```html
+<!-- access properties -->
+<p>Hi {{ name }} !</p>
+
+<!-- invoke methods -->
+<p>Your name starts with {{ name.substr(0, 2)}}.</p>
+
+<!-- to avoid errors in case property is null use ? -->
+<p>{{ name?.substr(0, 2)}}</p>
+```
+
+### Template Expressions
+We can use `{{}}` to perform general expressions.
+
+```html
+<p>{{ 'hello'.toUpperCase() }}</p>
+
+<p>{{ num % 2 == 0 ? 'Even Number' : 'Odd Number' }}</p>
+```
+You cannot use: `new`, `++`, `--`, `+=`, `-=`
+
+### Template Statements
+> Template statements respond to user-defined events
+
+```html
+<button (click)="myFunction()">Call My Function</button>
+
+<!-- can be an expression -->
+<form (ngSubmit)="submitted=true">
+```
+- also called event binding
+- event has to be enclosed in `()`
+- function has to called with `()`
 
 ### Data Binding
 
