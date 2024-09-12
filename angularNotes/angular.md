@@ -168,6 +168,24 @@ You cannot use: `new`, `++`, `--`, `+=`, `-=`
 - event has to be enclosed in `()`
 - function has to called with `()`
 
+
+### Template Variables
+
+Template reference variables most often a reference to a DOM element in the template.
+
+They can also refer to:
+- angular components
+- directives
+- web components
+
+```html
+<!-- use #variableName -->
+<input #name type="text">
+<button (click)="showName(name.value)">Show Name</button>
+```
+- it can also be used to change that element's value
+
+
 ### Data Binding
 
 
