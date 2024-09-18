@@ -119,7 +119,7 @@ public void afterThrowing(MyException exception) throws MyException {
     LOGGER.error(exception.getMessage(), exception);
 
 }
-
+```
  
 
 ### Pointcut

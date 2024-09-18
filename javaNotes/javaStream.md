@@ -1,5 +1,51 @@
 # Stream API
 > A `Stream` represents a sequence of elements from a source and supports various data processing options.
+# Streams
+
+ 
+
+- follow a pipeline format of execution
+
+- all the operations are chained together are intermediate operatons
+
+- the last operations that gives the final result is the final operation
+
+- streams are `lazy`, until the final operations is invoked none of the intermediate operations execute
+
+- not having a final operation does not lead to error, but nothing will happen
+
+ 
+
+#### Non-Reusability of Streams
+
+ 
+
+A stream can only be used once, trying to operate on it again leads to `IllegalStateException`
+
+```java
+
+Stream<Integer> numbers = Stream.of(3, 5, 8, 6, 4);
+
+// operating on stream for the first time VALID
+
+numbers.filter(num -> num % 2 == 0)                        
+
+           .sorted()
+
+           .forEach(num -> System.out.println(num));              
+
+ 
+
+// operating for the second time INVALID
+
+numbers.filter(num -> num > 4)
+
+    .forEach(num -> system.out.println(num))
+
+```
+
+
+
 
 
 - a functional-style way of defining operations on a stream of elements
