@@ -83,24 +83,19 @@ Entity classes are described in the `jakarta.persistence` package.
 ```java
 
 // identifies class as entity class to matched to a db table
-
 @Entity
-
 // only needed if you do not want to use the class name as table name
-
 @Table(name="customer")
-
 public class Customer {
 
     // every object of the entity class has to have field that uniquely identifies it
-
     @Id
-
     // @Column is only needed if you want differetn column name than the attribute name
-
-    @Column(name="customer_id")
-
+    @Column(name="customer_id", nullable=false)
     private Integer customerId;
+
+    @Column(name="customer_name", nullable=false, length=50)
+    private String customerName;
 
     //rest of the code
 
