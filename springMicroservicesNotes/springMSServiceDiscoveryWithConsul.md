@@ -1,20 +1,19 @@
-# Service Discovery with Consul
+# Service Discovery
+The following API service registry and discovery of micreservices:
+- Cloud Consul
+- Eureka
 
-
-## Implement Service Discovery 
+## Implement Service Discovery With Consul 
 
 ### 1. Add dependency
+Need to add `spring-cloud-starter-consul-discovery` dependency
 - will ensure that the microservice registers itself
 - enables the microservice to discover other services
-
-- do exclusion 2:20
-    - hystrix
-    - netflix ribbon
 
 
 ### 2. Add Configuration
 
-`bootstrap.yml`
+`application.yml`
 ```yml
 consul:
   discovery:
@@ -26,6 +25,8 @@ If you restart the microservices you should be able to see them registered in `C
 
 ### 3 Modify Controller Class
 Setup controller to get other microservices's uri from the discovery server.
+
+>**NOT SURE THAT IT IS CORRECT BELOW**
 
 `CustomerController.java`
 ```java

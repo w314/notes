@@ -1,6 +1,17 @@
 # Resiliency
+By this point:
+- microservices use consul to distributed configuration
+- microservice use consul for service discovery
+- microservices use a load balanced RestTemplate to make API calls to other microservices
 
-## Cercuit Braker Pattern
+
+`Resiliency` 
+1. will make sure, that the microservice will monitor the health of other microservices and stops communication with them if requests to them fail. 
+2. microservice will wait a certain time before making a new requests
+3. if new request does not work, it waits again before reestablishing communication
+4. if it works it goes back to original "normal" operation
+
+## Circuit Braker Pattern
 
 ### States of Curcuit Breaker
 - Closed
@@ -13,28 +24,51 @@
 
 ### Types of Circuit Breaker Pattern
 
-#### Count-based sliding window
-Change of state is dependent on the number requests received/failed
+- Count-based sliding window
+    - Change of state is dependent on the number requests received/failed
 
-Configuration:
+-  Time-based sliding window
 
-#### Time-based sliding window
-Configurations needed:
+
+### Time-Based Sliding Window Configuration
 - slidingWindowTYpe: TIME_BASED
-
-time in millisecond after which a call is considered slow
+    - time in millisecond after which a call is considered slow
 - slowCallDurationThreshold: 4000
-
-percentage of call that have to fail during that time:  
+    - percentage of call that have to fail during that time:  
 - slowCallRateThreshold: 50
+- Exceptions
+    - By default all exceptions count as a failure.
+    - We can define a list of exception that count as a failure, in that case all other exceptions are considered a success.
+    - Exception can also be ignored.
 
+### Fallback Logic
+- provide fallback method in controller class
+```java
+    @CircuitBreaker(name="customerService", fallbackMethod="getCurtomerProfilefallback")
+    @GetMapping(value="/customers/{phoneNo}", produces=MediaType.APPLICATION_JSON_VALUE)
+    public getCutomerProfile(@PathVariable Long phoneNo) {
+        // method code
+    }
 
-### Exceptions
-By default all exceptions count as a failure.
-
-We can define a list of exception that count as a failure, in that case all other exceptions are considered a success.
- 
-Exception can also be ignored.
+    // create fallback method
+    // use same method signature of actual method
+    // optional exception parameter may be added
+    public CustomerDTO getCustomerProfileFallback(Long phoneNo, Throwable throwable) {
+        // return empty customerDTO
+        return new CustomerDTO();
+    }
+}
+```
+- set name of fallback method in `@CircuitBreaker` annotation's `fallbackMethod` parameter
+- fallbackmethod signature:
+    - same return typ
+    - accepts same number and type of parameters
+    - can have optional use same signature as original method
+    - can have optional exception parameter
+- will be executed when
+    - error occurs
+    - timeout occurs
+    - circuit opens
 
 ## Implement Resiliency with `Resilience4j`
 
@@ -122,7 +156,7 @@ public class CustCirtuitBreakerService {
     }
 
     @CircuitBreaker(name="customerService")
-    @SuppressWoarning("unchecked") // do not know what is this
+    @SuppressWarning("unchecked") // annotation to suppress compile warnings about unchecked generic operations (not exceptions), such as casts
     public List<Long> getSpecificFriends(Long phoneNo) {
         return template.getForObject("http://FriendMS/customers/"+phoneNo+"/friends", List.class);
     }
@@ -161,7 +195,7 @@ public class CustomerController {
     }
 
 }
- 
+```
 
  # Async Communication in Spring Microservices
 
@@ -170,7 +204,7 @@ public class CustomerController {
 
 ## Implement Async Communication with `Future` object
 
-FUture is a computational object that will be available in the future.
+>Future is a computational object that will be available in the future.
 
 ### 1. Return Future when calling a microservice
 `services/CustCircuitBreakerService.java`

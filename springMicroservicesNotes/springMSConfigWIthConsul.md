@@ -12,7 +12,10 @@ consul agent -server -bootstrap-expect=1 -data-dir=consul-data2 -ui -bind=192.16
 ```
 - `-server` starts it as a server (not a client)
 - `-bootstrap-expect-1` set it up to create one instance (not a cluster)
-- `-data-dir` specifies the data directory, it will be created in the same folder where consul is
+- `-data-dir` specifies the folder consul stores the config data
+  - it will be created in the same folder where consul is
+  - if does not exists consul will create it
+  - if exists consul will use it the config data from here to start the consul server
 - `-ui` sets consul up to run in a web ui mode
 - `-bind` specifies the IP address of the host where the consule server should start (find out ip address with `ipconfig`)
 
@@ -21,12 +24,33 @@ To see consul running open browser to: `localhost:8500/ui`.
 ## Store Configuration Details in consul
 
 Consule has a key-value store to store the configuration data.
-
+- consul stores config data in the file system
 - go to consul ui (`localhost:8500/ui`)
 - select `Key/Value` menu item (on left side panel)
-
-    -
-
+- enter config information
+```yml
+spring:
+  cloud:
+    consul:
+      config:
+        # specifies the directory with common config
+        default-context: application
+        # name of file config for specific microservice
+        # is stored in the microsercice's name space
+        data-key: service
+        # configures consul server to resend config data
+        # to the microservice at every 100ms
+        watch:
+          delay: 100
+```
+- supported formats are:
+  - YAML
+  - JSON
+  - XML
+- more specific config files have higher precedence and loaded first
+  - config/App/dev - profile specific
+  - config/App - application spedific
+  - config/application - common config
 
 ## Use Consul in Microservice
 
@@ -84,6 +108,11 @@ spring:
 
 Empty out `application.properties` file, as the values were moved from here to `bootstrap.yml`.
 
+
+## Qustions
+> Spring consul by deafault stores config data in ...?
+
+In the file system.
 ## Error
 [Error creating bean with name ConfigurationPropertiesBean](https://programmerah.com/solved-springboot-error-error-creating-bean-with-name-configurationpropertiesbeans-defined-in-class-path-48221/)
 

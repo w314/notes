@@ -4,8 +4,6 @@ Types:
 - server-side
 - client-side
 
- 
-
 ### Server-side 
 Possible problem:
 - if the load balancer fails it all fails
@@ -16,10 +14,22 @@ Possible problem:
 - softwer, client side decides where to send the requets
 
 Types:
-- static load balancing: you provide info about where the microservices are running and how many instances are running
-- dynamic:load balancer interacts with server registry and chooses only the instances that are up and running dynamically
+- static load balancing: 
+    - you provide info about where the microservices are running and how many instances are running
+    - will not check if ms is down, will keep sending requests
+- dynamic:load balancer 
+    - interacts with server registry and chooses only the instances that are up and running dynamically
 
-## Implement Load Balancing
+#### Static Load Balancing
+```java
+@LoadBalancerClient(name="MyloadBalancer", 
+configuration=LoadBalancerConfig.class)
+```
+- whenever a service name MyloadBalancer is contacted instead of using the default setup it will use the configuration form teh LoadBalancerConfig.class
+- The LoadBalancerConfig.class configuraton calss will provide the list of static URLs among which the request has to be balanced
+
+
+## Implement Dynamic Load Balancing
 
 ### 1. Create Load Balanced RestTemplate
 
