@@ -5,7 +5,7 @@
 ### Application
 #### @SpringBootApplication
 
-## Entity
+### Entity
 - @Entity
 - @Table(name="tablename")
 - @Id
@@ -13,23 +13,35 @@
 - @Column(name="column_name", nullable=false, length=50)
 
 
-## DTO
+### DTO
 
-## Repository
+### Repository
 - interface
 - `exends CrudRepository<TableName, PrimaryKeyType>`
 
 
-## Service
+### Service
 - @Service("serviceName") 
 - @Transactional
 - @Autwired
     - repository
 
-## Controller
+### Controller
 - @RestController
 - @RequestMapping
 - @Autowired
     - service
 - @PathVariable
 
+## Other
+
+### Retrieve setting from the porperties file
+`application.properties`
+```bash
+friend.uri=http://localhost:8200/customers/
+```
+`CustomerController.java`
+```java
+@Value("${friend.uri}")
+String firendUri;
+```
