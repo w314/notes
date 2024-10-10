@@ -41,4 +41,13 @@ The following methods returning a `NodeList` (list of HTML elements)
 - `document.getElementsByClassName(className)`
     - find element(s) by the value of the class attribute
 - `document.querySelectorAll()`
+    - find element(s) by CSS selector
+
+```html
+<p class="blue">Paragraph</p>
+<script>
+    var x = document.querySelectorAll('p.blue');
+    x[0].innerHtml; 
+</script>
+```
 
