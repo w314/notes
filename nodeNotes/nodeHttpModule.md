@@ -46,3 +46,13 @@ server.listen(port);
 ```
 - run server with `node webServer.js`
 - access it in the browser with url `localhost:3000`
+- response content can also be sent by `response.end()`
+    - it sets content
+    - ends the response
+    - NO need for `response.write()`
+    
+## Other Methods
+
+`response.send()` 
+- writes the response content and ends the response.
+- no need for respones.end()

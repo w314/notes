@@ -50,13 +50,10 @@ const moduleName = require('pathToModule');
 
 #### Create Module File `DBModule.js`:
 ```js
+// attach authenticateUser method to exports object
 exports.authenticateUser = (username, password) => {
-    if(username === "admin" && password === "admin") {
-        return "Valid User";
-    } else {
-        return "Invalid User";
-    }
-
+    if(username === 'admin' && password === 'admin') return 'Valid User';
+    return 'Invalid User';
 ```
 - attach each reusable method to the `exports object`
 
@@ -66,11 +63,11 @@ exports.authenticateUser = (username, password) => {
 ```js
 // use module name to load built-in http module
 const http = require('http');
-// use module path to load our custom module
-const authenticator = require('./DBModule.js');
+// use module path to load our custom module file
+const authenticator = require('./DBModule');
 
 const server = http.createServer((request, response) => {
-    // use authenticateUser method of DBModule to authenticate user
+    // invoke authenticateUser method of authenticator module to authenticate user
     const userValidationResult = authenticator.authenticateUser("admin", "admin");
 
     response.writeHead(200, { ContenType: "text/html"});
@@ -90,15 +87,20 @@ server.listen(3003);
 
 ### 2. Create Module with Module Folders
 
+- useful if there are several files in our module
 - create folder named `DBModule`
 - create file name `index.js` inside folder
     - the name `index.js` is manadatory
+- all files will be required in the index.js file
+- so we only need to load one file
 
 When loading module in `webServer.js`:
 ```js
-const module = require('./DBModule');
+// we provide the folder name DBModule
+// the index.js file in the folder will be loaded
+const authenticator = require('./DBModule');
 
-// when using use module name
+// invoke authenticateUser method of the authenticator module
 const result = module.authenticateUser(username, password);
 ```
 
@@ -117,8 +119,10 @@ module.exports = (username, password) => {
 
 `webServer.js`
 ```js
-const authenticator = require('./DBModule.js');
+// the DBModule.js file is loaded
+const authenticator = require('./DBModule');
 
-// when using use module name directly
+// invoke the authenticateUser method of the module
+// by using module name directly
 const result = authenticator(username, password);
 ```
