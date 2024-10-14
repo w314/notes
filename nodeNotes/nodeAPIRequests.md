@@ -22,19 +22,21 @@ const url = require('url');
 const querystring = require('querystring');
 
 // server method that will handle get request like:
-// http://localhost:7777/login?usrname="bob"&&password="123"
 function onRequest(req, res) {
     
-    // use the parse method of the url module 
-    // to get querystring from the url
-    // request.url property has the value of the url
-    const reqQuery = url.parse(req.url).query;
-    console.log(`querystring: ${query}`);
-
-    // use parse() method of querystring
-    // to get parameters from querystring
-    const username = querystring.parse(reqQuery)["username"];
-    const password = querystring.parse(reqQuery)["password"];
+    // RETRIEVE DATA SENT IN URL
+    // get url from url property of request
+    const reqUrl = req.url;
+    console.log(`Request URL: ${reqUrl}`);
+    // use url module to parse url and 
+    // get querystring from the query property
+    const reqQuery = url.parse(reqUrl).query;
+    console.log(`Request querystring: ${reqQuery}`);
+    // use querystring module to parse querystring
+    // get data from parsed querystring
+    const username = querystring.parse(reqQuery)['username'];
+    const password = querystring.parse(reqQuery)['password'];
+    console.log(`Username: ${username}\nPassword: ${password}`);
 
     //send response
     res.writeHead(200, { ContentType: "text/html" })
@@ -61,29 +63,32 @@ With requestBody username and password.
 ```js
 // load required modules
 const http = require('http');
-const DBModule = require('./DBModule');
+const dbModule = require('./DBModule');
 const querystring = require('querystring');
 
 // create server
 const server = http.createServer( (req, res) => {
 
-    // temporary data variable to store incoming data chuncks
+    // RETRIEVE DATA FROM REQUEST
+
+    // create variable to store incoming data chunks
     const data = "";
 
     // set function to handle data event
+    // add each incoming data chunk to our data variable
     req.on('data', ( chunk ) => data + chunnk );
     
     // set function to handle end event 
     // end even will get fired after all data chunks are received
     req.on('end', () => {
-        // parse query from  data with querystring module
-        const query = querystring.parse(data);
-        // get data from query
-        const username = query['username'];
-        const password = query['password'];
+        // parse received request data with querystring module
+        const reqData = querystring.parse(data);
+        // get username and password from parsed request data
+        const username = reqData['username'];
+        const password = reqData['password'];
 
         // authenticate user using DBModule
-        const userStatus = DBModule.authenticateUser(username, password);
+        const userStatus = dbModule.authenticateUser(username, password);
 
         // send response
         res.writeHead(200, { ContentType: "text/html" });
