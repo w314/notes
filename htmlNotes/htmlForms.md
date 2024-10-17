@@ -10,6 +10,8 @@ html, form
 
 ## Form Action
 
+### Passing data through url
+
 ```html
 <!-- form will create a GET request -->
 <!-- form will pass data in the urls as query string -->
@@ -27,8 +29,17 @@ html, form
 - this form will create a `GET` request
 - this form will pass data to server in the url
 - `http://localhost:3000?username=nameEntered&password=passwordEntered`
-- the `name` attribute of the `input element` is necessary for the data to be passed in the url
+- the `name` attribute of the `input element` is necessary for the data to be passed in the url and are identify the data
 
+### passing data through request body
+
+```html
+<form action="http://localhost:3000" method="post">
+    <!-- form fields -->
+</form>
+```
+- add `method="post"` attribute to `form` tag
+- `name` attributes of `input` elements still identify the data in the form
 
 ### From Element Attributes
 - **name**

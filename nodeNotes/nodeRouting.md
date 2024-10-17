@@ -5,56 +5,104 @@ node, routing, routes
 
 
 ## Handling Routes
+1. create routeHandler file 
+    - that has a function to handle each route 
+    - and create the appropriate response
+    - or create several files to handle each route
+2. create router file 
+    - that would call the appropriate function of the routerHandler 
+    - based on the url
+3. in your server 
+    - call your router 
+    - and pass the request and response objects
 
-### 1. Create JS File to Implement Route Handler Logic
 
-`RouteHandler.js`
+### 1. Create RouterHandler JS file
+
+`homePageHandler.js`
 ```js
-// load required modules
-const DBModule = require('./DBModule');
-const url = require('url');
-const querystring = require('querystring');
+// import fs module to read html file
+import { readFile } from 'node:fs/promises';
 
-// create function for each route 
-// and attach it to the exports object
+// path of html file,  from root directory of project
+const homeHtmlPath = './html/home.html';
 
-exports.greetUser = (url, request, response) => {
-    // retrieve data from post request
-    const data = "";
-    request.on('data', ( chunk ) => data + chunk;);
-    // generate response when all data received
-    request.on('end', () => {
-        // parse data
-        query = querystring.parse(data);
-        const name = query['name'];
-        // send response
-        response.writeHead(200, { ContentType: "text/html" });
-        response.end(`<html><body><h1>Hello ${name}!</h1></body></html>`);
-    })
+// route handler function
+const homePageHandler = async (req, res) => {
+    try {
+        // read html 
+        const html = await readFile(homeHtmlPath, { encode: 'utf-8' });
+        // send response with html read from homePage.html
+        res.writeHead(200, { ContentType: 'text/html' });
+        res.write(html);
+        res.end();
+    } catch (err) {
+        // send error message in case of error
+        console.log(err);
+        res.writeHead(500);
+        res.write('Error displaying page.')
+        res.end();
+    }
 }
 
-exports.enterNmae = (url, req, res) => {
-    // create response
-    res.writeHead(200, { ContentType: "text/html" });
-    const html = `
-        <html>
-            <body>
-                <form name="myForm" action="http://localhost:7777/greetUser" method="post">
-                    <label>Name</label>
-                    <input type="text" name="name" value="">
-                    <input type="submit" value="Sumit">
-                </form>
-            </body>
-        </html>
-    `;
-    res.write(html);
-    res.end();
-}
+// export routeHandler
+export default homePageHandler;
 ```
 
-### 2. Create JS File to Implement Route Mapping Logic
+### 2. Create Router JS File
+- Implements mapping logic.
+- Based on the request url calls the appropriate function of the RouterHandler file
 
-`GreeterRouting.js`
+`Router.js`
 ```js
-// load required modules
+// import handlers
+import loginHandler from './loginHandler.js';
+import homePageHandler from './homePageHandler.js';
+// import required modules
+import * as url from 'url';
 
+const router = (req, res) => {
+
+    // parse url of the request object
+    const reqUrl = url.parse(req.url);
+    // get path from parsed url
+    const path = reqUrl.path;
+    console.log(path);
+
+    // call appropriate handlers based on path
+    switch(path) {
+        case `/home`:
+            homePageHandler(req, res);
+            break;
+        case `/login`:
+            loginHandler(req, res);
+            break;
+        default:
+            homePageHandler(req, res);
+    }
+}
+// export router
+export default router;
+```
+
+### 3. Call Router in Server
+- call the router for each request
+- pass the request and response objects
+
+```js
+import http from 'http';
+// import your router
+import router from './routes/router.js'
+
+// create server
+const server = http.createServer((req, res) => {
+
+    // call router to handle request
+    router(req, res);
+});
+
+// start server
+const port = 3000;
+server.listen(port);
+console.log(`Server is listening on port ${port}`);
+```

@@ -189,3 +189,55 @@ console.log(`Server is listening on port ${port}`);
 6. so after the visitorCountEvent method run the increment method of the visitorCounter object it will return the updated visitorCount
 
 
+### Example
+- Create a custom event "even" to be fired every 300ms. 
+- To fire the event create a counter and initialize it to 10 with in the constructor function. 
+- The event should be fired if the counter is even.
+-Increment the counter after the event is fired.
+- Create a listener and listen to the custom event and get the current counter value and display it on the console.
+- clear interval after maxIteration = 5
+
+`evenCounterModule`
+```js
+const EventEmitter = require('events').EventEmitter;
+
+class EvenCounter extends EventEmitter {
+    constructor(initialCount) {
+        super();
+        this.counter = initialCount;
+        this.iteration = 0;
+        this.maxIteration = 5;
+    }
+
+    start() {
+       const intervalId = setInterval(() => {
+            if(this.counter % 2 === 0 ) {
+                this.emit('even', this.counter);
+            }
+            this.counter++;
+            this.iteration++;
+            if(this.iteration >= this.maxIteration) {
+                clearInterval(intervalId);
+                console.log(`Interval cleared after ${this.maxIteration} iteration`);
+            }
+        }, 300);
+    }
+}
+
+const evenCounter = new EvenCounter(10);
+
+evenCounter.on('even', (currentCounter) => {
+    console.log(`The number is even: ${currentCounter}`);
+})
+
+exports.evenCounterEvent = () => {
+    evenCounter.start();
+}
+```
+
+`evenEventListener.js`
+```js
+const { evenCounterEvent } = require('./evenCounterModule');
+
+evenCounterEvent();
+```

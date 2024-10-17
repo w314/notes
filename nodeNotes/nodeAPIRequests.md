@@ -39,7 +39,7 @@ function onRequest(req, res) {
     console.log(`Username: ${username}\nPassword: ${password}`);
 
     //send response
-    res.writeHead(200, { ContentType: "text/html" })
+    res.writeHead(200, { "Content-Type": "text/html" })
     res.write(`<html><body><h1>Hi ${username}!</h1></body></html>`);
     res.end();
 }
@@ -91,7 +91,7 @@ const server = http.createServer( (req, res) => {
         const userStatus = dbModule.authenticateUser(username, password);
 
         // send response
-        res.writeHead(200, { ContentType: "text/html" });
+        res.writeHead(200, { "Content-Type": "text/html" });
         // it is possible to give end the content 
         // and to not use res.write()
         res.end(`<html><body><h1>${userStatus}</h1></body></html>`);
@@ -103,7 +103,42 @@ server.listen(3008);
 console.log(`Server listening on port 3008`);
 ```
 
-## URL module
+## Sending Non-Text Response
+
+### JSON Response
 
 ```js
-var path = url.parse(request.url).pathName
+import { readFile } from 'node:fs/promies'
+
+const jsonHandler = async (req, res) => {
+    const filePath = './content.json'
+    const jsonContent = await readFile(filePath, { "encode": "utf-8" });
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.write(jsonContent);
+    res.end();
+}
+```
+
+### IMG response
+```js
+import url from 'url';
+import { readFile } from 'node:fs/promises'
+
+const imageHandler = async (req, res) => {
+
+    // get request path
+    const reqUrl = url.parse(req.url);
+    const path = reqUrl.path;
+
+    // read image from file
+    const filePath = `./books/images${path}`
+    const img = await readFile(filePath);
+
+    // write response
+    res.writeHead(200, { "Content-Type": "image/jpg" });
+    res.write(img);
+    res.end();
+}
+
+export default imageHandler;
+```

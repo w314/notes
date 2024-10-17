@@ -2,7 +2,9 @@ node, nodejs, web-server, http
 
 # Node Web Server with `http` Module
 
-`http` module is provided by Node, we can use it to create a web server.
+- `http` module is provided by Node, we can use it to create a web server.
+- cannot serve static files, all files have to be read (html, css), attached to a response and sent like that
+- can use the `Express framework` that is built on top of the `http module` for building servers easier 
 
 `webServer.js`
 ```js

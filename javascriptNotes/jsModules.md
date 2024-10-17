@@ -4,7 +4,7 @@
 - help to isolate state and global namespace
 - enable reusability
 - help maintainablity
-- by default modules are in0 strict-mode code
+- by default modules are in strict-mode code
     - => means scope of the members are always local
         - funtions
         - variables
@@ -34,12 +34,17 @@ export { myVar, myFunction};
 - Default Exports
     - one per module
     - used for the most highly used entity
+    - a module can have BOTH named and a default export
 
 ```js
-export default entityName;
+// has to be used with directly with the function declaration
+export default sayHi() { console.log('hi'); }
+
+// OR
+const sayHello = () => console.log('hello');
+export default sayHello;
 ```
 
-A module can have BOTH named and a default export.
 
 ### Imports
 A module can have as many imports as needed.
@@ -58,5 +63,10 @@ import { enitityName as betterName } from './otherModule.js';
 // you can import a default export with any name
 import myNameForYourDefaultExport from './otherModule.js';
 ```
+
+## Errors & Solution
+
+### Cannot use import statement outside a module
+
 
 
