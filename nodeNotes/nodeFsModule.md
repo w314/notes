@@ -4,7 +4,7 @@
 Types:
 - promise based
 - asynchronous (with callbacks)
-- synchronous
+- synchronous (does not take a callback)
 
 [Source](https://nodejs.org/en/learn/manipulating-files/reading-files-with-nodejs)
 
@@ -45,44 +45,47 @@ const loginHandler = async (req, res) => {
 // export loginHandler
 export default loginHandler;
 ```
+
+### Write File with `fs/promises`
+Creates file if does not exists.
+
+
+```js
+import { writeFile } from 'node:fs/promises';
+
+const filePath = './writeTo.txt';
+const content = 'bob here';
+
+const writeToFile = async () => {
+    try {
+        await writeFile(filePath, content);
+        console.log(`File is ready.`);
+    } catch (err) {
+        console.log(`Eror: ${err}`)
+    }
+}
+writeToFile();
+
+```
 ### Append File with fs/promises
 Creates file if does not exists.
 
 ```js
 import { appendFile } from 'node:fs/promises';
 
-const logFile = './log.txt';
-appendFile(logFile, `User ${username} logged in at ${new Date()}\n`);
+const filePath = './writeTo.txt';
+
+const appendToFile = async (filePath, content) => {
+    try {
+        await appendFile(filePath, content);
+        console.log(`File is content updated with: ${content}`);
+    } catch (err) {
+        console.log(`Eror: ${err}`)
+    }
+}
+
+for(let i = 0; i < 3; i++) {
+    const content = `Updated at ${new Date()}\n`;
+    appendToFile(filePath, content);
+}
 ```
-
-## Asynchronous Methods
-
-### `fs.readFile()`
-
-- `fs.readFile(fileName[, options], callbackFunction);`
-- data read will be stored in an internal buffer temporarily
-- and will be passed to the callback function
-
-```js
-// load required modules
-const fs = require('fs');
-
-// callback function err and data
-fs.readFile(file, function(err, fileContent) => {
-    if(err) throw err;
-    response.writeHead(200, { ContentType: "text/html" })
-    response.write(html);
-    response.end();
-})
-```
-
-### `fs.writeFile()`
-
-### `fs.appendFile()`
-
-
-## Synchronous Methods
-
-### `fs.readFileSync`
-- does not take a callback function
-- use case example: reading config file 
