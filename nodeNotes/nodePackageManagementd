@@ -1,4 +1,7 @@
-# NPM Registry
+
+# Node Package Management
+## NPM Registry
+
 > Collection of all the open source JS libraries in the world. [Software registry](https://www.npmjs.com/) maintained by Node.js
 
 
@@ -15,6 +18,7 @@ Package managers working with the Node Registry
 - start projects with `npm init`
 - creates a `package.json` file
 - that holds metadata about the project
+- NO camelCase for `name`
 
 ```json
 {
@@ -41,6 +45,7 @@ Installation types:
     - package gets added to the `PATH`
     - `npm install -g <package-name>`
 - local
+  - default installation
 
 
 ### Update Packages
@@ -56,6 +61,14 @@ Installation types:
 
 `npm uninstall -g <pacakge-name>[@version]`
 
+### Audit packages
+
+`npm audit`
+- generates report on the dependencies
+- about security threats
+- and recommended actions
+
+
 ## Publish to Node Registry
 
 ### 1 Create Account 
@@ -67,3 +80,41 @@ Create account on [npmjs.com](https://www.npmjs.com/)
 - create folder
 - create package.json in the folder
 - 
+
+
+## YARN (Yet Another Resource Negotiatior)
+
+### install yarn
+- `npm install --global yarn`
+- `yarn --version	`
+
+### create `package.json` file
+- `yarn init`
+- OR
+- `yarn init -y`
+
+### manage packages
+- `yarn global add <package_name>`
+  - Add Global package
+- `yarn add <package_name>`
+  - To install local package with the latest version
+  - yarn global remove <<package_name>>	- Remove global package
+  - yarn add <<package_name>>@<<version>>	- To install the local package with a specific version
+- yarn remove <<package_name>>	
+  - To remove a package
+- yarn upgrade <<package_name>> --latest	
+  - To upgrade a package to the latest version
+- yarn install	
+  - To install all dependencies from the package.json file
+
+### other commands
+- yarn help
+- yarn outdated	
+  - To find outdated versions
+- `yarn add <<package_name>> -D` or --dev	
+  - To install as dev dependencies
+- `yarn run <<script key>>`	
+  - To run a script from the package.json file
+- yarn why <<package_name>>	
+  - To identify why a package is installed
+ 
