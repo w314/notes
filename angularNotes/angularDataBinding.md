@@ -24,5 +24,8 @@ export class AppComponent {
     name = 'bob';
 }
 ```
-`app.template.component.html`
+`app.component.html`
 ```html
+<p>Hi {{name}}!</p>
+```
+

@@ -5,7 +5,7 @@ in `parent.component.html`
 <app-my-app []>
 ```
 
-in `child
+in child
 
 
 ## From Child -> Parent
