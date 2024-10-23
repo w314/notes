@@ -68,7 +68,7 @@ Primitive Types in Java:
 
 `Two's complement notation`:
 - most common way to encode negative numbers in binary number systems
-- `**positive numbers**: represented as usual binary
+- **positive numbers**: represented as usual binary
 - **negativ numbers**: represented by inverting all the bits of it's positiv conunterpart and than adding one to the reult (except the lowest negative number that directly represents itself, as it's positive counterpart would be out of range)
 - **zero**: 0000...000, and its negative is itself
 - **Range** an `n` bit number can represent values from `-2^(n-1)` to `2^(n-1) - 1` (an 8 bit number can represent values from -128-127)
@@ -157,16 +157,14 @@ short s = (short)i;
 examples
 ```java
 float floatVar = 12.7f;
+// this throws incompatible type error
 int intVar = floatVar; 
-// would give incompatible type error
+// has to be explicitely cast
 int intVar1 = (int) floatVar;
 System.out.println(intVar1) // 12
 // decimal part gets cut
 // if float holds value larger than fits into int
 // the result will be the max value int can hold 
-
-
-
 ```
 
 - In some cases you will have to use the data type's own methods to convert. Some of these methods are listed in the table below.

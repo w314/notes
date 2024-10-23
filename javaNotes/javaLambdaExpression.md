@@ -1,19 +1,21 @@
 java, lambda, funtional interface, method-reference
 
 # Lambda Expression
->`Lambda Expressions` area  type of `Functional Interface` (Interface with only 1 abstract method), where they follow the definition of the `Abstract Functional Method` of the interface.
-
-- anonymus method. 
-- enables a method to be passed as an argument to other methods as and when required.
+> Lambda Expression is a type of "anonymus" method not bound to any identifier (or class/type)
+ 
 - functional programming feature in Java
-- syntax `( arugments ) -> { body }`
+- enables a method to be passed as an argument to other methods
+- syntax `( x, y ) -> { return x + y }`
 - `->` is the `Lambda Operator`
 
 Example
 ```java
+// using the @FunctionalInterface is optional
+// if used the compiler checks that there is 
+// only 1 abstract method in the interface
 @FunctionalInterface
 interface Operation{
-	//Abstract Functional Method providing definition of lambda expression
+	// method providing definition of lambda expression
 	public double calculations(double num1,double num2); 
 }
 //Defining a lambda expression of type Operation

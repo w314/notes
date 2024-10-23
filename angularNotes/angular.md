@@ -16,8 +16,10 @@ ng serve --open
 ## Components
 > Controls a patch of the screen (view).
 - basic building blocks of the angular application
-- components are defined by a typescript class marked by the `@Component` decorator
+- defined in a TypeScript class
+- uses the `@Component` decorator
 - components are custom HTML tags, tagname = selector
+- created by `ng g c <componentName>`
 
 ### Component Structure
 - `myComp.comonent.ts`  - business logic
