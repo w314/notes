@@ -7,9 +7,9 @@ A `collection` is a single object which acts as a container for other objects.
 Collection framework provdes the `Iterator` that provides a mechanism 
 ## Hierarcy of the Collection Framework
 ![Java Collection Hierarchy](images/javaCollectionHiearachy.png)
-### Implementing `Collection Interface`
+## Collection API Hierarchy 
 
-#### Level 0: `Collection Interface`
+### Level 0: `Collection Interface`
 - represents a group of objects, its elements
 - the root interface in the collection hierarchy
 - defines common methods like 
@@ -19,20 +19,20 @@ Collection framework provdes the `Iterator` that provides a mechanism
     - size()
     - iterator()
 
-#### Level 1: 3 main interfaces: `Set`, `List`, `Queue`
+### Level 1: `Set`, `List`, `Queue`
 
 All extend the `Collection Interface`
 
-##### `Set Interface` 
+#### `Set Interface` 
 - can only contain **unique elements**
 - unordered
 
-##### `List Interface`
+#### `List Interface`
 - **ordered** collection
 - can contain duplicate elements
 - elements can be accessed by their index
 
-##### `Queue Interface` 
+#### `Queue Interface` 
 - is used to hold elements prior to processing
 - designed for holding elements prior to processing
 - orders element in FIFO manner, except priority queue
@@ -42,26 +42,24 @@ All extend the `Collection Interface`
     - `poll()` - retrieves and removes head of queue
 
 
-#### Level 2: classes & interfaces
+### Level 2: Classes & Interfaces
 
-##### Set Based
+#### Set Based
 - `HashSet Class`
 - `SortedSet Interface`
 
-##### List Based
+#### List Based
 - `Vector Class`
 - `ArrayList Class`
 - `LinkedList Class` (also implements `Queue Interface`)
 
-##### Queue Based
+#### Queue Based
 - `LinkedList Class` (also implements `List Interface`)
 - `Deque Interface` (pronounced "Deck")
 
 
-### Implementing `Map Interface`
-
-#### Level 0: `Map Interface`
-- does NOT implement `Collection Interface`
+## `Map Interface`
+Does NOT implement `Collection Interface`.
 
 #### Level 1
 - `HashMap Class`
@@ -147,6 +145,20 @@ public class IterableExmple {
 }
 ```
 
+### Iterable vs Iterator
+
+<table>
+<tr><th>Itrable</th><th>Iterator</th></tr>
+<tr><td>Represents a collection that can be iterated over using a for-each loop</td>
+<td>Represents an interface that can be used to iterate over a collection</td></tr>
+<tr><td>When implementing an Iterable, we need to override the iterator() method</td>
+<td>	When implementing an Iterator, we need to override the hasNext() and next() methods</td></tr>
+<tr><td>Doesn’t store the iteration state</td>
+<td>Stores the iteration state</td></tr>
+<tr><td>Removing elements during the iteration isn’t allowed</td>
+<td>Removing elements during the iteration is allowed</td></tr>
+</table>
+
 ### `ListIterator interface`
 - sub-interface of `Iterator interface`
 - allows traversing list in both forward and reverse directions
@@ -156,6 +168,15 @@ public class IterableExmple {
 
 
   <hr>
+
+## How to Iterate Over Collections
+
+- enhanced for loop
+- collection.forEach()
+- with iterator while iterator.hasNext()
+
+
+
 OLDER NOTES BELOW
 _____________________
 

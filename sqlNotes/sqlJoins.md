@@ -52,20 +52,28 @@ Table1 has 10 rows and 5 columns, Table2 has 0 rows and 7 columns. How many rows
 
 Answer:0
 
-## Self Join uses INNER JOIN
+## Self Join
 
-`SELF JOIN` is an SQL statement which is used to intersect or join a table in the database to itself.
+`Self Join` joins a table in the database with itself.
+ 
+- uses `JOIN ON` syntax
 
-Example:
-Employees Table
-- id
-- name
-- manager (employee id of manager)
+### Example:
+Finding manager to employess in an employee table:
 
-Creta quiry that lists all employees and there managers
-```sql
-SELECT EMP.id, EMP.name, MGR.name
-FROM Employees EMP INNER JOIN Employees MGR on EMP.manager = MGR.id;
+```SQL
+CREATE TABLE Employee (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    manager_id INT
+)
+
+
+-- use SELF Join to list employee names 
+-- and the name of their managers
+SELECT e1.name AS Employee, e2.name AS Manager
+FROM employees e1
+JOIN employees e2 ON e1.manager_id = e2.id;
 ```
 
 
