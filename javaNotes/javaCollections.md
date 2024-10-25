@@ -84,21 +84,68 @@ All extend the `Collection Interface`
   - implements `NavigableMap Interface`
 
 
-## `Iterator Interface`
+## `Iterable`, `Iterator` Interfaces
+
+### `Iterable Interface`
 
 - part of the Collection Framowork
-- provides a general purpose iterating mechanism for looping over collections
+- root interface for all collection classes that can be iterated over
+- represents a collection of elements that can be traversed one by one
 
-### the `iterator()` method
-- each class of the `Collection` framework must implement and `iterator()` method
-- the method returns an `Iterator` that loops over the elements of the collection
-- the `Iterator interface` provides methods for iterating over the elements
+#### Iterable Interface Definition
 
-### Iterator methods
-- `boolean hasNext()` - true if there are more elements to iterate over
-- `E next()` - return the next element
-- `void remove` - removes the current element
-<br>**MAY CAUSE ERROR** if collection is simultaneously is modified by other methods
+```java
+public interface Iterable<T> {
+  Iterator<T> iterator();
+}
+```
+
+#### Key Characteristics
+
+- has one method the `iterator()`
+- enhanced for loop can be used to itearate over elements
+- extended by several subinterfaces
+  - Collection
+  - List
+  - Set
+  - Queue
+
+### `Iterator Interface`
+> The Iterator Interface provides methods to traverse through a collection of objects one by one.
+
+
+#### Iterator Interface Definition
+
+```java
+public interface Iterator<E> {
+  boolean hasNext();
+  // return next element
+  E next();
+  // removes last element returned by iterator
+  void remove();
+}
+```
+### Example Usage
+
+```java
+public class IterableExmple {
+  public static void main(String[] args) {
+    List<String> lst = new ArrayList<>();
+    lst.add("apple");
+    lst.add("pear");
+    lst.add("kiwi");
+
+    // create iterator for lst
+    Iterator<String> iterator = lst.iterator();
+
+    // use iterator to iterate over lst
+    while(iterator.hasNext()) {
+      String fruit = iterator.next();
+      System.out.println(fruit);
+    }
+  }
+}
+```
 
 ### `ListIterator interface`
 - sub-interface of `Iterator interface`
