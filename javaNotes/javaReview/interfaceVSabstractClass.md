@@ -12,7 +12,7 @@
 <tr><td>
 Multiple Inheritance</td>	<td>A class can implement multiple interfaces</td>	<td>A class can extend only one abstract class</td></tr>
 <tr><td>
-Constructors</td>	<td>Cannot have constructors</td>	<td>Can have constructors</td></tr>
+Constructors</td>	<td>NO constructors</td>	<td>Can have constructors</td></tr>
 <tr><td>
 Inheritance</td>	<td>Used to define a contract for behavior</td>	<td>Used to define a base class with common behavior and state</td></tr>
 <tr><td>

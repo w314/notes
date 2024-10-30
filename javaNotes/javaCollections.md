@@ -19,7 +19,7 @@ Collection framework provdes the `Iterator` that provides a mechanism
     - size()
     - iterator()
 
-### Level 1: `Set`, `List`, `Queue`
+### Level 1: `Set`, `List`, `Queue` Interfaces
 
 All extend the `Collection Interface`
 
@@ -85,10 +85,10 @@ Does NOT implement `Collection Interface`.
 ## `Iterable`, `Iterator` Interfaces
 
 ### `Iterable Interface`
+> Represents a collection of elements that can be traversed one by one.
 
 - part of the Collection Framowork
 - root interface for all collection classes that can be iterated over
-- represents a collection of elements that can be traversed one by one
 
 #### Iterable Interface Definition
 

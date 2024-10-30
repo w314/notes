@@ -15,19 +15,38 @@ To use add dependency to `pom.xlm`
 
 ### Constraint Validation Annotation
 
-- `@NotNull`	Checks that the annotated property is not null
-- `@Null`	Checks that the annotated property is null
-- `@Min`	Checks that the annotated property has value greater than or equal to given value
-- `@Max`	Checks that the annotated property has value less than or equal to given value 
-- `@Email`	Checks that the annotated property is a valid email id
-- `@NotEmpty`	Checks that the annotated property is not null or empty for given collection
-- `@NotBlank`	Checks that the annotated property is not null or white space
-- `@Pattern`	Checks that the annotated property follows the provided regex attribute
-- `@Past`	Checks that a date value is in the past
-- `@PastOrPresent`	Checks that a date value is in the past including the present date
-- `@Future`	Checks that a date value is in the future
-- `@FutureOrPresent`	Checks that a date value is in the future including the present date
-- `@Size`	Checks that size of annotated property is between its min and max attributes. It can be applied to String, Collection, Map and Array properties.
+Constaint validation annotation check that the annotated propert is: 
+- `@NotNull` 
+    - not null
+- `@Null`
+    - null
+- `@Min`
+    - has value greater than or equal to given value
+- `@Max`
+    - has value less than or equal to given value 
+- `@Email`
+    - a valid email id
+- `@NotEmpty`
+    - not null or empty for given collection
+- `@NotBlank`
+    - not null or white space
+- `@Pattern`
+    - follows the provided regex attribute
+- `@Past`
+    - in the past
+- `@PastOrPresent`
+    - in the past including the present date
+- `@Future`
+    - in the future
+- `@FutureOrPresent`
+    - in the future including the present date
+- `@Size`
+    -  between its min and max attributes
+    - can be applied to properties that are:
+        - String
+        - Collection
+        - Map
+        - Array
 
 
 Cascading Validation
@@ -61,45 +80,48 @@ public class CustomerDTO {
     @Pattern(regexp="[A-Za-z]+( [A-Za-z]+)*", message="{customer.name.invalid}")
 	private String name;
     
-    @PastOrPresent(message = "customer.dob.invalid")
+    @PastOrPresent(message = "{customer.dob.invalid}")
 	private LocalDate dateOfBirth;
     //getter and setter
 }
 ```
+
+
 - use `"{ }"` to retrieve messages from ValidationMessages.properties
 - adding the constrains on the bean attributes will **NOT** carry out validation
 - have to use `@Valid` in the POST request
 
-#### Use @Valid in Controller Methods
+### Set up Validation in Controller Class
 
+
+#### use `@Validated` for the controller class
 ```java
-@PostMapping(value = "/customers")
-public ResponseEntity<String> addCustomer(@Valid @RequestBody CustomerDTO customerDTO) throws InfyBankException  {
-   //rest of the code
-}
+@RestController
+@RequestMapping(value="/api")
+@Validated
+public class CustomerController {...}
+```
+- using `@Validated` for the controller class triggers validation
+
+#### use `@Valid` to validate request body input
+```java
+
+    @PostMapping(value = "/customers")
+    public ResponseEntity<String> addCustomer(@Valid @RequestBody CustomerDTO customerDTO) throws InfyBankException  {...}
 ```
 - `@Valid` will make Spring validate the incoming customerDTO
 - will throw `MethodArgumentNotValidException` if the validation fails
 
 
-## Validate Path Variables & Request Parameters
+### validate path variables
 
-```java
-@RestController
-@RequestMapping(value="/infybank")
-@Validated
-public class CustomerAPI {
-	
-	@Autowired
-	private CustomerService customerService;
-	
+```java	
 	@GetMapping(value = "/customers/{customerId}")
-	public ResponseEntity<Customer> getCustomerDetails(@PathVariable @Min(value = 1, message = "Customer id should be between 1 and 100") @Max(value = 100, message = "Customer id should be between 1 and 100") Integer customerId)  throws Exception  {
-		Customer customer = customerService.getCustomer(customerId);
-		ResponseEntity<Customer> response = new ResponseEntity<Customer>(customer, HttpStatus.OK);
-		return response;
-	}
+	public ResponseEntity<Customer> getCustomerDetails(
+        @PathVariable 
+        @Min(value = 1, message = "Customer id should be between 1 and 100") 
+        @Max(value = 100, message = "Customer id should be between 1 and 100") 
+        Integer customerId)  throws Exception  {...	}
 ```
-- use `@Validated` annotaion for the controller class
-- use contrainst annotation for setting validation rules
+- use contrainst annotation for setting validation rules for path variables
 - `ConstraintViolationException` is thrown when validation fails
