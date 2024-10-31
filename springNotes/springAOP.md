@@ -4,39 +4,25 @@ aop
 
 # Aspect Oriented Programming
 
- 
-
 > `Cross-Cutting Concerns` are functionalities common to all layers like logging, security and transaction management.
 
- 
 
 > `Aspect Oriented Programming (AOP)` provides a way to separate cross-cuttin conerns from business logic code.
 
- 
-
 - creates loosely coupled application
-
 - uses `AspectJ`, a popular AOP Framework
 
- 
 
 ## Elements of AOP
 
- 
-
 ### Aspect
 
- 
-
 >`Aspect` is a class that implements the cross-cutting concerns.
-
- 
 
 - class should be annotated with `@Aspect`
 
 - use with classes that are annotated with `@Component` or its derivatives
 
- 
 
 ### Join Point
 
@@ -209,8 +195,6 @@ execution of all public method in CustomerRepository of com.wp.repository packag
 </dependency>
 
 ```
-
- 
 
 ### Add Advises to Classes
 

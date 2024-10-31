@@ -3,7 +3,7 @@ java, spring, spring-boot, exception, exception-handling
 # Exception Handling in Srping
 
 ## Using @RestControllerAdvice
-
+> `@RestControllerAdvice` annotation is used to define global exception handler used 
 ### Create ErrorInfo Class 
 
 To provide more informaion about erros, it is best to create an error infor class.
