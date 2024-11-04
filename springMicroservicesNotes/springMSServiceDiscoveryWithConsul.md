@@ -10,6 +10,13 @@ Need to add `spring-cloud-starter-consul-discovery` dependency
 - will ensure that the microservice registers itself
 - enables the microservice to discover other services
 
+`pom.xml`
+```xml
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+        </dependency>
+```
 
 ### 2. Add Configuration
 

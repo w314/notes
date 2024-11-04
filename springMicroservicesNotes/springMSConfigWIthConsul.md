@@ -1,5 +1,11 @@
 
-# Spring Configuration
+# `Spring Cloud Consul` for distributed configuration
+> The `Consul Server` shares the respective configuration data to all the microservices during the `bootstrap phase`.
+
+The `bootstrap context` gets loaded before the `application context`.
+
+## Source
+- [Spring Documentation](https://docs.spring.io/spring-cloud-consul/reference/config.html)
 
 ## Install `consul`
 - install from: [consul](https://developer.hashicorp.com/consul)
@@ -23,26 +29,8 @@ To see consul running open browser to: `localhost:8500/ui`.
 
 ## Store Configuration Details in consul
 
-Consule has a key-value store to store the configuration data.
+- consule has a key-value store to store the configuration data
 - consul stores config data in the file system
-- go to consul ui (`localhost:8500/ui`)
-- select `Key/Value` menu item (on left side panel)
-- enter config information
-```yml
-spring:
-  cloud:
-    consul:
-      config:
-        # specifies the directory with common config
-        default-context: application
-        # name of file config for specific microservice
-        # is stored in the microsercice's name space
-        data-key: service
-        # configures consul server to resend config data
-        # to the microservice at every 100ms
-        watch:
-          delay: 100
-```
 - supported formats are:
   - YAML
   - JSON
@@ -52,68 +40,105 @@ spring:
   - config/App - application spedific
   - config/application - common config
 
-## Use Consul in Microservice
 
-[consul configuration](https://docs.spring.io/spring-cloud-consul/docs/current/reference/html/#spring-cloud-consul-config)
+### store common configuration
+- go to consul ui (`localhost:8500/ui`)
+- select `Key/Value` menu item (on left side panel)
+- click `Create` button in top right corner
+- enter file name in `Key or Folder` input area
+- `config/application/data`
+  - by default configuration data is stored in the `config` folder
+  - `application` folder will store all common properties
+  - `data` will be the name of the file we store the configuration data 
 
-### 1. Add dependency
-- spring cloud is a separate project from string, so version has to be included
+`config/applciation/data`
+```yml
+spring:
+  datasource:
+    username: root
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+```
+
+### store microservice specific configuration
+Create new `Key/Value` a file.
+- `config/ownerMS/data`
+- create new folder in the `config` folder
+- new folder's name has to match the application name
+
+`config/ownerMS/data`
+```yml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/owner
+```
+
+## Configure Consul in Microservice
+
+Sources:
+- [consul configuration](https://docs.spring.io/spring-cloud-consul/docs/current/reference/html/#spring-cloud-consul-config)
+
+### 1. Add dependencies
 
 `pom.xml`
 ```xml
-	<properties>
-		<java.version>21</java.version>
-		<spring-cloud.version>Hoxton.SR6</spring-cloud.version>
-	</properties>
-
-    		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-consul-config</artifactId>
-			<version>2.2.4.RELEASE</version>
-		</dependency>
-
+<dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-starter-consul-config</artifactId>
+</dependency>
 ```
-### 2. Add Configuration
 
-Bootstrap Context
-- in Spring Cloud applicaation there is a `Bootstrap Context`
-- gets loaded before `Application Context`
-- configuration data will be loaded during the bootstrap phase
+### 2. Import Configuration Data
 
-Create `src/main/java/recources/bootstrap.yml`:
+In `application.properties` add:
+```bash
+spring.config.import=optional:consul:
+```
+- will import configuration from the consul server
+- removing the  `optional` prefix  will make consul config to fail if it cannot connect to the consul server
+- will connect to default `Consul Agent` at `http://localhost:8500`
+- to set host and port use syntax: `spring.config.import=optional:consul:myhost:8500` 
+
+Remove properties moved to `Consul Server` from the  `application.properties` file.
+
+### 3. Configure Consul Server
+
+Create an `src/main/resources/application.yml` file:
 ```yml
-# server config
-server:
-  port: 9100
-
-#application name config
 spring:
-  application:
-    name: petMS    
-# configuration for app to use consul config
   cloud:
+    # configuring Cloud Config
     consul:
       config:
-        # indicates that this microservice will use consul configuration
+        # true enables Cloud Config
         enabled: true
-        # default folder for configuration
+        # sets the base folder for configuration
+        # config is the default name
         prefix: config
-        # folder where common application properties are stored
+        # sets the folder name used by all applications
         defaultContext: application
-        # used to set the value of the separator used to separate profile names
+        # set the value of the separator
+        # used to separate the profile name
+        # in property sources with profiles
         profileSeparator: '::'
-        # format used
+        # name of file config for specific microservice
+        # is stored in the microsercice's name space
+        # default is `data`
+        data-key: data
+        # configures consul server to resend config data
+        # to the microservice at every 100ms
+        watch:
+          delay: 100
+        # IMPORTANT will not work without setting format
         format: YAML
 ```
 
-Empty out `application.properties` file, as the values were moved from here to `bootstrap.yml`.
+
 
 
 ## Qustions
 > Spring consul by deafault stores config data in ...?
 
 In the file system.
-## Error
-[Error creating bean with name ConfigurationPropertiesBean](https://programmerah.com/solved-springboot-error-error-creating-bean-with-name-configurationpropertiesbeans-defined-in-class-path-48221/)
-
-Problem is using springboot framework type, the introduction of the springcloud dependency, version incompatibility leads to errors can not find the bean
