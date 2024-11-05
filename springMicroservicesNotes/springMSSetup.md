@@ -5,7 +5,7 @@
 ## Separate Monolith to Microservices
 - use separate databases
     - remove foreign keys
-- use `RestTemplate` to make API calls to other microservices
+- use `RestTemplate` to make API calls to other microservices (only temporary solution)
 
 
 ## Setup Centralized Configuation & Service Discovery
