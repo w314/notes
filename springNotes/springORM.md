@@ -1,10 +1,16 @@
-# Spring Persistance Layer
+# ORM (Object Relational Mapping)
+> Technique / design pattern which maps and object model with a relational model.
 
- 
+- maps:
+    - java classes to tables
+    - instance variables to columns of a table
+    - objects to rows in a the table
+- database independent 
+    - as all databases provid esupport for ORM
+    - make appliction protable, independent of the underlying database
 
-## ORM (Object Relatoinal Mapping)
 
- 
+To use `ORM` in a java application the `Java Persistence API (JPA)` specification is used.
 
 ### Object Relaional Impedance Mismatch
 

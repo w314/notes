@@ -1,6 +1,17 @@
 # Spring Boot Application
 
-## Layers
+## Application Layers
+
+![Spring Application Layers](./springImages/springApplicationLayers.png)
+
+### Persistence Layer
+- code to interact with the database are implemented in this layer
+- uses
+    - Spring ORM
+    - Spring Data
+    - Spring JDBC
+
+## Application Code Layers/Folders/Key Features
 - entity
     - @Entity
     - @Id

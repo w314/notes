@@ -1,5 +1,7 @@
 # Rest Template
-Making HTTP requests from Spring Boot
+> Used for making HTTP requests from Spring Boot application.
+
+Blocking. See `springNotes/springClients.md`
 
 ```java
 // get customer from customer API

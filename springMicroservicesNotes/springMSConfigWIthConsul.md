@@ -73,6 +73,12 @@ Create new `Key/Value` a file.
 spring:
   datasource:
     url: jdbc:mysql://localhost/owner
+# server config
+server:
+  # setting port to 0 
+  # will make consul choose 
+  # random port number
+  port: 0
 ```
 
 ## Configure Consul in Microservice
@@ -116,7 +122,7 @@ spring:
         enabled: true
         # sets the base folder for configuration
         # config is the default name
-        prefix: config
+        prefixes: config
         # sets the folder name used by all applications
         defaultContext: application
         # set the value of the separator
