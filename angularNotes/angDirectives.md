@@ -1,11 +1,85 @@
 angular, directive
 # Angular Directives
+> Instructions for the compiler about how to build DOM elements.
 
-What is a directive?
+## Types of Directives
+- Components
+  - directives with a template (view)
+  - `@Component` = @Directive with template
+- Structural Directives
+  - `*directive-name = expression`
+  - changes the DOM structure by
+    - adding elements
+    - removing elements
+  - types:
+    - `*ngIf`
+    - `*nfFor`
+    - `*ngSwitch` 
+- Attributes Directives
+  - used to modify the behavior or appearance of
+    - existing element
+    - component
+    - other directive
+  - types:
+    - `ngModel`
+    - `ngClass`
+    - `ngStyle`
 
-> Instructions for the DOM on how to build the web page.
+## Structural Directives
 
- 
+### `*ngIf`
+
+```html
+<!-- only show form if both loginSuccess & loginFailed is false -->
+ <!-- otherwise show element with the template variabel name messages -->
+<form *ngIf="!loginSuccess && !loginFailed; else messages">
+    <label for="userName">User Name</label>
+    <input  type="text" name="userName" [(ngModel)]="userName">
+    <label for="password">Password</label>
+    <input type="password" name="password" [(ngModel)]="password">
+  <button type="submit"  (click)="login()">Login</button>
+</form>
+<!-- template with template variable name #messages -->
+<!-- template only gets rendered by angular if specifically instructed to render it -->
+<!--in this case it only gets rendered if either loginsuccess or loginfailed is true --> 
+<ng-template #messages>
+    <!-- <ng-container> will only render if the login failed -->
+    <ng-container *ngIf="loginFailed">
+      <img src="loginfailed.png" alt="login failed">
+      <h4 style="font-family: cursive;">Invalid Credentials</h4>
+    <!-- this <ng-container> only renders in case of login success -->
+    </ng-container>
+    <ng-container *ngIf="loginSuccess">
+      <img src="loginsuccess.png" alt="login successful">
+      <h4 style="font-family: cursive;">Welcome {{userName}}!!</h4>
+    </ng-container>
+</ng-template>
+```
+
+- `<ng-template>` is a template that only gets rendered by angular if specifically instructed to render it.
+- `<ng-container>` is a special element that can hold structural directives without adding a new element to the DOM
+
+### `*ngFor`
+> Used to iterate over a collection of data.
+
+`app.component.ts`
+```ts
+export class AppComponent {
+  courses: any[] = [
+    { id: 1, name: "TypeScript" },
+    { id: 2, name: "Angular" },
+  ];
+}
+```
+`app.component.html`
+```html
+<ul>
+  <li *ngFor="let course of courses;  let i = index"> 
+       {{i}} - {{ course.name }} 
+  </li>
+</ul>
+```
+
 
 ## Custom Directives
 > Custom Directives are used to change the appearance of the components.
