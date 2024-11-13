@@ -56,8 +56,9 @@ An exception occuring in an inner block:
 ```sql
 DECLARE
 BEGIN
-  --Values of employee with id 21 are retrieved and stored in the variables
-  --Exception handling section
+  -- Values of employee with id 21 are retrieved and stored in the variables
+  -- Exception handling section
+  -- Pay attention it is singular EXCEPTION (not exceptions)
 EXCEPTION
 WHEN NO_DATA_FOUND THEN
   DBMS_OUTPUT.PUT_LINE ( 'Employee with ID '||v_employee_id||' is not present.');

@@ -80,6 +80,76 @@ export class AppComponent {
 </ul>
 ```
 
+## Attribute Directives
+> Changes the appearance/behavior of a component/element. 
+
+Types of built-in attributes directives
+- ngStyle
+- ngClass
+
+### `ngStyle`
+> Used to modify a component/element's style
+
+- `[ngStyle] = "expression"`
+- expression can accept 
+  - array
+  - string
+  - object
+
+```html
+<p [ngClass]="{css_class_name1: boolean, css_class_name2: boolean}">
+```
+### `ngClass`
+> Used to dynamically set or change the css classes for DOM element.
+
+- `[ngClass] = "expression"`
+
+template:
+```html
+<!-- setting classes with array of strings -->
+<span [ngClass]="['blueColored', 'capitalized']">
+
+<!-- setting css classes to true/false depending on -->
+<!-- whether they are applicable or not -->
+<!-- based on class variables -->
+<span [ngClass]="{
+    blueColored:isBlue,
+    capitalized:isCapitalized
+}">
+```
+where in component class:
+```ts
+class MyComponent {
+  isBlue = true;
+  isCapitalized = true;
+  letItBlue = blueColored;
+}
+```
+with css:
+```css
+.blueColored {color: blue;}
+.capitalized { font-variant: small-caps;}
+```
+
+#### Property Binding with [ngClass]
+
+```html
+<!-- sets ngClass to class variable 'letItBlue' -->
+<!-- class variable 'letItBlue' has the value 'blueColored' -->
+<!-- blueColored is a CSS class name -->
+<span [ngClass]="letItBlue">Used [ngClass] property styling</span>
+```
+See class and css above.
+
+### [class] property binding (NOT [ngClass])
+
+Sets specific classnames true or false using class variables.
+```html
+<span
+    [class.blueColored]="isBlue"
+    [class.capitalized]="isCapitalized"
+>
+```
 
 ## Custom Directives
 > Custom Directives are used to change the appearance of the components.
@@ -101,6 +171,7 @@ To create one:
 `myDirective.directive.ts`
 ```ts
 import { Directive } from '@angular/core'
+
 // the @Directive decorator makes the class a directive
 @Directive({
     // @Directive decorator has one property: selector
