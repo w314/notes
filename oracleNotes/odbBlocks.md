@@ -102,6 +102,8 @@ BEGIN
 END;
 ```
 
+
+
 Problem:
 whenever a new employee is recruited to the company, HR manager should add the employee's details to the database. Certain validations need to be performed, before allocating employee to particular department and job.
 
