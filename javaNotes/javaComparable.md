@@ -2,17 +2,16 @@ java, comparable
 
 # `Comparable Interface`
 
-- part of the `java.lang` package
+- built in `funtional interface`
 - has only 1 method: `compareTo(Object)`
-- it is a built in `funtional interface`
+- part of the `java.lang` package
 
 
 ## `compareTo()` method
 - helps ordering objects of a class that implements it
-- this lets them get sorted
 - is used to compare the current object to the one passed to it
 - returns 0 if object are the same
-- positive integer if the curretn object is greater
+- positive integer if the current object is greater
 - negative integer if the current object is lesser
 
 ```java

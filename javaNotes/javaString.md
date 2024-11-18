@@ -29,6 +29,19 @@ As strings are `immutable` string methods return a new string.
 - `.substring(int beginningInd, int endIndex)` - end index is optional
 - `.toCharArray()` - converts String to `char[]` array
 
+```java
+/* compareTo()
+compares 2 strings lexicographically
+returns 0 or a positive number or a negative number
+*/
+String firstString = "fgh";
+String secondString = "abd";
+int order = firstString.compareTo(secondString);
+if(order == 0) System.out.println("The strings are the same");
+else if( order > 0) System.out.println()
+```
+
+
 ### String Conversion
 
 ```java

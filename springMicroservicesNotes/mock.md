@@ -1,42 +1,115 @@
+STEP 1
+
+Basic Setup
+
+Start Consul
+
 Configure Service Discovery:
 
-in gateway ```application.yml`
+Configure gateway
+in gateway `application.yml`
 - server, port
 - app name
 -- cloud.consul.discovery.hostname
 
-in ms
+Configure MS
+in ms `application.yml`
 - server, port
 - db username, password
 - app name
 - cloud.consul.dicovery hsotname
 
 
+start both applications 
+exectue tests
+5 tests are passing
 All tests pass for ConsulServerTest 3, and AadharDisoveryTest 2. (No central config needed)
+Integration test did not pass (had type in uri which was the cause probably)
 
 _____
+
+ALTERNATIVE STEPS:
+as long as the service class has @Service the controller can be built first and all controller tests will pass 
+
+Adding @Transactional to Service did not help with test casesc
+_____
+
+STEP 2
+
 
 AdharService
 - @Service on top
 - autowire validator
 - autwire repo
 - do isAadharVlaid
-- => 5 serviceTests are passing (total 10 tests)
+- DO NOT forget the check string equality with `.equals`
 
+restart aadhar-ms
+execute tests
+- => 5 of 10 serviceTests are passing 
+(total 10 tests)
+_____________
 
+STEP 3
 
 COntroller
 - @RestController
 - @RequestMapping
-- autowire service 
-- added handle for isvalid lost two tests
-- added @CrossOrigin got the 2 tests back.
 >NEED @CrossOrigin
+- autowire service IT HAS TO BE THE INTERFACE NOT THE IMPLEMENTATION
+- add endpoint for valid aadhar 
+
+Restart, execute got 2 of 4 controller tests
+12 tests so far
+both postmen test for this passes
+
+________________
+STEP 3
+
+Add getAadharDetails in service 
+check not found with `aadhar == null`
+
+restart, execute
+got 2 extra service points 7 of 10
+toatal 14 tests
 
 
-NO extra points so far, although both postman test for isValid endpoint pass
+_______________
+STEP 4
 
-Added getAadharDetails in service got 2 service points - 12
+Add endpoint for get aadhar details in controller
+
+restart, execute
+got 1 extra controller test 3 of 4
+total 16 as integration test works after tryign to fix application.yml in gatewaty (althouth it looks like did not change anything ???)
+(but not the second time)
+
+only 1 postmen passes for this 
+3 of 6 total
+( at the end all postman test pass)
+
+___________
+STEP 5
+
+add service update address
+
+restart, execute
+got 1 extra service point 8 of 10
+total 17
+
+still the same 2 postmen tests pass
+
+___________
+STEP 6
+
+add enpoint in controller for update address
+
+restart, execute
+got the last controller point 4 of 4
+total 18
+
+still only 2 postman test pass
+_____________---
 
 
 Added endpoint nonexistent aadhar passes n psotman but valid does not (it probably expects updated address that is not working yet)

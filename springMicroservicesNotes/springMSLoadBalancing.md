@@ -47,14 +47,14 @@ Types:
     - interacts with server registry and chooses only the instances that are up and running dynamically
 
 ## Client-Side Load Balancing with Spring Cloud Load Balancer
+Supoorts both static and dynamic load balancing.
 
-Source: [Sping Docs](https://spring.io/guides/gs/spring-cloud-loadbalancer) - static example
+Sources:
+- Source: [Sping Docs](https://spring.io/guides/gs/spring-cloud-loadbalancer) - static example
 
-Source: [maybe dynamic example?](https://spring.io/guides/gs/service-registration-and-discovery)
+- Source: [maybe dynamic example?](https://spring.io/guides/gs/service-registration-and-discovery)
 
-### 1. Run Several MS instances
-
-Run several instances of one of the microservices.
+### 1. Update Configuration in Consul
 
 Source: [Spring: Making instance id unique](https://docs.spring.io/spring-cloud-consul/reference/discovery.html#making-the-consul-instance-id-unique)
 
@@ -77,11 +77,15 @@ spring:
     hibernate:
       ddl-auto: update
   # unique instance id configuration
+  # need unique instance id for consul 
+  # to register more than 1 service
   cloud:
     consul:
       discovery:
         instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
 ```
+
+### 2. Run Several MS instances
 
 To start several instance of a microservice in Sprint Suite:
 - right click microservice
@@ -89,11 +93,11 @@ To start several instance of a microservice in Sprint Suite:
 - run all services
 
 
-### Use Spring Cloud Load Balancer in Microservice
+### 3. Use Spring Cloud Load Balancer in Microservice
 
 Use Spring Cloud Load Balancer to load balance requests to the microservice with several instances running.
 
-#### Add Dependency
+#### 3.1 Add Dependency
 
 `pom.xml`
 ```xml
@@ -102,29 +106,12 @@ Use Spring Cloud Load Balancer to load balance requests to the microservice with
     <artifactId>spring-cloud-starter-loadbalancer</artifactId>
 </dependency>
 ```
+### 3.2 Create Load Balanced RestTemplate
+For the controller to use when contacting other microservices.
 
-#### Configure Load Balancer
-
-`src/main/java/com.wp.ownerMS/LoadBalancerConfig.java`
+`src/main/java/CustomerConfig.java`
 ```java
-
-
-#### Use Load Balancer in Controller Class
-
-```java
-@LoadBalancerClient(name="MyloadBalancer", 
-configuration=LoadBalancerConfig.class)
-```
-- whenever a service name MyloadBalancer is contacted instead of using the default setup it will use the configuration form teh LoadBalancerConfig.class
-- The LoadBalancerConfig.class configuraton calss will provide the list of static URLs among which the request has to be balanced
-
-
-## Implement Dynamic Load Balancing
-
-### 1. Create Load Balanced RestTemplate
-
-Create `src/main/java/CustomerConfig.java`
-```java
+// use the @Configuarton annotation
 @Configuration
 public class CustomerConfig {
 
@@ -138,10 +125,11 @@ public class CustomerConfig {
     }
 }
 ```
+### 3.3  Use Load Balancing in Controller Class
 
-### 2. Use Load Balanced RestTemple in Controller
+Setting up ownerMS to use load balancing when using petMS:
 
-`CustomerController.java`
+Update `src/main/java/controller/ownerController.java`
 ```java
 public class CustomerController {
 
@@ -149,34 +137,107 @@ public class CustomerController {
     @Autowire
     RestTemplate template;
 
+    // remove variable to store petUri
+    // private String petUri ;
+
+
+    // remove getting uli-s from service registry
+    /*
+        // get petMS microservice urls from service registry
+       List<ServiceInstance> listOfPetInstances = client.getInstances("petMS");
+       if(listOfPetInstances != null && !listOfPetInstances.isEmpty()) {
+       	petUri = listOfPetInstances.get(0).getUri().toString();
+      }
+    */
+
+    // WHEN CONTACTING THE PET MICROSERCIE
+    // remove
+    // define pet microservice url for getting pet details
+    // String petUrl = petUri + "/pets/" + petId;
+    // instead of using
+    // PetDTO petDTO = new RestTemplate().getForObject(petUrl,PetDTO.class);
+    
     // use load balanced template when making API calls to other microservices
-    public CustomerDTO getCutomerProfile(@PathVariable Long phoneNo) {
-
-        // earlier got a list of ServiceInstance and used the first
-    }
-}
+    // add MS name and form url as needed
+    PetDTO petDTO = template.getForObject("http://petMS/pets/"+petId,PetDTO.class);
 ```
 
-### Dynamic Load Balancing with `Consul`
 
 
-### Static Load Balancing with `Spring Cloud Load Balancer`
- 
-### 1. Add dependency
 
-`pom.xml`
-```xml
-spring-cloud-load-balancer
-```
+## Implement Static Load Balancing 
 
-### 2 Configure Load balancer
+- uses same `spring-cloud-starter-loadbalancer` dependency
+- uses fixed port numbers in configuration
+- this example does not use service discovery
 
-Demo-Load balance: 1:35
+### Configuration for `Static` Load balancing
 
-Create `src/main/java/LoadBalancerConfig.java`
+- Use the same OwnerConfig class for to create a load balanced `RestTemplate` as for dynamic load balancing.
+- For static load balancing provide the instances to balance in a configuration class:
+
+Create a Load Balancer configuration class.
+
+`src/main/java/com.wp.ownerMS/LoadBalancerConfig.java`
 ```java
 @Component
-public class LoadBalancerConfig {}
+public class LoadBalancerConfig {
+	@Bean
+	@Primary
+	ServiceInstanceListSupplier serviceInstanceListSupplier() {
+		return new OwnerServiceInstanceListSupplier("petMS");
+	}	
+}
+
+class OwnerServiceInstanceListSupplier implements ServiceInstanceListSupplier {
+	
+	private final String serviceId;
+	
+	OwnerServiceInstanceListSupplier(String serviceId) {
+		this.serviceId = serviceId;
+	}
+	
+	@Override
+	public Flux<List<ServiceInstance>> get() {		
+		return Flux.just(Arrays.asList(
+			new DefaultServiceInstance(serviceId + "1", serviceId, "localhost", 7300, false), 
+			new DefaultServiceInstance(serviceId + "2", serviceId, "localhost", 7400, false)
+		));
+	}
+	
+	@Override
+	public String getServiceId() {
+		return this.serviceId;		
+	}
+}
 ```
+- whenever a service name MyloadBalancer is contacted it will use the configuration form teh LoadBalancerConfig.class
+- The LoadBalancerConfig.class configuraton calss will provide the list of static URLs among which the request has to be balanced
+
+
+### Update Controller Class
+
+`src/main/java/controller/OwnerMS.java`
+```java
+// add annotation for Load Balancing
+// specify configuration file and add a name to the load balancer
+@LoadBalancerClient(name="MyLoadBalancer", configuration=LoadBalancerConfig.class)
+public class OwnerController {
+
+    // autowire load balanced RestTemplate
+    @Autwired
+    RestTemplate template;
+
+    // ...
+
+    // contact pet micoservice for pet details
+    // using load balanced template
+    int petId = 2;
+    // use the autowired load balanced rest template 
+    // to contact pet MS
+    // in the url use the loadBalacer name provided in the
+    // @LoadBalancerClient annotation
+    PetDTO petDTO = template.getForObject("http://MyLoadBalancer/pets/"+petId, PetDTO.class);
+}
 
 
