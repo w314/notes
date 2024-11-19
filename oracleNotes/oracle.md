@@ -22,7 +22,22 @@ cd C:/app/piros/product/21c/dbhomeXE/bin
 sqlplus / as sysdba
 ```
 
-In SQL Developer
+## `Listener`
+
+[Source](https://www.oracletutorial.com/oracle-administration/oracle-listener/)
+
+A `listener` is a separate database server process that establishes the connection between clients and the database instance.
+
+If the `listener` stops working you cannot connect to the database, already established connection will not be affected.
+
+If trying to connect you will get: `ORA-12541: TNS:no listener` error.
+
+Listener Command
+- status: `lsnrctl status`
+- start: `lsnrctl start`
+
+
+## SQL Developer
 
 Connect
 user: `SYS AS SYSDBA`

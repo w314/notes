@@ -1,5 +1,7 @@
 # PL/SQL Stored Functions
 
+## Create Function
+
 Stored Function to calculate tax amount
 ```sql
 -- FUNCTION HEADER
@@ -28,11 +30,21 @@ BEGIN
         v_tax_rate := 0;
     END IF;
     -- calculate tax to be paid
-    v_tax_amount := v_salary * (1 + v_tax_rate / 100);
+    v_tax_amount := v_salary * v_tax_rate / 100;
     -- return tax to be paid
     RETURN v_tax_amount;
     exception
-    when NO_DATA_FOUND then
-        dbms_output.put_line('No employee wiht id: ' || p_employee_id);
-end;
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('No employee wiht id: ' || p_employee_id);
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Other problem');
+END;
+```
+
+## Use Function
+
+```sql
+SELECT first_name, salary, sf_tax_calc(103) 
+FROM employees
+WHERE employee_id = 103;
 ```
