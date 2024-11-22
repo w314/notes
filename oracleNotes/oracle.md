@@ -3,6 +3,7 @@
 ## Sources
 - [OracleTutorial (not official Oracle docs)](https://www.oracletutorial.com/)
 - [Database Star](https://www.databasestar.com/oracle-database/)
+- [All Things SQL](https://blogs.oracle.com/sql/)
 
 ## Setup
 
@@ -10,6 +11,43 @@ Install Oracle Database XE from [Oracle](https://www.oracle.com/database/technol
 
 Install Oracle Developer from [Oracle](https://www.oracle.com/database/sqldeveloper/technologies/download/).
 
+## Pluggable vs Container Database
+
+[Source](https://www.databasestar.com/oracle-pdb/)
+
+- `CDB`
+    - Oracle can function as `multitenant container database  = CDB`
+- `PDB`
+    - collection of schemas and object that act as a regular Db
+
+
+### Oracle CDB structure
+
+- has many containers
+- container can be either a CDB or the root
+- there are 2 containers by default
+    - `CDB$ROOT`
+        - root container
+        - contains Oracle metadata
+        - contains common users
+    - `PDB$SEED`
+        - template that can be used to create PDBs
+        - cannot be modified
+- Oracle XE comes with a PDB already created: `XEPDB1`
+
+### Manage / View Containers
+
+In `SQL Plus` (software installed with Oracle) run:
+```sql
+-- show container currently used
+SHOW CON_NAME;
+
+-- show available PDBs
+SELECT pdb_name, status FROM cdb_pdbs;
+
+-- change container
+ALTER SESSION SET container = <container_name>;
+```
 
 ### Start Oracle DB
 
@@ -21,6 +59,33 @@ When you install Oracle Database XE, your Windows user is automatically added to
 cd C:/app/piros/product/21c/dbhomeXE/bin
 sqlplus / as sysdba
 ```
+
+
+## Create User
+
+DO NOT USE SYS SCHEMA. ([Source](https://stackoverflow.com/questions/15377346/why-cannot-i-create-triggers-on-objects-owned-by-sys))
+
+DO NOT CREATE USER IN ROOT CONTAINER<br>
+If getting error `ORA-65096: invalid common user or role name`
+you probably try to create user in root container.
+
+Sources:
+- [Create User - OracleTutorial](https://www.oracletutorial.com/oracle-administration/oracle-create-user/)
+- [Grant Priviliges - OracleTutorial](https://www.oracletutorial.com/oracle-administration/oracle-grant/)
+- [Grant All - OrcaleTutorial](https://www.oracletutorial.com/oracle-administration/oracle-grant-all-privileges-to-a-user/)
+- [Invalid common user erro SOF](https://stackoverflow.com/questions/33330968/error-ora-65096-invalid-common-user-or-role-name-in-oracle-database)
+
+```sql
+CREATE USER <user_name> IDENTIFIED BY <password>;
+GRANT ALL PRIVILEGES TO <user_name>;
+```
+
+Granting specific privileges
+```sql
+-- lets user log in
+GRANT CREATE SESSION TO <user_name>
+```
+
 
 ## `Listener`
 
@@ -35,6 +100,17 @@ If trying to connect you will get: `ORA-12541: TNS:no listener` error.
 Listener Command
 - status: `lsnrctl status`
 - start: `lsnrctl start`
+
+
+## Userful commands
+
+```sql
+-- view tables you have created
+select table_name from user_tables;
+
+-- view all object you have created
+select object_name, object_type from user_objects;
+```
 
 
 ## SQL Developer
