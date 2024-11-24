@@ -8,6 +8,8 @@
 
 The trigger body is executed depending on how many rows were affected by the DML statement. (INSERT / UPDATE / DELETE)
 
+`Row triggers` have the `FOR EACH ROW` clause.
+
 Row trigger have 2 `pseudo records`:
 - `:OLD` references the old row before UPDATE or DELETE
 - `:NEW` references the new row after INSERT or UPDATE
@@ -56,6 +58,8 @@ CREATE TABLE emp_salary_log(
 CREATE OR REPLACE TRIGGER trg_emp_salary_log
     BEFORE UPDATE OF salary
     ON Employees
+    -- FOR EACH ROW makes it a Row Trigger
+    -- that runs for each row affected by the DML statement
     FOR EACH ROW
 BEGIN
     INSERT INTO emp_salary_log
@@ -112,3 +116,70 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('Other problem occured');
 END;
 ```
+
+## Statement Triggers
+> Trigger body is executed only once irrespective of how many rows are affected by the DML statement.
+
+Do **NOT** have the FOR EACH ROW clause.
+
+Requirement: Financial year of company is from APRIL to next MARCH. At the end of financial year all balances has to be calculated. So no modification of salary should be allowed in March.
+
+```sql
+CREATE OR REPLACE TRIGGER trg_check_update_sal
+    BEFORE UPDATE OF salary
+    ON employees
+DECLARE
+    v_todays_date DATE;
+BEGIN
+    v_todays_date := SYSDATE;
+    IF EXTRACT(MONTH FROM v_todays_date) = 3 THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Employee salary cannot be modified in March');
+    END IF;
+END;
+```
+
+Use Trigger
+```sql
+SET SERVEROUTPUT ON;
+
+DECLARE
+    v_emp_id employees.employee_id%TYPE := 200;
+    v_new_salary employees.salary%TYPE := 100;
+BEGIN
+    UPDATE employees SET salary = v_new_salary WHERE employee_id = v_emp_id;
+    EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Something went wrong');
+        DBMS_OUTPUT.PUT_LINE('Error code: ' || SQLCODE);
+        DBMS_OUTPUT.PUT_LINE('Error message: ' || SQLERRM);
+END;
+```
+
+When trigger raises exception:
+```bash
+Something went wrong
+Error code: -20001
+Error message: ORA-20001: Employee salary cannot be modified in March
+ORA-06512: at "WP.TRG_CHECK_UPDATE_SAL", line 8
+ORA-04088: error during execution of trigger 'WP.TRG_CHECK_UPDATE_SAL'
+```
+The last two ORA error codes are normal part of Oracle's debugging.
+
+
+## Manage Triggers
+
+View Trigger Details
+```sql
+SELECT trigger_name, trigger_type, triggering_event,
+	table_name, referencing_names,
+	status, trigger_body
+FROM   user_triggers
+WHERE  trigger_name = <triggername>;
+```
+
+Delete Triggers
+```sql
+DROP TRIGGER <triggername>;
+```
+
+
