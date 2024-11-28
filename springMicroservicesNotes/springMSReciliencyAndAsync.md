@@ -2,10 +2,12 @@
 By this point:
 - microservices use consul to distributed configuration
 - microservice use consul for service discovery
-- microservices use a load balanced RestTemplate to make API calls to other microservices
+- microservices use a load balancing
+
+But at this point our microservice would continuosly send requests to an other microservice, even if that MS is down.
 
 
-`Resiliency` 
+Implementing Resiliency
 1. will make sure, that the microservice will monitor the health of other microservices and stops communication with them if requests to them fail. 
 2. microservice will wait a certain time before making a new requests
 3. if new request does not work, it waits again before reestablishing communication
@@ -21,6 +23,13 @@ By this point:
 - Half_Open
     - checks state of services
     - goes on to open or closed state based on that 
+
+### Fallback Mechanism
+
+Fallback is a method that runs case of:
+- error
+- timeout
+- open circuit
 
 ### Types of Circuit Breaker Pattern
 

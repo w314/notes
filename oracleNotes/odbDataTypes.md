@@ -15,3 +15,6 @@
 - uses **hardware arithmetic** (vs software arithmetic that `NUMBER` uses)
 - which makes it **faster**
 - requires **less storage** than `NUMBER`
+
+## CONSTANT
+Use `CONSTANT` to declare a constant.
