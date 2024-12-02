@@ -95,14 +95,14 @@ A `listener` is a separate database server process that establishes the connecti
 
 If the `listener` stops working you cannot connect to the database, already established connection will not be affected.
 
-If trying to connect you will get: `ORA-12541: TNS:no listener` error.
+If trying to connect you will get: `ORA-12541: Cannot connect. No listener` error.
 
 Listener Command
 - status: `lsnrctl status`
 - start: `lsnrctl start`
 
 
-## Userful commands
+## Usefull commands
 
 ```sql
 -- view tables you have created
@@ -115,52 +115,12 @@ select object_name, object_type from user_objects;
 
 ## SQL Developer
 
-Connect
-user: `SYS AS SYSDBA`
-password: as set at  installation for SYS
+DO NOT connect with user: `SYS AS SYSDBA` it uses cdb root, connect with user created and using a pbd container.
 
 
 TO run sql scripts:
 Select Tools > SQL Worksheets
 
 
-```sql
-SET SERVEROUTPUT ON
-DECLARE
-    v_first_name VARCHAR(20);
-    v_last_name VARCHAR(20);
-    v_date_of_joining DATE;
-    v_current_salary NUMBER(8,2);
-    v_incremented_salary NUMBER(8,2);
-BEGIN
-    SELECT first_name, last_name, hire_date, salary INTO v_first_name, v_last_name, v_date_of_joining, v_current_salary
-        FROM employees WHERE employee_id = 103;
-    IF(v_date_of_joining >= '01-Jan-95') THEN
-        v_incremented_salary := v_current_salary * 1.1;
-    ELSE
-        v_incremented_salary := v_current_salary * 1.15;
-    END IF;
-    UPDATE employees SET salary = v_incremented_salary WHERE employee_id = 103;
-    DBMS.OUTPUT.PUT_LINE('Name: '|| v_first_name || ' ' || v_last_name);
-    DBMS.OUTPUT.put_line('Date of Joining: ' || v_date_of_joining);
-    DBMS.OUTPUT.put_line('Current Salary: ' || v_current_salary);
-    DBMS.OUTPUT.put_line('Incremented Salary: ' || v_incremented_salary);
-END;
-```
 
-### Output ("Print") Results
-
-```sql
--- if omitted it won't output anythin
-SET SERVEROUTPUT ON;
-
--- print statemnt
-DBMS_OUTPUT.PUT_LINE(v_variable_to_print |
-| ' does not exist');
-```
-
-
-If encountering error: `PLS-00201: identifier 'DBMS.OUTPUT' must be declared`
-
-Solve by running `GRANT EXECUTE ON DBMS_OUTPUT to PUBLIC;`
 

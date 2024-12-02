@@ -127,4 +127,14 @@ BEGIN
 END;
 ```
 
+## Req-6 Add new job
+
+HR Manager wants to add a new job Advertising Director (ADV_DIR).
+
+Develop a PL/SQL program to add Advertising Director, ADV_DIR as a new job with minimum and maximum salary as 5000 and 10000 respectively. Add it to the database only if the same job ID does not exist, else display the message "ADV_DIR already exists".
+
+```sql
+
+```
+
 

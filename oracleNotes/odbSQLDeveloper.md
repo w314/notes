@@ -2,8 +2,7 @@
 
 ## Connect to DB
 - Click `+` icon to add db connection
-user: `SYS AS SYSDBA`
-password: as set at  installation for SYS
+
 
 ## Errors
 
@@ -21,7 +20,7 @@ Check for `Listener` status with `lsnrctl status`
 
 If listener is not working start it with:<br>
 - `lsnrctl start`
-- ave to start it as admin. Open comman promt as admin.
+- have to start it as admin. Open comman prompt as admin.
 - if trying to start as NOT an admin, will get the error message:
 ```bash
 Unable to OpenSCManager: err=5
