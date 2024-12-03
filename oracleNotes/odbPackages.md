@@ -41,4 +41,19 @@ END;
 
 ### DBMS
 
+### Output ("Print") Results
+
+```sql
+-- if omitted it won't output anythin
+SET SERVEROUTPUT ON;
+
+-- print statemnt
+DBMS_OUTPUT.PUT_LINE(v_variable_to_print |
+| ' does not exist');
+```
+
+
+If encountering error: `PLS-00201: identifier 'DBMS.OUTPUT' must be declared`
+
+Solve by running `GRANT EXECUTE ON DBMS_OUTPUT to PUBLIC;`
 

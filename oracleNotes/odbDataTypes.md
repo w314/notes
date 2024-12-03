@@ -18,3 +18,17 @@
 
 ## CONSTANT
 Use `CONSTANT` to declare a constant.
+
+## DATE
+
+- [Date Function - OracleTutorial](https://www.oracletutorial.com/oracle-date-functions/)
+- [MONTHS_BETWEEN example](https://www.oracletutorial.com/oracle-date-functions/oracle-months_between/)
+
+```sql
+-- returns current system date & time
+-- of the operation system oracle runs
+SYSDATE
+
+-- returns the number of months between two dates.
+MONTHS_BETWEEN
+```

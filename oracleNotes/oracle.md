@@ -11,7 +11,18 @@ Install Oracle Database XE from [Oracle](https://www.oracle.com/database/technol
 
 Install Oracle Developer from [Oracle](https://www.oracle.com/database/sqldeveloper/technologies/download/).
 
-## Pluggable vs Container Database
+### Start Oracle DB
+
+[source](https://docs.oracle.com/en/database/oracle/oracle-database/18/xeinw/connecting-oracle-database-xe.html)
+
+When you install Oracle Database XE, your Windows user is automatically added to the ORA_DBA operating system group, which grants you the SYSDBA privileges.
+
+```bash
+cd C:/app/piros/product/21c/dbhomeXE/bin
+sqlplus / as sysdba
+```
+
+## PDB vs CDB (Pluggable vs Container Database)
 
 [Source](https://www.databasestar.com/oracle-pdb/)
 
@@ -35,7 +46,7 @@ Install Oracle Developer from [Oracle](https://www.oracle.com/database/sqldevelo
         - cannot be modified
 - Oracle XE comes with a PDB already created: `XEPDB1`
 
-### Manage / View Containers
+### View / Change  Containers
 
 In `SQL Plus` (software installed with Oracle) run:
 ```sql
@@ -49,25 +60,28 @@ SELECT pdb_name, status FROM cdb_pdbs;
 ALTER SESSION SET container = <container_name>;
 ```
 
-### Start Oracle DB
+### Create Pluggable DB
 
-[source](https://docs.oracle.com/en/database/oracle/oracle-database/18/xeinw/connecting-oracle-database-xe.html)
-
-When you install Oracle Database XE, your Windows user is automatically added to the ORA_DBA operating system group, which grants you the SYSDBA privileges.
-
-```bash
-cd C:/app/piros/product/21c/dbhomeXE/bin
-sqlplus / as sysdba
-```
+[Source: Oracle Docs](https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CREATE-PLUGGABLE-DATABASE.html)
 
 
-## Create User
+
+
+
+## Users
+
+List all users in the database:<br>
+`select username from dba_users;`
+
+### Create User
 
 DO NOT USE SYS SCHEMA. ([Source](https://stackoverflow.com/questions/15377346/why-cannot-i-create-triggers-on-objects-owned-by-sys))
 
 DO NOT CREATE USER IN ROOT CONTAINER<br>
 If getting error `ORA-65096: invalid common user or role name`
 you probably try to create user in root container.
+
+SET CONTAINER TO A PDB first.
 
 Sources:
 - [Create User - OracleTutorial](https://www.oracletutorial.com/oracle-administration/oracle-create-user/)

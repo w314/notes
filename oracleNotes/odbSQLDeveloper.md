@@ -3,6 +3,14 @@
 ## Connect to DB
 - Click `+` icon to add db connection
 
+DO NOT connect to root container. 
+- use username that you created NOT SYS
+- Use `Service name: XEDB1` (not SID: xe)
+
+
+`XEDB1` is an oracle XE provided pluggable database.
+
+
 
 ## Errors
 
@@ -14,13 +22,13 @@ To solve:
 - delete whatever exists in that folder
 
 ## Error when tyring to open worksheet
-`ORA-12541: Cannot connect. No listener at localhost port 1521.`
+> ORA-12541: Cannot connect. No listener at %s
 
-Check for `Listener` status with `lsnrctl status`
+Reason: the listener is not working you can check the status with `lsnrctl status`
 
 If listener is not working start it with:<br>
 - `lsnrctl start`
-- have to start it as admin. Open comman prompt as admin.
+- HAVE to run it as admin Open command prompt as admin.
 - if trying to start as NOT an admin, will get the error message:
 ```bash
 Unable to OpenSCManager: err=5

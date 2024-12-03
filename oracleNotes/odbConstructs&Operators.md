@@ -13,7 +13,8 @@
 
 ```sql
 BEGIN
-    IF <condition> THEN
+    -- one `=` only
+    IF (v_id = 5) THEN
         statements;
     ELSIF <condition> THEN
         statements;

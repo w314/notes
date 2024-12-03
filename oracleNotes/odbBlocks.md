@@ -53,12 +53,16 @@ DECLARE
 
 
 ```sql
+SET SERVEROUTPUT ON;
+
 DECLARE
-    rec_emp_detail employees.%rowtype;
-    v_employee_id employees.employee_id%type := 900;
+    rec_emp_details employees%ROWTYPE;
+    v_employee_id employees.employee_id%TYPE := 100;
 BEGIN
-    SELECT * INTO rec_emp_detail
+    SELECT * INTO rec_emp_details
         FROM employees WHERE employee_id = v_employee_id;
+    DBMS_OUTPUT.PUT_LINE('Employee ID: ' || rec_emp_details.employee_id);
+    DBMS_OUTPUT.PUT_LINE('First Name: ' || rec_emp_details.first_name);
 END;
 ```
 - name & datatypes of fields will be the same as in the table
