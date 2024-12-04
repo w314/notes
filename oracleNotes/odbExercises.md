@@ -46,35 +46,6 @@ END;
 ```
 
 
-## Req-2 View first name and phone number of employees
-
-An employee wants to view the first name and phone number of other employees
-- display a message if the employee is not present.
-- try with id 107 (present) and 197 (not present) 
-
-```sql
-SET SERVEROUTPUT ON;
-
-DECLARE
-    v_employee_id employees.department_id%TYPE := 197;
-    v_first_name employees.first_name%TYPE;
-    v_phone_number employees.phone_number%TYPE;
-BEGIN
-    SELECT first_name, phone_number
-        INTO v_first_name, v_phone_number
-        FROM EMPLOYEES
-        WHERE employee_id = v_employee_id;
-    DBMS_OUTPUT.PUT_LINE('First Name: ' || v_first_name);
-    DBMS_OUTPUT.PUT_LINE('Phone Number: ' || v_phone_number);
-    EXCEPTION
-    WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('Employee with ID: ' || v_employee_id || ' does not exists.');
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Something went wrong!');
-        DBMS_OUTPUT.PUT_LINE('Error Code: ' || SQLCODE);
-        DBMS_OUTPUT.PUT_LINE('Error Message: ' || SQLERRM);
-END;
-```
 
 ## Req-3 None
 Same as before just show hire_date as well.
@@ -99,42 +70,6 @@ BEGIN
     ELSE
         DBMS_OUTPUT.PUT_LINE('Salary: ' || v_salary || ' -> Not eligible to pay tax.');
     END IF;
-END;
-```
-
-## Req-5 Calculate Tax
-
-Employees need to pay tax to the government based on the given salary slabs
-Develop a PL/SQL program to calculate and display the tax amount of Steven King, employee ID 100.
-Demosteps:
-Tax is computed based on the below rules:
-salary >= 15000 -> 15%
-salary >= 8000 -> 10%
-below 8000 0%
-
-```sql
-SET SERVEROUTPUT ON;
-
-DECLARE
-    v_employee_id employees.employee_id%TYPE := 103;
-    v_salary employees.salary%TYPE;
-    v_tax_rate NUMBER(2);
-    v_tax_amount NUMBER(8.2);
-BEGIN
-    SELECT salary INTO v_salary
-        FROM employees WHERE employee_id = v_employee_id;
-    IF v_salary >= 15000 THEN
-        v_tax_rate := 15;
-    ELSIF v_salary >= 8000 THEN
-        v_tax_rate := 10;
-    ELSE
-        v_tax_rate := 0;
-    END IF;
-    v_tax_amount := v_salary * v_tax_rate / 100;
-    DBMS_OUTPUT.PUT_LINE('Employee ID: ' || v_employee_id);
-    DBMS_OUTPUT.PUT_LINE('Salary: ' || v_salary);
-    DBMS_OUTPUT.PUT_LINE('Tax Rate: ' || v_tax_rate);
-    DBMS_OUTPUT.PUT_LINE('Tax Amount: ' || v_tax_amount);
 END;
 ```
 
@@ -332,48 +267,6 @@ BEGIN
 END;
 ```
 
-## Req-16 Update manager of department
-HR Manager wants to update the manager details of a department.
-
-Develop a PL/SQL program to make David Austin, employee ID 105, as the manager of IT department.
-
-Business Rule: 105 should be a valid employee and should also belong to IT department.
-
-```sql
-SET SERVEROUTPUT ON;
-
-DECLARE
-    v_department_id departments.department_id%TYPE;
-    v_department_name departments.department_name%TYPE := 'IT';
-    v_employee_id employees.employee_id%TYPE := 105;
-    v_employee_department_id employees.department_id%TYPE;
-    v_employee_count NUMBER(2);
-BEGIN   
-    -- check if employee ID valid
-    SELECT COUNT(employee_id) INTO v_employee_count
-        FROM employees WHERE employee_id = v_employee_id;
-    IF ( v_employee_count = 1 ) THEN
-        -- check if employee belongs to IT department
-        -- get id of department based on its name
-        SELECT department_id INTO v_department_id 
-            FROM departments WHERE department_name = v_department_name; 
-        -- get department_id of employee
-        SELECT department_id INTO v_employee_department_id 
-            FROM employees WHERE employee_id = v_employee_id;
-        -- check if employee belongs to the department    
-        IF ( v_employee_department_id = v_department_id ) THEN
-            -- update manager of department
-            UPDATE departments SET manager_id = v_employee_id 
-                WHERE department_id = v_department_id;
-            DBMS_OUTPUT.PUT_LINE('Set manager_id of ' || v_department_name || ' department to ' ||  v_employee_id || '.');
-        ELSE
-            DBMS_OUTPUT.PUT_LINE('Employee does not belong to department ' || v_department_name);
-        END IF;
-    ELSE
-        DBMS_OUTPUT.PUT_LINE('Invalid employee ID');
-    END IF;
-END;
-```
 
 ## Req-17 View Job History of Employee
 
@@ -443,66 +336,6 @@ BEGIN
     EXCEPTION
     WHEN e_manager_not_assigned THEN
         DBMS_OUTPUT.PUT_LINE('Department ' || v_department_id || ' does not have a manager.');
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Something went wrong');
-        DBMS_OUTPUT.PUT_LINE('Error Code: ' || SQLCODE);
-        DBMS_OUTPUT.PUT_LINE('Error Message: ' || SQLERRM);
-END;
-```
-
-## Req-20 Add department
-
-Develop a PL/SQL program to add a new department with
-- DEPARTMENT_ID: 111
-- DEPARTMENT_NAME: Sales
-- MANAGER_ID: 222
-- LOCATION_ID: 1500
-
-In the program
-- Declare, raise and handle a user-defined exception with an appropriate message if manager ID is not valid.
-- Declare, raise and handle a user-defined exception with an appropriate message if location ID is not valid. 
-- test location_id 150 for invalid location
-- test manager_id 105 for valid manager
-
-```sql
-SET SERVEROUTPUT ON;
-
-DECLARE
-    v_department_id departments.department_id%TYPE := 111;
-    v_department_name departments.department_name%TYPE := 'Sales';
-    v_manager_id departments.manager_id%TYPE := 105;
-    v_location_id departments.location_id%TYPE := 150;
-    e_invalid_manager EXCEPTION;
-    e_invalid_location EXCEPTION;
-BEGIN
-    DECLARE
-        v_manager_count NUMBER(2);
-    BEGIN
-        SELECT COUNT(manager_id) INTO v_manager_count
-            FROM employees WHERE employee_id = v_manager_id;
-        IF v_manager_count = 0 THEN
-            RAISE e_invalid_manager;
-        END IF;
-    END;
-    DECLARE
-        v_location_count NUMBER(2);
-    BEGIN
-        SELECT COUNT(location_id) INTO v_location_count
-            FROM locations WHERE location_id = v_location_id;
-        IF v_location_count = 0 THEN
-            RAISE e_invalid_location;
-        END IF;
-    END;
-    INSERT INTO departments
-        (department_id, department_name, manager_id, location_id)
-        VALUES
-        (v_department_id, v_department_name, v_manager_id, v_location_id);
-    DBMS_OUTPUT.PUT_LINE('New department created');
-    EXCEPTION
-    WHEN e_invalid_manager THEN
-        DBMS_OUTPUT.PUT_LINE('Manager ID ' || v_manager_id || ' is invalid.');
-    WHEN e_invalid_location THEN
-        DBMS_OUTPUT.PUT_LINE('Location ID ' || v_location_id || ' is invalid.');
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('Something went wrong');
         DBMS_OUTPUT.PUT_LINE('Error Code: ' || SQLCODE);

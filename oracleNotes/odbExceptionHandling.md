@@ -133,6 +133,8 @@ Syntax:
 
 `PRAGMA EXCEPTION_INIT(exception_name, -Oracle_error_number);`
 - `-Oracle_error_number` is the negative value of the error code
+  - same as the `SQLCODE` of the error
+  - can be a positive number `NO_DATA_FOUND` is 100 
 - must be after the user-defined exception in the same declarative section
 - scope of `PRAGMA EXCEPTION_INIT` is only within the program.
 - you can use it with predefined exceptions as welll
