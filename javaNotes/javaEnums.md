@@ -25,7 +25,10 @@ java, enum
 ### Examples
 
 ```java
-// NO = in declaration
+// NO = sign in declaration
+// if public needs ot be in its own file
+// otherwise use no access modifiers (so no private)
+// NO quotes ""  around values
 public enum PizzaSize { SMALL, MEDIUM, LARGE };
 
 // use enum type above
@@ -55,6 +58,8 @@ for(PizzaSize psize : PizzaSize.values()) {
 }
 
 ```
+
+## Problems
 
 What should be added in the blank to get the output as "see"?
 ```java
