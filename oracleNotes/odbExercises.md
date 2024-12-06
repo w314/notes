@@ -73,7 +73,6 @@ BEGIN
 END;
 ```
 
-## Req-7 missing
 
 ## Req-8 Update comission
 Develop a PL/SQL program to update the commission percentage(Commission_PCT) of Pat, employee ID 202, as 0.1, if he is a marketing rep (Job_ID :MK_REP). Also calculate and display the total salary of Pat.
