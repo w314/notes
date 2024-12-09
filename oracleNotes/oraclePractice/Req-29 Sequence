@@ -1,0 +1,8 @@
+# Req-29 Sequence
+
+```sql
+CREATE SEQUENCE seq_employee_id 
+    START WITH 301
+    INCREMENT BY 1
+    MAXVALUE 2000;
+```

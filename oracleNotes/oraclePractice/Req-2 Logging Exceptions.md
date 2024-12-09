@@ -5,7 +5,12 @@ Retrieve and display the phone number of employee with first name 'John' and
 - display appropriate message if there no employee with the given first name 
 - or if there are more than one employee with the given first name.
 
+Also invoke the function from anonymous block for employee ID 110 and 119.
+
 ALSO LOG all exceptions raised.
+
+
+## Create Log Table
 
 Create table for log:
 ```sql
@@ -16,6 +21,9 @@ CREATE TABLE error_log (
     comments VARCHAR2(250)
 );
 ```
+
+
+## Get Phone Number
 
 ```sql
 SET SERVEROUTPUT ON;

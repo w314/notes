@@ -18,6 +18,9 @@
 
 ## CONSTANT
 Use `CONSTANT` to declare a constant.
+```sql
+c_days_per_year CONSTANT NUMBER(3.0):= 365;
+```
 
 ## DATE
 
@@ -31,4 +34,7 @@ SYSDATE
 
 -- returns the number of months between two dates.
 MONTHS_BETWEEN
+
+-- '-' returns the number of days between dates
+v_days_hired := SYSDATE - v_hire_date;
 ```
