@@ -73,32 +73,6 @@ BEGIN
 END;
 ```
 
-
-## Req-8 Update comission
-Develop a PL/SQL program to update the commission percentage(Commission_PCT) of Pat, employee ID 202, as 0.1, if he is a marketing rep (Job_ID :MK_REP). Also calculate and display the total salary of Pat.
-
-```sql
-SET SERVEROUTPUT ON;
-
-DECLARE
-    v_employee_id employees.department_id%TYPE := 202;
-    v_commission_pct employees.commission_pct%TYPE := 0.1;
-    v_job_id employees.job_id%TYPE;
-    v_desired_job_id v_job_id%TYPE := 'MK_REP';
-    v_salary employees.salary%type;
-    v_total_salary v_salary%TYPE;
-BEGIN
-    SELECT job_id, salary INTO v_job_id, v_salary 
-        FROM employees WHERE employee_id = v_employee_id;
-    -- check if employee is a marketing rep 
-    IF ( v_job_id = v_desired_job_id ) THEN
-        UPDATE employees SET commission_pct = v_commission_pct
-            WHERE employee_id = v_employee_id;
-        v_total_salary := v_salary * (1 + v_commission_pct);
-        DBMS_OUTPUT.PUT_LINE('Total Salary: ' || v_total_salary);
-    END IF;
-END;
-```
 ## Req-9 missing
 
 ## Req-10  Nested Blocks - Add Employee
@@ -186,28 +160,6 @@ END;
 
 ## Req-12 same as 11
 
-## Req-13 Add new country
-
-nfoSpark decided to expand their business in two more countries Singapore (SG) and Sri Lanka (LK) in Asia region.
-
-Write a PL/SQL block to add these countries to DB. Check before adding country, whether they already exist. If exists, then don't add them to DB and display appropriate message.
-
-```sql
-SET SERVEROUTPUT ON;
-
-DECLARE
-    v_country_id countries.country_id%TYPE := 'SG';
-    v_country_name countries.country_name%TYPE := 'Singapore';
-    v_region_name regions.region_name%TYPE := 'Asia';
-    v_region_id regions.region_id%TYPE;
-BEGIN
-    SELECT region_id INTO v_region_id 
-        FROM regions WHERE region_name = v_region_name;
-    INSERT INTO countries
-        ( country_id, country_name, region_id )
-        VALUES ( v_country_id, v_country_name, v_region_id );
-END;
-```
 
 ## Reg-14 Number of Employees Per Job
 

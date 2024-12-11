@@ -86,15 +86,14 @@ Fallback is a method that runs case of:
 `pom.xml`
 ```xml
 <dependency>
-    <groupId>resilience4j-spring-boot2</groupId>
-    <a>
+    <groupId>io.github.resilience4j</groupId>
+    <artifactId>resilience4j-spring-boot2</artifactId>
 </dependency>
 
 <dependency>
-    <groupId></groupId>
-    <artifactId>spring-boot-starter-aop</artifactiId>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-aop</artifactId>
 </dependency>
-
 ```
 
 ### 2. Configure `Resilience4j`
