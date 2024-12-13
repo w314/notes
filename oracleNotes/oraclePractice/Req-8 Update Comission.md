@@ -1,6 +1,46 @@
 
 ## Req-8 Update comission
 
+Develop a PL/SQL code to update commission percentage of all employees, who are either 'MK_REP' or 'PR_REP', based on the below given salary slab
+- salary < 7000 -> 0.1
+- salary >= 7000 && < 1000 -> 0.15
+- salary >= 10000 -> 0.2
+
+
+```sql
+SET SERVEROUTPUT ON;
+
+DECLARE
+    CURSOR cur_emp
+    IS SELECT employee_id, salary FROM employees 
+        WHERE job_id IN ('MK_REP', 'PR_REP');
+    v_employee_id employees.employee_id%TYPE;
+    v_salary employees.salary%TYPE;
+    v_commission_pct employees.commission_pct%TYPE;
+BEGIN
+    OPEN cur_emp;
+    LOOP
+        FETCH cur_emp INTO v_employee_id, v_salary;
+        IF v_salary < 7000 THEN
+            v_commission_pct := 0.1;
+        ELSIF v_salary < 10000 THEN
+            v_commission_pct := 0.15;
+        ELSE 
+            v_commission_pct := 0.2;
+        END IF;
+        UPDATE employees SET commission_pct = v_commission_pct
+            WHERE employee_id = v_employee_id;
+        EXIT
+        WHEN cur_emp%NOTFOUND;
+    END LOOP;
+    CLOSE cur_emp;
+    EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error');
+END;
+```
+
+## Old Requirement
 Develop a stored procedure sp_update_comm_pct 
 - to update the commission percentage (Commission_PCT) 
     - as 0.1 of employees working as marketing rep (Job_ID :MK_REP). 
@@ -14,7 +54,7 @@ Develop a stored procedure sp_update_comm_pct
     - -3 for any other error
 - Invoke the procedure with employee ID as 202, 100 and 115.
 
-## Store Procedure
+### Stored Procedure
 
 ```sql
 CREATE OR REPLACE PROCEDURE sp_update_commission(
@@ -50,7 +90,7 @@ END;
 ```
 
 
-## Invoke Stored Procedure
+### Invoke Stored Procedure
 
 Also calculate and display the total salary.
 - use 202 for valid employee id

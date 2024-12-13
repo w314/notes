@@ -1,5 +1,9 @@
 # PS/SQL Stored Procedure
 
+> DO NOT COMMIT IN PROCEDURES
+- let the calling code decide when is it logical to commit
+- make rolling back possible for the colling code
+
 ## Define Procedure
 
  Create stored procedure sp_add_region
@@ -40,8 +44,6 @@ BEGIN
             -- insert region into database
             INSERT INTO regions (region_id, region_name)
                 VALUES (p_region_id, p_region_name);
-            -- commit transaction
-            COMMIT;
             -- set status to 0 to show success
             p_status := 0;
         ELSE 

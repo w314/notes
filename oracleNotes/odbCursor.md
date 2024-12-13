@@ -12,7 +12,8 @@ A implicit cursor is opened by the database to process each SQL statement below 
 
 The name of the  implicit cursor is `SQL`.
 
-Implicit cursors have [attributes](https://docs.oracle.com/cd/B28359_01/appdev.111/b28370/sql_cursor.htm#LNPLS01348).
+Implicit cursors have [attributes](https://docs.oracle.com/cd/B28359_01/appdev.111/b28370/sql_cursor.htm#LNPLS01348). 
+- like `%ROWCOUNT`
 
 
 After the update statement is executed cursor will be closed.
@@ -25,6 +26,7 @@ Declare Cursor
 - `CURSOR cursor_name IS <SELECT statement>`
 - cursor is given a name
 - cursor is associated with a query
+- do not use `INTO` in the query 
 
 Open Cursor
 - `OPEN cursor_name;`
@@ -59,6 +61,13 @@ Close Cursor
 
 ### Explicit Cursor Example
 
+- EXIT WHEN should be right after LOOP
+    - otherwise last record will be processed twice
+- when fetching all details use %ROWTYPE of the CURSOR
+    - CURSOR cur_emp IS SELECT ....
+    - rec_emp_info cur_emp%ROWTYPE
+
+
 Requirement: HR manager wants to view the details (employee ID, salary and hire date) of all the employees working in Marketing department (department ID 20)
 
 ```sql
@@ -84,8 +93,8 @@ BEGIN
             FETCH cur_emp_in_dept INTO v_emp_id, v_salary, v_hire_date;
             -- define loop exit condition
             EXIT
-                -- exit when no more employees to process
-                WHEN cur_emp_in_dept%NOTFOUND;
+        -- exit when no more employees to process
+        WHEN cur_emp_in_dept%NOTFOUND;
             -- if %NOTFOUND is false
             -- output current employee details
             DBMS_OUTPUT.PUT_LINE('Employee ID: ' || v_emp_id);
@@ -96,6 +105,10 @@ BEGIN
     CLOSE cur_emp_in_dept;
 END;     
 ```
+- if you would before checking the exit condition
+- the last row would be printed twice
+- when the cursor cannot fetch nay new rows
+- it will keep the values of the last fetched
 
 ### Referncing variables in cursor query
 
@@ -115,6 +128,8 @@ DECLARE
         -- declare variables to store data like before
 BEGIN
     -- set department value
+    -- if value would have been set declaration
+    -- it would now be updated with the new value below
     v_dept_id := 20;
     -- open cursor, its select query is executed now
     -- using the department value we just set

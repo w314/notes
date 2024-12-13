@@ -174,8 +174,9 @@ SELECT trigger_name, trigger_type, triggering_event,
 	table_name, referencing_names,
 	status, trigger_body
 FROM   user_triggers
-WHERE  trigger_name = <triggername>;
+WHERE  trigger_name = '<triggername>';
 ```
+- trigger_name has to be upper case and enclosed in `''`
 
 Delete Triggers
 ```sql
