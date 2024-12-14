@@ -1,11 +1,19 @@
 
 ## Req-8 Update comission
 
-Develop a PL/SQL code to update commission percentage of all employees, who are either 'MK_REP' or 'PR_REP', based on the below given salary slab
-- salary < 7000 -> 0.1
-- salary >= 7000 && < 1000 -> 0.15
-- salary >= 10000 -> 0.2
+VERSION 1
 
+- Develop a PL/SQL code to update commission percentage of all employees, who are either 'MK_REP' or 'PR_REP', based on the below given salary slab
+    - salary < 7000 -> 0.1
+    - salary >= 7000 && < 1000 -> 0.15
+    - salary >= 10000 -> 0.2
+
+VERSION 2
+Update the commission percentage for all the employees working in department 20.
+- Develop a PL/SQL program to update the COMMISSION_PCT to 0.1 for employees working in department 20 and also display the number of employees for whom commission is updated. If no employee data is getting updated, then display 'No employee found'.
+- do not use cursor
+
+## Version 1
 
 ```sql
 SET SERVEROUTPUT ON;
@@ -121,5 +129,33 @@ BEGIN
     ELSE
         DBMS_OUTPUT.PUT_LINE('Unexpected error');
     END IF;
+END;
+```
+
+
+## Version 2
+
+```sql
+SET SERVEROUTPUT ON;
+
+DECLARE
+    v_department_id departments.department_id%TYPE := 200;
+    v_commission_pct employees.commission_pct%TYPE := 0.1;
+    v_row_count NUMBER(2);
+BEGIN
+    -- run sql query 
+    UPDATE employees SET commission_pct = v_commission_pct 
+        WHERE department_id = v_department_id;
+    -- output updated record number
+    -- use implicit cursor: SQL
+    IF SQL%FOUND THEN
+        v_row_count := SQL%ROWCOUNT;
+        DBMS_OUTPUT.PUT_LINE(v_row_count || ' record is updated');
+    ELSE 
+        DBMS_OUTPUT.PUT_LINE('No record found');
+    END IF;
+    EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error');
 END;
 ```

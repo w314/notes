@@ -37,7 +37,7 @@ EXTRACT(HOUR FROM SYSTIMESTAMP) + EXTRACT(TIMEZONE_HOUR FROM SYSTIMESTAMP)
 ```
 - `EXTRACT(HOUR ...)` by itself returns UTC time
 
-### Other Useful DATE functions
+### Interval between dates
 
 ```sql
 -- returns current system date & time
@@ -58,3 +58,10 @@ SELECT TO_CHAR(SYSDATE, 'Month) FROM DUAL;
 SELECT TO_CHAR(TO_DATE('02-11-2024', 'DD-MM-YYYY'), 'Month') FROM DUAL;
 ```
 
+### Get number or name of day from date
+[Source - Database.guide](https://database.guide/2-ways-to-get-the-day-from-a-date-in-oracle/)
+
+```sql
+SELECT TO_CHAR(DATE '2024-1206', 'DAY') FROM DUAL;
+-- friday
+```

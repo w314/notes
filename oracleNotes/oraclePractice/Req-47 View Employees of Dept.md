@@ -13,6 +13,9 @@ VERSION 2:
 - run it for both department with id 20 and 30
 - see ALL details fo employees
 
+VERSION 3:
+- use cursor with FOR LOOP
+
 
 ## Version 1
 
@@ -104,6 +107,35 @@ BEGIN
     END LOOP;
     -- close cursor
     CLOSE cur_emp_in_dept;
+    EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error');
+END;
+```
+
+## Version 3
+
+```sql
+SET SERVEROUTPUT ON;
+
+DECLARE
+    -- declare cursor with parameter
+    CURSOR cur_emp_in_dept(p_department_id departments.department_id%TYPE)
+    IS SELECT * FROM employees WHERE department_id = p_department_id;
+    -- variable to hold current departmetn to pass as parameter to cursor
+    v_current_dept departments.department_id%TYPE;
+BEGIN
+    v_current_dept := 20;
+    -- FOR LOOP below
+    --  opens cursor
+    --  declares rec_emp as cur_emp_in_dept%ROWTYPE
+    FOR rec_emp IN cur_emp_in_dept(v_current_dept)
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(rec_emp.employee_id || ' - ' 
+            || rec_emp.hire_date || ' - ' 
+            || rec_emp.salary);
+    -- loop automatically closes when all records are fetched
+    END LOOP;
     EXCEPTION
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('Error');
