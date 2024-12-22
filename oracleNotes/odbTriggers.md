@@ -13,6 +13,7 @@ The trigger body is executed depending on how many rows were affected by the DML
 Row trigger have 2 `pseudo records`:
 - `:OLD` references the old row before UPDATE or DELETE
 - `:NEW` references the new row after INSERT or UPDATE
+- `AFTER` triggers cannot use `:NEW` to modify the data manipulated 
 
 General Syntax
 ```sql

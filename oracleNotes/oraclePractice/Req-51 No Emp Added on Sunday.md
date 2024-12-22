@@ -8,3 +8,14 @@ If so, raise an exception  with error code -20000 and the error message as 'Empl
 Hint: HIRE_Date should not be Sunday
 
 ```sql
+create or replace TRIGGER trg_add_employee_sunday
+    BEFORE INSERT ON employees
+BEGIN
+    IF TRUE THEN
+        RAISE_APPLICATION_ERROR(-20001, 'test error');
+    END IF;
+    IF UPPER(TO_CHAR(SYSDATE, 'DAY')) = 'FRIDAY' THEN
+        RAISE_APPLICATION_ERROR(-20000, 'Employee record cannot be inserted on Sunday');
+    END IF;
+END;
+```

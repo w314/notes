@@ -1,13 +1,15 @@
-
+pl-sql, block, record, log, error handling
 ## Req-2 View phone number of employees by first name
 
+- employee wants to view the employee ID, first name, last name, department name and phone number of other employees.  
+- create a record type to store only these values of an employee.
 Retrieve and display the phone number of employee with first name 'John' and 
 - display appropriate message if there no employee with the given first name 
 - or if there are more than one employee with the given first name.
+- ALSO LOG all exceptions raised.
+- invoke the function from anonymous block for employee ID 110 and 119.
 
-Also invoke the function from anonymous block for employee ID 110 and 119.
 
-ALSO LOG all exceptions raised.
 
 
 ## Create Log Table
@@ -29,19 +31,28 @@ CREATE TABLE error_log (
 SET SERVEROUTPUT ON;
 
 DECLARE
-    v_first_name employees.first_name%TYPE := 'John';
-    v_phone_number employees.phone_number%TYPE;
+    -- declare RECORD TYPE
+    TYPE type_emp_detail IS RECORD
+    (
+        phone_number employees.phone_number%TYPE
+        -- other fields would be here
+        -- with ',' at the end of each line except the last one
+    );
+    -- declare RECORD of TYPE
+    rec_emp_detail type_emp_detail;
+    v_first_name employees.first_name%TYPE := 'Peter';
     -- for logging errors
     v_error_code error_log.error_code%TYPE;
     v_error_message error_log.error_message%TYPE;
     v_comment error_log.comments%TYPE;
 BEGIN
     SELECT phone_number
-        INTO  v_phone_number
+        INTO  rec_emp_detail
         FROM EMPLOYEES
         WHERE first_name = v_first_name;
     DBMS_OUTPUT.PUT_LINE('First Name: ' || v_first_name);
-    DBMS_OUTPUT.PUT_LINE('Phone Number: ' || v_phone_number);
+    -- access field of record
+    DBMS_OUTPUT.PUT_LINE('Phone Number: ' || rec_emp_detail.phone_number);
     EXCEPTION
     WHEN NO_DATA_FOUND THEN
         DBMS_OUTPUT.PUT_LINE('Employee : ' || v_first_name || ' does not exists.');

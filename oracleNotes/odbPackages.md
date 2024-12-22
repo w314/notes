@@ -1,7 +1,27 @@
 # Oracle Packages
+> Packages group logically related programs together.
+
+Makes coude easy to
+- locate
+- understand
+- reuse
 
 ## Create Package Specification
+Can have package specification without body but not the other way around.
 
+Syntax
+```sql
+CREATE [OR REPLACE] PACKAGE pkg_package_name
+IS|AS
+   [constant_declaration ...]
+   [variable_declaration ...]
+   [cursor_spec ...]
+   [function_spec ...]
+   [procedure_spec ...]
+END [pkg_package_name];
+```
+
+Example
 ```sql
 CREATE OR REPLACE PACKAGE pkg_employee_info
 IS
@@ -16,6 +36,20 @@ END;
 
 ## Create Package Body
 
+Syntax
+```sql
+CREATE [OR REPLACE] PACKAGE BODY pkg_package_name
+IS|AS
+   [constant_usage ...]
+   [exception_usage ...]
+   [variable_usage ...]
+   [cursor_body ...]
+   [function_body ...]
+   [procedure_body ...]
+END [pkg_package_name]; 
+```
+
+Example:
 ```sql
 CREATE OR REPLACE PACKAGE BODY pkg_employee_info
 IS
